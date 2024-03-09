@@ -1,5 +1,74 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+# Requirements
+- Stable version of [Docker](https://docs.docker.com/engine/install/)
+- Compatible version of [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+
+# Cara - Cara
+### Cara Menjalankan Aplikasi
+- Buka terminal dan docker desktop di komputer
+- Buka directory dimana file project akan di install menggunakan perintah `cd` di ikuti path
+- Clone project menggunakan perintah `git clone https://github.com/vchandra22/sigma-v2.git`
+- Jalankan perintah `docker-compose build --no-cache`
+- Tunggu sampai proses build selesai, kemudian `docker-compose up -d`
+- Buka web browser kemudian akses url http://localhost/
+
+### Artisan commands or manage package 
+- Aplikasi berjalan menggunakan docker container
+- Menjalankan artisan commands atau manage package dapat dilakukan dalam container
+- Gunakan perintah `docker compose exec php bash`
+
+### Cara mengakses phpmyadmin/db
+- URL: http://localhost:1010
+- Username: `user`
+- Password: `password`
+- Database: `sigma_db`
+
+# Catatan
+### Basic docker compose commands
+- Build or rebuild services
+    - `docker compose build`
+- Create and start containers
+    - `docker compose up -d`
+- Stop and remove containers, networks
+    - `docker compose down`
+- Stop all services
+    - `docker compose stop`
+- Restart service containers
+    - `docker compose restart`
+- Run a command inside a container
+    - `docker compose exec [container] [command]`
+
+### Useful Laravel Commands
+- Display basic information about your application
+    - `php artisan about`
+- Remove the configuration cache file
+    - `php artisan config:clear`
+- Flush the application cache
+    - `php artisan cache:clear`
+- Clear all cached events and listeners
+    - `php artisan event:clear`
+- Delete all of the jobs from the specified queue
+    - `php artisan queue:clear`
+- Remove the route cache file
+    - `php artisan route:clear`
+- Clear all compiled view files
+    - `php artisan view:clear`
+- Remove the compiled class file
+    - `php artisan clear-compiled`
+- Remove the cached bootstrap files
+    - `php artisan optimize:clear`
+- Delete the cached mutex files created by scheduler
+    - `php artisan schedule:clear-cache`
+- Flush expired password reset tokens
+    - `php artisan auth:clear-resets`
+ 
+### Vite Commands
+- Start Development Serve
+    - `npm run dev`
+- Build or compile all the tailwind clasess
+    - `npm run build` 
+
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -64,4 +133,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# sigma-project
