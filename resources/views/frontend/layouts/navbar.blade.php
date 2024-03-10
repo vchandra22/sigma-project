@@ -1,10 +1,10 @@
 <section class="navbar-section-area">
     <nav
-        class="fixed top-0 z-20 w-full border-b border-gray-200 shadow-sm bg-secondary dark:bg-neutral-900 start-0 dark:border-none">
+        class="fixed top-0 z-20 w-full border-b border-gray-200 shadow-sm bg-secondary dark:bg-neutral-900 start-0 dark:border-neutral-800">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
             <div class="flex flex-wrap justify-start">
                 {{-- logo on navbar start --}}
-                <a href="/" class="flex items-center space-x-3">
+                <a href="{{ url('/') }}" class="flex items-center space-x-3">
                     <img src="{{ asset('frontend/assets/img/logo-sigmaLight.png') }}"
                         class="block h-8 lg:h-10 dark:hidden" alt="Sigma Logo" />
                     <img src="{{ asset('frontend/assets/img/logo-sigmaDark.png') }}"
@@ -18,20 +18,20 @@
                     <ul
                         class="flex flex-col p-4 mt-4 font-medium bg-transparent rounded-none lg:text-lg md:p-0 md:space-x-7 md:flex-row md:mt-0 md:border-0 md:bg-transparent lg:space-x-10 dark:bg-transparent md:dark:bg-transparent">
                         <li>
-                            <a href="#"
+                            <a href="{{ url('/') }}"
                                 class="block px-3 py-2 text-gray-900 md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-500 dark:text-gray-200 dark:hover:text-secondary md:dark:hover:bg-transparent">Beranda</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('frontend.roleList') }}"
                                 class="block px-3 py-2 text-gray-900 md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-500 dark:text-gray-200 dark:hover:text-secondary md:dark:hover:bg-transparent">Internship
                                 Role</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('frontend.publikasiList') }}"
                                 class="block px-3 py-2 text-gray-900 md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-500 dark:text-gray-200 dark:hover:text-secondary md:dark:hover:bg-transparent">Publikasi</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('frontend.faq') }}"
                                 class="block px-3 py-2 text-gray-900 md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-500 dark:text-gray-200 dark:hover:text-secondary md:dark:hover:bg-transparent">FAQ</a>
                         </li>
                     </ul>
@@ -74,7 +74,7 @@
             <div
                 class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-neutral-900 dark:border-none">
                 <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-                    <button type="button"
+                    <a href="{{ url('/') }}"
                         class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-secondary group">
                         <div
                             class="w-5 h-5 mb-2 text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">
@@ -82,8 +82,8 @@
                         </div>
                         <span
                             class="text-sm text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">Beranda</span>
-                    </button>
-                    <button type="button"
+                    </a>
+                    <a href="{{ route('frontend.roleList') }}"
                         class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-secondary group">
                         <div
                             class="w-5 h-5 mb-2 text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">
@@ -91,8 +91,8 @@
                         </div>
                         <span
                             class="text-sm text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">Roles</span>
-                    </button>
-                    <button type="button"
+                    </a>
+                    <a href="{{ route('frontend.publikasiList') }}"
                         class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-secondary group">
                         <div
                             class="w-5 h-5 mb-2 text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">
@@ -100,8 +100,8 @@
                         </div>
                         <span
                             class="text-sm text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">Publikasi</span>
-                    </button>
-                    <button type="button"
+                    </a>
+                    <a href="{{ route('frontend.faq') }}"
                         class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-secondary group">
                         <div
                             class="w-5 h-5 mb-2 text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">
@@ -109,7 +109,7 @@
                         </div>
                         <span
                             class="text-sm text-primary-800 dark:text-secondary group-hover:text-primary-500 dark:group-hover:text-neutral-900">FAQ</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

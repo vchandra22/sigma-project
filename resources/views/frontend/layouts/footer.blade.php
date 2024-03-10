@@ -1,5 +1,5 @@
-<footer class="bg-white dark:bg-neutral-900">
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+<footer class="bg-secondary dark:bg-neutral-900 border border-t border-abu-500 dark:border-neutral-800">
+    <div class="mx-auto w-full max-w-screen-xl p-8 md:px-8 lg:py-12 xl:px-12">
         <div class="md:flex md:justify-between">
             <div class="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3 mb-6 md:mb-0">
                 {{-- logo on navbar start --}}
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 md:my-" />
         <div class="flex items-center justify-center">
             <span class="text-sm text-gray-500 text-center dark:text-gray-400">
                 @php

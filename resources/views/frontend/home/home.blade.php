@@ -30,27 +30,27 @@
                     </h2>
                     <div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 mt-7">
                         <div
-                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-secondary dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
+                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800 dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
                             <p class="text-lg font-paragraf">
                                 Mahasiswa aktif S1 (min.semester 6) atau D3 (min. semester 4) serta siswa siswi SMK
                             </p>
                         </div>
                         <div
-                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-secondary
+                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800
                             dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
                             <p class="text-lg font-paragraf">
                                 Berkomitmen kerja penuh waktu (Senin-Jum’at dari 07.00 - 15.00) selama periode internship
                             </p>
                         </div>
                         <div
-                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-secondary
+                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800
                             dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
                             <p class="text-lg font-paragraf">
                                 Mampu berkomunikasi dengan baik serta dapat bekerja dalam tim maupun mandiri
                             </p>
                         </div>
                         <div
-                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-secondary dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
+                            class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800 dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
                             <p class="text-lg font-paragraf">
                                 Mentaati seluruh peraturan yang telah ditetapkan
                             </p>
@@ -71,13 +71,13 @@
 
     {{-- section what you will get start --}}
     <div class="bg-abu-500 dark:bg-neutral-800">
-        <div class="max-w-screen-xl mx-auto px-4 md:px-6">
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8">
             <h2 class="pt-16 text-4xl text-center md:text-5xl font-bold text-primary-800 dark:text-secondary">
                 What You Will Get.
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pt-7 pb-16">
                 <div
-                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
                     <span class="overflow-hidden fa-4x">
                         <i class="fa-solid fa-users"></i>
                     </span>
@@ -88,7 +88,7 @@
                         Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
                 </div>
                 <div
-                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
                     <span class="overflow-hidden fa-4x">
                         <i class="fa-solid fa-users"></i>
                     </span>
@@ -99,7 +99,7 @@
                         Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
                 </div>
                 <div
-                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
                     <span class="overflow-hidden fa-4x">
                         <i class="fa-solid fa-users"></i>
                     </span>
@@ -110,7 +110,7 @@
                         Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
                 </div>
                 <div
-                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
                     <span class="overflow-hidden fa-4x">
                         <i class="fa-solid fa-users"></i>
                     </span>
@@ -127,13 +127,13 @@
 
     {{-- section do you know start --}}
     <div class="bg-secondary dark:bg-neutral-900">
-        <div class="max-w-screen-xl mx-auto px-4 md:px-6">
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8">
             <h2 class="pt-16 text-4xl text-center md:text-5xl font-bold text-primary-800 dark:text-secondary">
                 Do You Know?
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pt-7 pb-16">
                 <div
-                    class="p-4 md:p-6 my-auto items-center text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 my-auto items-center text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-800 cursor-pointer">
                     <h3 class="text-8xl font-bold text-center">
                         116
                     </h3>
@@ -142,7 +142,7 @@
                     </h4>
                 </div>
                 <div
-                    class="p-4 md:p-6 my-auto text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 my-auto text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-800 cursor-pointer">
                     <h3 class="text-8xl font-bold text-center">
                         19
                     </h3>
@@ -151,7 +151,7 @@
                     </h4>
                 </div>
                 <div
-                    class="p-4 md:p-6 my-auto text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 my-auto text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-800 cursor-pointer">
                     <h3 class="text-8xl font-bold text-center">
                         11
                     </h3>
@@ -160,7 +160,7 @@
                     </h4>
                 </div>
                 <div
-                    class="p-4 md:p-6 my-auto text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-secondary cursor-pointer">
+                    class="p-4 md:p-6 my-auto text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-gray-100 dark:text-secondary dark:hover:text-neutral-900 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-800 cursor-pointer">
                     <h3 class="text-8xl font-bold text-center">
                         4
                     </h3>
@@ -192,7 +192,7 @@
 
                     <div id="accordion-open" class="pt-8" data-accordion="collapse" data-active-classes="bg-gray-100 dark:bg-neutral-600 text-primary-800 dark:text-secondary">
                         <h3 id="accordion-open-heading-1">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-gray-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-1" aria-expanded="true" aria-controls="accordion-open-body-1">
+                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-1" aria-expanded="true" aria-controls="accordion-open-body-1">
                                 <span class="text-2xl font-bold">Registration</span>
                                 <span class="-m-[20px] p-4">
                                     <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
@@ -208,7 +208,7 @@
                         </div>
 
                         <h3 id="accordion-open-heading-2">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-gray-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-2" aria-expanded="false" aria-controls="accordion-open-body-2">
+                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-2" aria-expanded="false" aria-controls="accordion-open-body-2">
                                 <span class="text-2xl font-bold">Administration</span>
                                 <span class="-m-[20px] p-4">
                                     <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
@@ -224,7 +224,7 @@
                         </div>
 
                         <h3 id="accordion-open-heading-3">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-gray-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-3" aria-expanded="false" aria-controls="accordion-open-body-3">
+                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-3" aria-expanded="false" aria-controls="accordion-open-body-3">
                                 <span class="text-2xl font-bold">Review</span>
                                 <span class="-m-[20px] p-4">
                                     <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
@@ -240,7 +240,7 @@
                         </div>
 
                         <h3 id="accordion-open-heading-4">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-gray-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-4" aria-expanded="false" aria-controls="accordion-open-body-4">
+                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-4" aria-expanded="false" aria-controls="accordion-open-body-4">
                                 <span class="text-2xl font-bold">On Job</span>
                                 <span class="-m-[20px] p-4">
                                     <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
@@ -256,7 +256,7 @@
                         </div>
 
                         <h3 id="accordion-open-heading-5">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-gray-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-5" aria-expanded="false" aria-controls="accordion-open-body-5">
+                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3" data-accordion-target="#accordion-open-body-5" aria-expanded="false" aria-controls="accordion-open-body-5">
                                 <span class="text-2xl font-bold">Graduate</span>
                                 <span class="-m-[20px] p-4">
                                     <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>

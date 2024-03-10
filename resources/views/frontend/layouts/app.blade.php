@@ -18,7 +18,7 @@
 
     <script src="https://kit.fontawesome.com/bfb24335ca.js" crossorigin="anonymous"></script>
 
-    <title>Document</title>
+    <title> {{ 'SIGMA - ' . $pageTitle }}</title>
 </head>
 
 <body>
