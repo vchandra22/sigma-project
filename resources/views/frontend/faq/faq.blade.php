@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="bg-secondary dark:bg-neutral-900">
-        <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
+        <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4 xl:min-h-screen">
             {{-- breadcrums start --}}
-            <nav class="flex px-4 py-8" aria-label="Breadcrumb">
+            <nav class="flex py-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-4">
                     <li class="inline-flex items-center">
                         <a href="{{ url('/') }}"
@@ -24,9 +24,9 @@
             </nav>
             {{-- breadcrums end --}}
 
-            <div class="max-w-screen-xl mx-auto pb-16 px-4">
-                <h1 class="pt-8 text-6xl text-center font-bold text-primary-800 leading-none dark:text-secondary">Halo, ada yang bisa dibantu?</h1>
-                <p class="text-center font-paragraf text-2xl text-primary-800 dark:text-secondary">Tidak menemukan jawaban?
+            <div class="max-w-screen-xl mx-auto pb-16">
+                <h1 class="pt-8 text-4xl md:text-6xl text-center font-bold text-primary-800 leading-none dark:text-secondary">Halo, ada yang bisa dibantu?</h1>
+                <p class="text-center font-paragraf text-md md:text-2xl text-primary-800 dark:text-secondary">Tidak menemukan jawaban?
                     Klik
                     <a href="#" class="text-primary-800 font-bold hover:text-primary-500 dark:text-secondary dark:hover:text-abu-800">
                         disini

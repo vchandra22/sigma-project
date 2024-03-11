@@ -4,7 +4,7 @@
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
             <div class="flex flex-wrap justify-start">
                 {{-- logo on navbar start --}}
-                <a href="{{ url('/') }}" class="flex items-center space-x-3">
+                <a href="{{ url('/') }}" class="flex items-center">
                     <img src="{{ asset('frontend/assets/img/logo-sigmaLight.png') }}"
                         class="block h-8 lg:h-10 dark:hidden" alt="Sigma Logo" />
                     <img src="{{ asset('frontend/assets/img/logo-sigmaDark.png') }}"
@@ -58,12 +58,12 @@
                 {{-- light mode / dark mode toggler end --}}
 
                 {{-- auth button start --}}
-                <button type="button"
+                <a href="{{ route('auth.login') }}"
                     class="px-3 py-2 text-sm font-medium text-center text-secondary bg-primary-800 md:px-4 lg:px-8 hover:bg-primary-500 focus:ring-1 focus:outline-none focus:ring-primary-500 dark:bg-secondary dark:text-neutral-900 dark:hover:bg-white dark:focus:ring-white dark:border">Login
-                </button>
-                <button type="button"
+                </a>
+                <a href="{{ route('auth.register') }}"
                     class="px-3 py-2 text-sm font-medium text-center dark:text-secondary bg-transparent border border-primary-800 text-primary-800 md:px-3 lg:px-6 hover:bg-primary-500 hover:text-secondary focus:ring-1 focus:outline-none focus:ring-white dark:bg-neutral-900 dark:hover:bg-secondary dark:hover:text-neutral-900 dark:focus:ring-secondary dark:border-secondary">Register
-                </button>
+                </a>
                 {{-- auth button end --}}
 
             </div>
@@ -72,7 +72,7 @@
         {{-- bottom navbar: only show on small screen start --}}
         <div class="block md:hidden">
             <div
-                class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-neutral-900 dark:border-none">
+                class="fixed bottom-0 left-0 z-50 w-full h-16 bg-secondary border-t border-gray-200 dark:bg-neutral-900 dark:border-neutral-800">
                 <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
                     <a href="{{ url('/') }}"
                         class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-secondary group">

@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="bg-secondary dark:bg-neutral-900">
-        <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
+        <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4 xl:min-h-screen">
             {{-- breadcrums start --}}
-            <nav class="flex px-4 py-8" aria-label="Breadcrumb">
+            <nav class="flex py-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-4">
                     <li class="inline-flex items-center">
                         <a href="{{ url('/') }}"
@@ -33,7 +33,7 @@
             </nav>
             {{-- breadcrums end --}}
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 px-4 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 pb-12">
                 <div class="relative w-full h-full dark:border dark:border-neutral-800">
                     <img src="{{ asset('frontend/assets/img/illustration-image-role-developer.webp') }}"
                         class="object-cover w-full h-full" alt="Illustration Image Developer">

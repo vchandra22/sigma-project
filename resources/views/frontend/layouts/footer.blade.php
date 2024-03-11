@@ -1,5 +1,5 @@
 <footer class="bg-secondary dark:bg-neutral-900 border border-t border-abu-500 dark:border-neutral-800">
-    <div class="mx-auto w-full max-w-screen-xl p-8 md:px-8 lg:py-12 xl:px-12">
+    <div class="mx-auto w-full max-w-screen-xl p-8 md:px-8 lg:pt-12 md:pb-1 xl:px-12">
         <div class="md:flex md:justify-between">
             <div class="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3 mb-6 md:mb-0">
                 {{-- logo on navbar start --}}
@@ -11,7 +11,7 @@
                             class="hidden h-12 lg:h-20 dark:block" alt="Sigma Logo" />
                     </a>
                     {{-- logo on navbar end --}}
-                    <span class="font-paragraf text-lg md:text-lg md:leading-6 text-primary-800 text-start dark:text-secondary">
+                    <span class="font-paragraf text-md md:text-lg md:leading-6 text-primary-800 text-start dark:text-secondary">
                         <p>
                             Jl. Dr. Moh. Hatta No.05, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113.
                         </p>
@@ -30,24 +30,24 @@
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-brands fa-instagram fa-2x w-10"></i>
-                            <a href="https://flowbite.com/" class="font-paragraf text-lg">diskominfotikblitarkota</a>
+                            <a href="https://flowbite.com/" class="font-paragraf text-md md:text-lg">diskominfotikblitarkota</a>
                         </li>
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-brands fa-youtube fa-2x w-10"></i>
-                            <a href="https://tailwindcss.com/" class="font-paragraf text-lg">Diskominfotik Blitar
+                            <a href="https://tailwindcss.com/" class="font-paragraf text-md md:text-lg">Diskominfotik Blitar
                                 Kota</a>
                         </li>
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-solid fa-phone fa-2x w-10"></i>
-                            <a href="https://tailwindcss.com/" class="font-paragraf text-lg">(0342) 807805</a>
+                            <a href="https://tailwindcss.com/" class="font-paragraf text-md md:text-lg">(0342) 807805</a>
                         </li>
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-regular fa-envelope fa-2x w-10"></i>
                             <a href="https://tailwindcss.com/"
-                                class="font-paragraf text-lg">diskominfotik@blitarkota.go.id</a>
+                                class="font-paragraf text-md md:text-lg">diskominfotik@blitarkota.go.id</a>
                         </li>
                     </ul>
                 </div>
@@ -63,8 +63,8 @@
                 </div>
             </div>
         </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 md:my-" />
-        <div class="flex items-center justify-center">
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700" />
+        <div class="flex items-center justify-center pb-12 lg:pb-1 lg:mb-2">
             <span class="text-sm text-gray-500 text-center dark:text-gray-400">
                 @php
                     function getCopyrightYear() {
@@ -73,8 +73,8 @@
                     }
                     echo "© " . getCopyrightYear();
                 @endphp
-                <a href="#"
-                    class="hover:underline">SIGMA (Sistem Informasi Kegiatan Magang)
+                <a href="{{ url('/') }}"
+                    class="hover:underline">SIGMA (Sistem Informasi Kegiatan Magang), Dinas Komunikasi Informatika dan Statistik Kota Blitar
                 </a>
             </span>
         </div>

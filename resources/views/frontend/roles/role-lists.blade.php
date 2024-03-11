@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="bg-secondary dark:bg-neutral-900">
-        <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
+        <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4 xl:min-h-screen">
             {{-- breadcrums start --}}
-            <nav class="flex px-4 py-8" aria-label="Breadcrumb">
+            <nav class="flex py-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-4">
                     <li class="inline-flex items-center">
                         <a href="{{ url('/') }}"
@@ -24,7 +24,7 @@
             </nav>
             {{-- breadcrums end --}}
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-12">
 
                 <a href="{{ route('frontend.roleDetail') }}"
                     class="block w-full px-6 py-12 text-primary-800 shadow-sm bg-transparent border border-abu-500 hover:bg-abu-500 dark:bg-transparent dark:border-neutral-800 dark:hover:bg-abu-500 dark:text-secondary dark:hover:text-neutral-800">

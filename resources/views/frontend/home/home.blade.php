@@ -12,9 +12,7 @@
                 Sistem Informasi Kegiatan Magang
             </h1>
             <p class="max-w-screen-lg my-2 text-xs font-normal leading-tight text-gray-300 lg:px-4 lg:text-xl lg:leading-tight">
-                Temukan kesempatan magang yang sesuai dengan minat dan bakat Anda, ikuti proyek-proyek yang menarik, dan
-                terhubunglah dengan profesional berpengalaman untuk memperluas jaringan dan pengalaman Anda. Mari
-                bersama-sama membangun masa depan. Siap untuk menjadi bagian dari perubahan?
+                Selamat datang di platform SIGMA, tempat di mana kesempatan menanti untukmu. Ayo kita eksplorasi beragam kegiatan magang yang sesuai dengan minat dan bakatmu,dengan proyek-proyek seru dan kamu dapat menjalin hubungan dengan para profesional berpengalaman. Yuk, kita bangun masa depan bareng. Gimana, tertarik jadi bagian dari perubahan?
             </p>
         </div>
     </div>

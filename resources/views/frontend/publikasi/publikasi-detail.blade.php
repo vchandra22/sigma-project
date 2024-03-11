@@ -48,18 +48,19 @@
     </div>
 
     <div class="bg-secondary dark:bg-neutral-900">
-        <div class="px-4 max-w-screen-xl mx-auto bg-secondary dark:bg-neutral-900">
+        <div class="px-4 max-w-screen-xl mx-auto bg-secondary dark:bg-neutral-900 xl:min-h-screen">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 <div class="col-span-2">
-                    <div class="pr-6 py-12 w-full">
-                        <div class="text-4xl font-bold text-primary-800 text-start leading-9 dark:text-secondary">
+                    <div class="py-4 md:py-12 md:pr-12">
+                        <div
+                            class="hidden md:block text-2xl md:text-4xl font-bold text-primary-800 text-start leading-6 md:leading-9 dark:text-secondary">
                             <h2>
                                 Judul Publikasi
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo voluptatem maiores sunt.
                             </h2>
                         </div>
                         <div
-                            class="text-primary-800 leading-tight pt-8 text-balance text-2xl font-paragraf dark:text-secondary">
+                            class="text-primary-800 text-justify leading-tight pt-8 text-balance text-md md:text-2xl font-paragraf dark:text-secondary">
                             Dalam dunia pendidikan dan industri, magang memiliki peran yang krusial dalam membekali
                             mahasiswa
                             dengan pengalaman praktis yang diperlukan untuk sukses di dunia kerja. Namun, seringkali
