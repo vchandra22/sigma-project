@@ -49,7 +49,7 @@
                                             Lengkap <span class="text-red-500">*</span></label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="Vincent Chandra Trie Novan" required />
+                                            placeholder="Vincent Chandra Trie Novan" required autofocusa />
                                     </div>
 
                                     <div>

@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Console\Input\Input;
+
+class AuthUserController extends Controller
+{
+    public function showLoginForm()
+    {
+        $data['pageTitle'] = 'Login';
+
+        return view('auth.login', $data);
+    }
+
+    public function authenticate(Request $request)
+    {
+
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        $remember = request('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('user.dashboard'));
+        }
+
+        return back()->with('loginError', 'Login Gagal');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->intended(route('auth.login'));
+    }
+
+    public function showRegisterForm()
+    {
+        $data['pageTitle'] = 'Register';
+
+        return view('auth.sign-up', $data);
+    }
+
+    public function showDashboard()
+    {
+        $data['pageTitle'] = 'Dashboard';
+
+        return view('user.dashboard', $data);
+    }
+    public function showLogbook()
+    {
+        $data['pageTitle'] = 'Logbook';
+
+        return view('user.logbook', $data);
+    }
+}

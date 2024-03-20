@@ -19,7 +19,7 @@
 
     <script src="https://kit.fontawesome.com/bfb24335ca.js" crossorigin="anonymous"></script>
 
-    <title> {{ 'SIGMA - ' . $pageTitle }}</title>
+    <title>{{ get_app_name() }} - {{ __(@$pageTitle) }}</title>
 </head>
 
 <body>

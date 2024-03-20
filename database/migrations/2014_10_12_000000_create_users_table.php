@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\Document as ModelsDocument;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use League\CommonMark\Node\Block\Document;
 
 return new class extends Migration
 {
@@ -13,10 +16,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('username')->unique();
+            $table->string('nama_lengkap');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('no_hp', 50)->nullable();
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

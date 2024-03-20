@@ -66,15 +66,8 @@
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700" />
         <div class="flex items-center justify-center pb-12 lg:pb-1 lg:mb-2">
             <span class="text-sm text-gray-500 text-center dark:text-gray-400">
-                @php
-                    function getCopyrightYear() {
-                        $currentYear = date("Y");
-                        return $currentYear;
-                    }
-                    echo "© " . getCopyrightYear();
-                @endphp
                 <a href="{{ url('/') }}"
-                    class="hover:underline">SIGMA (Sistem Informasi Kegiatan Magang), Dinas Komunikasi Informatika dan Statistik Kota Blitar
+                    class="hover:underline">{{ "© " . get_copyright_year() }}  SIGMA (Sistem Informasi Kegiatan Magang), Dinas Komunikasi Informatika dan Statistik Kota Blitar
                 </a>
             </span>
         </div>
