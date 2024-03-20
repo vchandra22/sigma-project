@@ -30,6 +30,33 @@
                     </button>
                 </div>
             @endif
+
+            @if (session('success'))
+                <div id="toast-success"
+                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-secondary shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700"
+                    role="alert">
+                    <div
+                        class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-transparent dark:text-green-500">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span class="sr-only">Check icon</span>
+                    </div>
+                    <div class="ms-3 text-sm font-normal">{{ session('success') }}</div>
+                    <button type="button"
+                        class="ms-auto -mx-1.5 -my-1.5 bg-secondary text-primary-800 hover:text-primary-500 focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-secondary dark:hover:text-white dark:bg-transparent"
+                        data-dismiss-target="#toast-danger" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
             {{-- breadcrums start --}}
             <nav class="flex py-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-4">
@@ -81,11 +108,11 @@
                                     <div>
                                         <label for="username"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                            Username
+                                            No.Identitas
                                         </label>
                                         <input type="username" name="username" id="username"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="Masukkan username" value="{{ old('username') }}" required
+                                            placeholder="No.Identitas diperlukan untuk bisa masuk" value="{{ old('username') }}" required
                                             autofocus />
                                     </div>
                                     {{-- input username end --}}
@@ -93,8 +120,8 @@
                                     {{-- input password start --}}
                                     <div>
                                         <label for="password"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Your
-                                            password</label>
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                            Password</label>
                                         <input type="password" name="password" id="password" placeholder="••••••••"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             required />
@@ -107,8 +134,7 @@
                                         <div class="flex items-start h-5">
                                             <input id="remember" aria-describedby="remember" name="remember"
                                                 type="checkbox" value="1"
-                                                class="w-4 h-4 border-abu-800 bg-gray-100 focus:ring-3 focus:ring-primary-800 dark:focus:ring-neutral-600 dark:ring-offset-gray-800 dark:bg-neutral-700 dark:border-neutral-700"
-                                                />
+                                                class="w-4 h-4 border-abu-800 bg-gray-100 focus:ring-3 focus:ring-primary-800 dark:focus:ring-neutral-600 dark:ring-offset-gray-800 dark:bg-neutral-700 dark:border-neutral-700" />
                                         </div>
                                         <div class="ms-3 text-sm">
                                             <label for="remember" class="font-medium text-abu-800 dark:text-abu-800">Ingat

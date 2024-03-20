@@ -47,13 +47,6 @@ class AuthUserController extends Controller
         return redirect()->intended(route('auth.login'));
     }
 
-    public function showRegisterForm()
-    {
-        $data['pageTitle'] = 'Register';
-
-        return view('auth.sign-up', $data);
-    }
-
     public function showDashboard()
     {
         $data['pageTitle'] = 'Dashboard';

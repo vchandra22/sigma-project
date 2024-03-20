@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthUserController;
+use App\Http\Controllers\Auth\RegisterUserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -10,7 +11,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', [AuthUserController::class, 'authenticate'])->name('auth.authenticate');
 
     // register route
-    Route::get('/register', [AuthUserController::class, 'showRegisterForm'])->name('auth.register');
+    Route::get('/register', [RegisterUserController::class, 'index'])->name('auth.register');
+    Route::post('/register', [RegisterUserController::class, 'store'])->name('auth.register');
 
 });
 

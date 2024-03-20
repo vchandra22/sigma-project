@@ -3,6 +3,7 @@
 @section('content')
     <section class="bg-secondary dark:bg-neutral-900">
         <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
+
             {{-- breadcrums start --}}
             <nav class="flex py-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-4">
@@ -41,7 +42,9 @@
                             </p>
                         </div>
                         <div class="mt-12">
-                            <form class="grid lg:grid-cols-2 gap-8 lg:gap-16" action="#" method="post">
+                            <form class="grid lg:grid-cols-2 gap-8 lg:gap-16" action="{{ route('auth.register') }}"
+                                method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="space-y-6">
                                     <div>
                                         <label for="nama_lengkap"
@@ -49,7 +52,13 @@
                                             Lengkap <span class="text-red-500">*</span></label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="Vincent Chandra Trie Novan" required autofocusa />
+                                            placeholder="Vincent Chandra Trie Novan" required autofocus
+                                            value="{{ old('nama_lengkap') }}" />
+                                        @error('nama_lengkap')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div>
@@ -58,11 +67,31 @@
                                             Identitas <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_identitas" id="no_identitas"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="350518888888" required />
+                                            placeholder="350518888888" required value="{{ old('no_identitas') }}" />
+                                        @error('no_identitas')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
 
                                         <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Nomor identitas dapat
                                             diisikan
                                             dengan NIS/NIM/NIK.</p>
+                                    </div>
+
+                                    <div class="hidden">
+                                        <label for="username"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Username<span
+                                                class="text-red-500">*</span></label>
+                                        <input type="text" name="username" id="username"
+                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="Otomatis diisi dari No. Identitas" required
+                                            value="{{ old('username') }}" />
+                                        @error('username')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div>
@@ -71,7 +100,12 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_hp" id="no_hp"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="081555555555" required />
+                                            placeholder="081555555555" required value="{{ old('no_hp') }}" />
+                                        @error('no_hp')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div>
@@ -80,7 +114,12 @@
                                             Email <span class="text-red-500">*</span></label>
                                         <input type="email" name="email" id="email"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="name@company.com" required />
+                                            placeholder="sugengrahayu12@gmail.com" required value="{{ old('email') }}" />
+                                        @error('email')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div>
@@ -90,6 +129,11 @@
                                         <input type="password" name="password" id="password" placeholder="••••••••"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             required />
+                                        @error('password')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div>
@@ -97,10 +141,15 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Ulangi
                                             Password
                                             <span class="text-red-500">*</span></label>
-                                        <input type="password_confirmation" name="password_confirmation"
-                                            id="password_confirmation" placeholder="••••••••"
+                                        <input type="password" name="password_confirmation" id="password_confirmation"
+                                            placeholder="••••••••"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             required />
+                                        @error('password_confirmation')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div>
@@ -109,7 +158,13 @@
                                             Asal <span class="text-red-500">*</span></label>
                                         <input type="text" name="instansi_asal" id="instansi_asal"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="SMKN 1 Blitar" required />
+                                            placeholder="SMKN 1 Blitar" required value="{{ old('instansi_asal') }}" />
+
+                                        @error('instansi_asal')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
 
                                         <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan nama
                                             Universitas
@@ -122,9 +177,17 @@
                                             / Konsentrasi Bidang Keahlian <span class="text-red-500">*</span></label>
                                         <input type="text" name="jurusan" id="jurusan"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="Rekayasa Perangkat Lunak" required />
+                                            placeholder="Rekayasa Perangkat Lunak" required
+                                            value="{{ old('jurusan') }}" />
 
-                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan jurusan atau
+                                        @error('jurusan')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan jurusan
+                                            atau
                                             bidang keahlian yang kalian ambil.</p>
                                     </div>
 
@@ -148,13 +211,18 @@
                                                 Dinas Komunikasi Informatika dan Statistik Kota Blitar
                                             </option>
                                         </select>
+                                        @error('instansi_tujuan')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan instansi
                                             tujuan
                                             melakukan kegiatan magang</p>
                                     </div>
 
                                     <div>
-                                        <label for="start"
+                                        <label for="u_tgl_mulai"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Rencana
                                             Pelaksanaan <span class="text-red-500">*</span></label>
                                         <div date-rangepicker class="flex items-center">
@@ -168,9 +236,15 @@
                                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                                     </svg>
                                                 </div>
-                                                <input name="start" type="text"
+                                                <input name="u_tgl_mulai" type="text"
                                                     class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                    placeholder="Tanggal Mulai" required>
+                                                    placeholder="Tanggal Mulai" required
+                                                    value="{{ old('u_tgl_mulai') }}">
+                                                @error('u_tgl_mulai')
+                                                    <div class="mt-1 text-red-500 text-xs">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <span
                                                 class="mx-3 text-primary-800 text-sm text-center dark:text-secondary">sampai</span>
@@ -184,31 +258,49 @@
                                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                                     </svg>
                                                 </div>
-                                                <input name="end" type="text"
+                                                <input name="u_tgl_selesai" type="text"
                                                     class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                    placeholder="Tanggal Selesai" required>
+                                                    placeholder="Tanggal Selesai" required
+                                                    value="{{ old('u_tgl_selesai') }}">
+                                                @error('u_tgl_selesai')
+                                                    <div class="mt-1 text-red-500 text-xs">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="surat_pengantar"
+                                        <label for="doc_pengantar"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Surat Pengantar <span class="text-red-500">*</span></label>
                                         <input
                                             class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="surat_pengantar" type="file" name="surat_pengantar">
+                                            id="doc_pengantar" type="file" name="doc_pengantar"
+                                            value="{{ old('doc_pengantar') }}">
+                                        @error('doc_pengantar')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Unggah file dengan format
                                             .pdf (Max. 2MB)</p>
                                     </div>
 
                                     <div>
-                                        <label for="surat_kesbang"
+                                        <label for="doc_kesbang"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Surat Rekomendasi BAKESBANGPOL</label>
                                         <input
                                             class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="surat_kesbang" type="file" name="surat_kesbang">
+                                            id="doc_kesbang" type="file" name="doc_kesbang"
+                                            value="{{ old('doc_kesbang') }}">
+                                        @error('doc_kesbang')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <ul
                                             class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
                                             <li>Wajib bagi mahasiswa yang akan melakukan penelitian</li>
@@ -217,12 +309,18 @@
                                     </div>
 
                                     <div>
-                                        <label for="surat_pendukung"
+                                        <label for="doc_proposal"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Dokumen Pendukung</label>
                                         <input
                                             class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="surat_pendukung" type="file" name="surat_pendukung">
+                                            id="doc_proposal" type="file" name="doc_proposal"
+                                            value="{{ old('doc_proposal') }}">
+                                        @error('doc_proposal')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <ul
                                             class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
                                             <li>Proposal Penelitian / CV jika kamu merupakan siswa SMA/SMK dengan format
@@ -260,5 +358,15 @@
                 </section>
             </div>
         </div>
+        <script>
+            const no_identitas = document.querySelector('#no_identitas');
+            const username = document.querySelector('#username');
+
+            function isiUsername() {
+                username.value = no_identitas.value;
+            }
+
+            no_identitas.addEventListener('input', isiUsername);
+        </script>
     </section>
 @endsection
