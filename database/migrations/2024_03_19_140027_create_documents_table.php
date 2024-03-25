@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('office_id')->index()->nullable();
             $table->string('no_identitas')->unique();
             $table->string('jurusan')->nullable();
+            $table->string('instansi_asal')->nullable();
             $table->date('u_tgl_mulai')->nullable();
             $table->date('u_tgl_selesai')->nullable();
             $table->date('e_tgl_mulai')->nullable();

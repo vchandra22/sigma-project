@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLogbookRequest;
-use App\Http\Requests\UpdateLogbookRequest;
+use Illuminate\Http\Request;
 use App\Models\Logbook;
+use App\Models\Status;
+use App\Models\User;
+use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class LogbookController extends Controller
 {
@@ -21,15 +24,37 @@ class LogbookController extends Controller
      */
     public function create()
     {
-        //
+        $data['pageTitle'] = 'Logbook';
+        $user = Auth::user(); //mengambil id user yang telah login
+
+        $data['userDetail'] = User::with('document')->where('users.id', $user->id)->get();
+
+        return view('user.logbook', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLogbookRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'status_id' => ['required'],
+            'tgl_magang' => ['required'],
+            'jam_mulai' => ['required'],
+            'jam_selesai' => ['required'],
+            'topik_diskusi' => ['required'],
+            'arahan_pembimbing' => ['required'],
+            'bukti' => ['required', 'url'],
+        ]);
+
+        $tgl_magang = DateTime::createFromFormat('m/d/Y', $validatedData['tgl_magang']);
+        $validatedData['tgl_magang'] = trim($tgl_magang->format('Y-m-d'));
+
+        Logbook::create($validatedData);
+
+        return redirect(route('user.logbook'))->with('success', 'Berhasil menambahkan logbook!');
+
     }
 
     /**
@@ -51,7 +76,7 @@ class LogbookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLogbookRequest $request, Logbook $logbook)
+    public function update(Request $request, Logbook $logbook)
     {
         //
     }

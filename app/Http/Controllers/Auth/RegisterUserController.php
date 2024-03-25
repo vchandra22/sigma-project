@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
+use App\Models\Office;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class RegisterUserController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Register';
+        $data['officeList'] = Office::all();
 
         return view('auth.sign-up', $data);
     }
@@ -50,7 +52,7 @@ class RegisterUserController extends Controller
             'password_confirmation' => ['required', 'min:8', 'same:password'],
             'instansi_asal' => ['required'],
             'jurusan' => ['required'],
-            'instansi_tujuan' => ['required'],
+            'office_id' => 'required',
             'u_tgl_mulai' => ['required'],
             'u_tgl_selesai' => ['required'],
             'doc_pengantar' => 'required|mimes:pdf|max:2048',
@@ -82,6 +84,8 @@ class RegisterUserController extends Controller
                 'no_identitas' => $validatedData['no_identitas'],
                 'jurusan' => $validatedData['jurusan'],
                 'instansi_asal' => $validatedData['instansi_asal'],
+                'office_id' => $validatedData['office_id'],
+                'instansi_asal' => $validatedData['instansi_asal'],
                 'u_tgl_mulai' => $validatedData['u_tgl_mulai'],
                 'u_tgl_selesai' => $validatedData['u_tgl_selesai'],
                 'doc_pengantar' => $doc_pengantar_path,
@@ -100,7 +104,7 @@ class RegisterUserController extends Controller
             $document = $user->document()->create($values);
             $document->status()->create($values);
         }
-        return redirect(route('auth.login'))->with('success', 'Registrasi Berhasil, silakan login menggunakan username dan password');
+        return redirect(route('auth.login'))->with('success', 'Registrasi Berhasil, silakan login menggunakan nomor identitasmu');
     }
 
     /**

@@ -195,23 +195,19 @@
 
                                 <div class="space-y-6">
                                     <div>
-                                        <label for="instansi_tujuan"
+                                        <label for="office_id"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Instansi
                                             Tujuan <span class="text-red-500">*</span>
                                         </label>
-                                        <select name="instansi_tujuan" id="instansi_tujuan"
+                                        <select type="text" name="office_id" id="office_id"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                            <option selected>
-                                                Dinas Komunikasi Informatika dan Statistik Kota Blitar
-                                            </option>
-                                            <option value="#">
-                                                Dinas Komunikasi Informatika dan Statistik Kota Blitar
-                                            </option>
-                                            <option value="#">
-                                                Dinas Komunikasi Informatika dan Statistik Kota Blitar
-                                            </option>
+                                            @foreach ($officeList as $office)
+                                                <option value="{{ $office->id }}">
+                                                    {{ $office->nama_kantor }}
+                                                </option>
+                                            @endforeach
                                         </select>
-                                        @error('instansi_tujuan')
+                                        @error('office_id')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
                                             </div>

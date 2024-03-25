@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Logbook extends Model
 {
@@ -18,7 +19,16 @@ class Logbook extends Model
         'jam_selesai',
         'topik_diskusi',
         'arahan_pembimbing',
-        'arahan_pembimbing',
         'bukti',
     ];
+
+    /**
+     * Get the status that owns the Logbook
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
+    }
 }

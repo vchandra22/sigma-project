@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('logbooks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('status_id')->unique();
+            $table->unsignedBigInteger('status_id')->index();
             $table->date('tgl_magang')->nullable();
             $table->time('jam_mulai')->nullable();
             $table->time('jam_selesai')->nullable();

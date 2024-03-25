@@ -15,8 +15,10 @@ class Document extends Model
 
     protected $fillable = [
         'user_id',
+        'office_id',
         'no_identitas',
         'jurusan',
+        'instansi_asal',
         'u_tgl_mulai',
         'u_tgl_selesai',
         'e_tgl_mulai',
@@ -36,5 +38,4 @@ class Document extends Model
     {
         return $this->hasOne(Status::class, 'document_id', 'id');
     }
-
 }
