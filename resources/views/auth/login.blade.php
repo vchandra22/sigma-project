@@ -6,7 +6,7 @@
         <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
             @if (session()->has('loginError'))
                 <div id="toast-danger"
-                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-secondary shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700"
+                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-white shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700"
                     role="alert">
                     <div
                         class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-transparent dark:text-red-500">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="ms-3 text-sm font-normal">{{ session('loginError') }}</div>
                     <button type="button"
-                        class="ms-auto -mx-1.5 -my-1.5 bg-secondary text-primary-800 hover:text-primary-500 focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-secondary dark:hover:text-white dark:bg-transparent"
+                        class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                         data-dismiss-target="#toast-danger" aria-label="Close">
                         <span class="sr-only">Close</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -33,7 +33,7 @@
 
             @if (session('success'))
                 <div id="toast-success"
-                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-secondary shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700"
+                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-white shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700"
                     role="alert">
                     <div
                         class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-transparent dark:text-green-500">
@@ -46,8 +46,8 @@
                     </div>
                     <div class="ms-3 text-sm font-normal">{{ session('success') }}</div>
                     <button type="button"
-                        class="ms-auto -mx-1.5 -my-1.5 bg-secondary text-primary-800 hover:text-primary-500 focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-secondary dark:hover:text-white dark:bg-transparent"
-                        data-dismiss-target="#toast-danger" aria-label="Close">
+                        class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                        data-dismiss-target="#toast-success" aria-label="Close">
                         <span class="sr-only">Close</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -112,8 +112,8 @@
                                         </label>
                                         <input type="username" name="username" id="username"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="No.Identitas diperlukan untuk bisa masuk" value="{{ old('username') }}" required
-                                            autofocus />
+                                            placeholder="No.Identitas diperlukan untuk bisa masuk"
+                                            value="{{ old('username') }}" required autofocus />
                                     </div>
                                     {{-- input username end --}}
 

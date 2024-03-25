@@ -38,19 +38,13 @@ class AuthUserController extends Controller
 
     public function logout(Request $request): RedirectResponse
     {
-        Auth::logout();
+        Auth::logout(); //Melakukan logout pengguna dari sistem
 
-        $request->session()->invalidate();
+        $request->session()->invalidate(); //Menghapus sesi pengguna
 
-        $request->session()->regenerateToken();
+        $request->session()->regenerateToken(); //Membuat token baru
 
-        return redirect()->intended(route('auth.login'));
+        return redirect()->intended(route('auth.login')); //Mengarahkan pengguna ke halaman login setelah logout berhasil
     }
 
-    public function showLogbook()
-    {
-        $data['pageTitle'] = 'Logbook';
-
-        return view('user.logbook', $data);
-    }
 }

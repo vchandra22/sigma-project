@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Logbook;
-use App\Models\Status;
 use App\Models\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
-class LogbookController extends Controller
+class LogbookUserController extends Controller
 {
     /**
      * Display a listing of the resource.

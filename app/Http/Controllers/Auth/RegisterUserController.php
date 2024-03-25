@@ -23,10 +23,7 @@ class RegisterUserController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Register';
-        $data['officeList'] = Office::all();
-
-        return view('auth.sign-up', $data);
+        //
     }
 
     /**
@@ -34,7 +31,10 @@ class RegisterUserController extends Controller
      */
     public function create()
     {
-        //
+        $data['pageTitle'] = 'Register';
+        $data['officeList'] = Office::all();
+
+        return view('auth.sign-up', $data);
     }
 
     /**

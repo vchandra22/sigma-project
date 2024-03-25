@@ -29,7 +29,7 @@
                     </button>
                 </div>
             @endif
-            <div class="md:grid md:grid-cols-2 gap-2">
+            <div class="lg:grid lg:grid-cols-2 gap-2 sm:space-y-2 md:space-y-0">
                 <div>
                     <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                         <div class="px-6 py-8">
@@ -206,15 +206,15 @@
                         <div class="relative overflow-x-auto mt-4">
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 z-10">
                                 <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                                    class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
                                     <tr>
-                                        <th scope="col" class="px-8 py-6 w-1/3 text-primary-800">
+                                        <th scope="col" class="px-8 py-6 w-1/3 text-primary-800 dark:text-secondary">
                                             TANGGAL / WAKTU
                                         </th>
-                                        <th scope="col" class="px-8 py-6 w-full text-primary-800">
+                                        <th scope="col" class="px-8 py-6 w-full text-primary-800 dark:text-secondary">
                                             RINCIAN KEGIATAN
                                         </th>
-                                        <th scope="col" class="px-8 py-6 w-1/3 text-primary-800">
+                                        <th scope="col" class="px-8 py-6 w-1/3 text-primary-800 dark:text-secondary">
                                             HAPUS
                                         </th>
                                     </tr>
@@ -222,21 +222,25 @@
                                 <tbody>
                                     @foreach ($logbookUser as $logbook)
                                         <tr
-                                            class="odd:bg-gray-100 odd:dark:bg-gray-900 even:bg-slate-100 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-8 py-4">
-                                                <p> {{ date('d M Y', strtotime($logbook->tgl_magang)) }} </p>
+                                                <p class="text-primary-800 dark:text-secondary"> {{ date('d M Y', strtotime($logbook->tgl_magang)) }} </p>
                                             </td>
                                             <td class="px-8 py-4">
                                                 <div class="mb-2">
-                                                    <h5 class="font-bold text-primary-800">Topik Diskusi: </h5>
-                                                    {{ strip_tags($logbook->topik_diskusi) }}
+                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Topik Diskusi: </h5>
+                                                    <span class="dark:text-slate-300">
+                                                        {{ strip_tags($logbook->topik_diskusi) }}
+                                                    </span>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <h5 class="font-bold text-primary-800">Arahan Pembimbing: </h5>
-                                                    {{ strip_tags($logbook->arahan_pembimbing) }}
+                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Arahan Pembimbing: </h5>
+                                                    <span class="dark:text-slate-300">
+                                                        {{ strip_tags($logbook->arahan_pembimbing) }}
+                                                    </span>
                                                 </div>
                                                 <div>
-                                                    <h5 class="font-bold text-primary-800">Bukti Dukung</h5>
+                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Bukti Dukung</h5>
                                                     <a class="text-blue-400 hover:text-blue-500 hover:underline"
                                                         href="{{ $logbook->bukti }}">{{ $logbook->bukti }}</a>
                                                 </div>

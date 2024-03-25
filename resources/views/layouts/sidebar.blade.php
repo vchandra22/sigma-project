@@ -14,7 +14,7 @@
                         </path>
                     </svg>
                 </button>
-                <div class="hidden md:block px-8">
+                <div class="hidden md:block px-2">
                     <a href="{{ url('/') }}" class="flex items-center">
                         <img src="{{ asset('frontend/assets/img/logo-sigmaLight.png') }}"
                             class="block h-8 lg:h-10 dark:hidden" alt="Sigma Logo" />
@@ -121,7 +121,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('user.settings') }}"
                     class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
                     <div
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
