@@ -28,6 +28,7 @@ class LogbookController extends Controller
         $user = Auth::user(); //mengambil id user yang telah login
 
         $data['userDetail'] = User::with('document')->where('users.id', $user->id)->get();
+        $data['logbookUser'] = Logbook::with('status')->where('status_id', $user->id)->latest('logbooks.tgl_magang')->paginate(3);
 
         return view('user.logbook', $data);
     }
@@ -84,8 +85,11 @@ class LogbookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Logbook $logbook)
+    public function destroy($id)
     {
-        //
+        $logbook = Logbook::find($id);
+        $logbook->delete();
+
+        return redirect(route('user.logbook'))->with('success', 'Data berhasil dihapus!');
     }
 }

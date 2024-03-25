@@ -22,5 +22,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardUserController::class, 'index'])->name('user.dashboard');
     Route::get('/logbook', [LogbookController::class, 'create'])->name('user.logbook');
     Route::post('/logbook', [LogbookController::class, 'store'])->name('user.logbook');
+    Route::delete('/logbook/{id}/delete', [LogbookController::class, 'destroy'])->name('delete.logbook');
     Route::post('/logout', [AuthUserController::class, 'logout'])->name('user.logout');
 });

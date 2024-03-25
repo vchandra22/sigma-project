@@ -5,7 +5,7 @@
         <div class="p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
-                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-secondary shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700"
+                    class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-white shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700 z-50"
                     role="alert">
                     <div
                         class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-transparent dark:text-green-500">
@@ -18,8 +18,8 @@
                     </div>
                     <div class="ms-3 text-sm font-normal">{{ session('success') }}</div>
                     <button type="button"
-                        class="ms-auto -mx-1.5 -my-1.5 bg-secondary text-primary-800 hover:text-primary-500 focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-secondary dark:hover:text-white dark:bg-transparent"
-                        data-dismiss-target="#toast-danger" aria-label="Close">
+                        class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                        data-dismiss-target="#toast-success" aria-label="Close">
                         <span class="sr-only">Close</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -31,7 +31,7 @@
             @endif
             <div class="md:grid md:grid-cols-2 gap-2">
                 <div>
-                    <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                         <div class="px-6 py-8">
                             <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-8">Form
                                 Dailylog
@@ -45,7 +45,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
                                             Lengkap</label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
-                                            class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-gray-200 cursor-not-allowed border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             value="{{ $data->nama_lengkap }}" required readonly />
                                     </div>
 
@@ -54,7 +54,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nomor
                                             Identitas</label>
                                         <input type="text" name="no_identitas" id="no_identitas"
-                                            class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-gray-200 cursor-not-allowed border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             value="{{ $data->document->no_identitas }}" required readonly />
                                     </div>
 
@@ -63,15 +63,16 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Asal
                                             Universitas atau SMK/SMA</label>
                                         <input type="text" name="instansi_asal" id="instansi_asal"
-                                            class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-gray-200 cursor-not-allowed border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             value="{{ $data->document->instansi_asal }}" required readonly />
                                     </div>
 
-                                    <div>
+                                    <div class="hidden">
                                         <label for="status_id"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Document ID</label>
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Document
+                                            ID</label>
                                         <input type="text" name="status_id" id="status_id"
-                                            class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-gray-200 cursor-not-allowed border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             value="{{ $data->document->id }}" required readonly />
                                     </div>
                                 @endforeach
@@ -81,7 +82,7 @@
                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jurusan
                                     </label>
                                     <input type="text" name="jurusan" id="jurusan"
-                                        class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                        class="bg-gray-200 cursor-not-allowed border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                         value="Rekayasa Perangkat Lunak" required readonly />
                                 </div>
 
@@ -101,8 +102,8 @@
                                                 </svg>
                                             </div>
                                             <input name="tgl_magang" datepicker datepicker-autohide type="text"
-                                                class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                placeholder="Select date">
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                placeholder="Pilih tanggal" autofocus>
                                             @error('tgl_magang')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
@@ -114,7 +115,7 @@
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Waktu
                                                 Mulai</label>
                                             <input type="time" name="jam_mulai" id="jam_mulai"
-                                                class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                 required />
                                             @error('jam_mulai')
                                                 <div class="mt-1 text-red-500 text-xs">
@@ -127,7 +128,7 @@
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Waktu
                                                 Selesai</label>
                                             <input type="time" name="jam_selesai" id="jam_selesai"
-                                                class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                 required />
                                             @error('jam_selesai')
                                                 <div class="mt-1 text-red-500 text-xs">
@@ -143,7 +144,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Topik
                                         Diskusi</label>
                                     <textarea name="topik_diskusi" id="topik_diskusi" rows="8"
-                                        class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
                                     @error('topik_diskusi')
                                         <div class="mt-1 text-red-500 text-xs">
                                             {{ $message }}
@@ -156,7 +157,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arahan
                                         Pembimbing</label>
                                     <textarea name="arahan_pembimbing" id="arahan_pembimbing" rows="4"
-                                        class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
                                     @error('arahan_pembimbing')
                                         <div class="mt-1 text-red-500 text-xs">
                                             {{ $message }}
@@ -170,7 +171,7 @@
                                         Dukung (link)
                                     </label>
                                     <input type="text" name="bukti" id="bukti"
-                                        class="bg-gray-50 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                        class="bg-white border border-abu-800 text-blue-500 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent"
                                         required />
                                     @error('bukti')
                                         <div class="mt-1 text-red-500 text-xs">
@@ -189,7 +190,7 @@
                     </div>
                 </div>
 
-                <div class="bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                <div class="bg-gray-50 border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                     <div class="px-6 py-8">
                         <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4">Riwayat
                             Kegiatan
@@ -203,86 +204,58 @@
                             tidak bisa di ubah, pastikan Anda mengisi dengan Hati - Hati dan Teliti</p>
 
                         <div class="relative overflow-x-auto mt-4">
-                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 z-10">
                                 <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-8 py-6 w-1/3 text-primary-800">
                                             TANGGAL / WAKTU
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-8 py-6 w-full text-primary-800">
                                             RINCIAN KEGIATAN
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-8 py-6 w-1/3 text-primary-800">
                                             HAPUS
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr
-                                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                        <td class="px-6 py-4">
-                                            Silver
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Laptop
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#"
-                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                        <td class="px-6 py-4">
-                                            White
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Laptop PC
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#"
-                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                        <td class="px-6 py-4">
-                                            Black
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Accessories
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#"
-                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                        <td class="px-6 py-4">
-                                            Gray
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Phone
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#"
-                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4">
-                                            Red
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Wearables
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#"
-                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($logbookUser as $logbook)
+                                        <tr
+                                            class="odd:bg-gray-100 odd:dark:bg-gray-900 even:bg-slate-100 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <td class="px-8 py-4">
+                                                <p> {{ date('d M Y', strtotime($logbook->tgl_magang)) }} </p>
+                                            </td>
+                                            <td class="px-8 py-4">
+                                                <div class="mb-2">
+                                                    <h5 class="font-bold text-primary-800">Topik Diskusi: </h5>
+                                                    {{ strip_tags($logbook->topik_diskusi) }}
+                                                </div>
+                                                <div class="mb-2">
+                                                    <h5 class="font-bold text-primary-800">Arahan Pembimbing: </h5>
+                                                    {{ strip_tags($logbook->arahan_pembimbing) }}
+                                                </div>
+                                                <div>
+                                                    <h5 class="font-bold text-primary-800">Bukti Dukung</h5>
+                                                    <a class="text-blue-400 hover:text-blue-500 hover:underline"
+                                                        href="{{ $logbook->bukti }}">{{ $logbook->bukti }}</a>
+                                                </div>
+                                            </td>
+                                            <td class="px-8 py-4">
+                                                <form id="delete-logbook-{{ $logbook->id }}"
+                                                    action="{{ route('delete.logbook', ['id' => $logbook->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <div
+                                                        class="px-4 py-2 text-xs bg-red-500 hover:bg-opacity-80 text-secondary">
+                                                        <button class="delete-button" data-id="{{ $logbook->id }}"
+                                                            type="submit" value="Delete">Hapus </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
