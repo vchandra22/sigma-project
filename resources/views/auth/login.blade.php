@@ -112,7 +112,7 @@
                                         </label>
                                         <input type="username" name="username" id="username"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="No.Identitas diperlukan untuk bisa masuk"
+                                            placeholder="Gunakan No.Identitas untuk bisa masuk"
                                             value="{{ old('username') }}" required autofocus />
                                     </div>
                                     {{-- input username end --}}
@@ -159,7 +159,7 @@
 
                                     {{-- don't have account start --}}
                                     <div class="text-sm font-medium text-primary-800 dark:text-secondary">
-                                        Tidak punya akun? <a href="#"
+                                        Tidak punya akun? <a href="{{ route('auth.register') }}"
                                             class="text-accent hover:text-primary-500 hover:underline dark:text-abu-500">Register</a>
                                     </div>
                                     {{-- don't have account end --}}

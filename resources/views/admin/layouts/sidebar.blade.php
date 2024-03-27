@@ -48,16 +48,16 @@
                                 </a>
                             </li>
                             <li>
-                            <form action="{{ route('user.logout') }}" method="POST"
-                                class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
-                                @csrf
-                                <button type="submit">
-                                    <div class="space-x-4 flex items-center justify-start text-sm">
-                                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                        <span>Logout</span>
-                                    </div>
-                                </button>
-                            </form>
+                                <form action="{{ route('admin.logout') }}" method="POST"
+                                    class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    @csrf
+                                    <button type="submit">
+                                        <div class="space-x-4 flex items-center justify-start text-sm">
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            <span>Logout</span>
+                                        </div>
+                                    </button>
+                                </form>
                             </li>
                             <li class="border border-t border-gray-100 dark:border-neutral-700">
                                 {{-- light mode / dark mode toggler start --}}

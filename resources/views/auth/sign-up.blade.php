@@ -114,7 +114,8 @@
                                             Email <span class="text-red-500">*</span></label>
                                         <input type="email" name="email" id="email"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="sugengrahayu12@gmail.com" required value="{{ old('email') }}" />
+                                            placeholder="sugengrahayu12@gmail.com" required
+                                            value="{{ old('users.email') }}" />
                                         @error('email')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
