@@ -3,8 +3,7 @@
 use App\Http\Controllers\Frontend\MainIndexController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::group(['middleware' => 'web'], function () {
+Route::middleware(['web'])->group(function () {
     Route::get('/', [MainIndexController::class, 'index'])->name('main.index');
     Route::get('/internship-role', [MainIndexController::class, 'roleList'])->name('frontend.roleList');
     Route::get('/internship-role/developer', [MainIndexController::class, 'roleDetail'])->name('frontend.roleDetail');

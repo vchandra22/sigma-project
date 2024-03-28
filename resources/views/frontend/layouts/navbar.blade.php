@@ -41,7 +41,82 @@
             </div>
 
             <div class="flex space-x-1 justify-items-end md:order-1 md:space-x-1">
-                @auth
+
+                @if (Auth::guard('admin')->check())
+                    <button type="button"
+                        class="text-sm md:text-md lg:text-md text-primary-800 cursor-pointer hover:text-primary-500 dark:text-secondary dark:hover:text-white"
+                        aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                        <span class="sr-only">Open user menu</span>
+                        Welcome, {{ auth()->guard('admin')->user()->nama_lengkap }}
+                    </button>
+                    <div class="flex items-center ms-3">
+                        <div class="z-50 hidden my-4 text-base list-none bg-secondary divide-y divide-gray-100 shadow dark:bg-neutral-800 dark:divide-gray-600"
+                            id="dropdown-user">
+                            <ul>
+                                @if (auth()->guard('admin')->user()->hasRole('admin'))
+                                    <li>
+                                        <a href="{{ route('admin.dashboard') }}"
+                                            class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            <div class="space-x-4 flex items-center justify-start text-sm">
+                                                <i class="fa-solid fa-layer-group"></i>
+                                                <span>Dashboard</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ route('mentor.dashboard') }}"
+                                            class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            <div class="space-x-4 flex items-center justify-start text-sm">
+                                                <i class="fa-solid fa-layer-group"></i>
+                                                <span>Dashboard</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endif
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        <div class="space-x-4 flex items-center justify-start text-sm">
+                                            <i class="fa-solid fa-gear"></i>
+                                            <span>Pengaturan</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('admin.logout') }}" method="POST"
+                                        class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        @csrf
+                                        <button type="submit">
+                                            <div class="space-x-4 flex items-center justify-start text-sm">
+                                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                                <span>Logout</span>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </li>
+                                <li class="border border-t border-gray-100 dark:border-neutral-700">
+                                    {{-- light mode / dark mode toggler start --}}
+                                    <button id="theme-toggle" type="button"
+                                        class="text-gray-500 px-4 hover:text-primary-800 dark:text-gray-400 focus:outline-none text-sm p-2.5">
+                                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor"
+                                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
+                                            </path>
+                                        </svg>
+                                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
+                                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                                fill-rule="evenodd" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    {{-- light mode / dark mode toggler end --}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @elseif (Auth::guard('web')->check())
                     <button type="button"
                         class="text-sm md:text-md lg:text-md text-primary-800 cursor-pointer hover:text-primary-500 dark:text-secondary dark:hover:text-white"
                         aria-expanded="false" data-dropdown-toggle="dropdown-user">
@@ -107,12 +182,12 @@
                     {{-- light mode / dark mode toggler start --}}
                     <button id="theme-toggle" type="button"
                         class="text-gray-500 hover:text-primary-800 dark:text-gray-400 focus:outline-none text-sm p-2.5">
-                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                         </svg>
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                                 fill-rule="evenodd" clip-rule="evenodd"></path>
@@ -127,7 +202,7 @@
                         class="px-3 py-2 flex items-center text-sm font-medium text-center dark:text-secondary bg-transparent border border-primary-800 text-primary-800 md:px-3 lg:px-6 hover:bg-primary-500 hover:text-secondary focus:ring-1 focus:outline-none focus:ring-white dark:bg-neutral-900 dark:hover:bg-secondary dark:hover:text-neutral-900 dark:focus:ring-secondary dark:border-secondary">Register
                     </a>
                     {{-- auth button end --}}
-                @endauth
+                @endif
 
             </div>
         </div>

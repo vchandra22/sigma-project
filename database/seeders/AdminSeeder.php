@@ -21,5 +21,13 @@ class AdminSeeder extends Seeder
             'no_hp' => '081254789901',
             'password' => Hash::make('password'),
         ]);
+
+        Admin::create([
+            'username' => 'mentor',
+            'nama_lengkap' => 'mentor',
+            'email' => 'mentor.sigma@gmail.com',
+            'no_hp' => '081254789911',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

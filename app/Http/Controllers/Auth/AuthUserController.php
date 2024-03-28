@@ -11,33 +11,35 @@ use Symfony\Component\Console\Input\Input;
 
 class AuthUserController extends Controller
 {
-    public function showLoginForm()
+
+    public function create()
     {
         $data['pageTitle'] = 'Login';
 
         return view('auth.login', $data);
     }
 
-    public function authenticate(Request $request)
+    public function store(Request $request)
     {
-
+        // validasi input form login
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
 
-        $remember = request('remember');
+        $remember = request('remember'); // get nilai dari checkbox 'remember'
 
+        // autentikasi user
         if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
+            $request->session()->regenerate(); // regenerate session
 
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(RouteServiceProvider::HOME); // diarahkan ke halaman yang sebelumnya coba diakses oleh user
         }
 
-        return back()->with('loginError', 'Login Gagal');
+        return back()->with('loginError', 'Login Gagal'); // jika autentikasi gagal, back to login
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function destroy(Request $request): RedirectResponse
     {
         Auth::logout(); //Melakukan logout pengguna dari sistem
 
@@ -47,5 +49,4 @@ class AuthUserController extends Controller
 
         return redirect()->intended(route('auth.login')); //Mengarahkan pengguna ke halaman login setelah logout berhasil
     }
-
 }
