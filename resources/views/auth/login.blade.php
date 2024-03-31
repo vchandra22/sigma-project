@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <section class="bg-secondary dark:bg-neutral-900">
+    <section class="bg-secondary dark:bg-neutral-950">
 
         <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
             @if (session()->has('loginError'))

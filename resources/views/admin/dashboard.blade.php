@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.layouts.sidebar')
 
-    <div class="p-4 sm:ml-64 bg-abu-500 dark:bg-neutral-800 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-abu-500 dark:bg-neutral-950 min-h-screen">
         <div class="p-4 mt-14">
             <div
                 class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">

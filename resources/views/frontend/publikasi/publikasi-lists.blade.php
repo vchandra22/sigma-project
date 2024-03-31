@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <section class="bg-secondary dark:bg-neutral-900">
+    <section class="bg-secondary dark:bg-neutral-950">
         <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4 xl:min-h-screen">
             {{-- breadcrums start --}}
             <nav class="flex py-8 md:px-4" aria-label="Breadcrumb">

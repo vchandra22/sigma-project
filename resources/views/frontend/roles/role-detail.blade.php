@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <section class="bg-secondary dark:bg-neutral-900">
+    <section class="bg-secondary dark:bg-neutral-950">
         <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4 xl:min-h-screen">
             {{-- breadcrums start --}}
             <nav class="flex py-8" aria-label="Breadcrumb">
@@ -34,7 +34,7 @@
             {{-- breadcrums end --}}
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 pb-12">
-                <div class="relative w-full h-full dark:border dark:border-neutral-800">
+                <div class="relative w-full h-full dark:border dark:border-neutral-900">
                     <img src="{{ asset('frontend/assets/img/illustration-image-role-developer.webp') }}"
                         class="object-cover w-full h-full" alt="Illustration Image Developer">
                     <div
@@ -69,7 +69,9 @@
                         <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus doloribus, labore sit adipisci
                             hic minus omnis similique dicta quaerat culpa?</li>
                     </ol>
-                    <h3 class="mt-5 p-6 text-2xl font-bold text-primary-800 border border-t border-abu-500 dark:text-secondary dark:border-neutral-800">Skill yang diperlukan: Memahami bahasa pemograman seperti Java Script, React JS, Node JS, dll</h3>
+                    <h3
+                        class="mt-5 p-6 text-2xl font-bold text-primary-800 border border-t border-abu-500 dark:text-secondary dark:border-neutral-800">
+                        Skill yang diperlukan: Memahami bahasa pemograman seperti Java Script, React JS, Node JS, dll</h3>
                 </div>
             </div>
         </div>

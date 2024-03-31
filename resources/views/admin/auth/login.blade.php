@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <section class="bg-secondary dark:bg-neutral-900">
+    <section class="bg-secondary dark:bg-neutral-950">
 
         <div class="max-w-screen-xl mx-auto px-4">
             @if (session()->has('loginError'))
@@ -60,12 +60,12 @@
 
             {{-- login section start --}}
             <div class="max-w-screen-xl xl:min-h-screen mx-auto pb-16 pt-24">
-                <section class="bg-transparent dark:bg-neutral-900">
+                <section class="bg-transparent dark:bg-neutral-950">
                     <div class="py-8 px-4 md:px-16 mx-auto max-w-screen-xl lg:py-16 gap-0 lg:gap-16">
                         <div class="md:flex flex-col justify-center text-center lg:text-start">
                             <div>
                                 <div
-                                    class="mx-auto w-full lg:max-w-xl p-6 space-y-1 sm:py-12 bg-secondary border border-abu-500 dark:bg-neutral-800 dark:border-neutral-700">
+                                    class="mx-auto w-full lg:max-w-xl p-6 space-y-1 sm:py-12 bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-3xl text-center font-bold text-primary-800 dark:text-secondary">
                                         Admin
                                     </h2>

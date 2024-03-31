@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Position;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ManagePositionController extends Controller
+
+class ManagePublicationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['pageTitle'] = 'Manage Internship Roles';
+        $data['pageTitle'] = 'Publikasi';
+        $data['publicationData'] = Publication::all();
 
-        $data['positionData'] = Position::all();
-
-        return view('admin.position.position_list', $data);
+        return view('admin.publication.publication_list', $data);
     }
 
     /**
@@ -26,9 +25,9 @@ class ManagePositionController extends Controller
      */
     public function create()
     {
-        $data['pageTitle'] = 'Tambah Posisi';
+        $data['pageTitle'] = 'Tambah Publikasi';
 
-        return view('admin.position.position_create', $data);
+        return view('admin.publication.publication_create', $data);
     }
 
     /**
@@ -37,10 +36,8 @@ class ManagePositionController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'role' => ['required'],
-            'deskripsi' => ['required'],
-            'jobdesk' => ['required'],
-            'requirement' => ['required'],
+            'judul' => ['required'],
+            'content' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
@@ -59,15 +56,16 @@ class ManagePositionController extends Controller
             $validatedData['gambar'] = $path;
         }
 
-        Position::create($validatedData);
+        Publication::create($validatedData);
 
-        return redirect(route('admin.managePosition'))->with('success', 'Data berhasil disimpan!');
+        return redirect(route('admin.managePublication'))->with('success', 'Data berhasil disimpan!');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Position $position)
+    public function show(Publication $publication)
     {
         //
     }
@@ -77,23 +75,20 @@ class ManagePositionController extends Controller
      */
     public function edit($slug)
     {
-        $data['pageTitle'] = 'Edit Roles';
+        $data['pageTitle'] = 'Edit Publikasi';
+        $data['publicationData'] = Publication::where('slug', $slug)->get();
 
-        $data['positionData'] = Position::where('slug', $slug)->get();
-
-        return view('admin.position.position_edit', $data);
+        return view('admin.publication.publication_edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Position $position)
+    public function update(Request $request, Publication $publication)
     {
         $validatedData = $request->validate([
-            'role' => ['required'],
-            'deskripsi' => ['required'],
-            'jobdesk' => ['required'],
-            'requirement' => ['required'],
+            'judul' => ['required'],
+            'content' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
@@ -112,23 +107,24 @@ class ManagePositionController extends Controller
             $validatedData['gambar'] = $path;
         }
 
-        $newSlug = Str::slug($request->input('role'));
+        $newSlug = Str::slug($request->input('judul'));
 
-        if ($newSlug !== $position->slug) {
+        if ($newSlug !== $publication->slug) {
             $count = 1;
-            $slugExists = Position::where('slug', $newSlug)->exists();
+            $slugExists = Publication::where('slug', $newSlug)->exists();
             while ($slugExists) {
                 $newSlug = $newSlug . '-' . $count;
-                $slugExists = Position::where('slug', $newSlug)->exists();
+                $slugExists = Publication::where('slug', $newSlug)->exists();
                 $count++;
             }
-            $position->slug = $newSlug;
+            $publication->slug = $newSlug;
         }
 
         $validatedData['slug'] = $newSlug;
-        $position = Position::where('id', $position->id)->update($validatedData);
+        $publication = Publication::where('id', $publication->id)->update($validatedData);
 
-        return redirect(route('admin.managePosition'))->with('success', 'Data berhasil diupdate!');
+        return redirect(route('admin.managePublication'))->with('success', 'Data berhasil diupdate!');
+
     }
 
     /**
@@ -136,9 +132,9 @@ class ManagePositionController extends Controller
      */
     public function destroy($id)
     {
-        $position = Position::find($id);
-        $position->delete();
+        $publication = Publication::find($id);
+        $publication->delete();
 
-        return redirect(route('admin.managePosition'))->with('success', 'Data berhasil dihapus!');
+        return redirect(route('admin.managePublication'))->with('success', 'Data berhasil dihapus!');
     }
 }

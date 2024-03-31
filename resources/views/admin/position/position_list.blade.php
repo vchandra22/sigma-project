@@ -2,7 +2,7 @@
 
 @section('content')
     @include('admin.layouts.sidebar')
-    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
+    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
@@ -32,7 +32,7 @@
             @endif
             <div class="w-full">
                 <div
-                    class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         <div class="flex justify-between items-end">
                             <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
@@ -40,7 +40,7 @@
                             </h2>
                             <div>
                                 <a href="{{ route('admin.createPosition') }}"
-                                    class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-neutral-800 dark:focus:ring-blue-800">Tambah
+                                    class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
                                     Posisi Baru</a>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-3 w-full gap-4">
                             @foreach ($positionData as $position)
                                 <div
-                                    class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-700 dark:border-neutral-600">
+                                    class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-700">
                                     <div class="min-h-16 w-full">
                                         <div class="flex justify-between items-start">
                                             <a href="{{ route('admin.editPosition', $position->slug) }}">
@@ -80,12 +80,13 @@
                                             Content
                                         </a>
                                     </div>
-                                </div></div>
-                            @endforeach
+                                </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

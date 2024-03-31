@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
+    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
@@ -30,7 +30,7 @@
                 </div>
             @endif
             <div class="w-full">
-                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         <div class="flex items-center justify-between mb-8">
                             <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
@@ -38,15 +38,14 @@
                             </h2>
                             <div>
                                 <a href="{{ route('user.profile') }}"
-                                    class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-neutral-800 dark:focus:ring-blue-800">Ubah
+                                    class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Ubah
                                     Profil</a>
                             </div>
                         </div>
 
                         <div class="space-y-4 md:space-y-8 lg:space-y-12">
                             @foreach ($userDetail as $user)
-                                <div
-                                    class="bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         Nama Lengkap
                                     </h2>
@@ -56,8 +55,7 @@
                                     </p>
                                 </div>
 
-                                <div
-                                    class="bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         No. Identitas
                                     </h2>
@@ -67,8 +65,7 @@
                                     </p>
                                 </div>
 
-                                <div
-                                    class="bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         Alamat e-mail
                                     </h2>
@@ -78,8 +75,7 @@
                                     </p>
                                 </div>
 
-                                <div
-                                    class="bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         No. HP
                                     </h2>
@@ -89,8 +85,7 @@
                                     </p>
                                 </div>
 
-                                <div
-                                    class="bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         Asal Universitas atau SMK/SMA
                                     </h2>
@@ -100,8 +95,7 @@
                                     </p>
                                 </div>
 
-                                <div
-                                    class="bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         Jurusan
                                     </h2>

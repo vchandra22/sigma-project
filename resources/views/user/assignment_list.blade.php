@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
+    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
@@ -30,13 +30,14 @@
                 </div>
             @endif
             <div class="w-full">
-                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
                             {{ $pageTitle }}
                         </h2>
 
-                        <p class="text-center min-h-screen flex items-center h-full justify-center">Halaman sedang dikerjakan!</p>
+                        <p class="text-center min-h-screen flex items-center h-full justify-center">Halaman sedang
+                            dikerjakan!</p>
                     </div>
                 </div>
             </div>

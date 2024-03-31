@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            // OfficeSeeder::class,
-            // UserSeeder::class,
-            // DocumentSeeder::class,
-            // StatusSeeder::class,
-            // AdminSeeder::class,
-            // HomepageSeeder::class,
+            OfficeSeeder::class,
+            UserSeeder::class,
+            DocumentSeeder::class,
+            StatusSeeder::class,
+            AdminSeeder::class,
+            HomepageSeeder::class,
             PositionSeeder::class,
         ]);
     }

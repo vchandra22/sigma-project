@@ -10,8 +10,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Office extends Model
 {
-    use HasFactory;
-    use HasSlug;
+    use HasFactory, HasSlug;
 
     protected $table = 'offices';
 

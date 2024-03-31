@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\ManageContentController;
+use App\Http\Controllers\Admin\ManageFaqController;
 use App\Http\Controllers\Admin\ManageHomepageController;
 use App\Http\Controllers\Admin\ManageOfficeController;
 use App\Http\Controllers\Admin\ManagePositionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuth\AuthAdminController;
+use App\Http\Controllers\ManagePublicationController;
 
 Route::middleware(['guest', 'redirect.auth'])->group(function () {
     // login admin
@@ -45,4 +47,21 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/manage-instansi-magang/edit/{slug}', [ManageOfficeController::class, 'edit'])->name('admin.editOffice');
     Route::put('/manage-instansi-magang/update/{office}', [ManageOfficeController::class, 'update'])->name('admin.updateOffice');
     Route::delete('manage-instansi-magang/delete/{id}', [ManageOfficeController::class, 'destroy'])->name('admin.deleteOffice');
+
+    // faq content
+    Route::get('/manage-faq-content', [ManageFaqController::class, 'index'])->name('admin.manageFaq');
+    Route::get('/manage-faq-content/add-new-faq', [ManageFaqController::class, 'create'])->name('admin.createFaq');
+    Route::post('/manage-faq-content/add-new-faq', [ManageFaqController::class, 'store'])->name('admin.storeFaq');
+    Route::get('/manage-faq-content/edit/{slug}', [ManageFaqController::class, 'edit'])->name('admin.editFaq');
+    Route::put('/manage-faq-content/update/{faq}', [ManageFaqController::class, 'update'])->name('admin.updateFaq');
+    Route::delete('/manage-faq-content/delete/{id}', [ManageFaqController::class, 'destroy'])->name('admin.deleteFaq');
+
+    // publication content
+    Route::get('/manage-publication-content', [ManagePublicationController::class, 'index'])->name('admin.managePublication');
+    Route::get('/manage-publication-content/add-new-publication', [ManagePublicationController::class, 'create'])->name('admin.createPublication');
+    Route::post('/manage-publication-content/add-new-publication', [ManagePublicationController::class, 'store'])->name('admin.storePublication');
+    Route::get('/manage-publication-content/edit/{slug}', [ManagePublicationController::class, 'edit'])->name('admin.editPublication');
+    Route::put('/manage-publication-content/update/{publication}', [ManagePublicationController::class, 'update'])->name('admin.updatePublication');
+    Route::delete('/manage-publication-content/delete/{id}', [ManagePublicationController::class, 'destroy'])->name('admin.deletePublication');
+
 });

@@ -2,11 +2,11 @@
 
 @section('content')
     @include('admin.layouts.sidebar')
-    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
+    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-4 mt-14">
             <div class="w-full">
                 <div>
-                    <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                         <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                             <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary mb-8">
                                 {{ $pageTitle }}

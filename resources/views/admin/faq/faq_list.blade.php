@@ -39,9 +39,9 @@
                                 {{ $pageTitle }}
                             </h2>
                             <div>
-                                <a href="{{ route('admin.createOffice') }}"
+                                <a href="{{ route('admin.createFaq') }}"
                                     class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
-                                    Instansi Baru</a>
+                                    Pertanyaan Baru</a>
                             </div>
                         </div>
 
@@ -54,22 +54,19 @@
                                             No.
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Instansi / OPD
+                                            Pertanyaan
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Alamat
-                                        </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Kepala Dinas
+                                            Jawaban
                                         </th>
                                         <th scope="col"
-                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
+                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($officeData as $key => $office)
+                                    @foreach ($faqData as $key => $faq)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
@@ -77,43 +74,34 @@
                                             </td>
                                             <td class="px-4 py-4">
                                                 <h5 class="font-bold text-primary-800 dark:text-secondary">
-                                                    {{ $office->nama_kantor }}
+                                                    {{ $faq->pertanyaan }}
                                                 </h5>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $office->alamat }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $office->nama_kepala }}
+                                                    {{ strip_tags($faq->jawaban) }}
                                                 </h5>
                                             </td>
                                             <td class="px-4 py-4 flex gap-4">
-                                                <a href="{{ route('admin.editOffice', $office->slug) }}"
+                                                <a href="{{ route('admin.editFaq', $faq->slug) }}"
                                                     class="py-2 ml-6 text-center text-md text-blue-500 hover:underline">
                                                     Edit
                                                 </a>
-                                                <form id="delete-office-{{ $office->id }}"
-                                                    action="{{ route('admin.deleteOffice', ['id' => $office->id]) }}"
+                                                <form id="delete-faq-{{ $faq->id }}"
+                                                    action="{{ route('admin.deleteFaq', ['id' => $faq->id]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <div class="py-2 text-center text-md text-red-500 hover:underline">
-                                                        <button class="delete-button" data-id="{{ $office->id }}"
+                                                        <button class="delete-button" data-id="{{ $faq->id }}"
                                                             type="submit" value="Delete">Hapus </button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
-
-
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
                 </div>
             </div>

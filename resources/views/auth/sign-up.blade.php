@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <section class="bg-secondary dark:bg-neutral-900">
+    <section class="bg-secondary dark:bg-neutral-950">
         <div class="mt-[4.4rem] max-w-screen-xl mx-auto px-4">
 
             {{-- breadcrums start --}}
@@ -29,9 +29,9 @@
             {{-- breadcrums end --}}
 
             <div class="max-w-screen-xl xl:min-h-screen mx-auto pb-16">
-                <div class="bg-gray-100 dark:bg-neutral-800">
+                <div class="bg-gray-100 dark:bg-neutral-900">
                     <div
-                        class="py-8 px-4 md:px-16 mx-auto max-w-screen-xl border border-abu-500 lg:py-20 dark:border dark:border-1 dark:border-neutral-700">
+                        class="py-8 px-4 md:px-16 mx-auto max-w-screen-xl border border-abu-500 lg:py-20 dark:border dark:border-1 dark:border-neutral-800">
                         <div class="flex flex-col justify-center text-center">
                             <h1
                                 class="mb-1 md:mb-4 text-4xl font-bold tracking-tight leading-none text-primary-800 md:text-5xl lg:text-6xl dark:text-secondary">
@@ -391,8 +391,8 @@
                                         href="/">sigma.blitarkota.go.id</a> Dengan menyetujui kebijakan privasi ini,
                                     maka Kamu menyatakan bahwa data yang diberikan adalah benar dan Kamu menyetujui bahwa
                                     data tersebut dapat Kami gunakan untuk tujuan operasional akun <a
-                                        class="text-blue-500 hover:underline"
-                                        href="/">sigma.blitarkota.go.id</a> dan/atau tujuan lain yang Kami anggap
+                                        class="text-blue-500 hover:underline" href="/">sigma.blitarkota.go.id</a>
+                                    dan/atau tujuan lain yang Kami anggap
                                     pantas. Jika Kamu telah melakukan registrasi akun, Kamu dianggap telah menyetujui
                                     Kebijakan Privasi ini. Namun jika Kamu tidak menyetujui bagian apapun dari perjanjian
                                     ini, mohon agar tidak melanjutkan proses registrasi akun. Buatlah keputusan terbaik

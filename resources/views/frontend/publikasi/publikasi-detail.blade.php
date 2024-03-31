@@ -47,8 +47,8 @@
 
     </div>
 
-    <div class="bg-secondary dark:bg-neutral-900">
-        <div class="px-4 max-w-screen-xl mx-auto bg-secondary dark:bg-neutral-900 xl:min-h-screen">
+    <div class="bg-secondary dark:bg-neutral-950">
+        <div class="px-4 max-w-screen-xl mx-auto bg-secondary dark:bg-neutral-950 xl:min-h-screen">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 <div class="col-span-2">
                     <div class="py-4 md:py-12 md:pr-12">
@@ -118,7 +118,7 @@
                         Lainnya</h3>
 
                     <a href="{{ route('frontend.publikasiDetail') }}"
-                        class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:border-neutral-800 dark:hover:bg-secondary">
+                        class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
                         <div class="relative w-full h-44 lg:h-full">
                             <img src="{{ asset('frontend/assets/img/illustration-image-role-developer.webp') }}"
                                 class="object-cover w-full h-full" alt="Illustration Image Discussion">
@@ -135,7 +135,7 @@
                     </a>
 
                     <a href="{{ route('frontend.publikasiDetail') }}"
-                        class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:border-neutral-800 dark:hover:bg-secondary">
+                        class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
                         <div class="relative w-full h-44 lg:h-full">
                             <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
                                 class="object-cover w-full h-full" alt="Illustration Image Discussion">
@@ -152,7 +152,7 @@
                     </a>
 
                     <a href="{{ route('frontend.publikasiDetail') }}"
-                        class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:border-neutral-800 dark:hover:bg-secondary">
+                        class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
                         <div class="relative w-full h-44 lg:h-full">
                             <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
                                 class="object-cover w-full h-full" alt="Illustration Image Discussion">

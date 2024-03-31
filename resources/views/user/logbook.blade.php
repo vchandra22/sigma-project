@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
+    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
@@ -31,7 +31,7 @@
             @endif
             <div class="lg:grid lg:grid-cols-2 gap-2 sm:space-y-2 md:space-y-0">
                 <div>
-                    <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                         <div class="px-6 py-8">
                             <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-8">Form
                                 Dailylog
@@ -190,7 +190,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                <div class="bg-gray-50 border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8">
                         <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4">Riwayat
                             Kegiatan
@@ -205,8 +205,7 @@
 
                         <div class="relative overflow-x-auto mt-4">
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 z-10">
-                                <thead
-                                    class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
+                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
                                     <tr>
                                         <th scope="col" class="px-8 py-6 w-1/3 text-primary-800 dark:text-secondary">
                                             TANGGAL / WAKTU
@@ -224,23 +223,27 @@
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-8 py-4">
-                                                <p class="text-primary-800 dark:text-secondary"> {{ date('d M Y', strtotime($logbook->tgl_magang)) }} </p>
+                                                <p class="text-primary-800 dark:text-secondary">
+                                                    {{ date('d M Y', strtotime($logbook->tgl_magang)) }} </p>
                                             </td>
                                             <td class="px-8 py-4">
                                                 <div class="mb-2">
-                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Topik Diskusi: </h5>
+                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Topik
+                                                        Diskusi: </h5>
                                                     <span class="dark:text-slate-300">
                                                         {{ strip_tags($logbook->topik_diskusi) }}
                                                     </span>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Arahan Pembimbing: </h5>
+                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Arahan
+                                                        Pembimbing: </h5>
                                                     <span class="dark:text-slate-300">
                                                         {{ strip_tags($logbook->arahan_pembimbing) }}
                                                     </span>
                                                 </div>
                                                 <div>
-                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Bukti Dukung</h5>
+                                                    <h5 class="font-bold text-primary-800 dark:text-secondary">Bukti Dukung
+                                                    </h5>
                                                     <a class="text-blue-400 hover:text-blue-500 hover:underline"
                                                         href="{{ $logbook->bukti }}">{{ $logbook->bukti }}</a>
                                                 </div>

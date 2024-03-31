@@ -2,7 +2,7 @@
 
 @section('content')
     @include('admin.layouts.sidebar')
-    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
+    <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
@@ -32,7 +32,7 @@
             @endif
             <div class="w-full">
                 <div
-                    class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
                             {{ $pageTitle }}
@@ -41,7 +41,7 @@
                         <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-3 w-full gap-4">
 
                             <div
-                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-700 dark:border-neutral-600">
+                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-600">
                                 <div class="min-h-16 w-full">
                                     <a href="{{ route('admin.manageHomepage', Crypt::encryptString($homepageId->id)) }}">
                                         <h5
@@ -64,7 +64,7 @@
                             </div>
 
                             <div
-                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-700 dark:border-neutral-600">
+                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-600">
                                 <div class="min-h-16 w-full">
                                     <a href="{{ route('admin.managePosition') }}">
                                         <h5
@@ -87,9 +87,9 @@
                             </div>
 
                             <div
-                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-700 dark:border-neutral-600">
+                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-600">
                                 <div class="min-h-16 w-full">
-                                    <a href="#">
+                                    <a href="{{ route('admin.managePublication') }}">
                                         <h5
                                             class="mb-2 text-2xl font-bold tracking-tight text-primary-800 dark:text-secondary">
                                             Publikasi
@@ -103,16 +103,16 @@
                                 </div>
 
                                 <div class="flex flex-col items-start">
-                                    <a href="#"
+                                    <a href="{{ route('admin.managePublication') }}"
                                         class="w-full px-3 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Edit
                                         Content</a>
                                 </div>
                             </div>
 
                             <div
-                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-700 dark:border-neutral-600">
+                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-600">
                                 <div class="min-h-16 w-full">
-                                    <a href="#">
+                                    <a href="{{ route('admin.manageFaq') }}">
                                         <h5
                                             class="mb-2 text-2xl font-bold tracking-tight text-primary-800 dark:text-secondary">
                                             FAQ Content
@@ -126,14 +126,14 @@
                                 </div>
 
                                 <div class="flex flex-col items-start">
-                                    <a href="#"
+                                    <a href="{{ route('admin.manageFaq') }}"
                                         class="w-full px-3 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Edit
                                         Content</a>
                                 </div>
                             </div>
 
                             <div
-                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-700 dark:border-neutral-600">
+                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-600">
                                 <div class="min-h-16 w-full">
                                     <a href="{{ route('admin.manageOffice') }}">
                                         <h5
