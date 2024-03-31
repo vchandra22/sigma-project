@@ -29,7 +29,7 @@
             {{-- breadcrums end --}}
 
             <div class="max-w-screen-xl xl:min-h-screen mx-auto pb-16">
-                <section class="bg-gray-100 dark:bg-neutral-800">
+                <div class="bg-gray-100 dark:bg-neutral-800">
                     <div
                         class="py-8 px-4 md:px-16 mx-auto max-w-screen-xl border border-abu-500 lg:py-20 dark:border dark:border-1 dark:border-neutral-700">
                         <div class="flex flex-col justify-center text-center">
@@ -333,11 +333,14 @@
                                                 required="">
                                         </div>
                                         <div class="ml-3 text-sm">
-                                            <label for="terms" class="font-light text-gray-500 dark:text-gray-300">Saya
-                                                menyatakan memahami dan setuju dengan <a
-                                                    class="text-primary-800 hover:underline hover:text-primary-500 dark:text-gray-100"
-                                                    href="#">Kebijakan Privasi registrasi akun Internship
-                                                    SIGMA</a></label>
+                                            <span for="terms" class="font-light text-gray-500 dark:text-gray-300">Saya
+                                                menyatakan memahami dan setuju dengan
+                                                <button data-modal-target="default-modal"
+                                                    data-modal-toggle="default-modal"
+                                                    class="text-primary-800 hover:underline hover:text-primary-500 dark:text-gray-100">Kebijakan
+                                                    Privasi registrasi akun Internship SIGMA
+                                                </button>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="flex flex-col items-end pt-4 lg:pt-[5.5rem]">
@@ -352,7 +355,54 @@
                             </form>
                         </div>
                     </div>
-                </section>
+                </div>
+
+                <!-- Main modal -->
+                <div id="default-modal" tabindex="-1" aria-hidden="true"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-2xl max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-secondary shadow-sm dark:bg-neutral-800">
+                            <!-- Modal header -->
+                            <div
+                                class="flex items-center justify-between px-6 pt-8 pb-3 md:px-8 md:pt-8 md:pb-6 dark:border-neutral-700">
+                                <h3 class="text-xl font-semibold text-primary-800 dark:text-secondary">
+                                    Kebijakan dan Privasi Pengguna
+                                </h3>
+                                <button type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-primary-800 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-secondary"
+                                    data-modal-hide="default-modal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="px-6 pb-8 md:px-8 md:pb-8">
+                                <span
+                                    class="text-xs md:text-sm leading-tight text-justify text-primary-800 dark:text-secondary">
+                                    Kami percaya bahwa Kamu harus selalu tahu dan memiliki kontrol mengenai data apa yang
+                                    Kami kumpulkan dari Kamu dan bagaimana Kami menggunakannya. Kebijakan Privasi ini
+                                    menjelaskan bagaimana Kami menangani informasi yang Kamu berikan saat registrasi akun
+                                    website <a class="text-blue-500 hover:underline"
+                                        href="/">sigma.blitarkota.go.id</a> Dengan menyetujui kebijakan privasi ini,
+                                    maka Kamu menyatakan bahwa data yang diberikan adalah benar dan Kamu menyetujui bahwa
+                                    data tersebut dapat Kami gunakan untuk tujuan operasional akun <a
+                                        class="text-blue-500 hover:underline"
+                                        href="/">sigma.blitarkota.go.id</a> dan/atau tujuan lain yang Kami anggap
+                                    pantas. Jika Kamu telah melakukan registrasi akun, Kamu dianggap telah menyetujui
+                                    Kebijakan Privasi ini. Namun jika Kamu tidak menyetujui bagian apapun dari perjanjian
+                                    ini, mohon agar tidak melanjutkan proses registrasi akun. Buatlah keputusan terbaik
+                                    mengenai informasi yang Kamu bagikan kepada Kami.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <script>

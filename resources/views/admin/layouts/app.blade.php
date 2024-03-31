@@ -19,6 +19,9 @@
 
     <script src="https://kit.fontawesome.com/bfb24335ca.js" crossorigin="anonymous"></script>
 
+    {{-- Memuat source WYSIWYG ckeditor5 --}}
+    <script src="{{ asset('assets/vendor/ckeditor5/build/ckeditor.js') }}"></script>
+
     <title>{{ get_app_name() }} - {{ __(@$pageTitle) }}</title>
 </head>
 
