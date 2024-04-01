@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -56,7 +57,10 @@ class ManagePublicationController extends Controller
             $validatedData['gambar'] = $path;
         }
 
-        Publication::create($validatedData);
+        $publication = Publication::create($validatedData);
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($publication)->log($getUser . ' melakukan tambah data Publikasi baru');
 
         return redirect(route('admin.managePublication'))->with('success', 'Data berhasil disimpan!');
 
@@ -123,6 +127,9 @@ class ManagePublicationController extends Controller
         $validatedData['slug'] = $newSlug;
         $publication = Publication::where('id', $publication->id)->update($validatedData);
 
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($publication)->log($getUser . ' melakukan update data Publikasi');
+
         return redirect(route('admin.managePublication'))->with('success', 'Data berhasil diupdate!');
 
     }
@@ -134,6 +141,9 @@ class ManagePublicationController extends Controller
     {
         $publication = Publication::find($id);
         $publication->delete();
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($publication)->log($getUser . ' melakukan delete data Publikasi');
 
         return redirect(route('admin.managePublication'))->with('success', 'Data berhasil dihapus!');
     }

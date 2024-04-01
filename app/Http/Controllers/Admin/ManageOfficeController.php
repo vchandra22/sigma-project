@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -59,7 +60,9 @@ class ManageOfficeController extends Controller
             $validatedData['ttd_kepala'] = $path;
         }
 
-        Office::create($validatedData);
+        $office = Office::create($validatedData);
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($office)->log($getUser . ' melakukan tambah data Instansi / OPD baru');
 
         return redirect(route('admin.manageOffice'))->with('success', 'Data berhasil disimpan!');
 
@@ -129,6 +132,9 @@ class ManageOfficeController extends Controller
         $validatedData['slug'] = $newSlug;
         $office = Office::where('id', $office->id)->update($validatedData);
 
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($office)->log($getUser . ' melakukan update data Instansi / OPD');
+
         return redirect(route('admin.manageOffice'))->with('success', 'Data berhasil diupdate!');
     }
 
@@ -139,6 +145,9 @@ class ManageOfficeController extends Controller
     {
         $office = Office::find($id);
         $office->delete();
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($office)->log($getUser . ' melakukan delete data Instansi / OPD');
 
         return redirect(route('admin.manageOffice'))->with('success', 'Data berhasil dihapus!');
     }

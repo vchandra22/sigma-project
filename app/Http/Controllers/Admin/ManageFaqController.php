@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ManageFaqController extends Controller
@@ -40,7 +41,10 @@ class ManageFaqController extends Controller
             'jawaban' => ['required']
         ]);
 
-        Faq::create($validatedData);
+        $faq = Faq::create($validatedData);
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($faq)->log($getUser . ' melakukan menambah data FAQ baru');
 
         return redirect(route('admin.manageFaq'))->with('success', 'Data berhasil disimpan!');
     }
@@ -90,6 +94,9 @@ class ManageFaqController extends Controller
         $validatedData['slug'] = $newSlug;
         $faq = Faq::where('id', $faq->id)->update($validatedData);
 
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($faq)->log($getUser . ' melakukan update data FAQ');
+
         return redirect(route('admin.manageFaq'))->with('success', 'Data berhasil diupdate!');
 
     }
@@ -101,6 +108,9 @@ class ManageFaqController extends Controller
     {
         $faq = Faq::find($id);
         $faq->delete();
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($faq)->log($getUser . ' melakukan delete data FAQ');
 
         return redirect(route('admin.manageFaq'))->with('success', 'Data berhasil dihapus!');
     }

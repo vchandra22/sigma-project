@@ -35,8 +35,12 @@ class AuthAdminController extends Controller
 
             // perikas role user
             if ($user->hasRole('admin')) {
+                activity()->causedBy($user)->log($user->nama_lengkap . ' (admin) telah login');
+
                 return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD); // jika role admin redirect ke dashboard admin
             } elseif ($user->hasRole('mentor')) {
+                activity()->causedBy($user)->log($user->nama_lengkap . ' (mentor) telah login');
+
                 return redirect()->intended(RouteServiceProvider::MENTOR_DASHBOARD); // jika role mentor redirect ke dashboard admin
             }
         }
@@ -46,6 +50,8 @@ class AuthAdminController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
+
+        activity()->causedBy(Auth::guard('admin')->user())->log('' . auth()->user()->nama_lengkap . ' telah logout');
         Auth::guard('admin')->logout(); //Melakukan logout admin dari sistem
 
         $request->session()->invalidate(); //Menghapus sesi

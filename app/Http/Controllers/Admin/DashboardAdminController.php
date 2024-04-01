@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class DashboardAdminController extends Controller
 {
@@ -14,6 +17,16 @@ class DashboardAdminController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Admin Dashboard';
+
+        $data['announcementId'] = Announcement::first();
+        $data['announcementData'] = Announcement::latest('updated_at')->get();
+
+        $user = Auth::guard('admin')->user();
+        $data['userData'] = Admin::with('roles')->where('id', $user->id)->get();
+        $data['activityLog'] = Activity::latest('created_at')->get();
+
+        
+
 
         return view('admin.dashboard', $data);
     }

@@ -15,6 +15,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         Admin::create([
+            'office_id' => '1',
             'username' => 'admin',
             'nama_lengkap' => 'admin',
             'email' => 'admin.sigma@gmail.com',

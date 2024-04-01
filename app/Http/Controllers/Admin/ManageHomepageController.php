@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Homepage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class ManageHomepageController extends Controller
@@ -75,6 +76,9 @@ class ManageHomepageController extends Controller
         ]);
 
         $homepage = Homepage::where('id', $homepage->id)->update($validatedData);
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($homepage)->log($getUser . ' melakukan update data Homepage');
 
         return redirect(route('admin.manageContent'))->with('success', 'Data berhasil diupdate!');
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\ManageAnnouncementController;
 use App\Http\Controllers\Admin\ManageContentController;
 use App\Http\Controllers\Admin\ManageFaqController;
 use App\Http\Controllers\Admin\ManageHomepageController;
@@ -24,6 +25,10 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // dashboard admin
     Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+
+    // manage pengumuman content
+    Route::get('/announcement/edit/{id}', [ManageAnnouncementController::class, 'edit'])->name('admin.editAnnouncement');
+    Route::put('/announcement/update/{announcement}', [ManageAnnouncementController::class, 'update'])->name('admin.updateAnnouncement');
 
     // manage content
     Route::get('/manage-content', [ManageContentController::class, 'index'])->name('admin.manageContent');

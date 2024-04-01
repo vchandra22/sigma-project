@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ManagePositionController extends Controller
@@ -59,7 +60,10 @@ class ManagePositionController extends Controller
             $validatedData['gambar'] = $path;
         }
 
-        Position::create($validatedData);
+        $position = Position::create($validatedData);
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($position)->log($getUser . ' melakukan tambah data Posisi Pekerjaan baru');
 
         return redirect(route('admin.managePosition'))->with('success', 'Data berhasil disimpan!');
     }
@@ -128,6 +132,10 @@ class ManagePositionController extends Controller
         $validatedData['slug'] = $newSlug;
         $position = Position::where('id', $position->id)->update($validatedData);
 
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($position)->log($getUser . ' melakukan update data Posisi Pekerjaan');
+
+
         return redirect(route('admin.managePosition'))->with('success', 'Data berhasil diupdate!');
     }
 
@@ -138,6 +146,9 @@ class ManagePositionController extends Controller
     {
         $position = Position::find($id);
         $position->delete();
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($position)->log($getUser . ' melakukan delete data Posisi Pekerjaan');
 
         return redirect(route('admin.managePosition'))->with('success', 'Data berhasil dihapus!');
     }
