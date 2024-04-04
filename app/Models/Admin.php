@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
 class Admin extends Authenticatable
 {
@@ -23,6 +25,8 @@ class Admin extends Authenticatable
         'office_id',
         'username',
         'nama_lengkap',
+        'nip',
+        'jenis_kelamin',
         'email',
         'no_hp',
         'password',
@@ -47,4 +51,12 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->uuid =  Str::uuid()->toString();
+        });
+    }
 }

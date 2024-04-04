@@ -14,6 +14,7 @@ class AnnouncementSeeder extends Seeder
     public function run(): void
     {
         Announcement::create([
+            'id' => '1',
             'pengumuman' => 'Pengumuman belum diatur',
             'file' => NULL,
         ]);

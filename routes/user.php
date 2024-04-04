@@ -34,12 +34,12 @@ Route::middleware(['auth:web'])->group(function () {
 
     // pengaturan user
     Route::get('/settings', [SettingUserController::class, 'index'])->name('user.settings');
-    Route::get('/update-profile', [SettingUserController::class, 'create'])->name('user.profile');
+    Route::get('/update-profile/edit/{user}', [SettingUserController::class, 'edit'])->name('user.profile');
     Route::post('/update-profile/{user}', [SettingUserController::class, 'update'])->name('user.update-profile');
 
     // ganti password user
-    Route::get('/update-password', [UpdatePasswordController::class, 'create'])->name('user.password');
-    Route::patch('/update-password', [UpdatePasswordController::class, 'update'])->name('user.update-password');
+    Route::get('/update-password', [UpdatePasswordController::class, 'edit'])->name('user.editPassword');
+    Route::patch('/update-password', [UpdatePasswordController::class, 'update'])->name('user.updatePassword');
 
     // mengeluarkan user dari autentikasi
     Route::post('/logout', [AuthUserController::class, 'destroy'])->name('user.logout');

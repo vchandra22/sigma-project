@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Str;
+
 
 class Publication extends Model
 {
     use HasFactory, HasSlug;
 
     protected $table = 'publications';
+    protected $primaryKey = 'id';
 
     protected $fillable = ([
         'judul',
@@ -28,5 +31,13 @@ class Publication extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('judul')
             ->saveSlugsTo('slug');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->uuid =  Str::uuid()->toString();
+        });
     }
 }

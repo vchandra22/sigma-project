@@ -14,6 +14,7 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         Status::create([
+            'id' => '1',
             'document_id' => '1',
             'status' => 'menunggu',
         ]);

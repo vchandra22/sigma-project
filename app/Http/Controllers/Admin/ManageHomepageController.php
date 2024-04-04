@@ -45,13 +45,11 @@ class ManageHomepageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($uuid)
     {
         $data['pageTitle'] = 'Homepage Content';
 
-        $decryptId = Crypt::decryptString($id);
-
-        $data['homepageData'] = Homepage::where('id', $decryptId)->get();
+        $data['homepageData'] = Homepage::where('uuid', $uuid)->get();
 
         return view('admin.edit_homepage', $data);
     }
@@ -75,7 +73,7 @@ class ManageHomepageController extends Controller
             'gmaps_kantor' => ['required'],
         ]);
 
-        $homepage = Homepage::where('id', $homepage->id)->update($validatedData);
+        $homepage = Homepage::where('uuid', $homepage->uuid)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($homepage)->log($getUser . ' melakukan update data Homepage');

@@ -14,8 +14,10 @@ class DocumentSeeder extends Seeder
     public function run(): void
     {
         Document::create([
+            'id' => '1',
             'user_id' => '1',
             'office_id' => '1',
+            'position_id' => '1',
             'no_identitas' => '0003452642',
             'jurusan' => 'Jaringan Komputer',
             'instansi_asal' => 'SMKN 1 Kademangan',

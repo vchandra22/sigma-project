@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('homepages', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->index();
             $table->string('heading')->nullable();
             $table->text('deskripsi_app')->nullable();
             $table->string('instagram_username')->nullable();

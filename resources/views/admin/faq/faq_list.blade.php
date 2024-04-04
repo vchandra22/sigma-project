@@ -82,9 +82,9 @@
                                                     {{ strip_tags($faq->jawaban) }}
                                                 </h5>
                                             </td>
-                                            <td class="px-4 py-4 flex gap-4">
-                                                <a href="{{ route('admin.editFaq', $faq->slug) }}"
-                                                    class="py-2 ml-6 text-center text-md text-blue-500 hover:underline">
+                                            <td class="px-4 py-4 flex justify-center gap-4">
+                                                <a href="{{ route('admin.editFaq', $faq->uuid) }}"
+                                                    class="py-2 text-center text-md text-blue-500 hover:underline">
                                                     Edit
                                                 </a>
                                                 <form id="delete-faq-{{ $faq->id }}"

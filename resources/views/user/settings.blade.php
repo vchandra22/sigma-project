@@ -32,19 +32,19 @@
             <div class="w-full">
                 <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <div class="flex items-center justify-between mb-8">
-                            <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
-                                {{ $pageTitle }}
-                            </h2>
-                            <div>
-                                <a href="{{ route('user.profile') }}"
-                                    class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Ubah
-                                    Profil</a>
+                        @foreach ($userDetail as $user)
+                            <div class="flex items-center justify-between mb-8">
+                                <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
+                                    {{ $pageTitle }}
+                                </h2>
+                                <div>
+                                    <a href="{{ route('user.profile', $user->uuid) }}"
+                                        class="w-full text-lg font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Ubah
+                                        Profil</a>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="space-y-4 md:space-y-8 lg:space-y-12">
-                            @foreach ($userDetail as $user)
+                            <div class="space-y-4 md:space-y-8 lg:space-y-12">
                                 <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
                                     <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
                                         Nama Lengkap
@@ -62,6 +62,16 @@
                                     <p
                                         class="text-primary-800 font-bold text-lg md:text-2xl dark:text-secondary leading-4 md:leading-5">
                                         {{ $user->document->no_identitas }}
+                                    </p>
+                                </div>
+
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
+                                    <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
+                                        Jenis Kelamin
+                                    </h2>
+                                    <p
+                                        class="text-primary-800 font-bold text-lg md:text-2xl dark:text-secondary leading-4 md:leading-5">
+                                        {{ $user->jenis_kelamin }}
                                     </p>
                                 </div>
 
@@ -104,18 +114,18 @@
                                         {{ $user->document->jurusan }}
                                     </p>
                                 </div>
-                            @endforeach
 
-                            <div class="flex flex-col items-end">
-                                <a href="{{ route('user.password') }}"
-                                    class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Ubah
-                                    Password</a>
-                            </div>
+                                <div class="flex flex-col items-end">
+                                    <a href="{{ route('user.editPassword') }}"
+                                        class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Ubah
+                                        Password</a>
+                                </div>
+                        @endforeach
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

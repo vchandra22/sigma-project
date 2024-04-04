@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             OfficeSeeder::class,
+            PositionSeeder::class,
             UserSeeder::class,
             DocumentSeeder::class,
             StatusSeeder::class,
             AdminSeeder::class,
             HomepageSeeder::class,
-            PositionSeeder::class,
             AnnouncementSeeder::class,
         ]);
     }

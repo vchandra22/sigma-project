@@ -79,11 +79,11 @@ class ManagePositionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($slug)
+    public function edit($uuid)
     {
         $data['pageTitle'] = 'Edit Roles';
 
-        $data['positionData'] = Position::where('slug', $slug)->get();
+        $data['positionData'] = Position::where('uuid', $uuid)->get();
 
         return view('admin.position.position_edit', $data);
     }
@@ -130,7 +130,7 @@ class ManagePositionController extends Controller
         }
 
         $validatedData['slug'] = $newSlug;
-        $position = Position::where('id', $position->id)->update($validatedData);
+        $position = Position::where('uuid', $position->uuid)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($position)->log($getUser . ' melakukan update data Posisi Pekerjaan');

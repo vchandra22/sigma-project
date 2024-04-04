@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Document;
+use App\Models\Office;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,10 +19,9 @@ class DashboardUserController extends Controller
         $data['pageTitle'] = 'Dashboard'; //memberikan nama pada halaman
 
         $user = Auth::user(); //mengambil id user yang telah login
+        $data['userData'] = Document::with(['user', 'office', 'position', 'status'])->where('user_id', $user->id)->get();
 
-        $data['userData'] = Document::with('status')->where('user_id', $user->id)->get();
-
-        // dd($data['userData']);
+        $data['announcementData'] = Announcement::latest()->get();
 
         return view('user.dashboard', $data);
     }

@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->index();
             $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('office_id')->index()->nullable();
+            $table->unsignedBigInteger('office_id');
+            $table->unsignedBigInteger('position_id');
             $table->string('no_identitas')->unique();
             $table->string('jurusan')->nullable();
             $table->string('instansi_asal')->nullable();
@@ -30,6 +32,7 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
         });
     }
 

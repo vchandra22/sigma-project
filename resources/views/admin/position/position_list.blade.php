@@ -51,7 +51,7 @@
                                     class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-700">
                                     <div class="min-h-16 w-full">
                                         <div class="flex justify-between items-start">
-                                            <a href="{{ route('admin.editPosition', $position->slug) }}">
+                                            <a href="{{ route('admin.editPosition', $position->uuid) }}">
                                                 <h5
                                                     class="mb-2 text-2xl font-bold tracking-tight text-primary-800 dark:text-secondary">
                                                     {{ $position->role }}
@@ -75,7 +75,7 @@
                                         </p>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <a href="{{ route('admin.editPosition', $position->slug) }}"
+                                        <a href="{{ route('admin.editPosition', $position->uuid) }}"
                                             class="w-full px-3 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Edit
                                             Content
                                         </a>

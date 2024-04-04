@@ -14,6 +14,7 @@ class PositionSeeder extends Seeder
     public function run(): void
     {
         Position::create([
+            'id' => '1',
             'role' => 'Developer',
             'slug' => 'developer',
             'deskripsi' => 'Front End, Back End, Document Engineer, Quality Assurance (Web Mobile for iOS/Android)',

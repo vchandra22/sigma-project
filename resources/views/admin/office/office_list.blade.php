@@ -90,8 +90,8 @@
                                                     {{ $office->nama_kepala }}
                                                 </h5>
                                             </td>
-                                            <td class="px-4 py-4 flex gap-4">
-                                                <a href="{{ route('admin.editOffice', $office->slug) }}"
+                                            <td class="px-4 py-4 flex justify-center gap-4">
+                                                <a href="{{ route('admin.editOffice', $office->uuid) }}"
                                                     class="py-2 ml-6 text-center text-md text-blue-500 hover:underline">
                                                     Edit
                                                 </a>

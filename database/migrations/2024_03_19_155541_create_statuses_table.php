@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->index();
             $table->unsignedBigInteger('document_id')->unique()->nullable();
             $table->enum('status', ['menunggu', 'diterima', 'ditolak', 'selesai'])->default('menunggu')->nullable();
             $table->text('keterangan')->nullable();

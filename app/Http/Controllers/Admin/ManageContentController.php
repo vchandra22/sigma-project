@@ -15,7 +15,7 @@ class ManageContentController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Manage Content';
-        $data['homepageId'] = Homepage::first();
+        $data['homepageUuid'] = Homepage::first();
 
         return view('admin.manage_content', $data);
     }

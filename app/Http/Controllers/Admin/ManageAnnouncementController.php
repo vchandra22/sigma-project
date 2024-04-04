@@ -45,12 +45,11 @@ class ManageAnnouncementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($uuid)
     {
         $data['pageTitle'] = 'Update Pengumuman';
 
-        $decryptId = Crypt::decryptString($id);
-        $data['announcementData'] = Announcement::where('id', $decryptId)->get();
+        $data['announcementData'] = Announcement::where('uuid', $uuid)->get();
 
         return view('admin.announcement.announcement_edit', $data);
     }
@@ -80,7 +79,7 @@ class ManageAnnouncementController extends Controller
             $validatedData['file'] = $path;
         } 
 
-        $announcement = Announcement::where('id', $announcement->id)->update($validatedData);
+        $announcement = Announcement::where('uuid', $announcement->uuid)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($announcement)->log($getUser . ' melakukan update Pengumuman');

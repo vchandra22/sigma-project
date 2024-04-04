@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Announcement;
+use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
@@ -18,15 +19,14 @@ class DashboardAdminController extends Controller
     {
         $data['pageTitle'] = 'Admin Dashboard';
 
-        $data['announcementId'] = Announcement::first();
+        $data['announcementUuid'] = Announcement::first();
         $data['announcementData'] = Announcement::latest('updated_at')->get();
 
-        $user = Auth::guard('admin')->user();
-        $data['userData'] = Admin::with('roles')->where('id', $user->id)->get();
+        $admin = Auth::guard('admin')->user();
+        $data['userData'] = Admin::with('roles')->where('id', $admin->id)->get();
         $data['activityLog'] = Activity::latest('created_at')->get();
 
-        
-
+        $data['getOffice'] = Office::where('id', $admin->office_id)->get();
 
         return view('admin.dashboard', $data);
     }

@@ -10,12 +10,9 @@
                         <h2 class="text-2xl md:text-4xl font-bold text-primary-800 dark:text-secondary mb-2">Pengumuman</h2>
                         <p
                             class="text-primary-800 font-paragraf text-md md:text-lg dark:text-secondary leading-4 md:leading-5">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat consequatur deleniti repellat
-                            fuga,
-                            at facilis commodi obcaecati rerum tenetur sint saepe eum similique, illo vero ea sunt? Eum
-                            repellendus repudiandae quibusdam molestias architecto assumenda corporis, cupiditate adipisci
-                            deserunt nam laboriosam, quo, unde saepe. Atque numquam enim aspernatur eius non nostrum ad
-                            cumque!
+                            @foreach ($announcementData as $announcement)
+                                {{ strip_tags($announcement->pengumuman) }}
+                            @endforeach
                         </p>
                     </div>
                     <div>
@@ -27,7 +24,7 @@
                 </div>
                 <div class="mb-2">
                     <div class="w-full h-full">
-                        <div class="md:grid md:grid-cols-2 gap-2 space-y-2 md:space-y-0">
+                        <div class="md:grid lg:grid-cols-2 gap-2 space-y-2 md:space-y-0">
                             <div class="h-full w-full grid grid-rows-3 gap-2">
                                 <div
                                     class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
@@ -49,10 +46,22 @@
                                     class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Instansi
-                                        Tujuan</h2>
-                                    <p
-                                        class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
-                                        Dinas Komunikasi Informatika dan Statistik Kota Blitar</p>
+                                        Tujuan
+                                    </h2>
+                                    <div class="flex justify-start">
+                                        <div class="border border-gray-300 w-auto">
+                                            <p
+                                                class="text-primary-800 p-4 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                                {{ $data->position->role }}
+                                            </p>
+                                        </div>
+                                        <div class="border border-gray-300 w-auto xl:w-full">
+                                            <p
+                                                class="text-primary-800 p-4 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                                {{ $data->office->nama_kantor }}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div

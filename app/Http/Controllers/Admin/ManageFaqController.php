@@ -60,10 +60,10 @@ class ManageFaqController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($slug)
+    public function edit($uuid)
     {
         $data['pageTitle'] = 'Edit FAQ';
-        $data['faqData'] = Faq::where('slug', $slug)->get();
+        $data['faqData'] = Faq::where('uuid', $uuid)->get();
 
         return view('admin.faq.faq_edit', $data);
     }
@@ -92,7 +92,7 @@ class ManageFaqController extends Controller
         }
 
         $validatedData['slug'] = $newSlug;
-        $faq = Faq::where('id', $faq->id)->update($validatedData);
+        $faq = Faq::where('uuid', $faq->uuid)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($faq)->log($getUser . ' melakukan update data FAQ');

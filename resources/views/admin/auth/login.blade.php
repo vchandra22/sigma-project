@@ -59,7 +59,7 @@
             @endif
 
             {{-- login section start --}}
-            <div class="max-w-screen-xl xl:min-h-screen mx-auto pb-16 pt-24">
+            <div class="max-w-screen-xl min-h-screen mx-auto pb-16 pt-24">
                 <section class="bg-transparent dark:bg-neutral-950">
                     <div class="py-8 px-4 md:px-16 mx-auto max-w-screen-xl lg:py-16 gap-0 lg:gap-16">
                         <div class="md:flex flex-col justify-center text-center lg:text-start">

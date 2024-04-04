@@ -47,6 +47,26 @@
                                             dengan NIS/NIM/NIK.</p>
                                     </div>
 
+                                    <div>
+                                        <label for="jenis_kelamin"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jenis Kelamin <span class="text-red-500">*</span>
+                                        </label>
+                                        <select type="text" name="jenis_kelamin" id="jenis_kelamin"
+                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                                <option value="Laki - Laki">
+                                                    Laki - Laki
+                                                </option>
+                                                <option value="Perempuan">
+                                                    Perempuan
+                                                </option>
+                                        </select>
+                                        @error('jenis_kelamin')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
                                     <div class="hidden">
                                         <label for="username"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Username<span

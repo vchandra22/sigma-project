@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->index();
             $table->string('role')->nullable();
             $table->string('slug')->nullable();
             $table->string('deskripsi')->nullable();

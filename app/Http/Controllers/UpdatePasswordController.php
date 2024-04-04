@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UpdatePasswordController extends Controller
 {
-    public function create() {
+    public function edit() {
         $data['pageTitle'] = 'Ubah Password';
 
         return view('user.update_password', $data);

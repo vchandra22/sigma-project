@@ -35,11 +35,11 @@ class AuthAdminController extends Controller
 
             // perikas role user
             if ($user->hasRole('admin')) {
-                activity()->causedBy($user)->log($user->nama_lengkap . ' (admin) telah login');
+                activity()->causedBy($user)->log($user->nama_lengkap . ' telah login');
 
                 return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD); // jika role admin redirect ke dashboard admin
             } elseif ($user->hasRole('mentor')) {
-                activity()->causedBy($user)->log($user->nama_lengkap . ' (mentor) telah login');
+                activity()->causedBy($user)->log($user->nama_lengkap . ' telah login');
 
                 return redirect()->intended(RouteServiceProvider::MENTOR_DASHBOARD); // jika role mentor redirect ke dashboard admin
             }

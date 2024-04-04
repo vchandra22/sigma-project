@@ -79,11 +79,11 @@ class ManageOfficeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($slug)
+    public function edit($uuid)
     {
         $data['pageTitle'] = 'Edit Instansi';
 
-        $data['officeData'] = Office::where('slug', $slug)->get();
+        $data['officeData'] = Office::where('uuid', $uuid)->get();
 
         return view('admin.office.office_edit', $data);
     }
@@ -130,7 +130,7 @@ class ManageOfficeController extends Controller
         }
 
         $validatedData['slug'] = $newSlug;
-        $office = Office::where('id', $office->id)->update($validatedData);
+        $office = Office::where('uuid', $office->uuid)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($office)->log($getUser . ' melakukan update data Instansi / OPD');

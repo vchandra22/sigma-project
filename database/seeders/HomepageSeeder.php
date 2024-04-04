@@ -14,6 +14,7 @@ class HomepageSeeder extends Seeder
     public function run(): void
     {
         Homepage::create([
+            'id' => '1',
             'heading' => 'Sistem Informasi Kegiatan Magang',
             'deskripsi_app' => 'Selamat datang di platform SIGMA, tempat di mana kesempatan menanti untukmu. Ayo kita eksplorasi beragam kegiatan magang yang sesuai dengan minat dan bakatmu,dengan proyek-proyek seru dan kamu dapat menjalin hubungan dengan para profesional berpengalaman. Yuk, kita bangun masa depan bareng. Gimana, tertarik jadi bagian dari perubahan?',
             'instagram_username' => 'application_sigma',

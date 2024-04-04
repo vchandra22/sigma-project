@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class SettingUserController extends Controller
 {
@@ -17,7 +18,7 @@ class SettingUserController extends Controller
         $data['pageTitle'] = 'Pengaturan';
 
         $user = Auth::user();
-        $data['userDetail'] = User::with('document')->where('id', $user->id)->get();
+        $data['userDetail'] = User::with('document')->where('uuid', $user->uuid)->get();
 
         return view('user.settings', $data);
     }
@@ -27,13 +28,7 @@ class SettingUserController extends Controller
      */
     public function create()
     {
-        $data['pageTitle'] = 'Ubah Profil';
-
-        $user = Auth::user();
-        $data['userDetail'] = User::with('document')->where('id', $user->id)->get();
-
-        return view('user.update_profile', $data);
-
+        //
     }
 
     /**
@@ -55,9 +50,13 @@ class SettingUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit($uuid)
     {
-        //
+        $data['pageTitle'] = 'Ubah Profil';
+
+        $data['userDetail'] = User::with('document')->where('uuid', $uuid)->get();
+
+        return view('user.update_profile', $data);
     }
 
     /**
@@ -65,17 +64,20 @@ class SettingUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
+        $userId = Auth::user();
         $validatedUser = $request->validate([
-            'nama_lengkap' => ['required', 'string', 'max:33'],
-            'no_identitas' => ['required', 'numeric'],
-            'username' => ['required', 'same:no_identitas'],
-            'no_hp' => ['required', 'numeric', 'min_digits:11', 'max_digits:14'],
-            'email' => ['required', 'email'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'username' => ['required', 'same:no_identitas', 'unique:documents,no_identitas,' . $userId->id . ',user_id'],
+            'jenis_kelamin' => ['required'],
+            'no_hp' => ['required', 'numeric', 'digits_between:11,14', 'unique:users,no_hp,' . $userId->id . ',id'],
+            'email' => ['required', 'email', 'unique:users,email,' . $userId->id . ',id'],
         ]);
 
         $validatedDocs = $request->validate([
             'instansi_asal' => ['required'],
             'jurusan' => ['required'],
+            'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas,' . $userId->id . ',user_id'],
         ]);
 
         $user->update($validatedUser);

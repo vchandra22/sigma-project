@@ -9,11 +9,12 @@
                 <div
                     class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
                     <div class="md:col-span-2 px-6 py-8">
-                        <div class="flex justify-between items-center">
-                            <h2 class="text-2xl md:text-4xl font-bold text-primary-800 dark:text-secondary mb-2">Pengumuman
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
+                                Pengumuman
                             </h2>
                             <div>
-                                <a href="{{ route('admin.editAnnouncement', Crypt::encryptString($announcementId->id)) }}"
+                                <a href="{{ route('admin.editAnnouncement', $announcementUuid->uuid) }}"
                                     class="w-full text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Update
                                 </a>
                             </div>
@@ -34,14 +35,14 @@
                 </div>
                 <div class="mb-2">
                     <div class="w-full h-full">
-                        <div class="md:grid md:grid-cols-2 gap-2 space-y-2 md:space-y-0">
+                        <div class="md:grid lg:grid-cols-2 gap-2 space-y-2 md:space-y-0">
                             <div class="h-full w-full grid grid-rows-3 gap-2">
                                 <div
                                     class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Nama
                                         Lengkap</h2>
                                     <p
-                                        class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                        class="text-primary-800 font-paragraf capitalize text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
                                         {{ $user->nama_lengkap }}
                                     </p>
                                 </div>
@@ -60,11 +61,14 @@
                                 <div
                                     class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
-                                        Instansi
-                                        Tujuan</h2>
+                                        Instansi / OPD
+                                    </h2>
                                     <p
                                         class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
-                                        Dinas Komunikasi Informatika dan Statistik Kota Blitar</p>
+                                        @foreach ($getOffice as $office)
+                                            {{ $office->nama_kantor }}
+                                        @endforeach
+                                    </p>
                                 </div>
                             </div>
                             <div
@@ -78,7 +82,7 @@
                                         @foreach ($activityLog as $log)
                                             <li class="mb-4 ms-6">
                                                 <div
-                                                    class="items-center justify-between p-2 bg-white border border-gray-200 sm:flex dark:bg-neutral-800 dark:border-neutral-700">
+                                                    class="items-center justify-between p-2 bg-white border border-gray-200 lg:flex dark:bg-neutral-800 dark:border-neutral-700">
                                                     <time
                                                         class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                                                         {{ date('d-m-Y h:m:s'), strtotime($log->created_at) }}

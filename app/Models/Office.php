@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
 
 class Office extends Model
 {
     use HasFactory, HasSlug;
 
     protected $table = 'offices';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'nama_kantor',
@@ -41,6 +43,14 @@ class Office extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('nama_kantor')
             ->saveSlugsTo('slug');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->uuid =  Str::uuid()->toString();
+        });
     }
 
 }

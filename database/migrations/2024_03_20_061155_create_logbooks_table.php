@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logbooks', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->index();
             $table->unsignedBigInteger('status_id')->index();
             $table->date('tgl_magang')->nullable();
             $table->time('jam_mulai')->nullable();

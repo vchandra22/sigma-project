@@ -77,10 +77,10 @@ class ManagePublicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($slug)
+    public function edit($uuid)
     {
         $data['pageTitle'] = 'Edit Publikasi';
-        $data['publicationData'] = Publication::where('slug', $slug)->get();
+        $data['publicationData'] = Publication::where('uuid', $uuid)->get();
 
         return view('admin.publication.publication_edit', $data);
     }
@@ -125,7 +125,7 @@ class ManagePublicationController extends Controller
         }
 
         $validatedData['slug'] = $newSlug;
-        $publication = Publication::where('id', $publication->id)->update($validatedData);
+        $publication = Publication::where('uuid', $publication->uuid)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($publication)->log($getUser . ' melakukan update data Publikasi');

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('faqs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->index();
             $table->string('pertanyaan')->nullable();
             $table->string('slug')->nullable();
             $table->text('jawaban')->nullable();
