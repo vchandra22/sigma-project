@@ -60,17 +60,17 @@
                                             Content
                                         </th>
                                         <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                            class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($publicationData as $key => $publication)
+                                    @foreach ($publicationData as $publication)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">{{ $key + 1 }}</p>
+                                                <p class="text-primary-800 dark:text-secondary">{{ $loop->iteration }}</p>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <h5 class="font-bold text-primary-800 dark:text-secondary">
@@ -82,20 +82,22 @@
                                                     {{ strip_tags($publication->content) }}
                                                 </h5>
                                             </td>
-                                            <td class="px-4 py-4 flex justify-center gap-4">
-                                                <a href="{{ route('admin.editPublication', $publication->uuid) }}"
-                                                    class="py-2 ml-6 text-center text-md text-blue-500 hover:underline">
-                                                    Edit
-                                                </a>
-                                                <form id="delete-publication-{{ $publication->id }}"
-                                                    action="{{ route('admin.deletePublication', ['id' => $publication->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <div class="py-2 text-center text-md text-red-500 hover:underline">
-                                                        <button class="delete-button" data-id="{{ $publication->id }}"
-                                                            type="submit" value="Delete">Hapus </button>
-                                                </form>
+                                            <td class="px-8">
+                                                <div class="flex items-center h-full gap-4">
+                                                    <a href="{{ route('admin.editPublication', $publication->uuid) }}"
+                                                        class="py-2 text-center text-md text-blue-500 hover:underline">
+                                                        Edit
+                                                    </a>
+                                                    <form id="delete-publication-{{ $publication->id }}"
+                                                        action="{{ route('admin.deletePublication', ['id' => $publication->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <div class="py-2 text-center text-md text-red-500 hover:underline">
+                                                            <button class="delete-button" data-id="{{ $publication->id }}"
+                                                                type="submit" value="Delete">Hapus </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

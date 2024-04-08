@@ -23,12 +23,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OfficeSeeder::class,
             PositionSeeder::class,
+            MetaSeeder::class,
             UserSeeder::class,
             DocumentSeeder::class,
             StatusSeeder::class,
             AdminSeeder::class,
             HomepageSeeder::class,
             AnnouncementSeeder::class,
+            PublicationSeeder::class,
         ]);
     }
 }

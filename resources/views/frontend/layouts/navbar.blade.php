@@ -6,9 +6,11 @@
                 {{-- logo on navbar start --}}
                 <a href="{{ url('/') }}" class="flex items-center">
                     <img src="{{ asset('frontend/assets/img/logo-sigmaLight.png') }}"
-                        class="block h-8 lg:h-10 dark:hidden" alt="Sigma Logo" />
+                        class="block w-full h-8 lg:h-10 dark:hidden" width="100" height="100" title="Logo"
+                        alt="Sigma Logo" />
                     <img src="{{ asset('frontend/assets/img/logo-sigmaDark.png') }}"
-                        class="hidden h-8 lg:h-10 dark:block" alt="Sigma Logo" />
+                        class="hidden w-full h-8 lg:h-10 dark:block" width="100" height="100" title="Logo"
+                        alt="Sigma Logo" />
                 </a>
                 {{-- logo on navbar end --}}
 

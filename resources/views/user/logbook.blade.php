@@ -224,7 +224,7 @@
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-8 py-4">
                                                 <p class="text-primary-800 dark:text-secondary">
-                                                    {{ date('d M Y', strtotime($logbook->tgl_magang)) }} </p>
+                                                    {{ convertDate($logbook->tgl_magang) }} </p>
                                             </td>
                                             <td class="px-8 py-4">
                                                 <div class="mb-2">

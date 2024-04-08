@@ -69,11 +69,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($officeData as $key => $office)
+                                    @foreach ($officeData as $office)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">{{ $key + 1 }}</p>
+                                                <p class="text-primary-800 dark:text-secondary">{{ $loop->iteration }}</p>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <h5 class="font-bold text-primary-800 dark:text-secondary">

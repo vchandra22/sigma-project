@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('metas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->index();
-            $table->string('url')->nullable();
             $table->string('page_name')->nullable();
+            $table->string('slug')->nullable();
             $table->mediumText('meta_title')->nullable();
             $table->mediumText('meta_description')->nullable();
             $table->mediumText('meta_keyword')->nullable();
+            $table->string('og_image')->nullable();
             $table->timestamps();
         });
     }

@@ -6,9 +6,9 @@
                 <div class="flex flex-col justify-center" >
                     <a href="/" class="mb-5 md:mx-auto">
                         <img src="{{ asset('frontend/assets/img/logo-sigmaLight.png') }}"
-                            class="block h-12 lg:h-20 dark:hidden" alt="Sigma Logo" />
+                            class="block w-full h-12 lg:h-20 dark:hidden" width="100" height="100" title="Logo" alt="Sigma Logo" />
                         <img src="{{ asset('frontend/assets/img/logo-sigmaDark.png') }}"
-                            class="hidden h-12 lg:h-20 dark:block" alt="Sigma Logo" />
+                            class="hidden w-full h-12 lg:h-20 dark:block" width="100" height="100" title="Logo" alt="Sigma Logo" />
                     </a>
                     {{-- logo on navbar end --}}
                     <span class="font-paragraf text-md md:text-lg md:leading-6 text-primary-800 text-start dark:text-secondary">

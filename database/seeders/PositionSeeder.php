@@ -14,10 +14,36 @@ class PositionSeeder extends Seeder
     public function run(): void
     {
         Position::create([
-            'id' => '1',
             'role' => 'Developer',
             'slug' => 'developer',
             'deskripsi' => 'Front End, Back End, Document Engineer, Quality Assurance (Web Mobile for iOS/Android)',
+            'jobdesk' => 'jobdesk list',
+            'requirement' => 'Memahami bahasa pemograman seperti Java Script, React JS, Node JS, dll',
+            'gambar' => NULL,
+        ]);
+
+        Position::create([
+            'role' => 'General',
+            'slug' => 'general',
+            'deskripsi' => 'Administrative and Operation, Public Relation, Partnership Management, Event Management',
+            'jobdesk' => 'jobdesk list',
+            'requirement' => 'Memahami bahasa pemograman seperti Java Script, React JS, Node JS, dll',
+            'gambar' => NULL,
+        ]);
+
+        Position::create([
+            'role' => 'Broadcasting',
+            'slug' => 'broadcasting',
+            'deskripsi' => 'Camera Person, Sound Engineer, Presenter, Script Writer',
+            'jobdesk' => 'jobdesk list',
+            'requirement' => 'Memahami bahasa pemograman seperti Java Script, React JS, Node JS, dll',
+            'gambar' => NULL,
+        ]);
+
+        Position::create([
+            'role' => 'Engineer',
+            'slug' => 'engineer',
+            'deskripsi' => 'Internet of Things, IT Security, Network',
             'jobdesk' => 'jobdesk list',
             'requirement' => 'Memahami bahasa pemograman seperti Java Script, React JS, Node JS, dll',
             'gambar' => NULL,

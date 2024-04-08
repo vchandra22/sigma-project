@@ -110,8 +110,8 @@
                                         Magang yang Diajukan</h2>
                                     <div
                                         class="text-start font-bold text-2xl text-abu-800 md:text-3xl py-2 dark:text-gray-200 mb-4">
-                                        <p>{{ date('d M Y'), strtotime($data->u_tgl_mulai) }} -
-                                            {{ date('d M Y'), strtotime($data->u_tgl_selesai) }}</p>
+                                        <p>{{ convertDate($data->u_tgl_mulai) }} -
+                                            {{ convertDate($data->u_tgl_selesai) }}</p>
                                     </div>
                                 </div>
                                 <div>
@@ -121,8 +121,8 @@
                                     <div
                                         class="text-start font-bold text-2xl text-primary-800 md:text-3xl py-2 dark:text-secondary mb-4">
                                         @if ($data->e_tgl_mulai != null && $data->status->status == 'diterima')
-                                            <p>{{ date('d M Y'), strtotime($data->e_tgl_mulai) }} -
-                                                {{ date('d M Y'), strtotime($data->e_tgl_selesai) }}</p>
+                                            <p>{{ convertDate($data->e_tgl_mulai) }} -
+                                                {{ convertDate($data->e_tgl_selesai) }}</p>
                                         @else
                                             <p class="text-red-500">Data tidak ditemukan</p>
                                         @endif

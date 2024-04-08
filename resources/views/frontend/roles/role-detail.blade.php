@@ -25,7 +25,8 @@
                         <div class="flex items-start">
                             <i class="fa-solid fa-chevron-right w-5 h-3 text-abu-800 pt-1"></i>
                             <a href="{{ route('frontend.roleDetail') }}"
-                                class="ms-1 text-lg font-bold text-primary-800 hover:text-primary-500 md:ms-2 dark:text-abu-500 dark:hover:text-secondary">{{ $pageTitle }}
+                                class="ms-1 text-lg font-bold text-primary-800 hover:text-primary-500 md:ms-2 dark:text-abu-500 dark:hover:text-secondary">
+                                {{ $pageTitle }}
                             </a>
                         </div>
                     </li>
@@ -36,17 +37,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 pb-12">
                 <div class="relative w-full h-full dark:border dark:border-neutral-900">
                     <img src="{{ asset('frontend/assets/img/illustration-image-role-developer.webp') }}"
-                        class="object-cover w-full h-full" alt="Illustration Image Developer">
+                        class="object-cover w-full h-full" width="100" height="100" title="{{ $pageTitle }}" alt="Gambar ilustrasi posisi {{ $pageTitle }}">
                     <div
                         class="absolute top-0 right-0 w-full h-full bg-primary-800 bg-opacity-20 dark:bg-neutral-900 dark:bg-opacity-60">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 content-between border border-l border-abu-500 dark:border-neutral-800">
+                    <h1 class="hidden">Lowongan Magang {{ $pageTitle }}</h1>
                     <h2
                         class="p-6 text-3xl text-start border border-abu-500 md:text-4xl font-bold text-primary-800 dark:text-secondary dark:border-neutral-800">
                         Developer
                     </h2>
-                    <h3 class="p-6 text-xl font-paragraf text-primary-800 dark:text-secondary">Job Description:</h3>
+                    <p class="p-6 text-xl font-paragraf text-primary-800 dark:text-secondary">Job Description:</p>
                     <ol
                         class="pl-12 pr-4 w-full space-y-2 font-paragraf text-xl leading-5 text-primary-800 list-decimal list-outside dark:text-secondary">
                         <li>

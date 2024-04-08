@@ -15,14 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'id' => '1',
-            'username' => '0003452642',
-            'nama_lengkap' => 'Ridwan Budianto',
-            'jenis_kelamin' => 'Laki - Laki',
-            'email' => 'ridwan.budianto788@gmail.com',
-            'no_hp' => '081254789941',
-            'password' => Hash::make('password'),
-        ]);
+        // User::create([
+        //     'id' => '1',
+        //     'username' => '0003452642',
+        //     'nama_lengkap' => 'Ridwan Budianto',
+        //     'jenis_kelamin' => 'Laki - Laki',
+        //     'email' => 'ridwan.budianto788@gmail.com',
+        //     'no_hp' => '081254789941',
+        //     'password' => Hash::make('password'),
+        // ]);
+
+        \App\Models\User::factory(50)->create();
     }
 }

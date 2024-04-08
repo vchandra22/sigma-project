@@ -15,10 +15,10 @@ class Meta extends Model
 
     protected $fillable = [
         'page_name',
+        'slug',
         'meta_title',
         'meta_description',
         'meta_keyword',
-        'slug',
         'og_image',
     ];
 
