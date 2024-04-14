@@ -15,6 +15,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "datatables.net-dt": "^2.0.3",
         "flowbite-datepicker": "^1.2.6"
     }
 }

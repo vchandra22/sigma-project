@@ -92,7 +92,6 @@ class RegisterUserController extends Controller
             'instansi_asal' => $validatedData['instansi_asal'],
             'office_id' => $validatedData['office_id'],
             'position_id' => $validatedData['position_id'],
-            'instansi_asal' => $validatedData['instansi_asal'],
             'u_tgl_mulai' => $validatedData['u_tgl_mulai'],
             'u_tgl_selesai' => $validatedData['u_tgl_selesai'],
             'doc_pengantar' => $doc_pengantar_path,

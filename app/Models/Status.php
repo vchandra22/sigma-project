@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Status extends Model
 {
@@ -20,6 +22,16 @@ class Status extends Model
         'keterangan',
         'doc_balasan',
     ];
+
+    /**
+     * Get the document that owns the Status
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function document(): BelongsTo
+    {
+        return $this->belongsTo(Document::class, 'document_id', 'id');
+    }
 
     /**
      * Get all of the logbook for the Status

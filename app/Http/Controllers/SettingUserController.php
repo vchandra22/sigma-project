@@ -81,7 +81,6 @@ class SettingUserController extends Controller
         ]);
 
         $user->update($validatedUser);
-
         $user->document()->update($validatedDocs);
 
         return redirect(route('user.settings'))->with('success', 'Data berhasil diupdate!');

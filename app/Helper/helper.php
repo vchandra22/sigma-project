@@ -17,6 +17,7 @@ function convertDate($date)
     return $convertedDate;
 }
 
+
 // Mendapatkan tahun saat ini menggunakan fungsi PHP
 function get_copyright_year()
 {
@@ -102,4 +103,3 @@ if (!function_exists('getMeta')) {
         return $metaData;
     }
 }
-

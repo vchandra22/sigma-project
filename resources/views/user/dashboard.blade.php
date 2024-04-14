@@ -92,9 +92,15 @@
                                 @endif
                                 <h3 class="text-lg md:text-xl text-primary-800 dark:text-secondary mb-1">Keterangan: </h3>
                                 <div class="border border-primary-500 border-dashed min-h-32 dark:border-neutral-500">
-                                    <p class="p-2 text-abu-800 text-sm text-justify leading-normal dark:text-gray-300">
-                                        Sabar ya dek, masih di review
-                                    </p>
+                                    @if ($data->status->keterangan !== null)
+                                        <p class="p-2 text-primary-800 text-sm text-justify leading-normal dark:text-gray-300">
+                                            {{ strip_tags($data->status->keterangan) }}
+                                        </p>
+                                    @elseif ($data->status->keterangan === 'menunggu')
+                                        <p class="p-2 text-abu-800 text-sm text-justify leading-normal dark:text-gray-300">
+                                            Sabar ya dek, masih di review
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

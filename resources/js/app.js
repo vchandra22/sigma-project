@@ -4,3 +4,4 @@ import 'flowbite-datepicker';
 import 'flowbite/dist/datepicker.turbo.js';
 
 import './darkmode-toggler.js';
+import './data-table.js';

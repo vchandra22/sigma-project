@@ -21,7 +21,7 @@
                                             Lengkap <span class="text-red-500">*</span></label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required autofocus value="{{ $user->nama_lengkap }}" />
+                                            required autofocus value="{{ old('nama_lengkap', $user->nama_lengkap) }}" />
                                         @error('nama_lengkap')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -35,7 +35,7 @@
                                             Identitas <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_identitas" id="no_identitas"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ $user->document->no_identitas }}" />
+                                            required value="{{ old('no_identitas', $user->document->no_identitas) }}" />
                                         @error('no_identitas')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -49,16 +49,19 @@
 
                                     <div>
                                         <label for="jenis_kelamin"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jenis Kelamin <span class="text-red-500">*</span>
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jenis
+                                            Kelamin <span class="text-red-500">*</span>
                                         </label>
                                         <select type="text" name="jenis_kelamin" id="jenis_kelamin"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                                <option value="Laki - Laki">
-                                                    Laki - Laki
-                                                </option>
-                                                <option value="Perempuan">
-                                                    Perempuan
-                                                </option>
+                                            <option value="Laki - Laki"
+                                                {{ old('jenis_kelamin', $user->jenis_kelamin ?? '') == 'Laki - Laki' ? 'selected' : '' }}>
+                                                Laki - Laki
+                                            </option>
+                                            <option value="Perempuan"
+                                                {{ old('jenis_kelamin', $user->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
+                                                Perempuan
+                                            </option>
                                         </select>
                                         @error('jenis_kelamin')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -88,7 +91,7 @@
                                             Email <span class="text-red-500">*</span></label>
                                         <input type="email" name="email" id="email"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ $user->email }}" />
+                                            required value="{{ old('email',$user->email) }}" />
                                         @error('email')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -102,7 +105,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_hp" id="no_hp"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ $user->no_hp }}" />
+                                            required value="{{ old('no_hp',$user->no_hp) }}" />
                                         @error('no_hp')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -116,7 +119,7 @@
                                             Asal <span class="text-red-500">*</span></label>
                                         <input type="text" name="instansi_asal" id="instansi_asal"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ $user->document->instansi_asal }}" />
+                                            required value="{{ old('instansi_asal',$user->document->instansi_asal) }}" />
 
                                         @error('instansi_asal')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -135,7 +138,7 @@
                                             / Konsentrasi Bidang Keahlian <span class="text-red-500">*</span></label>
                                         <input type="text" name="jurusan" id="jurusan"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ $user->document->jurusan }}" />
+                                            required value="{{ old('jurusan', $user->document->jurusan) }}" />
 
                                         @error('jurusan')
                                             <div class="mt-1 text-red-500 text-xs">

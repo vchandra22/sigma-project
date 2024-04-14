@@ -47,8 +47,9 @@
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">
-                            <table
-                                class="overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
+                            <input type="hidden" id="searchTableUser" value="{{ route('admin.tableUser') }}">
+                            <table id="tableManageUser"
+                                class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
                                     <tr>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
@@ -90,7 +91,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($allUser as $document)
+                                    {{-- @foreach ($allUser as $document)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
                                             <td class="px-4 py-4">
@@ -158,19 +159,10 @@
                                                     <a href="#" class="py-2 text-md text-blue-500 hover:underline">
                                                         Detail
                                                     </a>
-                                                    {{-- <form id="delete-publication-#" action="#" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <div class="py-2 text-md text-red-500 hover:underline">
-                                                        <button class="delete-button" data-id="#" type="submit"
-                                                            value="Delete">Hapus </button>
-                                                </form> --}}
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
-
-
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>

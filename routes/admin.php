@@ -34,7 +34,10 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('/announcement/update/{announcement}', [ManageAnnouncementController::class, 'update'])->name('admin.updateAnnouncement');
 
     // manage user
-    Route::get('manage-user', [ManageUserController::class, 'index'])->name('admin.manageUser');
+    Route::get('/manage-user', [ManageUserController::class, 'index'])->name('admin.manageUser');
+    Route::get('/table-manage-user', [ManageUserController::class, 'tableUser'])->name('admin.tableUser');
+    Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('admin.editUser');
+    Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('admin.updatePeserta');
 
     // manage content
     Route::get('/manage-content', [ManageContentController::class, 'index'])->name('admin.manageContent');
@@ -83,7 +86,4 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // ganti password admin
     Route::get('/update-password', [UpdatePasswordAdminController::class, 'edit'])->name('admin.editPassword');
     Route::patch('update-password', [UpdatePasswordAdminController::class, 'update'])->name('admin.updatePassword');
-
-
-
 });
