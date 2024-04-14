@@ -188,7 +188,7 @@
                                             class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @foreach ($officeList as $office)
                                                 <option value="{{ $office->id }}"
-                                                    {{ old('office_id', $data->office->id ?? '') == $data->office->id ? 'selected' : '' }}>
+                                                    {{ old('office_id', $data->office->id ?? null) == $office->id ? 'selected' : '' }}>
                                                     {{ $office->nama_kantor }}
                                                 </option>
                                             @endforeach
@@ -208,7 +208,7 @@
                                             class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @foreach ($positionList as $position)
                                                 <option value="{{ $position->id }}"
-                                                    {{ old('position_id', $data->position->id ?? '') == $data->position->id ? 'selected' : '' }}>
+                                                    {{ old('position_id', $data->position->id ?? null) == $position->id ? 'selected' : '' }}>
                                                     {{ $position->role }}
                                                 </option>
                                             @endforeach
@@ -328,6 +328,94 @@
                                     </div>
 
                                     <div>
+                                        <label
+                                            class="block mb-4 text-sm font-medium text-primary-800 dark:text-secondary">Dokumen
+                                            Calon Peserta
+                                        </label>
+                                        <table
+                                            class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
+                                            <thead
+                                                class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
+                                                <tr>
+                                                    <th scope="col"
+                                                        class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                                        No.
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                                        Dokumen Peserta
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr
+                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                    <td class="px-4 py-4">
+                                                        <p class="text-primary-800 dark:text-secondary">
+                                                            1
+                                                        </p>
+                                                    </td>
+                                                    <td class="px-4 py-4">
+                                                        <p class="text-primary-800 dark:text-secondary">Surat Pengantar</p>
+                                                    </td>
+                                                    <td class="px-4 py-4">
+                                                        <div class="flex justify-center items-center h-full gap-4">
+                                                            <a href="#"
+                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                Download
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                    <td class="px-4 py-4">
+                                                        <p class="text-primary-800 dark:text-secondary">
+                                                            2
+                                                        </p>
+                                                    </td>
+                                                    <td class="px-4 py-4">
+                                                        <p class="text-primary-800 dark:text-secondary">Surat Pengantar
+                                                            (BAKESBANGPOL)
+                                                        </p>
+                                                    </td>
+                                                    <td class="px-4 py-4">
+                                                        <div class="flex justify-center items-center h-full gap-4">
+                                                            <a href="#"
+                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                Download
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                    <td class="px-4 py-4">
+                                                        <p class="text-primary-800 dark:text-secondary">
+                                                            3
+                                                        </p>
+                                                    </td>
+                                                    <td class="px-4 py-4">
+                                                        <p class="text-primary-800 dark:text-secondary">Dokumen Lain</p>
+                                                    </td>
+                                                    <td class="px-4 py-4">
+                                                        <div class="flex justify-center items-center h-full gap-4">
+                                                            <a href="#"
+                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                Download
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div>
                                         <label for="status"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Status
                                             <span class="text-red-500">*</span>
@@ -395,90 +483,6 @@
                                 </div>
                             </form>
                         @endforeach
-
-                        <div>
-                            <label class="block mb-4 text-sm font-medium text-primary-800 dark:text-secondary">Dokumen
-                                Calon Peserta
-                            </label>
-                            <table
-                                class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
-                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
-                                    <tr>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            No.
-                                        </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Dokumen Peserta
-                                        </th>
-                                        <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                        <td class="px-4 py-4">
-                                            <p class="text-primary-800 dark:text-secondary">
-                                                1
-                                            </p>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <p class="text-primary-800 dark:text-secondary">Surat Pengantar</p>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <div class="flex justify-center items-center h-full gap-4">
-                                                <a href="#"
-                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                    Download
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                        <td class="px-4 py-4">
-                                            <p class="text-primary-800 dark:text-secondary">
-                                                2
-                                            </p>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <p class="text-primary-800 dark:text-secondary">Surat Pengantar
-                                                (BAKESBANGPOL)
-                                            </p>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <div class="flex justify-center items-center h-full gap-4">
-                                                <a href="#"
-                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                    Download
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                        <td class="px-4 py-4">
-                                            <p class="text-primary-800 dark:text-secondary">
-                                                3
-                                            </p>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <p class="text-primary-800 dark:text-secondary">Dokumen Lain</p>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <div class="flex justify-center items-center h-full gap-4">
-                                                <a href="#"
-                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                    Download
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
