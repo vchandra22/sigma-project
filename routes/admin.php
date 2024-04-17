@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
 use App\Http\Controllers\Admin\ManageContentController;
 use App\Http\Controllers\Admin\ManageFaqController;
@@ -33,9 +34,23 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/announcement/edit/{announcement}', [ManageAnnouncementController::class, 'edit'])->name('admin.editAnnouncement');
     Route::put('/announcement/update/{announcement}', [ManageAnnouncementController::class, 'update'])->name('admin.updateAnnouncement');
 
+    // download document files
+    Route::get('/download/{filename}', [ManageUserController::class, 'download'])->name('admin.downloadFile');
+
+    // manage admin
+    Route::get('/manage-admin', [ManageAdminController::class, 'index'])->name('admin.manageAdmin');
+    Route::get('/table-manage-admin', [ManageAdminController::class, 'tableAdmin'])->name('admin.tableAdmin');
+    Route::get('/manage-admin/add-new-admin', [ManageAdminController::class, 'create'])->name('admin.createAdmin');
+    Route::post('/manage-admin/add-new-admin', [ManageAdminController::class, 'store'])->name('admin.storeAdmin');
+    Route::get('/manage-admin/edit/{admin}', [ManageAdminController::class, 'edit'])->name('admin.editAdmin');
+    Route::put('/manage-admin/update/{admin}', [ManageAdminController::class, 'update'])->name('admin.updateAdmin');
+    Route::delete('/manage-admin/delete/{uuid}', [ManageAdminController::class, 'destroy'])->name('admin.deleteAdmin');
+
     // manage user
     Route::get('/manage-user', [ManageUserController::class, 'index'])->name('admin.manageUser');
     Route::get('/table-manage-user', [ManageUserController::class, 'tableUser'])->name('admin.tableUser');
+    Route::get('/manage-user/add-new-user', [ManageUserController::class, 'create'])->name('admin.createUser');
+    Route::post('/manage-user/add-new-user', [ManageUserController::class, 'store'])->name('admin.storeUser');
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('admin.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('admin.updatePeserta');
 

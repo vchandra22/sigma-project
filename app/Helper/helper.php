@@ -1,7 +1,5 @@
 <?php
 
-// Mendapatkan nama aplikasi dari .env
-
 use App\Models\Meta;
 use Illuminate\Support\Carbon;
 

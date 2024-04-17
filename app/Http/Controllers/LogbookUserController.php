@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Models\Logbook;
 use App\Models\User;
@@ -26,7 +27,7 @@ class LogbookUserController extends Controller
         $data['pageTitle'] = 'Logbook';
         $user = Auth::user(); //mengambil id user yang telah login
 
-        $data['userDetail'] = User::with('document')->where('users.id', $user->id)->get();
+        $data['userDetail'] = Document::with('user', 'status')->where('documents.user_id', $user->id)->get();
         $data['logbookUser'] = Logbook::with('status')->where('status_id', $user->id)->latest('logbooks.tgl_magang')->paginate(3);
 
         return view('user.logbook', $data);
@@ -54,7 +55,6 @@ class LogbookUserController extends Controller
         Logbook::create($validatedData);
 
         return redirect(route('user.logbook'))->with('success', 'Berhasil menambahkan logbook!');
-
     }
 
     /**

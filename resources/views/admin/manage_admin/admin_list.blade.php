@@ -35,70 +35,60 @@
                     class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
-                            <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
+                            <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
                             <div>
-                                <a href="{{ route('admin.createFaq') }}"
-                                    class="w-full text-md font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
-                                    Pertanyaan Baru</a>
+                                <a href="{{ route('admin.createAdmin') }}"
+                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
+                                    Admin
+                                </a>
                             </div>
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">
-                            <table
-                                class="w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
+                            <input type="hidden" id="searchTableAdmin" value="{{ route('admin.tableAdmin') }}">
+                            <table id="tableManageAdmin"
+                                class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
                                     <tr>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                        <th scope="col"
+                                            class="px-4 py-6 text-start text-primary-800 dark:text-secondary">
                                             No.
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Pertanyaan
-                                        </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Jawaban
+                                            Nama Lengkap
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                            Username
+                                        </th>
+                                        <th scope="col"
+                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                            NIP
+                                        </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Instansi
+                                        </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Email
+                                        </th>
+                                        <th scope="col"
+                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
+                                            No. HP
+                                        </th>
+                                        <th scope="col"
+                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
+                                            Role
+                                        </th>
+                                        <th scope="col"
+                                            class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($faqData as $faq)
-                                        <tr
-                                            class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">{{ $loop->iteration }}</p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="font-bold text-primary-800 dark:text-secondary">
-                                                    {{ $faq->pertanyaan }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ strip_tags($faq->jawaban) }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4 flex justify-center gap-4">
-                                                <a href="{{ route('admin.editFaq', $faq->uuid) }}"
-                                                    class="py-2 text-center text-md text-blue-500 hover:underline">
-                                                    Edit
-                                                </a>
-                                                <form id="delete-faq-{{ $faq->id }}"
-                                                    action="{{ route('admin.deleteFaq', ['id' => $faq->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <div class="py-2 text-center text-md text-red-500 hover:underline">
-                                                        <button class="delete-button" data-id="{{ $faq->id }}"
-                                                            type="submit" value="Delete">Hapus </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -107,4 +97,9 @@
             </div>
         </div>
     </div>
+    @push('data-table')
+        @once
+            <script type="text/javascript" src="{{ asset('assets/js/data-table-admin.js') }}"></script>
+        @endonce
+    @endpush
 @endsection

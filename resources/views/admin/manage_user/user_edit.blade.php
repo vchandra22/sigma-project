@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.layouts.sidebar')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
-        <div class="p-4 mt-14">
+        <div class="p-1 md:p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
                     class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-white shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700 z-50"
@@ -364,6 +364,7 @@
                                                     </td>
                                                     <td class="px-4 py-4">
                                                         <div class="flex justify-center items-center h-full gap-4">
+                                                            {{ $data->doc_pengantar }}
                                                             <a href="#"
                                                                 class="py-2 text-md text-center text-blue-500 hover:underline">
                                                                 Download

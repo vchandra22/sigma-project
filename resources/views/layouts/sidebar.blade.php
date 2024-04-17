@@ -39,7 +39,7 @@
                         id="dropdown-user">
                         <ul>
                             <li>
-                                <a href="#"
+                                <a href="{{ route('user.settings') }}"
                                     class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
                                     <div class="space-x-4 flex items-center justify-start text-sm">
                                         <i class="fa-solid fa-gear"></i>
@@ -48,16 +48,16 @@
                                 </a>
                             </li>
                             <li>
-                            <form action="{{ route('user.logout') }}" method="POST"
-                                class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
-                                @csrf
-                                <button type="submit">
-                                    <div class="space-x-4 flex items-center justify-start text-sm">
-                                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                        <span>Logout</span>
-                                    </div>
-                                </button>
-                            </form>
+                                <form action="{{ route('user.logout') }}" method="POST"
+                                    class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    @csrf
+                                    <button type="submit">
+                                        <div class="space-x-4 flex items-center justify-start text-sm">
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            <span>Logout</span>
+                                        </div>
+                                    </button>
+                                </form>
                             </li>
                             <li class="border border-t border-gray-100 dark:border-neutral-700">
                                 {{-- light mode / dark mode toggler start --}}
@@ -88,48 +88,80 @@
 <aside id="default-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-full pt-20 transition-transform -translate-x-full bg-secondary border-r border-gray-100 sm:translate-x-0 dark:bg-neutral-900 dark:border-neutral-800"
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-secondary dark:bg-neutral-900">
-        <ul class="space-y-4 font-normal">
-            <li>
-                <a href="{{ route('user.dashboard') }}"
-                    class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
-                    <div
-                        class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                        <i class="fa-solid fa-layer-group fa-lg"></i>
-                    </div>
-                    <span class="ms-4">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('user.logbook') }}"
-                    class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
-                    <div
-                        class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                        <i class="fa-solid fa-bars-progress fa-lg"></i>
-                    </div>
-                    <span class="ms-4">Logbook</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('user.assignment') }}"
-                    class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
-                    <div
-                        class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                        <i class="fa-solid fa-file-pen fa-lg"></i>
-                    </div>
-                    <span class="ms-4">Assignments</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('user.settings') }}"
-                    class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
-                    <div
-                        class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                        <i class="fa-solid fa-gear fa-lg"></i>
-                    </div>
-                    <span class="ms-4">Pengaturan</span>
-                </a>
-            </li>
-        </ul>
+    <div class="h-full flex flex-col justify-between px-3 pb-4 overflow-y-auto bg-secondary dark:bg-neutral-900">
+        <div>
+            <ul class="space-y-4 font-normal">
+                <li>
+                    <a href="{{ route('user.dashboard') }}"
+                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                        <div
+                            class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                            <i class="fa-solid fa-layer-group fa-lg"></i>
+                        </div>
+                        <span class="ms-4">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.logbook') }}"
+                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                        <div
+                            class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                            <i class="fa-solid fa-bars-progress fa-lg"></i>
+                        </div>
+                        <span class="ms-4">Logbook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.assignment') }}"
+                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                        <div
+                            class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                            <i class="fa-solid fa-file-pen fa-lg"></i>
+                        </div>
+                        <span class="ms-4">Assignments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.settings') }}"
+                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                        <div
+                            class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                            <i class="fa-solid fa-gear fa-lg"></i>
+                        </div>
+                        <span class="ms-4">Pengaturan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="space-y-4 font-normal">
+                <li>
+                    <a href="{{ route('user.settings') }}"
+                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                        <div
+                            class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                            <i class="fa-solid fa-gear fa-lg"></i>
+                        </div>
+                        <span class="ms-4">Pengaturan</span>
+                    </a>
+                </li>
+                <li>
+                    <form action="{{ route('user.logout') }}" method="POST"
+                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                        @csrf
+                        <button type="submit">
+                            <div
+                                class="w-full h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                                <div>
+                                    <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+                                    <span class="ms-3">Logout</span>
+                                </div>
+                            </div>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </aside>

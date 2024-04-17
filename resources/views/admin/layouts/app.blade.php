@@ -42,6 +42,9 @@
     </section>
     <!-- Main Content End-->
 
+    {{-- Scripts --}}
+    @stack('data-table')
+
 </body>
 
 </html>
