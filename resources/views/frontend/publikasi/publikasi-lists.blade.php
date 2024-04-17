@@ -28,87 +28,28 @@
             {{-- breadcrums end --}}
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-12 md:px-4">
-                <div class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
-                    <a href="{{ route('frontend.publikasiDetail') }}">
-                        <div class="relative w-full h-44">
-                            <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
-                                class="object-cover w-full h-full" alt="Illustration Image Discussion">
-                            <div
-                                class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">
+                @foreach ($publikasiData as $data)
+                    <div
+                        class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
+                        <a href="{{ route('frontend.publikasiDetail', $data->slug) }}">
+                            <div class="relative w-full h-44">
+                                <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
+                                    class="object-cover w-full h-full" alt="Illustration Image Discussion">
+                                <div
+                                    class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <div class="p-5">
-                        <a href="{{ route('frontend.publikasiDetail') }}">
-                            <h2
-                                class="mb-2 text-2xl font-bold h-15 tracking-tight text-primary-800 hover:text-primary-500 overflow-hidden line-clamp-2 dark:text-white">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            </h2>
                         </a>
-                    </div>
-                </div>
-
-                <div class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
-                    <a href="#">
-                        <div class="relative w-full h-44">
-                            <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
-                                class="object-cover w-full h-full" alt="Illustration Image Discussion">
-                            <div
-                                class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-60">
-                            </div>
+                        <div class="p-5">
+                            <a href="{{ route('frontend.publikasiDetail', $data->slug) }}">
+                                <h2
+                                    class="mb-2 text-2xl font-bold h-15 tracking-tight text-primary-800 hover:text-primary-500 overflow-hidden line-clamp-2 dark:text-white">
+                                    {{ $data->judul }}
+                                </h2>
+                            </a>
                         </div>
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h2
-                                class="mb-2 text-2xl font-bold h-15 tracking-tight text-primary-800 hover:text-primary-500 overflow-hidden line-clamp-2 dark:text-white ">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab exercitationem perspiciatis
-                                dolorem.
-                            </h2>
-                        </a>
                     </div>
-                </div>
-
-                <div class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
-                    <a href="#">
-                        <div class="relative w-full h-44">
-                            <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
-                                class="object-cover w-full h-full" alt="Illustration Image Discussion">
-                            <div
-                                class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-60">
-                            </div>
-                        </div>
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h2
-                                class="mb-2 text-2xl font-bold h-15 tracking-tight text-primary-800 hover:text-primary-500 overflow-hidden line-clamp-2 dark:text-white">
-                                Lorem ipsum dolor sit amet
-                            </h2>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
-                    <a href="#">
-                        <div class="relative w-full h-44">
-                            <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
-                                class="object-cover w-full h-full" alt="Illustration Image Discussion">
-                            <div
-                                class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-60">
-                            </div>
-                        </div>
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h2
-                                class="mb-2 text-2xl font-bold h-15 tracking-tight text-primary-800 hover:text-primary-500 overflow-hidden line-clamp-2 dark:text-white ">
-                                Lorem ipsum dolor sit amet.
-                            </h2>
-                        </a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </section>
