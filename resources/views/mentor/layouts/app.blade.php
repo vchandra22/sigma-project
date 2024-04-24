@@ -19,6 +19,18 @@
 
     <script src="https://kit.fontawesome.com/bfb24335ca.js" crossorigin="anonymous"></script>
 
+    {{-- jQuery --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    {{-- DataTable --}}
+    <link href="https://cdn.datatables.net/v/dt/dt-2.0.3/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-2.0.3/datatables.min.js"></script>
+
+
+    {{-- Memuat source WYSIWYG ckeditor5 --}}
+    <script src="{{ asset('assets/vendor/ckeditor5/build/ckeditor.js') }}"></script>
+
     <title>{{ get_app_name() }} - {{ __(@$pageTitle) }}</title>
 </head>
 
@@ -29,6 +41,9 @@
         @yield('content')
     </section>
     <!-- Main Content End-->
+
+    {{-- Scripts --}}
+    @stack('data-table')
 
 </body>
 

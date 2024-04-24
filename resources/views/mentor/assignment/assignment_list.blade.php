@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('mentor.layouts.app')
 
 @section('content')
+    @include('mentor.layouts.sidebar')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-1 md:p-4 mt-14">
             @if (session('success'))
@@ -30,11 +31,19 @@
                 </div>
             @endif
             <div class="w-full">
-                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                <div
+                    class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary mb-8">
-                            {{ $pageTitle }}
-                        </h2>
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
+                            <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
+                                {{ $pageTitle }}
+                            </h2>
+                            <div>
+                                <a href="{{ route('mentor.createAssignment') }}"
+                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Buat Tugas Baru
+                                </a>
+                            </div>
+                        </div>
 
                         <div
                             class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
@@ -57,47 +66,6 @@
                             </div>
                         </div>
 
-                        <div
-                            class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                            <div class="flex justify-between items-center">
-                                <a href="#"
-                                    class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
-                                    <h3 class="text-lg md:text-2xl font-bold">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    </h3>
-                                    <p class="font-regular text-start text-red-500">belum dikerjakan</p>
-                                </a>
-                                <a href="#"
-                                    class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail</a>
-                            </div>
-                            <div class="text-start text-primary-500 text-md dark:text-gray-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo alias veniam a velit
-                                voluptatibus iure aliquid minus, officia eius quia rem perferendis quam qui beatae neque
-                                reiciendis pariatur numquam? Dolore, iusto aperiam soluta vel facere cumque? Quam
-                                voluptatibus commodi recusandae?
-                            </div>
-                        </div>
-
-                        <div
-                            class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                            <div class="flex justify-between items-center">
-                                <a href="#"
-                                    class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
-                                    <h3 class="text-lg md:text-2xl font-bold">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    </h3>
-                                    <p class="font-regular text-start text-red-500">belum dikerjakan</p>
-                                </a>
-                                <a href="#"
-                                    class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail</a>
-                            </div>
-                            <div class="text-start text-primary-500 text-md dark:text-gray-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo alias veniam a velit
-                                voluptatibus iure aliquid minus, officia eius quia rem perferendis quam qui beatae neque
-                                reiciendis pariatur numquam? Dolore, iusto aperiam soluta vel facere cumque? Quam
-                                voluptatibus commodi recusandae?
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

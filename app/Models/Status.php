@@ -43,6 +43,16 @@ class Status extends Model
         return $this->hasMany(Logbook::class, 'status_id', 'id');
     }
 
+    /**
+     * Get all of the logbook for the Status
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assignment(): HasMany
+    {
+        return $this->hasMany(Assignment::class, 'status_id', 'id');
+    }
+
     protected static function boot()
     {
         parent::boot();

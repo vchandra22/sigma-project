@@ -47,7 +47,9 @@ class AssignmentController extends Controller
      */
     public function edit(Assignment $assignment)
     {
-        //
+        $data['pageTitle'] = 'Assignment Detail';
+
+        return view('user.assignment_detail', $data);
     }
 
     /**

@@ -31,6 +31,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     // assignment user
     Route::get('/assignment-list', [AssignmentController::class, 'index'])->name('user.assignment');
+    Route::get('/assignment-detail', [AssignmentController::class, 'edit'])->name('user.editAssignment');
 
     // pengaturan user
     Route::get('/settings', [SettingUserController::class, 'index'])->name('user.settings');

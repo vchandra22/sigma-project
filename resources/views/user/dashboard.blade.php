@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-4 sm:ml-64 bg-abu-500 dark:bg-neutral-950">
+    <div class="p-1 md:p-4 sm:ml-64 bg-abu-500 dark:bg-neutral-950">
         @foreach ($userData as $data)
             <div class="p-4 mt-14">
                 <div

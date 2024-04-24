@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
-        <div class="p-4 mt-14">
+        <div class="p-1 md:p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
                     class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-white shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700 z-50"

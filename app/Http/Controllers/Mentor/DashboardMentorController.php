@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Announcement;
+use App\Models\Office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class DashboardMentorController extends Controller
 {
@@ -12,7 +17,15 @@ class DashboardMentorController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Dashboard Mentor';
+        $data['pageTitle'] = 'Mentor Dashboard';
+
+        $data['announcementUuid'] = Announcement::first();
+        $data['announcementData'] = Announcement::latest('updated_at')->get();
+
+        $admin = Auth::guard('admin')->user();
+        $data['userData'] = Admin::with('roles')->where('id', $admin->id)->get();
+
+        $data['getOffice'] = Office::where('id', $admin->office_id)->get();
 
         return view('mentor.dashboard', $data);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Traits\FileHandlerTrait;
+use Illuminate\Contracts\Support\ValidatedData;
 
 class ManageUserController extends Controller
 {
@@ -26,7 +27,7 @@ class ManageUserController extends Controller
     {
         $data['pageTitle'] = 'Manage User';
 
-        return view('admin.manage_user.user_list', $data);
+        return view('mentor.manage_user.user_list', $data);
     }
 
     public function tableUser()
@@ -40,7 +41,7 @@ class ManageUserController extends Controller
             })
             ->addColumn('opsi', function ($data) {
                 // Assuming you have a route named 'detail' to show details
-                $detailRoute = route('admin.editUser', ['document' => $data->uuid]);
+                $detailRoute = route('mentor.editUser', ['document' => $data->uuid]);
 
                 return '<a href="' . $detailRoute . '" class="py-2 text-md text-blue-500 cursor-pointer hover:underline">Detail</a>';
             })
@@ -57,7 +58,7 @@ class ManageUserController extends Controller
         $data['officeList'] = Office::all();
         $data['positionList'] = Position::all();
 
-        return view('admin.manage_user.user_create', $data);
+        return view('mentor.manage_user.user_create', $data);
     }
 
     /**
@@ -151,7 +152,7 @@ class ManageUserController extends Controller
         $document = $user->document()->create($valuesDoc);
         $document->status()->create($valuesDoc);
 
-        return redirect(route('admin.manageUser'))->with('success', 'Registrasi Berhasil!');
+        return redirect(route('mentor.manageUser'))->with('success', 'Registrasi Berhasil!');
     }
 
     /**
@@ -172,7 +173,7 @@ class ManageUserController extends Controller
         $data['officeList'] = Office::all();
         $data['positionList'] = Position::all();
 
-        return view('admin.manage_user.user_edit', $data);
+        return view('mentor.manage_user.user_edit', $data);
     }
 
     /**
@@ -230,7 +231,7 @@ class ManageUserController extends Controller
 
         $document->status->update($statusData);
 
-        return redirect(route('admin.manageUser'))->with('success', 'Data berhasil diupdate!');
+        return redirect(route('mentor.manageUser'))->with('success', 'Data berhasil diupdate!');
     }
 
 
