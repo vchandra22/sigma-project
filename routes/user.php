@@ -17,7 +17,7 @@ Route::middleware(['guest', 'redirect.auth'])->group(function () {
 
     // register user
     Route::get('/register', [RegisterUserController::class, 'create'])->name('auth.register');
-    Route::post('/register', [RegisterUserController::class, 'store'])->name('auth.register');
+    Route::post('/register', [RegisterUserController::class, 'store'])->name('auth.storeRegister');
 });
 
 Route::middleware(['auth:web'])->group(function () {
@@ -26,12 +26,13 @@ Route::middleware(['auth:web'])->group(function () {
 
     // logbook user
     Route::get('/logbook', [LogbookUserController::class, 'create'])->name('user.logbook');
-    Route::post('/logbook', [LogbookUserController::class, 'store'])->name('user.logbook');
+    Route::post('/logbook', [LogbookUserController::class, 'store'])->name('user.storeLogbook');
     Route::delete('/logbook/{id}/delete', [LogbookUserController::class, 'destroy'])->name('delete.logbook');
 
     // assignment user
     Route::get('/assignment-list', [AssignmentController::class, 'index'])->name('user.assignment');
-    Route::get('/assignment-detail', [AssignmentController::class, 'edit'])->name('user.editAssignment');
+    Route::get('/assignment-detail/{assignment}', [AssignmentController::class, 'edit'])->name('user.editAssignment');
+    Route::put('/assignment-update/{assignment}', [AssignmentController::class, 'update'])->name('user.updateAssignment');
 
     // pengaturan user
     Route::get('/settings', [SettingUserController::class, 'index'])->name('user.settings');

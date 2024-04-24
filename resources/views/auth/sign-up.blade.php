@@ -42,7 +42,7 @@
                             </p>
                         </div>
                         <div class="mt-12">
-                            <form class="grid lg:grid-cols-2 gap-8 lg:gap-16" action="{{ route('auth.register') }}"
+                            <form class="grid lg:grid-cols-2 gap-8 lg:gap-16" action="{{ route('auth.storeRegister') }}"
                                 method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="space-y-6">

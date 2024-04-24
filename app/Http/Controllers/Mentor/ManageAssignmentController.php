@@ -8,6 +8,7 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ManageAssignmentController extends Controller
 {
@@ -17,6 +18,7 @@ class ManageAssignmentController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Assignment List';
+        $data['assignmentData'] = Assignment::latest()->get();
 
         return view('mentor.assignment.assignment_list', $data);
     }
@@ -53,6 +55,7 @@ class ManageAssignmentController extends Controller
 
         $validatedData['start_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['start_date'])->format('Y-m-d');
         $validatedData['due_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['due_date'])->format('Y-m-d');
+        $validatedData['created_by'] = Auth::user()->id;
 
         Assignment::create($validatedData);
 
@@ -70,9 +73,18 @@ class ManageAssignmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Assignment $assignment)
+    public function edit($slug)
     {
-        //
+        $data['pageTitle'] = 'Edit Assignment';
+        $user = Auth::user();
+        $data['AssignmentData'] = Assignment::where('slug', $slug)->get();
+        $data['userData'] = Document::with('user', 'status')
+            ->where('office_id', $user->office_id)
+            ->whereHas('status', function ($query) {
+                $query->where('status', 'diterima');
+            })->get();
+
+        return view('mentor.assignment.assignment_edit', $data);
     }
 
     /**
@@ -80,7 +92,36 @@ class ManageAssignmentController extends Controller
      */
     public function update(Request $request, Assignment $assignment)
     {
-        //
+        $validatedData = $request->validate([
+            'status_id' => ['required'],
+            'judul' => ['required'],
+            'start_date' => ['nullable', 'date_format:d/m/Y'],
+            'due_date' => ['nullable', 'date_format:d/m/Y'],
+            'pertanyaan' => ['required'],
+            'doc_pertanyaan' => 'nullable|mimes:pdf|max:2048',
+        ]);
+
+        $validatedData['start_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['start_date'])->format('Y-m-d');
+        $validatedData['due_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['due_date'])->format('Y-m-d');
+        $validatedData['created_by'] = Auth::user()->id;
+
+        $newSlug = Str::slug($request->input('judul'));
+
+        if ($newSlug !== $assignment->slug) {
+            $count = 1;
+            $slugExists = Assignment::where('slug', $newSlug)->exists();
+            while ($slugExists) {
+                $newSlug = $newSlug . '-' . $count;
+                $slugExists = Assignment::where('slug', $newSlug)->exists();
+                $count++;
+            }
+            $assignment->slug = $newSlug;
+        }
+
+        $validatedData['slug'] = $newSlug;
+        Assignment::where('id', $assignment->id)->update($validatedData);
+
+        return redirect(route('mentor.manageAssignment'))->with('success', 'Data berhasil disimpan!');
     }
 
     /**

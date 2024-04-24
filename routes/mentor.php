@@ -28,8 +28,9 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('mentor.updatePeserta');
 
     //manage assignment
-    Route::get('manage-assignment', [ManageAssignmentController::class, 'index'])->name('mentor.manageAssignment');
-    Route::get('create-assignment', [ManageAssignmentController::class, 'create'])->name('mentor.createAssignment');
-    Route::post('store-assignment', [ManageAssignmentController::class, 'store'])->name('mentor.storeAssignment');
-
+    Route::get('/manage-assignment', [ManageAssignmentController::class, 'index'])->name('mentor.manageAssignment');
+    Route::get('/create-assignment', [ManageAssignmentController::class, 'create'])->name('mentor.createAssignment');
+    Route::post('/store-assignment', [ManageAssignmentController::class, 'store'])->name('mentor.storeAssignment');
+    Route::get('/edit-assignment/{assignment}', [ManageAssignmentController::class, 'edit'])->name('mentor.editAssignment');
+    Route::put('/update-assignment/{assignment}', [ManageAssignmentController::class, 'update'])->name('mentor.updateAssignment');
 });

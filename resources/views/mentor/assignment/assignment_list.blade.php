@@ -40,31 +40,51 @@
                             </h2>
                             <div>
                                 <a href="{{ route('mentor.createAssignment') }}"
-                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Buat Tugas Baru
+                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Buat
+                                    Tugas Baru
                                 </a>
                             </div>
                         </div>
 
-                        <div
-                            class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                            <div class="flex justify-between items-center">
-                                <a href="{{ route('user.editAssignment') }}"
-                                    class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
-                                    <h3 class="text-lg md:text-2xl font-bold">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    </h3>
-                                    <p class="font-regular text-start text-red-500">belum dikerjakan</p>
-                                </a>
-                                <a href="{{ route('user.editAssignment') }}"
-                                    class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail</a>
+                        @foreach ($assignmentData as $data)
+                            <div
+                                class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
+                                <div class="flex justify-between items-center">
+
+                                    <div>
+                                        <a href="{{ route('mentor.editAssignment', $data->slug) }}"
+                                            class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
+                                            <h3 class="text-lg md:text-2xl font-bold overflow-hidden line-clamp-2">
+                                                {{ $data->judul }}
+                                            </h3>
+                                            <p class="font-bold text-start text-abu-800">
+                                                {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
+                                            </p>
+                                        </a>
+                                    </div>
+
+                                    <a href="{{ route('mentor.editAssignment', $data->slug) }}"
+                                        class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail</a>
+                                </div>
+                                @if ($data->status == 'dikirim')
+                                    <div class="bg-blue-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                    </div>
+                                @elseif ($data->status == 'selesai')
+                                    <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                    </div>
+                                @elseif ($data->status == 'terlambat')
+                                    <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                    </div>
+                                @endif
+                                <div
+                                    class="text-start text-primary-500 text-md dark:text-gray-200 overflow-hidden line-clamp-3">
+                                    {{ Str::limit(strip_tags($data->pertanyaan), 500) }}
+                                </div>
                             </div>
-                            <div class="text-start text-primary-500 text-md dark:text-gray-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo alias veniam a velit
-                                voluptatibus iure aliquid minus, officia eius quia rem perferendis quam qui beatae neque
-                                reiciendis pariatur numquam? Dolore, iusto aperiam soluta vel facere cumque? Quam
-                                voluptatibus commodi recusandae?
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>

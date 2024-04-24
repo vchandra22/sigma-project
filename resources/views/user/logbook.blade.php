@@ -46,7 +46,7 @@
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-8">Form
                                         Dailylog
                                     </h2>
-                                    <form action="{{ route('user.logbook') }}" method="POST" class="space-y-6">
+                                    <form action="{{ route('user.storeLogbook') }}" method="POST" class="space-y-6">
                                         @csrf
                                         @foreach ($userDetail as $data)
                                             <div>

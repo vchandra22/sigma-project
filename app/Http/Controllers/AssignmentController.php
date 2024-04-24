@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAssignmentRequest;
-use App\Http\Requests\UpdateAssignmentRequest;
+use Illuminate\Http\Request;
+use App\Models\Admin;
 use App\Models\Assignment;
 
 class AssignmentController extends Controller
@@ -14,6 +15,10 @@ class AssignmentController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Assignment';
+        $data['assignmentData'] = Assignment::latest()->get();
+
+        $mentor_id = $data['assignmentData']->pluck('created_by')->unique();
+        $data['mentorData'] = Admin::whereIn('id', $mentor_id)->firstOrFail();
 
         return view('user.assignment_list', $data);
     }
@@ -45,9 +50,13 @@ class AssignmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Assignment $assignment)
+    public function edit($slug)
     {
         $data['pageTitle'] = 'Assignment Detail';
+        $data['assignmentData'] = Assignment::where('slug', $slug)->get();
+
+        $mentor_id = $data['assignmentData']->pluck('created_by')->unique();
+        $data['mentorData'] = Admin::whereIn('id', $mentor_id)->firstOrFail();
 
         return view('user.assignment_detail', $data);
     }
@@ -55,9 +64,18 @@ class AssignmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAssignmentRequest $request, Assignment $assignment)
+    public function update(Request $request, Assignment $assignment)
     {
-        //
+        // Validate the request data
+        $validatedData = $request->validate([
+            'doc_jawaban' => 'nullable|mimes:pdf|max:2048',
+        ]);
+
+        $validatedData['status'] = 'selesai';
+
+        Assignment::where('id', $assignment->id)->update($validatedData);
+
+        return redirect(route('user.assignment'))->with('success', 'Data berhasil disimpan!');
     }
 
     /**

@@ -36,60 +36,79 @@
                             {{ $pageTitle }}
                         </h2>
 
-                        <div class="grid grid-cols-3 gap-2">
-                            <div
-                                class="col-span-2 flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                                <a href="#"
-                                    class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
-                                    <h3 class="text-lg md:text-2xl font-bold">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    </h3>
-                                    <p class="font-regular text-start text-primary-800">24 April 2024 - 28 April 2024</p>
-                                </a>
-                                <div class="text-start text-primary-500 text-md dark:text-gray-200">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo alias veniam a velit
-                                    voluptatibus iure aliquid minus, officia eius quia rem perferendis quam qui beatae neque
-                                    reiciendis pariatur numquam? Dolore, iusto aperiam soluta vel facere cumque? Quam
-                                    voluptatibus commodi recusandae?
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+                            @foreach ($assignmentData as $data)
+                                <div
+                                    class="lg:col-span-2 flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
+                                    <div class="text-primary-800 dark:text-secondary dark:hover:text-gray-50">
+                                        <h3 class="text-lg md:text-2xl font-bold">
+                                            {{ $data->judul }}
+                                        </h3>
+                                        <p class="font-regular text-md text-start text-primary-500 dark:text-secondary">
+                                            Tugas dari: {{ $mentorData->nama_lengkap }}
+                                        </p>
+                                        <p class="font-regular text-md text-start text-abu-800 dark:text-secondary">
+                                            {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
+                                        </p>
+                                    </div>
+                                    <div class="text-start text-primary-500 text-md dark:text-gray-200">
+                                        {{ strip_tags($data->pertanyaan) }}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div
-                                class="flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                                <a href="#"
-                                    class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
-                                    <h3 class="text-lg md:text-2xl font-bold">
-                                        Tugas Anda
-                                    </h3>
-                                    <p class="font-regular text-start text-red-500">belum dikerjakan</p>
-                                </a>
-                                <form action="#" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div>
-                                        <label for="doc_jawaban"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                            Dokumen Jawaban</label>
-                                        <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="doc_jawaban" type="file" name="doc_jawaban">
-                                        @error('doc_jawaban')
-                                            <div class="mt-1 text-red-500 text-xs">
-                                                {{ $message }}
+                                <div
+                                    class="flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
+                                    <div class="text-primary-800 dark:text-secondary dark:hover:text-gray-50">
+                                        <h3 class="text-lg md:text-2xl font-bold">
+                                            Tugas Anda
+                                        </h3>
+                                        @if ($data->status == 'dikirim')
+                                            <div class="text-red-500 p-1 w-auto">
+                                                <p class="font-regular text-start capitalize">{{ __('Belum dikerjakan') }}
+                                                </p>
                                             </div>
-                                        @enderror
-                                        <ul
-                                            class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                            <li>Unggah file dengan format .pdf (Max. 2MB)</li>
-                                        </ul>
+                                        @elseif ($data->status == 'selesai')
+                                            <div class="text-green-500 p-1 w-auto">
+                                                <p class="font-regular text-start capitalize">{{ $data->status }}</p>
+                                            </div>
+                                        @elseif ($data->status == 'terlambat')
+                                            <div class="text-yellow-300 p-1 w-auto">
+                                                <p class="font-regular text-start capitalize">{{ $data->status }}</p>
+                                            </div>
+                                        @endif
                                     </div>
-                                    <div class="flex flex-col items-end pt-8">
-                                        <button type="submit"
-                                            class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Simpan
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-
+                                    <form action="{{ route('user.updateAssignment', ['assignment' => $data->id]) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div>
+                                            <label for="doc_jawaban"
+                                                class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                                Dokumen Jawaban</label>
+                                            <input
+                                                class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                id="doc_jawaban" type="file" name="doc_jawaban">
+                                            @error('doc_jawaban')
+                                                <div class="mt-1 text-red-500 text-xs">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <ul
+                                                class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
+                                                <li>Unggah file dengan format .pdf (Max. 2MB)</li>
+                                                <li>Jika tugas tidak bersangkutan dengan dokumen silakan simpan tanpa
+                                                    dokumen
+                                                    untuk menandai telah menyelesaikan tugas</li>
+                                            </ul>
+                                        </div>
+                                        <div class="flex flex-col items-end pt-8">
+                                            <button type="submit"
+                                                class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Simpan
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            @endforeach
                         </div>
 
                     </div>
