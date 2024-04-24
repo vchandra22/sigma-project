@@ -282,10 +282,12 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="mt-8">
+                                            {{ $logbookUser->links() }}
+                                        </div>
                                 </div>
 
                             </div>

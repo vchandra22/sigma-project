@@ -28,7 +28,7 @@ class LogbookUserController extends Controller
         $user = Auth::user(); //mengambil id user yang telah login
 
         $data['userDetail'] = Document::with('user', 'status')->where('documents.user_id', $user->id)->get();
-        $data['logbookUser'] = Logbook::with('status')->where('status_id', $user->id)->latest('logbooks.tgl_magang')->paginate(3);
+        $data['logbookUser'] = Logbook::with('status')->where('status_id', $user->id)->latest('logbooks.tgl_magang')->paginate(2);
 
         return view('user.logbook', $data);
     }
