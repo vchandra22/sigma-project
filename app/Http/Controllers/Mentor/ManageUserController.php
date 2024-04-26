@@ -225,9 +225,9 @@ class ManageUserController extends Controller
             'keterangan' => $validatedData['keterangan'],
         ];
 
-        if ($request->hasFile('doc_balasan')) {
-            $statusData['doc_balasan'] = $this->uploadFile('doc_balasan', $validatedData['doc_balasan']);
-        }
+        // if ($request->hasFile('doc_balasan')) {
+        //     $statusData['doc_balasan'] = $this->uploadFile('doc_balasan', $validatedData['doc_balasan']);
+        // }
 
         $document->status->update($statusData);
 

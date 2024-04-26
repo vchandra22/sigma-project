@@ -91,7 +91,7 @@
     <div class="h-full flex flex-col justify-between px-3 pb-4 overflow-y-auto bg-secondary dark:bg-neutral-900">
         <ul class="space-y-4 font-normal">
             <li>
-                <a href="{{ route('admin.dashboard') }}"
+                <a href="{{ route('mentor.dashboard') }}"
                     class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
                     <div
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
@@ -115,7 +115,7 @@
                     class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
                     <div
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                        <i class="fa-solid fa-user-shield fa-lg"></i>
+                        <i class="fa-solid fa-file-signature fa-lg"></i>
                     </div>
                     <span class="ms-4">Logbook User</span>
                 </a>
@@ -125,7 +125,7 @@
                     class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
                     <div
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                        <i class="fa-solid fa-puzzle-piece fa-lg"></i>
+                        <i class="fa-solid fa-laptop-file fa-lg"></i>
                     </div>
                     <span class="ms-4">Assignment</span>
                 </a>

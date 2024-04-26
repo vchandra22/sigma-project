@@ -39,7 +39,7 @@
                         </h2>
                         @foreach ($userData as $data)
                             <form class="grid lg:grid-cols-2 gap-8 lg:gap-16"
-                                action="{{ route('admin.updatePeserta', ['document' => $data->id]) }}" method="POST"
+                                action="{{ route('mentor.updatePeserta', ['document' => $data->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

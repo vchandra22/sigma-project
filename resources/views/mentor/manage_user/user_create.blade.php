@@ -38,7 +38,7 @@
                             {{ $pageTitle }}
                         </h2>
 
-                        <form class="grid lg:grid-cols-2 gap-8 lg:gap-16" action="{{ route('admin.storeUser') }}"
+                        <form class="grid lg:grid-cols-2 gap-8 lg:gap-16" action="{{ route('mentor.storeUser') }}"
                             method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="space-y-6">

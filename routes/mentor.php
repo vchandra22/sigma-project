@@ -31,6 +31,9 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::get('/manage-assignment', [ManageAssignmentController::class, 'index'])->name('mentor.manageAssignment');
     Route::get('/create-assignment', [ManageAssignmentController::class, 'create'])->name('mentor.createAssignment');
     Route::post('/store-assignment', [ManageAssignmentController::class, 'store'])->name('mentor.storeAssignment');
+    Route::get('/detail-assignment/{assignment}', [ManageAssignmentController::class, 'show'])->name('mentor.detailAssignment');
     Route::get('/edit-assignment/{assignment}', [ManageAssignmentController::class, 'edit'])->name('mentor.editAssignment');
     Route::put('/update-assignment/{assignment}', [ManageAssignmentController::class, 'update'])->name('mentor.updateAssignment');
+    Route::delete('/delete-assignment/{id}', [ManageAssignmentController::class, 'destroy'])->name('mentor.deleteAssignment');
+
 });

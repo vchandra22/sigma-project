@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\Document;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -65,9 +66,12 @@ class ManageAssignmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Assignment $assignment)
+    public function show($slug)
     {
-        //
+        $data['pageTitle'] = 'Detail Assignment';
+        $data['assignmentData'] = Assignment::where('slug', $slug)->get();
+
+        return view('mentor.assignment.assignment_detail', $data);
     }
 
     /**
@@ -77,7 +81,7 @@ class ManageAssignmentController extends Controller
     {
         $data['pageTitle'] = 'Edit Assignment';
         $user = Auth::user();
-        $data['AssignmentData'] = Assignment::where('slug', $slug)->get();
+        $data['assignmentData'] = Assignment::where('slug', $slug)->get();
         $data['userData'] = Document::with('user', 'status')
             ->where('office_id', $user->office_id)
             ->whereHas('status', function ($query) {
@@ -127,8 +131,11 @@ class ManageAssignmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Assignment $assignment)
+    public function destroy($id)
     {
-        //
+        $assignment = Assignment::find($id);
+        $assignment->delete();
+
+        return redirect(route('mentor.manageAssignment'))->with('success', 'Data berhasil dihapus!');
     }
 }

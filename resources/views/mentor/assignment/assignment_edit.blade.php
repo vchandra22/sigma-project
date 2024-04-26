@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="mt-12">
-                            @foreach ($AssignmentData as $data)
+                            @foreach ($assignmentData as $data)
                                 <form action="{{ route('mentor.updateAssignment', ['assignment' => $data->id]) }}"
                                     method="POST" class="space-y-6" enctype="multipart/form-data">
                                     @csrf

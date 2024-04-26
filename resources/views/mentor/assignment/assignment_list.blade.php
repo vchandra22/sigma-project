@@ -49,10 +49,9 @@
                         @foreach ($assignmentData as $data)
                             <div
                                 class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                                <div class="flex justify-between items-center">
-
+                                <div class="block lg:flex justify-between items-center">
                                     <div>
-                                        <a href="{{ route('mentor.editAssignment', $data->slug) }}"
+                                        <a href="{{ route('mentor.detailAssignment', $data->slug) }}"
                                             class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
                                             <h3 class="text-lg md:text-2xl font-bold overflow-hidden line-clamp-2">
                                                 {{ $data->judul }}
@@ -62,26 +61,45 @@
                                             </p>
                                         </a>
                                     </div>
-
-                                    <a href="{{ route('mentor.editAssignment', $data->slug) }}"
-                                        class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail</a>
+                                    <div class="flex items-center gap-2">
+                                        <div>
+                                            <a href="{{ route('mentor.detailAssignment', $data->slug) }}"
+                                                class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <form id="delete-assignment-{{ $data->id }}"
+                                                action="{{ route('mentor.deleteAssignment', ['id' => $data->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <div class="text-sm text-red-500">
+                                                    <button class="delete-button hover:underline"
+                                                        data-id="{{ $data->id }}" type="submit" value="Delete">Hapus
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                                @if ($data->status == 'dikirim')
-                                    <div class="bg-blue-500 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                <div>
+                                    @if ($data->status == 'dikirim')
+                                        <div class="bg-blue-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                            <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                        </div>
+                                    @elseif ($data->status == 'selesai')
+                                        <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                            <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                        </div>
+                                    @elseif ($data->status == 'terlambat')
+                                        <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                            <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                        </div>
+                                    @endif
+                                    <div
+                                        class="text-start text-primary-500 text-md dark:text-gray-200 overflow-hidden line-clamp-3">
+                                        {{ Str::limit(strip_tags($data->pertanyaan), 500) }}
                                     </div>
-                                @elseif ($data->status == 'selesai')
-                                    <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
-                                    </div>
-                                @elseif ($data->status == 'terlambat')
-                                    <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
-                                    </div>
-                                @endif
-                                <div
-                                    class="text-start text-primary-500 text-md dark:text-gray-200 overflow-hidden line-clamp-3">
-                                    {{ Str::limit(strip_tags($data->pertanyaan), 500) }}
                                 </div>
                             </div>
                         @endforeach

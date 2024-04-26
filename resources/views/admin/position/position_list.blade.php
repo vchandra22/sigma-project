@@ -66,6 +66,7 @@
                                                     <button class="delete-button hover:underline"
                                                         data-id="{{ $position->id }}" type="submit" value="Delete">Hapus
                                                     </button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -81,12 +82,11 @@
                                         </a>
                                     </div>
                                 </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
