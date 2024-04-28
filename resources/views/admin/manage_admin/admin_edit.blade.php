@@ -41,18 +41,21 @@
                                 </h2>
                             </div>
                             <div>
-                                @foreach ($userData as $data)
-                                    <form id="delete-admin-{{ $data->uuid }}"
-                                        action="{{ route('admin.deleteAdmin', ['uuid' => $data->uuid]) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <div class="px-0 text-sm text-red-500">
-                                            <button class="delete-button hover:underline" data-id="{{ $data->uuid }}"
-                                                type="submit" value="Delete">Hapus
-                                            </button>
-                                        </div>
-                                    </form>
-                                @endforeach
+                                <div>
+                                    @foreach ($userData as $data)
+                                        <form id="delete-admin-{{ $data->uuid }}"
+                                            action="{{ route('admin.deleteAdmin', ['uuid' => $data->uuid]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <div class="px-0 text-sm text-red-500">
+                                                <button class="delete-button hover:underline" data-id="{{ $data->uuid }}"
+                                                    type="submit" value="Delete">Hapus
+                                                </button>
+                                            </div>
+                                        </form>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         @foreach ($userData as $data)
@@ -200,9 +203,16 @@
 
                                         <div
                                             class="flex flex-col lg:flex-row justify-end items-end gap-4 pt-4 lg:pt-[5.5rem]">
+                                            <div class="flex justify-end mt-8">
+                                                <a href="#"
+                                                    class="w-full px-11 py-3 text-lg font-normal text-center text-primary-800 bg-transparent rounded-none border border-primary-800 hover:bg-primary-500 hover:text-secondary focus:ring-2 focus:ring-accent sm:w-auto dark:bg-transparent dark:text-secondary dark:border-secondary dark:hover:text-neutral-900 dark:hover:bg-white dark:focus:ring-blue-800">
+                                                    Ganti Password
+                                                </a>
+                                            </div>
                                             <button type="submit"
                                                 class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Update
                                             </button>
+
                                         </div>
                                     </div>
                                 </form>

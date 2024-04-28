@@ -250,8 +250,11 @@ class ManageUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect(route('mentor.manageUser'))->with('success', 'Data berhasil dihapus!');
     }
 }

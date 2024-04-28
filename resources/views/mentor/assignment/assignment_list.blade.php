@@ -46,7 +46,7 @@
                             </div>
                         </div>
 
-                        @forelse ($assignmentData as $item)
+                        @forelse ($assignmentData as $data)
                             <div
                                 class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
                                 <div class="block lg:flex justify-between items-center">
@@ -103,8 +103,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div
-                                class="min-h-screen flex items-center justify-center w-full dark:bg-neutral-900">
+                            <div class="min-h-screen flex items-center justify-center w-full dark:bg-neutral-900">
                                 <p class="text-md md:text-xl text-primary-800 text-center dark:text-white px-8">
                                     Tidak ada tugas yang dibuat
                                 </p>

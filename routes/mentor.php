@@ -8,6 +8,7 @@ use App\Http\Controllers\Mentor\ManageAssignmentController;
 use App\Http\Controllers\Mentor\ManageUserController;
 use App\Http\Controllers\Mentor\SettingMentorController;
 use App\Http\Controllers\Admin\SettingAdminController;
+use App\Http\Controllers\Mentor\ManageLogbookController;
 use App\Http\Controllers\Mentor\UpdatePasswordMentorController;
 
 Route::middleware(['guest:admin'])->group(function () {
@@ -29,6 +30,11 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::post('/manage-user/add-new-user', [ManageUserController::class, 'store'])->name('mentor.storeUser');
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('mentor.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('mentor.updatePeserta');
+    Route::delete('/manage-user/delete/{id}', [ManageUserController::class, 'destroy'])->name('mentor.deleteUser');
+
+    //manage logbook
+    Route::get('/manage-logbook', [ManageLogbookController::class, 'index'])->name('mentor.manageLogbook');
+    Route::get('/print-logbook/{id}', [ManageLogbookController::class, 'show'])->name('mentor.showLogbook');
 
     //manage assignment
     Route::get('/manage-assignment', [ManageAssignmentController::class, 'index'])->name('mentor.manageAssignment');

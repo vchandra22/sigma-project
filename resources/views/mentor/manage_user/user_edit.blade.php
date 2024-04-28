@@ -34,9 +34,27 @@
                 <div
                     class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <h2 class="text-4xl mb-8 md:text-5xl font-bold text-primary-800 dark:text-secondary">
-                            {{ $pageTitle }}
-                        </h2>
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <h2 class="text-4xl mb-8 md:text-5xl font-bold text-primary-800 dark:text-secondary">
+                                    {{ $pageTitle }}
+                                </h2>
+                            </div>
+                            <div>
+                                @foreach ($userData as $data)
+                                    <form id="delete-user-{{ $data->user->id }}"
+                                        action="{{ route('mentor.deleteUser', ['id' => $data->user->id]) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="px-0 text-sm text-red-500">
+                                            <button class="delete-button hover:underline" data-id="{{ $data->user->id }}"
+                                                type="submit" value="Delete">Hapus
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endforeach
+                            </div>
+                        </div>
                         @foreach ($userData as $data)
                             <form class="grid lg:grid-cols-2 gap-8 lg:gap-16"
                                 action="{{ route('mentor.updatePeserta', ['document' => $data->id]) }}" method="POST"
