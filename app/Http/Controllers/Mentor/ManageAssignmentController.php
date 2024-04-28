@@ -22,7 +22,7 @@ class ManageAssignmentController extends Controller
         $data['pageTitle'] = 'Assignment List';
 
         $user = Auth::user();
-        $data['assignmentData'] = Assignment::where('created_by', $user->id)->latest()->get();
+        $data['assignmentData'] = Assignment::where('created_by', $user->id)->latest()->paginate(10);
 
         return view('mentor.assignment.assignment_list', $data);
     }

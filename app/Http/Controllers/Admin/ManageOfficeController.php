@@ -17,7 +17,7 @@ class ManageOfficeController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Instansi Magang';
-        $data['officeData'] = Office::all();
+        $data['officeData'] = Office::latest()->paginate(10);
 
         return view('admin.office.office_list', $data);
     }
@@ -65,7 +65,6 @@ class ManageOfficeController extends Controller
         activity()->causedBy($office)->log($getUser . ' melakukan tambah data Instansi / OPD baru');
 
         return redirect(route('admin.manageOffice'))->with('success', 'Data berhasil disimpan!');
-
     }
 
     /**

@@ -16,7 +16,7 @@ class ManageFaqController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'FAQ';
-        $data['faqData'] = Faq::all();
+        $data['faqData'] = Faq::paginate(10);
 
         return view('admin.faq.faq_list', $data);
     }

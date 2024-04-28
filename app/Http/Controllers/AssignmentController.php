@@ -17,7 +17,7 @@ class AssignmentController extends Controller
     {
         $data['pageTitle'] = 'Assignment';
         $user = Auth::user(); //mengambil id user yang telah login
-        $data['assignmentData'] = Assignment::where('status_id', $user->id)->latest()->get();
+        $data['assignmentData'] = Assignment::where('status_id', $user->id)->latest()->paginate(10);
 
         if ($data['assignmentData']->isEmpty()) {
 

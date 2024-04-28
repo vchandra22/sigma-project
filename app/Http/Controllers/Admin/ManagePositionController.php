@@ -17,7 +17,7 @@ class ManagePositionController extends Controller
     {
         $data['pageTitle'] = 'Manage Internship Roles';
 
-        $data['positionData'] = Position::all();
+        $data['positionData'] = Position::latest()->get();
 
         return view('admin.position.position_list', $data);
     }

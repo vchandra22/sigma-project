@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <p style="font-weight: bold; margin-bottom: -8px;"> Instansi:
-                            {{ $row->office_id ?? 'Tidak ada data' }}
+                            {{ $userData->nama_kantor ?? 'Tidak ada data' }}
                         </p>
                         <p>
                             {{ strip_tags($row->topik_diskusi ?? 'Tidak ada data') }}
@@ -110,24 +110,24 @@
                         @endphp
                     </td>
                 </tr>
+                @if ($loop->last)
+                    <tr>
+                        <td colspan="3" style="text-align: end; font-weight: bold; font-size: 12px">Total</td>
+                        <td style="text-align: start; font-weight: bold; font-size: 12px">
+                            <b>
+                                @php
+                                    $hours = floor($totalDiffTime / 60);
+                                    $minutes = $totalDiffTime % 60;
+
+                                    echo $hours . ' jam ' . $minutes . ' menit';
+                                @endphp
+                                ({{ $totalDiffTime }} menit)
+                            </b>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" style="text-align: end; font-weight: bold; font-size: 12px">Total</td>
-                <td style="text-align: start; font-weight: bold; font-size: 12px">
-                    <b>
-                        @php
-                            $hours = floor($totalDiffTime / 60);
-                            $minutes = $totalDiffTime % 60;
-
-                            echo $hours . ' jam ' . $minutes . ' menit';
-                        @endphp
-                        ({{ $totalDiffTime }} menit)
-                    </b>
-                </td>
-            </tr>
-        </tfoot>
     </table>
     <br>
     <br>

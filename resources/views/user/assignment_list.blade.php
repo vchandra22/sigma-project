@@ -57,7 +57,8 @@
                                 </div>
                                 @if ($data->status == 'dikirim')
                                     <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center capitalize text-white">{{ __('Belum dikerjakan') }}</p>
+                                        <p class="font-bold text-center capitalize text-white">{{ __('Belum dikerjakan') }}
+                                        </p>
                                     </div>
                                 @elseif ($data->status == 'selesai')
                                     <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
@@ -81,6 +82,9 @@
                                 </p>
                             </div>
                         @endforelse
+                        <div class="mt-8">
+                            {{ $assignmentData->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

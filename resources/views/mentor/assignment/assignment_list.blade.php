@@ -109,6 +109,9 @@
                                 </p>
                             </div>
                         @endforelse
+                        <div class="mt-8">
+                            {{ $assignmentData->links() }}
+                        </div>
 
                     </div>
                 </div>

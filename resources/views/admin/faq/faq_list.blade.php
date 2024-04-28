@@ -70,7 +70,9 @@
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">{{ $loop->iteration }}</p>
+                                                <p class="text-primary-800 dark:text-secondary">
+                                                    {{ ($faqData->currentPage() - 1) * $faqData->perPage() + $loop->iteration }}
+                                                </p>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <h5 class="font-bold text-primary-800 dark:text-secondary">
@@ -101,6 +103,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="mt-8">
+                                {{ $faqData->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -33,8 +33,6 @@ class ManageLogbookController extends Controller
             ->distinct()
             ->get();
 
-        // dd($data['logbookData']);
-
         return view('mentor.logbook.logbook_list', $data);
     }
 

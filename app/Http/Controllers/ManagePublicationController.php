@@ -16,7 +16,7 @@ class ManagePublicationController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Publikasi';
-        $data['publicationData'] = Publication::all();
+        $data['publicationData'] = Publication::latest()->paginate(10);
 
         return view('admin.publication.publication_list', $data);
     }
@@ -63,7 +63,6 @@ class ManagePublicationController extends Controller
         activity()->causedBy($publication)->log($getUser . ' melakukan tambah data Publikasi baru');
 
         return redirect(route('admin.managePublication'))->with('success', 'Data berhasil disimpan!');
-
     }
 
     /**
@@ -131,7 +130,6 @@ class ManagePublicationController extends Controller
         activity()->causedBy($publication)->log($getUser . ' melakukan update data Publikasi');
 
         return redirect(route('admin.managePublication'))->with('success', 'Data berhasil diupdate!');
-
     }
 
     /**
