@@ -82,8 +82,8 @@
                                             </td>
                                             <td class="px-8">
                                                 <div class="flex items-center justify-center h-full gap-4">
-                                                    <a href="{{ route('mentor.showLogbook', $data->status_id) }}"
-                                                        onclick="window.open('{{ route('mentor.showLogbook', $data->status_id) }}', 'newwindow', 'width=900,height=480'); return false;"
+                                                    <a href="{{ route('mentor.showLogbook', encrypt($data->status_id)) }}"
+                                                        onclick="var newWindow = window.open('{{ route('mentor.showLogbook', encrypt($data->status_id)) }}', 'newwindow', 'width=900,height=480'); newWindow.onload = function() { newWindow.print(); }; return false;"
                                                         target="_blank">
                                                         @csrf
                                                         <p class="py-2 text-center text-md text-blue-500 hover:underline">

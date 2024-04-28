@@ -32,8 +32,10 @@
 
             @foreach ($userDetail as $item)
                 @if ($item->status->status === 'menunggu' || $item->status->status === 'ditolak')
-                    <div class="min-h-screen flex items-center justify-center bg-gray-50 w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
-                        <p class="text-md md:text-xl text-primary-800 text-center dark:text-white px-8">Status pendaftaran anda masih dalam
+                    <div
+                        class="min-h-screen flex items-center justify-center bg-gray-50 w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                        <p class="text-md md:text-xl text-primary-800 text-center dark:text-white px-8">Status pendaftaran
+                            anda masih dalam
                             tahap review atau ditolak, tidak dapat mengisi logbook
                         </p>
                     </div>
@@ -206,11 +208,30 @@
                                     Kegiatan
                                 </h2>
                                 <div class="text-sm font-normal text-abu-800 leading-tight dark:text-neutral-300">
-                                    <p>Bila Seluruh Kegiatan Magang telah Selesai, <a href="#"
-                                            class="font-bold hover:text-primary-800">Cetak Logbook Anda</a> dan Mintakan
-                                        Tanda
-                                        Tangan Ke Pembimbing Lapang di Instansi Tempat Anda Magang</p>
+                                    <p>Bila Seluruh Kegiatan Magang telah Selesai,
+                                        @if ($logbookUser->isNotEmpty())
+                                            <a href="{{ route('user.showLogbook', encrypt(Auth::user()->id)) }}"
+                                                class="font-bold hover:text-primary-800 disabled"
+                                                onclick="var newWindow = window.open('{{ route('user.showLogbook', encrypt(Auth::user()->id)) }}', 'newwindow', 'width=900,height=990'); newWindow.onload = function() { newWindow.print(); }; return false;"
+                                                target="_blank">Cetak Logbook Anda </a>
+                                        @else
+                                                Cetak Logbook Anda
+                                        @endif
+                                        dan Mintakan Tanda Tangan Ke Pembimbing Lapang di Instansi Tempat Anda Magang
+                                    </p>
                                 </div>
+                                @if ($logbookUser->isNotEmpty())
+                                    <div class="flex items-center justify-start h-full gap-4">
+                                        <a href="{{ route('user.showLogbook', encrypt(Auth::user()->id)) }}"
+                                            onclick="var newWindow = window.open('{{ route('user.showLogbook', encrypt(Auth::user()->id)) }}', 'newwindow', 'width=900,height=990'); newWindow.onload = function() { newWindow.print(); }; return false;"
+                                            target="_blank">
+                                            @csrf
+                                            <p class="py-2 text-center text-sm text-blue-500 hover:underline mt-5">
+                                                Cetak Logbook
+                                            </p>
+                                        </a>
+                                    </div>
+                                @endif
                                 <p class="text-red-500 text-sm font-normal leading-tight mt-4">Perhatian!!! data Logbook
                                     Kegiatan
                                     tidak bisa di ubah, pastikan Anda mengisi dengan Hati - Hati dan Teliti</p>
@@ -282,12 +303,12 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <div class="mt-8">
-                                            {{ $logbookUser->links() }}
-                                        </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="mt-8">
+                                        {{ $logbookUser->links() }}
+                                    </div>
                                 </div>
 
                             </div>

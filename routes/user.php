@@ -27,6 +27,7 @@ Route::middleware(['auth:web'])->group(function () {
     // logbook user
     Route::get('/logbook', [LogbookUserController::class, 'create'])->name('user.logbook');
     Route::post('/logbook', [LogbookUserController::class, 'store'])->name('user.storeLogbook');
+    Route::get('/print-logbook/{id}', [LogbookUserController::class, 'show'])->name('user.showLogbook');
     Route::delete('/logbook/{id}/delete', [LogbookUserController::class, 'destroy'])->name('delete.logbook');
 
     // assignment user

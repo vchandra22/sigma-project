@@ -9,6 +9,7 @@ use App\Models\Logbook;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class ManageLogbookController extends Controller
 {
@@ -61,18 +62,19 @@ class ManageLogbookController extends Controller
         $data['pageTitle'] = 'Logbook Magang';
         $data['aboutData'] = Homepage::firstOrFail();
 
+        $status_id = Crypt::decrypt($id);
         $data['userData'] = User::join('documents', 'users.id', '=', 'documents.user_id')
             ->join('offices', 'documents.office_id', '=', 'offices.id')
             ->join('positions', 'documents.position_id', '=', 'positions.id')
             ->join('statuses', 'documents.id', '=', 'statuses.document_id')
             ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
-            ->where('logbooks.status_id', $id)
+            ->where('logbooks.status_id', $status_id)
             ->first();
 
         $data['logbookData'] = User::join('documents', 'users.id', '=', 'documents.user_id')
             ->join('statuses', 'documents.id', '=', 'statuses.document_id')
             ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
-            ->where('logbooks.status_id', $id)
+            ->where('logbooks.status_id', $status_id)
             ->oldest('logbooks.tgl_magang')
             ->get();
 
