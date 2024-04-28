@@ -62,10 +62,12 @@ class ManageLogbookController extends Controller
         $data['aboutData'] = Homepage::firstOrFail();
 
         $data['userData'] = User::join('documents', 'users.id', '=', 'documents.user_id')
-        ->join('statuses', 'documents.id', '=', 'statuses.document_id')
-        ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
-        ->where('logbooks.status_id', $id)
-        ->first();
+            ->join('offices', 'documents.office_id', '=', 'offices.id')
+            ->join('positions', 'documents.position_id', '=', 'positions.id')
+            ->join('statuses', 'documents.id', '=', 'statuses.document_id')
+            ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
+            ->where('logbooks.status_id', $id)
+            ->first();
 
         $data['logbookData'] = User::join('documents', 'users.id', '=', 'documents.user_id')
             ->join('statuses', 'documents.id', '=', 'statuses.document_id')

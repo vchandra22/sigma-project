@@ -20,35 +20,32 @@
 </style>
 
 <body style="font-family: Tahoma;">
-    <div class="img" style="position: absolute; align-items: center; margin-left: 20px; margin-top: 38px; width: 100%">
-        <img src="{{ URL::asset('frontend/assets/img/logo-sigma.png') }}" alt="Logo Sigma" width="176" height="71"
+    <div class="img" style="display:flex; justify-content: center; margin-top: 38px; width: 100%">
+        <img src="{{ URL::asset('frontend/assets/img/logo-sigma.png') }}" alt="Logo Sigma" width="126" height="41"
             title="Logo">
     </div>
-    <div style="margin-top: 20px;">
-        <div style="font-size: 18px; text-align: center; align-items: center;">
-            <h2 style="padding-top: 18px; font-family: Tahoma; width: 380px; text-align: center; margin: auto;">
-                Sistem Informasi Kegiatan Magang (SIGMA)
+    <div>
+        <div style="font-size: 12px; text-align: center; align-items: center;">
+            <h2 style="padding-top: 14px; font-family: Tahoma; width: 500px; text-align: center; margin: auto;">
+                Sistem Informasi Kegiatan Magang {{ $userData->nama_kantor }}
             </h2>
-            <p style="font-size: 12px; font-weight: bold; width: 380px; text-align: center; margin: auto;">
-                {{ $aboutData->alamat }}
+            <p style="font-size: 12px; font-weight: bold; width: 500px; text-align: center; margin: auto;">
+                {{ $aboutData->alamat }} Telp. {{ $aboutData->no_telp }}
             </p>
-            <p style="font-size: 12px; font-weight: bold; width: 380px; text-align: center; margin: auto;">
-                {{ $aboutData->no_telp }}
-            </p>
-            <p style="font-size: 12px; margin-top: -2px;">Website : <a
+            <p style="font-size: 12px; margin:auto">Website : <a
                     href="{{ Config::get('app.url') }}">{{ Config::get('app.url') }}</a>
             </p>
         </div>
     </div>
-    <br>
     <hr style="border: 1px solid black;">
-    <h3 style="text-align: center; margin-bottom: -4px;">Logbook Magang</h3>
-    <div style="text-align: justify; text-align-last: center; font-size: 12px; margin-bottom: 22px;">
-        <p style="margin-bottom: -4px;">Nama : {{ $userData->nama_lengkap ?? 'Tidak ada data' }}</p>
-        <p style="margin-bottom: -4px;">Instansi Asal : {{ $userData->instansi_asal ?? 'Tidak ada data' }}</p>
-        <p style="margin-bottom: -4px;">NIM/NISN : {{ $userData->no_identitas ?? 'Tidak ada data' }}</p>
-        <p style="margin-bottom: -4px;">Jurusan/Bidang Keahlian : {{ $userData->jurusan ?? 'Tidak ada data' }}</p>
-        <p>Tempat Magang : {{ $userData->office_id ?? 'Tidak ada data' }}</p>
+    <h3 style="text-align: center;">Logbook Magang</h3>
+    <div style="text-align: center; font-size: 12px; margin-bottom: 22px">
+        <p style="margin: auto">Nama : {{ $userData->nama_lengkap ?? 'Tidak ada data' }}</p>
+        <p style="margin: auto">Instansi Asal : {{ $userData->instansi_asal ?? 'Tidak ada data' }}</p>
+        <p style="margin: auto">NIM/NISN : {{ $userData->no_identitas ?? 'Tidak ada data' }}</p>
+        <p style="margin: auto">Jurusan/Bidang Keahlian : {{ $userData->jurusan ?? 'Tidak ada data' }}</p>
+        <p style="margin: auto">Tempat Magang : {{ $userData->nama_kantor ?? 'Tidak ada data' }}</p>
+        <p style="margin: auto">Posisi Pekerjaan : {{ $userData->role ?? 'Tidak ada data' }}</p>
     </div>
     <table>
         <thead style="background-color: gainsboro;">
@@ -136,13 +133,15 @@
     <br>
     <br>
     <div style="position: absolute; float: left;">
-        <p style="font-size: 12px; margin: 14px; text-align: center; margin-bottom: 80px;">Dosen/Guru Pembimbing
+        <p style="font-size: 12px; margin: 14px; text-align: center; margin-bottom: 80px; font-weight: 700;">Dosen/Guru
+            Pembimbing
         </p>
         <p style="font-size: 12px; margin: 14px; text-align: center; font-weight: 700;">(____________________________)
         </p>
     </div>
     <div style="position: relative; float: right;">
-        <p style="font-size: 12px; margin: 14px; text-align: center; margin-bottom: 80px;">Pembimbing Utama
+        <p style="font-size: 12px; margin: 14px; text-align: center; margin-bottom: 80px; font-weight: 700;">Pembimbing
+            Magang
         </p>
         <p style="font-size: 12px; margin: 14px; text-align: center; font-weight: 700;">(____________________________)
         </p>
@@ -152,12 +151,13 @@
         <p style="font-size: 12px; font-weight: 700;">Blitar,
             <span id='date-time'></span>
         </p>
-        <p style="margin-top: -8px; margin-bottom: -2px;">Mengetahui,</p>
-        <p style="margin-bottom: 80px; max-width: 250px; word-wrap: break-word; text-align: center; margin: auto;">
-            Pimpinan {{ $aboutData->heading ?? ' ' }}</p>
-        <p style="margin-top: 80px; margin-bottom: -4px;">{{ $aboutData->id ?? 'Tidak ada data' }}</p>
-        <hr style="max-width: 240px; margin-bottom: 1px;">
-        <p style="margin-top: 0px;">NIK/NIP: {{ $aboutData->id ?? 'Tidak ada data' }}</p>
+        <p style="margin-top: -8px; margin-bottom: -2px; font-size: 12px; font-weight: 700;">Mengetahui,</p>
+        <p
+            style="margin-bottom: 80px; max-width: 250px; font-size: 12px; text-align: center; margin: auto; font-weight: 700;">
+            Kepala {{ $userData->nama_kantor ?? ' ' }}</p>
+        <p style="margin-top: 85px; font-size: 12px; font-weight: 700;">{{ $userData->nama_kepala ?? ' ' }}</p>
+        <hr style="max-width: 240px; margin-bottom: 2px; font-size: 12px">
+        <p style="margin-top: 0px; font-size: 12px; font-weight: 700;">NIK/NIP: {{ $userData->nip_kepala ?? '' }}</p>
     </div>
 </body>
 <script>
