@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAssignmentRequest;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Assignment;
+use Illuminate\Support\Facades\Auth;
 
 class AssignmentController extends Controller
 {
@@ -15,10 +16,17 @@ class AssignmentController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Assignment';
-        $data['assignmentData'] = Assignment::latest()->get();
+        $user = Auth::user(); //mengambil id user yang telah login
+        $data['assignmentData'] = Assignment::where('status_id', $user->id)->latest()->get();
 
-        $mentor_id = $data['assignmentData']->pluck('created_by')->unique();
-        $data['mentorData'] = Admin::whereIn('id', $mentor_id)->firstOrFail();
+        if ($data['assignmentData']->isEmpty()) {
+
+            $data['mentorData'] = null;
+        } else {
+            // If assignment data is not empty, fetch mentor data based on assignment data
+            $mentor_id = $data['assignmentData']->pluck('created_by')->unique();
+            $data['mentorData'] = Admin::whereIn('id', $mentor_id)->firstOrFail();
+        }
 
         return view('user.assignment_list', $data);
     }

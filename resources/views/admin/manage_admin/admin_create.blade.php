@@ -70,6 +70,26 @@
                                 </div>
 
                                 <div>
+                                    <label for="jenis_kelamin"
+                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jenis
+                                        Kelamin <span class="text-red-500">*</span></label>
+                                    <select type="text" name="jenis_kelamin" id="jenis_kelamin"
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                        <option value="Laki - Laki"
+                                            {{ old('jenis_kelamin', $data->jenis_kelamin ?? '') == 'Laki - Laki' ? 'selected' : '' }}>
+                                            Laki - Laki
+                                        </option>
+                                        <option value="Perempuan"
+                                            {{ old('jenis_kelamin', $data->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
+                                            Perempuan
+                                        </option>
+                                    </select>
+                                    @error('jenis_kelamin')
+                                        <div class="mt-1 text-red-500 text-xs">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div>
                                     <label for="nip"
                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">NIP
                                         <span class="text-red-500">*</span></label>
@@ -134,7 +154,7 @@
                                 <div>
                                     <label for="roles"
                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                        Instansi / OPD <span class="text-red-500">*</span>
+                                        Role <span class="text-red-500">*</span>
                                     </label>
                                     <select type="text" name="roles" id="roles"
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
@@ -147,8 +167,36 @@
                                     @error('roles')
                                         <div class="mt-1 text-red-500 text-xs">{{ $message }}</div>
                                     @enderror
-                                    <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan instansi
-                                        bekerja</p>
+                                </div>
+
+                                <div>
+                                    <label for="password"
+                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Password
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="password" name="password" id="password" placeholder="••••••••"
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                        required />
+                                    @error('password')
+                                        <div class="mt-1 text-red-500 text-xs">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="password_confirmation"
+                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Ulangi
+                                        Password
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
+                                        placeholder="••••••••"
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                        required />
+                                    @error('password_confirmation')
+                                        <div class="mt-1 text-red-500 text-xs">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
 

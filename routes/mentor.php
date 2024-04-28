@@ -6,6 +6,9 @@ use App\Http\Controllers\Mentor\DashboardMentorController;
 use App\Http\Controllers\Mentor\ManageAnnouncementController;
 use App\Http\Controllers\Mentor\ManageAssignmentController;
 use App\Http\Controllers\Mentor\ManageUserController;
+use App\Http\Controllers\Mentor\SettingMentorController;
+use App\Http\Controllers\Admin\SettingAdminController;
+use App\Http\Controllers\Mentor\UpdatePasswordMentorController;
 
 Route::middleware(['guest:admin'])->group(function () {
     //
@@ -36,4 +39,12 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::put('/update-assignment/{assignment}', [ManageAssignmentController::class, 'update'])->name('mentor.updateAssignment');
     Route::delete('/delete-assignment/{id}', [ManageAssignmentController::class, 'destroy'])->name('mentor.deleteAssignment');
 
+    // settings admin
+    Route::get('/settings', [SettingMentorController::class, 'index'])->name('mentor.settings');
+    Route::get('/settings/edit/{id}', [SettingMentorController::class, 'edit'])->name('mentor.editProfile');
+    Route::put('/settings/update/{admin}', [SettingMentorController::class, 'update'])->name('mentor.updateProfile');
+
+    // ganti password admin
+    Route::get('/update-password', [UpdatePasswordMentorController::class, 'edit'])->name('mentor.editPassword');
+    Route::patch('update-password', [UpdatePasswordMentorController::class, 'update'])->name('mentor.updatePassword');
 });

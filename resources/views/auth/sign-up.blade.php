@@ -271,7 +271,7 @@
                                         <label for="u_tgl_mulai"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Rencana
                                             Pelaksanaan <span class="text-red-500">*</span></label>
-                                        <div date-rangepicker class="flex items-center">
+                                        <div date-rangepicker datepicker-format="dd/mm/yyyy" class="flex items-center">
                                             <div class="relative">
                                                 <div
                                                     class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

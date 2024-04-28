@@ -45,10 +45,11 @@
 
                                         <div class="block lg:flex justify-between items-center">
                                             <div>
-                                                <h3 class="text-lg md:text-2xl font-bold">
+                                                <h3 class="text-lg md:text-2xl font-bold text-primary-800 dark:text-secondary">
                                                     {{ $data->judul }}
                                                 </h3>
-                                                <p class="font-regular text-md text-start text-abu-800 dark:text-secondary">
+                                                <p class="font-regular text-md text-start text-primary-800 dark:text-secondary">{{ $userData->user->nama_lengkap }}</p>
+                                                <p class="font-regular text-md text-start text-abu-800 dark:text-abu-800">
                                                     {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
                                                 </p>
                                             </div>

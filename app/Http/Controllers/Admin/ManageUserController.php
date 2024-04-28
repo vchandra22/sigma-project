@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Traits\FileHandlerTrait;
+use Illuminate\Support\Facades\Auth;
 
 class ManageUserController extends Controller
 {
@@ -249,8 +250,14 @@ class ManageUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($user)->log($getUser . ' melakukan delete data User');
+
+        return redirect(route('admin.manageUser'))->with('success', 'Data berhasil dihapus!');
     }
 }

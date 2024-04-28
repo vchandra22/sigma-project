@@ -25,6 +25,7 @@
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
+
                     <div>
                         <button type="button"
                             class="text-sm md:text-md lg:text-md text-primary-800 cursor-pointer hover:text-primary-500 dark:text-secondary dark:hover:text-white"
@@ -136,16 +137,6 @@
 
         <div>
             <ul class="space-y-4 font-normal">
-                <li>
-                    <a href="{{ route('user.settings') }}"
-                        class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
-                        <div
-                            class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
-                            <i class="fa-solid fa-gear fa-lg"></i>
-                        </div>
-                        <span class="ms-4">Pengaturan</span>
-                    </a>
-                </li>
                 <li>
                     <form action="{{ route('user.logout') }}" method="POST"
                         class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">

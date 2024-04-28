@@ -36,7 +36,7 @@
                             {{ $pageTitle }}
                         </h2>
 
-                        @foreach ($assignmentData as $data)
+                        @forelse ($assignmentData as $data)
                             <div
                                 class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
                                 <div class="md:flex justify-between items-center">
@@ -46,9 +46,9 @@
                                             {{ $data->judul }}
                                         </h3>
                                         <p class="font-regular text-md text-start text-primary-500 dark:text-secondary">
-                                            Tugas dari: {{ $mentorData->nama_lengkap }}
+                                            {{-- Tugas dari: {{ $mentorData->nama_lengkap }} --}}
                                         </p>
-                                        <p class="font-regular text-md text-start text-abu-800 dark:text-secondary">
+                                        <p class="font-regular text-md text-start text-abu-800 dark:text-abu-800">
                                             {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
                                         </p>
                                     </a>
@@ -57,15 +57,15 @@
                                 </div>
                                 @if ($data->status == 'dikirim')
                                     <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center text-white">{{ __('Belum dikerjakan') }}</p>
+                                        <p class="font-bold text-center capitalize text-white">{{ __('Belum dikerjakan') }}</p>
                                     </div>
                                 @elseif ($data->status == 'selesai')
                                     <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                        <p class="font-bold text-center capitalize text-white">{{ $data->status }}</p>
                                     </div>
                                 @elseif ($data->status == 'terlambat')
                                     <div class="bg-yellow-300 p-1 w-auto md:w-56 lg:w-1/6">
-                                        <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                        <p class="font-bold text-center capitalize text-white">{{ $data->status }}</p>
                                     </div>
                                 @endif
                                 <div
@@ -73,7 +73,14 @@
                                     {{ Str::limit(strip_tags($data->pertanyaan), 500) }}
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div
+                                class="min-h-screen flex items-center justify-center w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                                <p class="text-md md:text-xl text-primary-800 text-center dark:text-white px-8">
+                                    Belum ada tugas untukmu!
+                                </p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

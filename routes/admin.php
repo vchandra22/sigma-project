@@ -53,6 +53,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::post('/manage-user/add-new-user', [ManageUserController::class, 'store'])->name('admin.storeUser');
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('admin.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('admin.updatePeserta');
+    Route::delete('/manage-user/delete/{id}', [ManageUserController::class, 'destroy'])->name('admin.deleteUser');
 
     // manage content
     Route::get('/manage-content', [ManageContentController::class, 'index'])->name('admin.manageContent');

@@ -34,20 +34,27 @@
                 <div
                     class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
-                            {{ $pageTitle }}
-                        </h2>
-                        @foreach ($userData as $data)
-                            <form id="delete-admin-{{ $data->uuid }}"
-                                action="{{ route('admin.deleteAdmin', ['uuid' => $data->uuid]) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <div class="px-0 text-sm text-red-500">
-                                    <button class="delete-button hover:underline" data-id="{{ $data->uuid }}"
-                                        type="submit" value="Delete">Hapus
-                                    </button>
-                            </form>
-                        @endforeach
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
+                                    {{ $pageTitle }}
+                                </h2>
+                            </div>
+                            <div>
+                                @foreach ($userData as $data)
+                                    <form id="delete-admin-{{ $data->uuid }}"
+                                        action="{{ route('admin.deleteAdmin', ['uuid' => $data->uuid]) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="px-0 text-sm text-red-500">
+                                            <button class="delete-button hover:underline" data-id="{{ $data->uuid }}"
+                                                type="submit" value="Delete">Hapus
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endforeach
+                            </div>
+                        </div>
                         @foreach ($userData as $data)
                             <div class="mt-8">
                                 <form action="{{ route('admin.updateAdmin', $data->id) }}" method="POST">
@@ -81,6 +88,26 @@
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
                                                 </div>
+                                            @enderror
+                                        </div>
+
+                                        <div>
+                                            <label for="jenis_kelamin"
+                                                class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jenis
+                                                Kelamin <span class="text-red-500">*</span></label>
+                                            <select type="text" name="jenis_kelamin" id="jenis_kelamin"
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                                <option value="Laki - Laki"
+                                                    {{ old('jenis_kelamin', $data->jenis_kelamin ?? '') == 'Laki - Laki' ? 'selected' : '' }}>
+                                                    Laki - Laki
+                                                </option>
+                                                <option value="Perempuan"
+                                                    {{ old('jenis_kelamin', $data->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
+                                                    Perempuan
+                                                </option>
+                                            </select>
+                                            @error('jenis_kelamin')
+                                                <div class="mt-1 text-red-500 text-xs">{{ $message }}</div>
                                             @enderror
                                         </div>
 

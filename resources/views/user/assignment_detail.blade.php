@@ -47,7 +47,7 @@
                                         <p class="font-regular text-md text-start text-primary-500 dark:text-secondary">
                                             Tugas dari: {{ $mentorData->nama_lengkap }}
                                         </p>
-                                        <p class="font-regular text-md text-start text-abu-800 dark:text-secondary">
+                                        <p class="font-regular text-md text-start text-abu-800 dark:text-abu-800">
                                             {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
                                         </p>
                                     </div>

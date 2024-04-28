@@ -219,7 +219,7 @@
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 z-10">
                                         <thead
-                                            class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
+                                            class="text-xs uppercase bg-gray-200 dark:bg-neutral-950 dark:text-secondary">
                                             <tr>
                                                 <th scope="col"
                                                     class="px-8 py-6 w-1/3 text-primary-800 dark:text-secondary">

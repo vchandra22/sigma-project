@@ -56,8 +56,8 @@ class RegisterUserController extends Controller
             'jurusan' => ['required'],
             'office_id' => 'required',
             'position_id' => 'required',
-            'u_tgl_mulai' => ['required', 'date'],
-            'u_tgl_selesai' => ['required', 'date'],
+            'u_tgl_mulai' => ['required', 'date_format:d/m/Y'],
+            'u_tgl_selesai' => ['required', 'date_format:d/m/Y'],
             'doc_pengantar' => 'required|mimes:pdf|max:2048',
             'doc_kesbang' => 'nullable|mimes:pdf|max:2048',
             'doc_proposal' => 'nullable|mimes:pdf|max:2048',
@@ -65,8 +65,8 @@ class RegisterUserController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        $validatedData['u_tgl_mulai'] = Carbon::createFromFormat('m/d/Y', $validatedData['u_tgl_mulai'])->format('Y-m-d');
-        $validatedData['u_tgl_selesai'] = Carbon::createFromFormat('m/d/Y', $validatedData['u_tgl_selesai'])->format('Y-m-d');
+        $validatedData['u_tgl_mulai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_mulai'])->format('Y-m-d');
+        $validatedData['u_tgl_selesai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_selesai'])->format('Y-m-d');
 
         $currentDate = now()->format('d-m-Y');
 

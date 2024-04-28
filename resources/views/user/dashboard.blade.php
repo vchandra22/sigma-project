@@ -5,7 +5,7 @@
         @foreach ($userData as $data)
             <div class="p-4 mt-14">
                 <div
-                    class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="md:col-span-2 px-6 py-8">
                         <h2 class="text-2xl md:text-4xl font-bold text-primary-800 dark:text-secondary mb-2">Pengumuman</h2>
                         <p
@@ -27,7 +27,7 @@
                         <div class="md:grid lg:grid-cols-2 gap-2 space-y-2 md:space-y-0">
                             <div class="h-full w-full grid grid-rows-3 gap-2">
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Nama
                                         Lengkap</h2>
                                     <p
@@ -35,7 +35,7 @@
                                         {{ Auth::user()->nama_lengkap }}</p>
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Jurusan / Bidang Keahlian</h2>
                                     <p
@@ -43,7 +43,7 @@
                                         {{ $data->jurusan }}</p>
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Instansi
                                         Tujuan
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div
-                                class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                                class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                 <h2
                                     class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4 text-center">
                                     Status Pendaftaran</h2>
@@ -93,7 +93,8 @@
                                 <h3 class="text-lg md:text-xl text-primary-800 dark:text-secondary mb-1">Keterangan: </h3>
                                 <div class="border border-primary-500 border-dashed min-h-32 dark:border-neutral-500">
                                     @if ($data->status->status !== 'menunggu')
-                                        <p class="p-2 text-primary-800 text-sm text-justify leading-normal dark:text-gray-300">
+                                        <p
+                                            class="p-2 text-primary-800 text-sm text-justify leading-normal dark:text-gray-300">
                                             {{ strip_tags($data->status->keterangan) }}
                                         </p>
                                     @elseif ($data->status->status === 'menunggu')
@@ -110,7 +111,7 @@
                     <div class="w-full h-full">
                         <div class="md:grid md:grid-cols-1 lg:grid-cols-3 gap-2 space-y-2 md:space-y-0">
                             <div
-                                class="lg:col-span-2 h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border dark:border-neutral-700 lg:space-y-24">
+                                class="lg:col-span-2 h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700 lg:space-y-24">
                                 <div>
                                     <h2 class="text-xl md:text-2xl font-bold text-abu-800 dark:text-gray-200 mb-4">Tanggal
                                         Magang yang Diajukan</h2>
@@ -137,13 +138,13 @@
                             </div>
                             <div class="h-full w-full grid grid-rows-2 gap-2">
                                 <div
-                                    class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border dark:border-neutral-700">
+                                    class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <form action="#" method="POST">
                                         <label for="laporan"
                                             class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
                                             Laporan Magang</label>
                                         <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-800 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-900 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
                                             id="laporan" type="file" name="laporan">
                                         <ul
                                             class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
@@ -156,7 +157,7 @@
                                     </form>
                                 </div>
                                 <div
-                                    class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border dark:border-neutral-700">
+                                    class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
                                     <p

@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -73,12 +74,17 @@ class ManageAdminController extends Controller
         $validatedData = $request->validate(([
             'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
             'username' => ['required', 'string', 'min:4', 'max:49', 'unique:admins,username,'],
+            'jenis_kelamin' => ['required'],
+            'password' => ['required', 'min:8'],
+            'password_confirmation' => ['required', 'same:password'],
             'nip' => ['required', 'unique:admins,nip,'],
             'email' => ['required', 'email', 'unique:admins,email,'],
             'no_hp' => ['required', 'unique:admins,no_hp,'],
             'office_id' => ['required'],
             'roles' => ['required'],
         ]));
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
         $admin = Admin::create($validatedData);
         $admin->assignRole($validatedData['roles']);

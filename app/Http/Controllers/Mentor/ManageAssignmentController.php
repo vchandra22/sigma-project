@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\Document;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -19,7 +20,9 @@ class ManageAssignmentController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Assignment List';
-        $data['assignmentData'] = Assignment::latest()->get();
+
+        $user = Auth::user();
+        $data['assignmentData'] = Assignment::where('created_by', $user->id)->latest()->get();
 
         return view('mentor.assignment.assignment_list', $data);
     }
@@ -70,6 +73,9 @@ class ManageAssignmentController extends Controller
     {
         $data['pageTitle'] = 'Detail Assignment';
         $data['assignmentData'] = Assignment::where('slug', $slug)->get();
+
+        $status_id = $data['assignmentData']->pluck('status_id')->unique();
+        $data['userData'] = Document::with('user', 'status')->whereIn('id', $status_id)->firstOrFail();
 
         return view('mentor.assignment.assignment_detail', $data);
     }
