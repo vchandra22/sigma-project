@@ -52,7 +52,7 @@
                                             Nama Peserta
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            No. Identitas
+                                            Instansi Asal
                                         </th>
                                         <th scope="col"
                                             class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
@@ -71,11 +71,13 @@
                                             <td class="px-4 py-4">
                                                 <h5 class="font-bold text-primary-800 dark:text-secondary">
                                                     {{ $data->nama_lengkap }}
+                                                    <br>
+                                                    {{ $data->no_identitas }}
                                                 </h5>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $data->no_identitas }}
+                                                    {{ $data->instansi_asal }}
                                                 </h5>
                                             </td>
                                             <td class="px-8">

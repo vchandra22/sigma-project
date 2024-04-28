@@ -307,7 +307,7 @@
                                                     </svg>
                                                 </div>
                                                 <input datepicker-format="dd/mm/yyyy" name="e_tgl_mulai" id="e_tgl_mulai"
-                                                    datepicker type="text" placeholder="Pilih tanggal"
+                                                    datepicker type="text" placeholder="Pilih tanggal" value="{{ date('d/m/Y', strtotime($data->e_tgl_mulai ?? $data->u_tgl_mulai)) }}"
                                                     class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                                 @error('e_tgl_mulai')
                                                     <div
@@ -333,7 +333,7 @@
                                                     </svg>
                                                 </div>
                                                 <input datepicker-format="dd/mm/yyyy" name="e_tgl_selesai"
-                                                    id="e_tgl_selesai" type="text" placeholder="Pilih tanggal"
+                                                    id="e_tgl_selesai" type="text" placeholder="Pilih tanggal" value="{{ date('d/m/Y', strtotime($data->e_tgl_selesai ?? $data->u_tgl_selesai)) }}"
                                                     datepicker
                                                     class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                                 @error('e_tgl_selesai')
