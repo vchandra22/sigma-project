@@ -215,7 +215,7 @@
                                                 onclick="var newWindow = window.open('{{ route('user.showLogbook', encrypt(Auth::user()->id)) }}', 'newwindow', 'width=900,height=990'); newWindow.onload = function() { newWindow.print(); }; return false;"
                                                 target="_blank">Cetak Logbook Anda </a>
                                         @else
-                                                Cetak Logbook Anda
+                                            Cetak Logbook Anda
                                         @endif
                                         dan Mintakan Tanda Tangan Ke Pembimbing Lapang di Instansi Tempat Anda Magang
                                     </p>

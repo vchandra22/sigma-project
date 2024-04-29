@@ -56,16 +56,16 @@
                                         class="hidden lg:block text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Detail</a>
                                 </div>
                                 @if ($data->status == 'dikirim')
-                                    <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                    <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
                                         <p class="font-bold text-center capitalize text-white">{{ __('Belum dikerjakan') }}
                                         </p>
                                     </div>
                                 @elseif ($data->status == 'selesai')
-                                    <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                    <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
                                         <p class="font-bold text-center capitalize text-white">{{ $data->status }}</p>
                                     </div>
                                 @elseif ($data->status == 'terlambat')
-                                    <div class="bg-yellow-300 p-1 w-auto md:w-56 lg:w-1/6">
+                                    <div class="bg-yellow-300 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
                                         <p class="font-bold text-center capitalize text-white">{{ $data->status }}</p>
                                     </div>
                                 @endif

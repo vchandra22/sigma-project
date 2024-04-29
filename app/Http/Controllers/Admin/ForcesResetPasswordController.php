@@ -69,9 +69,11 @@ class ForcesResetPasswordController extends Controller
 
         $admin = Admin::where('id', $admin->id)->update(['password' => $hashedPassword]);
 
-        activity()->causedBy($admin)->log('Admin melakukan update password');
+        $user = Auth::guard('admin')->user();
 
-        return redirect(route('admin.manageAdmin'))->with('success', 'Password baru berhasil diubah');
+        activity()->causedBy($admin)->log($user->nama_lengkap . '(' . $user->nip . ')' . ' melakukan force reset password untuk admin');
+
+        return redirect(route('admin.manageAdmin'))->with('success', 'Force reset password baru berhasil diubah');
     }
 
     /**

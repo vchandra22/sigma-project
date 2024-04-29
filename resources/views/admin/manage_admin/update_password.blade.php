@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.layouts.sidebar')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-800">
-        <div class="p-4 mt-14">
+        <div class="p-1 md:p-4 mt-14">
             <div class="w-full">
                 <div>
                     <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">

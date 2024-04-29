@@ -84,15 +84,15 @@
                                 </div>
                                 <div>
                                     @if ($data->status == 'dikirim')
-                                        <div class="bg-blue-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                        <div class="bg-blue-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
                                             <p class="font-bold text-center text-white">{{ $data->status }}</p>
                                         </div>
                                     @elseif ($data->status == 'selesai')
-                                        <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                        <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
                                             <p class="font-bold text-center text-white">{{ $data->status }}</p>
                                         </div>
                                     @elseif ($data->status == 'terlambat')
-                                        <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6">
+                                        <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
                                             <p class="font-bold text-center text-white">{{ $data->status }}</p>
                                         </div>
                                     @endif

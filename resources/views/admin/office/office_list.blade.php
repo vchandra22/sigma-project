@@ -40,7 +40,7 @@
                             </h2>
                             <div>
                                 <a href="{{ route('admin.createOffice') }}"
-                                    class="w-full text-md font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
+                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
                                     Instansi Baru</a>
                             </div>
                         </div>

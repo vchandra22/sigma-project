@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -26,7 +27,8 @@ class ManageAdminController extends Controller
 
     public function tableAdmin()
     {
-        $query = Admin::with('roles')->leftJoin('offices', 'admins.office_id', '=', 'offices.id')->select('admins.*', 'offices.nama_kantor');
+        $currentUserId = Auth::guard('admin')->user();
+        $query = Admin::with('roles')->leftJoin('offices', 'admins.office_id', '=', 'offices.id')->select('admins.*', 'offices.nama_kantor')->where('admins.id', '!=', $currentUserId->id);
 
         return DataTables::of($query)
             ->addIndexColumn()
