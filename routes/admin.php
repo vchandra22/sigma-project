@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\ForcesResetPasswordController;
 use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
 use App\Http\Controllers\Admin\ManageContentController;
@@ -102,4 +103,6 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // ganti password admin
     Route::get('/update-password', [UpdatePasswordAdminController::class, 'edit'])->name('admin.editPassword');
     Route::patch('update-password', [UpdatePasswordAdminController::class, 'update'])->name('admin.updatePassword');
+    Route::get('/force-reset-password/{admin}', [ForcesResetPasswordController::class, 'edit'])->name('admin.forceResetPassword');
+    Route::patch('/force-update-password/{admin}', [ForcesResetPasswordController::class, 'update'])->name('admin.forceUpdatePassword');
 });

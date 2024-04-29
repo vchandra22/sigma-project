@@ -204,7 +204,7 @@
                                         <div
                                             class="flex flex-col lg:flex-row justify-end items-end gap-4 pt-4 lg:pt-[5.5rem]">
                                             <div class="flex justify-end mt-8">
-                                                <a href="#"
+                                                <a href="{{ route('admin.forceResetPassword', $data->uuid) }}"
                                                     class="w-full px-11 py-3 text-lg font-normal text-center text-primary-800 bg-transparent rounded-none border border-primary-800 hover:bg-primary-500 hover:text-secondary focus:ring-2 focus:ring-accent sm:w-auto dark:bg-transparent dark:text-secondary dark:border-secondary dark:hover:text-neutral-900 dark:hover:bg-white dark:focus:ring-blue-800">
                                                     Ganti Password
                                                 </a>
