@@ -12,6 +12,7 @@ use App\Models\Journey;
 use App\Models\Office;
 use App\Models\Position;
 use App\Models\Publication;
+use App\Models\Requirement;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,8 @@ class MainIndexController extends Controller
         $data['homeData'] = Homepage::latest()->get();
         $data['journeyData'] = Journey::all();
         $data['benefitData'] = Benefit::all();
+        $data['benefitData'] = Benefit::all();
+        $data['requirementData'] = Requirement::all();
         $data['countDiterima'] = Status::where('status', 'diterima')->count();
         $data['countSelesai'] = Status::where('status', 'selesai')->count();
         $data['countMentor'] = Admin::whereHas('roles', function ($query) {

@@ -55,33 +55,14 @@
                             What We Need.
                         </h2>
                         <div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 mt-7">
-                            <div
-                                class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800 dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
-                                <p class="text-lg font-paragraf">
-                                    Mahasiswa aktif S1 (min.semester 6) atau D3 (min. semester 4) serta siswa siswi SMK
-                                </p>
-                            </div>
-                            <div
-                                class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800
-                            dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
-                                <p class="text-lg font-paragraf">
-                                    Berkomitmen kerja penuh waktu (Senin-Jum’at dari 07.00 - 15.00) selama periode
-                                    internship
-                                </p>
-                            </div>
-                            <div
-                                class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800
-                            dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
-                                <p class="text-lg font-paragraf">
-                                    Mampu berkomunikasi dengan baik serta dapat bekerja dalam tim maupun mandiri
-                                </p>
-                            </div>
-                            <div
-                                class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800 dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
-                                <p class="text-lg font-paragraf">
-                                    Mentaati seluruh peraturan yang telah ditetapkan
-                                </p>
-                            </div>
+                            @foreach ($requirementData as $requirement)
+                                <div
+                                    class="block p-6 border bg-secondary border-abu-500 hover:bg-gray-100 dark:bg-transparent dark:border-neutral-800 dark:hover:bg-secondary text-primary-800 dark:text-secondary dark:hover:text-neutral-900 cursor-pointer">
+                                    <p class="text-lg font-paragraf">
+                                        {{ strip_tags($requirement->content) }}
+                                    </p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="hidden pt-24 lg:block">

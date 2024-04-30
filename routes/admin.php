@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManageHomepageController;
 use App\Http\Controllers\Admin\ManageJourneyController;
 use App\Http\Controllers\Admin\ManageOfficeController;
 use App\Http\Controllers\Admin\ManagePositionController;
+use App\Http\Controllers\Admin\ManageRequirementController;
 use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Admin\UpdatePasswordAdminController;
@@ -112,6 +113,15 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/manage-benefit-content/edit/{benefit}', [ManageBenefitController::class, 'edit'])->name('admin.editBenefit');
     Route::put('/manage-benefit-content/update/{benefit}', [ManageBenefitController::class, 'update'])->name('admin.updateBenefit');
     Route::delete('/manage-benefit-content/delete/{id}', [ManageBenefitController::class, 'destroy'])->name('admin.deleteBenefit');
+
+    // requirement content
+    Route::get('/manage-requirement-content', [ManageRequirementController::class, 'index'])->name('admin.manageRequirement');
+    Route::get('/manage-requirement-content/add-new-requirement', [ManageRequirementController::class, 'create'])->name('admin.createRequirement');
+    Route::post('/manage-requirement-content/add-new-requirement', [ManageRequirementController::class, 'store'])->name('admin.storeRequirement');
+    Route::get('/manage-requirement-content/edit/{requirement}', [ManageRequirementController::class, 'edit'])->name('admin.editRequirement');
+    Route::put('/manage-requirement-content/update/{requirement}', [ManageRequirementController::class, 'update'])->name('admin.updateRequirement');
+    Route::delete('/manage-requirement-content/delete/{id}', [ManageRequirementController::class, 'destroy'])->name('admin.deleteRequirement');
+
 
     // settings admin
     Route::get('/settings', [SettingAdminController::class, 'index'])->name('admin.settings');
