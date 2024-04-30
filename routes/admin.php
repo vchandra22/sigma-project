@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\ForcesResetPasswordController;
 use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
+use App\Http\Controllers\Admin\ManageBenefitController;
 use App\Http\Controllers\Admin\ManageContentController;
 use App\Http\Controllers\Admin\ManageFaqController;
 use App\Http\Controllers\Admin\ManageHomepageController;
@@ -104,6 +105,13 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('/manage-journey-content/update/{journey}', [ManageJourneyController::class, 'update'])->name('admin.updateJourney');
     Route::delete('/manage-journey-content/delete/{id}', [ManageJourneyController::class, 'destroy'])->name('admin.deleteJourney');
 
+    // benefit content
+    Route::get('/manage-benefit-content', [ManageBenefitController::class, 'index'])->name('admin.manageBenefit');
+    Route::get('/manage-benefit-content/add-new-benefit', [ManageBenefitController::class, 'create'])->name('admin.createBenefit');
+    Route::post('/manage-benefit-content/add-new-benefit', [ManageBenefitController::class, 'store'])->name('admin.storeBenefit');
+    Route::get('/manage-benefit-content/edit/{benefit}', [ManageBenefitController::class, 'edit'])->name('admin.editBenefit');
+    Route::put('/manage-benefit-content/update/{benefit}', [ManageBenefitController::class, 'update'])->name('admin.updateBenefit');
+    Route::delete('/manage-benefit-content/delete/{id}', [ManageBenefitController::class, 'destroy'])->name('admin.deleteBenefit');
 
     // settings admin
     Route::get('/settings', [SettingAdminController::class, 'index'])->name('admin.settings');

@@ -106,50 +106,20 @@
                     What You Will Get.
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pt-7 pb-16">
-                    <div
-                        class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
-                        <span class="overflow-hidden fa-4x">
-                            <i class="fa-solid fa-users"></i>
-                        </span>
-                        <h3 class="xl:h-20 mt-2 text-xl md:text-2xl font-bold">
-                            Experience in Reputable Services
-                        </h3>
-                        <p class="text-sm font-normal text-paragraf">
-                            Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
-                    </div>
-                    <div
-                        class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
-                        <span class="overflow-hidden fa-4x">
-                            <i class="fa-solid fa-users"></i>
-                        </span>
-                        <h3 class="xl:h-20 mt-2 text-xl md:text-2xl font-bold">
-                            Experience in Reputable Services
-                        </h3>
-                        <p class="text-sm font-normal text-paragraf">
-                            Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
-                    </div>
-                    <div
-                        class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
-                        <span class="overflow-hidden fa-4x">
-                            <i class="fa-solid fa-users"></i>
-                        </span>
-                        <h3 class="xl:h-20 mt-2 text-xl md:text-2xl font-bold">
-                            Experience in Reputable Services
-                        </h3>
-                        <p class="text-sm font-normal text-paragraf">
-                            Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
-                    </div>
-                    <div
-                        class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
-                        <span class="overflow-hidden fa-4x">
-                            <i class="fa-solid fa-users"></i>
-                        </span>
-                        <h3 class="xl:h-20 mt-2 text-xl md:text-2xl font-bold">
-                            Experience in Reputable Services
-                        </h3>
-                        <p class="text-sm font-normal text-paragraf">
-                            Pengalaman internship di instansi terkemuka sebagai gerbang karir.</p>
-                    </div>
+                    @foreach ($benefitData as $benefit)
+                        <div
+                            class="p-4 md:p-6 text-center border bg-transparent border-primary-800 text-primary-800 hover:bg-slate-200 dark:text-secondary dark:hover:text-neutral-800 dark:bg-transparent dark:hover:bg-secondary dark:border-neutral-700 cursor-pointer">
+                            <span class="overflow-hidden fa-4x">
+                                <i class="{{ $benefit->fa_icon }}"></i>
+                            </span>
+                            <h3 class="xl:h-20 mt-2 text-xl md:text-2xl font-bold">
+                                {{ $benefit->title }}
+                            </h3>
+                            <p class="text-sm font-normal text-paragraf">
+                                {{ strip_tags($benefit->detail) }}
+                            </p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ export default {
         extend: {
             fontFamily: {
             sans: ["Hanuman", "sans-serif"],
-            paragraf: ["Libre Baskervile", "serif"],
+            paragraf: ["Noto Serif", "serif"],
             },
             colors: {
                 primary: {

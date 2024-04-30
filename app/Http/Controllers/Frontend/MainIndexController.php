@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Benefit;
 use App\Models\Faq;
 use App\Models\Home;
 use App\Models\Homepage;
@@ -24,6 +25,7 @@ class MainIndexController extends Controller
         $data['pageTitle'] = 'Beranda';
         $data['homeData'] = Homepage::latest()->get();
         $data['journeyData'] = Journey::all();
+        $data['benefitData'] = Benefit::all();
         $data['countDiterima'] = Status::where('status', 'diterima')->count();
         $data['countSelesai'] = Status::where('status', 'selesai')->count();
         $data['countMentor'] = Admin::whereHas('roles', function ($query) {

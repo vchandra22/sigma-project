@@ -11,7 +11,7 @@
                             class="hidden w-full h-12 lg:h-20 dark:block" width="100" height="100" title="Logo" alt="Sigma Logo" />
                     </a>
                     {{-- logo on navbar end --}}
-                    <span class="font-paragraf text-md md:text-lg md:leading-6 text-primary-800 text-start dark:text-secondary">
+                    <span class="font-paragraf text-sm md:text-md md:leading-6 text-primary-800 text-start dark:text-secondary">
                         <p>
                             Jl. Dr. Moh. Hatta No.05, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113.
                         </p>

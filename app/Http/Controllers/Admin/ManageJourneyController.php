@@ -77,7 +77,7 @@ class ManageJourneyController extends Controller
             'detail' => ['required', 'max:255'],
         ]);
 
-        $journey = Journey::where('uuid', $journey->uuid)->update($validatedData);
+        $journey = Journey::where('id', $journey->id)->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($journey)->log($getUser . ' melakukan update data Journey');
