@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Faq;
 use App\Models\Home;
 use App\Models\Homepage;
+use App\Models\Journey;
 use App\Models\Office;
 use App\Models\Position;
 use App\Models\Publication;
@@ -22,6 +23,7 @@ class MainIndexController extends Controller
     {
         $data['pageTitle'] = 'Beranda';
         $data['homeData'] = Homepage::latest()->get();
+        $data['journeyData'] = Journey::all();
         $data['countDiterima'] = Status::where('status', 'diterima')->count();
         $data['countSelesai'] = Status::where('status', 'selesai')->count();
         $data['countMentor'] = Admin::whereHas('roles', function ($query) {
@@ -87,38 +89,6 @@ class MainIndexController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Home $home)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Home $home)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Home $home)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Home $home)
     {
         //
     }

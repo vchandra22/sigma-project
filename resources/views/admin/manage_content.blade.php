@@ -155,6 +155,29 @@
                                 </div>
                             </div>
 
+                            <div
+                                class="p-8 bg-white border border-gray-100 hover:shadow-sm dark:bg-neutral-800 dark:border-neutral-600">
+                                <div class="min-h-16 w-full">
+                                    <a href="{{ route('admin.manageJourney') }}">
+                                        <h5
+                                            class="mb-2 text-2xl font-bold tracking-tight text-primary-800 dark:text-secondary">
+                                            Internship Journey
+                                        </h5>
+                                    </a>
+                                </div>
+                                <div class="min-h-20 w-full mb-4">
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                        Pengaturan tahapan / step untuk dapat mulai mengikuti kegiatan magang.
+                                    </p>
+                                </div>
+
+                                <div class="flex flex-col items-start">
+                                    <a href="{{ route('admin.manageJourney') }}"
+                                        class="w-full px-3 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Edit
+                                        Content</a>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>

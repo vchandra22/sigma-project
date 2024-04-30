@@ -226,120 +226,30 @@
 
                         <div id="accordion-open" class="pt-8" data-accordion="collapse"
                             data-active-classes="bg-gray-100 dark:bg-neutral-600 text-primary-800 dark:text-secondary">
-                            <h3 id="accordion-open-heading-1">
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
-                                    data-accordion-target="#accordion-open-body-1" aria-expanded="true"
-                                    aria-controls="accordion-open-body-1">
-                                    <span class="text-2xl font-bold">Registration</span>
-                                    <span class="-m-[20px] p-4">
-                                        <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
-                                    </span>
-                                </button>
-                            </h3>
-                            <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-                                <div
-                                    class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
-                                    <p
-                                        class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
-                                        Kamu harus melakukan pendaftaran Internship dengan melengkapi form pendaftaran pada
-                                        menu
-                                        “Register”
-                                    </p>
-                                </div>
-                            </div>
 
-                            <h3 id="accordion-open-heading-2">
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
-                                    data-accordion-target="#accordion-open-body-2" aria-expanded="false"
-                                    aria-controls="accordion-open-body-2">
-                                    <span class="text-2xl font-bold">Administration</span>
-                                    <span class="-m-[20px] p-4">
-                                        <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
-                                    </span>
-                                </button>
-                            </h3>
-                            <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
-                                <div
-                                    class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
-                                    <p
-                                        class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
-                                        Kamu harus melakukan pendaftaran Internship dengan melengkapi form pendaftaran pada
-                                        menu
-                                        “Register”
-                                    </p>
+                            @foreach ($journeyData as $item)
+                                <h3 id="accordion-open-heading-{{ $item->id }}">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
+                                        data-accordion-target="#accordion-open-body-{{ $item->id }}"
+                                        aria-expanded="true" aria-controls="accordion-open-body-{{ $item->id }}">
+                                        <span class="text-2xl font-bold">{{ $item->title }}</span>
+                                        <span class="-m-[20px] p-4">
+                                            <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <div id="accordion-open-body-{{ $item->id }}" class="hidden"
+                                    aria-labelledby="accordion-open-heading-{{ $item->id }}">
+                                    <div
+                                        class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
+                                        <p
+                                            class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
+                                            {{ strip_tags($item->detail) }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <h3 id="accordion-open-heading-3">
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
-                                    data-accordion-target="#accordion-open-body-3" aria-expanded="false"
-                                    aria-controls="accordion-open-body-3">
-                                    <span class="text-2xl font-bold">Review</span>
-                                    <span class="-m-[20px] p-4">
-                                        <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
-                                    </span>
-                                </button>
-                            </h3>
-                            <div id="accordion-open-body-3" class="hidden" aria-labelledby="accordion-open-heading-3">
-                                <div
-                                    class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
-                                    <p
-                                        class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
-                                        Kamu harus melakukan pendaftaran Internship dengan melengkapi form pendaftaran pada
-                                        menu
-                                        “Register”
-                                    </p>
-                                </div>
-                            </div>
-
-                            <h3 id="accordion-open-heading-4">
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
-                                    data-accordion-target="#accordion-open-body-4" aria-expanded="false"
-                                    aria-controls="accordion-open-body-4">
-                                    <span class="text-2xl font-bold">On Job</span>
-                                    <span class="-m-[20px] p-4">
-                                        <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
-                                    </span>
-                                </button>
-                            </h3>
-                            <div id="accordion-open-body-4" class="hidden" aria-labelledby="accordion-open-heading-4">
-                                <div
-                                    class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
-                                    <p
-                                        class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
-                                        Kamu harus melakukan pendaftaran Internship dengan melengkapi form pendaftaran pada
-                                        menu
-                                        “Register”
-                                    </p>
-                                </div>
-                            </div>
-
-                            <h3 id="accordion-open-heading-5">
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-l-0 border-b-0 border-abu-500 dark:border-neutral-700 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
-                                    data-accordion-target="#accordion-open-body-5" aria-expanded="false"
-                                    aria-controls="accordion-open-body-5">
-                                    <span class="text-2xl font-bold">Graduate</span>
-                                    <span class="-m-[20px] p-4">
-                                        <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
-                                    </span>
-                                </button>
-                            </h3>
-                            <div id="accordion-open-body-5" class="hidden" aria-labelledby="accordion-open-heading-5">
-                                <div
-                                    class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
-                                    <p
-                                        class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
-                                        Kamu harus melakukan pendaftaran Internship dengan melengkapi form pendaftaran pada
-                                        menu
-                                        “Register”
-                                    </p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
 
                     </div>
@@ -358,7 +268,8 @@
                 <p class="text-center mt-4 text-2xl md:text-3xl text-primary-800 dark:text-secondary">
                     Kunjungi <a class="font-bold hover:text-primary-500 dark:hover:text-abu-500"
                         href="{{ $data->instagram_link }}" target="_blank">Instagram</a>
-                    dan <a class="font-bold hover:text-primary-500 dark:hover:text-abu-500" href="{{ $data->youtube_link }}" target="_blank">YouTube</a>
+                    dan <a class="font-bold hover:text-primary-500 dark:hover:text-abu-500"
+                        href="{{ $data->youtube_link }}" target="_blank">YouTube</a>
                     Kami
                     ya!
                 </p>
@@ -376,8 +287,8 @@
                     </h2>
                     <div class="w-full h-full mt-8 md:w-2/3">
                         <iframe class="w-full h-80" width="560" height="315"
-                            src="https://www.youtube.com/embed/{{ $data->id_video }}"
-                            title="YouTube video player" frameborder="0"
+                            src="https://www.youtube.com/embed/{{ $data->id_video }}" title="YouTube video player"
+                            frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
                     </div>

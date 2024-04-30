@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ManageAnnouncementController;
 use App\Http\Controllers\Admin\ManageContentController;
 use App\Http\Controllers\Admin\ManageFaqController;
 use App\Http\Controllers\Admin\ManageHomepageController;
+use App\Http\Controllers\Admin\ManageJourneyController;
 use App\Http\Controllers\Admin\ManageOfficeController;
 use App\Http\Controllers\Admin\ManagePositionController;
 use App\Http\Controllers\Admin\ManageUserController;
@@ -94,6 +95,15 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/manage-publication-content/edit/{publication}', [ManagePublicationController::class, 'edit'])->name('admin.editPublication');
     Route::put('/manage-publication-content/update/{publication}', [ManagePublicationController::class, 'update'])->name('admin.updatePublication');
     Route::delete('/manage-publication-content/delete/{id}', [ManagePublicationController::class, 'destroy'])->name('admin.deletePublication');
+
+    // journey content
+    Route::get('/manage-journey-content', [ManageJourneyController::class, 'index'])->name('admin.manageJourney');
+    Route::get('/manage-journey-content/add-new-journey', [ManageJourneyController::class, 'create'])->name('admin.createJourney');
+    Route::post('/manage-journey-content/add-new-journey', [ManageJourneyController::class, 'store'])->name('admin.storeJourney');
+    Route::get('/manage-journey-content/edit/{journey}', [ManageJourneyController::class, 'edit'])->name('admin.editJourney');
+    Route::put('/manage-journey-content/update/{journey}', [ManageJourneyController::class, 'update'])->name('admin.updateJourney');
+    Route::delete('/manage-journey-content/delete/{id}', [ManageJourneyController::class, 'destroy'])->name('admin.deleteJourney');
+
 
     // settings admin
     Route::get('/settings', [SettingAdminController::class, 'index'])->name('admin.settings');
