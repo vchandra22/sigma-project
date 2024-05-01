@@ -234,19 +234,6 @@ class ManageUserController extends Controller
         return redirect(route('admin.manageUser'))->with('success', 'Data berhasil diupdate!');
     }
 
-
-    public function download($filename)
-    {
-        $filePath = 'docs/' . $filename;
-
-        if (Storage::exists($filePath)) {
-            return Storage::download($filePath);
-        }
-
-        abort(404, 'File not found');
-    }
-
-
     /**
      * Remove the specified resource from storage.
      */

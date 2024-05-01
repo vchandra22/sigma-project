@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class ManageAnnouncementController extends Controller
 {
@@ -61,30 +63,62 @@ class ManageAnnouncementController extends Controller
     {
         $validatedData = $request->validate([
             'pengumuman' => ['required'],
-            'file' => ['mimes:pdf|max:2048']
+            'file' => ['mimes:pdf', 'max:2048']
         ]);
 
-        // Store the image
+        // Check if there is an old file
+        $oldFilePath = $announcement->file;
+
+        // Store the new file
         if ($request->hasFile('file')) {
             // Get the uploaded file
             $file = $request->file('file');
 
+            // Define the directory path
+            $directoryPath = 'public/docs/announcement';
+
+            // Check if the directory doesn't exist, then create it
+            if (!Storage::exists($directoryPath)) {
+                Storage::makeDirectory($directoryPath, 0777, true); // Recursive creation with permissions
+            }
+
             // Generate a unique filename
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
 
-            // Store the image in the storage directory
-            $path = $file->storeAs('docs/announcement', $filename);
+            // Store the new file in the storage/app/public directory
+            $newFilePath = $file->storeAs($directoryPath, $filename);
 
-            // Update the 'file' field in the database with the image path
-            $validatedData['file'] = $path;
-        } 
+            // Update the 'file' field in the database with the new file path
+            $validatedData['file'] = $newFilePath;
 
-        $announcement = Announcement::where('uuid', $announcement->uuid)->update($validatedData);
+            // Delete the old file if it exists
+            if ($oldFilePath && Storage::disk('public')->exists($oldFilePath)) {
+                Storage::disk('public')->delete($oldFilePath);
+            }
+        }
+
+        // Update the announcement with the new data
+        $announcement->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($announcement)->log($getUser . ' melakukan update Pengumuman');
 
         return redirect(route('admin.dashboard'))->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function downloadFile($filename)
+    {
+        // Check if the file exists
+        if (Storage::disk('public')->exists('docs/announcement/' . $filename)) {
+            // Get the file path
+            $filePath = storage_path('public/' . $filename);
+
+            // Return the file as a download response
+            return response()->download($filePath);
+        } else {
+            // If the file does not exist, return a 404 response
+            abort(404);
+        }
     }
 
     /**

@@ -19,12 +19,20 @@
                                 </a>
                             </div>
                         </div>
-                        <p
-                            class="text-primary-800 font-paragraf text-md md:text-lg dark:text-secondary leading-4 md:leading-5">
-                            @foreach ($announcementData as $announcement)
+                        @foreach ($announcementData as $announcement)
+                            <p
+                                class="text-primary-800 font-paragraf text-md md:text-lg dark:text-secondary leading-4 md:leading-5">
                                 {{ strip_tags($announcement->pengumuman) }}
-                            @endforeach
-                        </p>
+                            </p>
+                            @if ($announcement->file !== null)
+                                <br>
+                                <a href="{{ route('admin.downloadFile', $announcement->file) }}"
+                                    class="mt-4 text-blue-500 text-md hover:underline">Unduh File Pengumuman
+                                </a>
+                                <p>{{ $announcement->file }}</p>
+                            @else
+                            @endif
+                        @endforeach
                     </div>
                     <div>
                         <div
