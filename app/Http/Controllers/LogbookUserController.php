@@ -108,6 +108,11 @@ class LogbookUserController extends Controller
     public function destroy($id)
     {
         $logbook = Logbook::find($id);
+
+        if (!$logbook) {
+            return redirect(route('user.logbook'))->with('error', 'Data tidak ditemukan.');
+        }
+
         $logbook->delete();
 
         return redirect(route('user.logbook'))->with('success', 'Data berhasil dihapus!');

@@ -91,78 +91,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($allUser as $document)
-                                        <tr
-                                            class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">{{ $loop->iteration }}</p>
-                                            </td>
-                                            <td class="px-4 py-4 w-1/6">
-                                                <h5 class="font-bold text-primary-800 dark:text-secondary">
-                                                    {{ $document->user->nama_lengkap }}
-                                                </h5>
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $document->no_identitas }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $document->user->no_hp }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 text-center dark:text-secondary">
-                                                    {{ substr($document->user->jenis_kelamin, 0, 1) }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $document->instansi_asal }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 font-bold dark:text-secondary">
-                                                    {{ $document->office->nama_kantor }}
-                                                </h5>
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $document->position->role }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 text-center dark:text-secondary">
-                                                    {{ convertDate($document->u_tgl_mulai) }}
-                                                    <br> - <br>
-                                                    {{ convertDate($document->u_tgl_selesai) }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 font-bold text-center dark:text-secondary">
-                                                    @if ($document->e_tgl_mulai && $document->e_tgl_selesai)
-                                                        {{ convertDate($document->e_tgl_mulai) }} <br> - <br>
-                                                        {{ convertDate($document->e_tgl_selesai) }}
-                                                    @else
-                                                        <span class="font-normal text-xs text-abu-800">
-                                                            belum diatur
-                                                        </span>
-                                                    @endif
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <div class="bg-yellow-300 px-4 py-2 pointer-events-none rounded-sm">
-                                                    <h5 class="text-secondary capitalize text-center font-bold">
-                                                        {{ $document->status->status }}
-                                                    </h5>
-                                                </div>
-                                            </td>
-                                            <td class="px-8">
-                                                <div class="flex items-center h-full gap-4">
-                                                    <a href="#" class="py-2 text-md text-blue-500 hover:underline">
-                                                        Detail
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach --}}
+
                                 </tbody>
                             </table>
                         </div>

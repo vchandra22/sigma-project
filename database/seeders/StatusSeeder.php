@@ -18,6 +18,6 @@ class StatusSeeder extends Seeder
         //     'document_id' => '1',
         //     'status' => 'menunggu',
         // ]);
-        \App\Models\Status::factory(3)->create();
+        \App\Models\Status::factory(150)->create();
     }
 }

@@ -24,7 +24,7 @@ class DocumentSeeder extends Seeder
         //     'u_tgl_mulai' => '2024-03-25',
         //     'u_tgl_selesai' => '2024-06-25',
         // ]);
-        \App\Models\Document::factory(3)->create();
+        \App\Models\Document::factory(150)->create();
 
     }
 }

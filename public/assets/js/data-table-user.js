@@ -97,7 +97,7 @@ $(document).ready(function () {
                     } else if (data === 'ditolak') {
                         return '<div class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
                     } else if (data === 'selesai') {
-                        return '<div class="bg-blue-300 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
+                        return '<div class="bg-blue-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
                     } else {
                         return data; // Return data as it is if it doesn't match any condition
                     }

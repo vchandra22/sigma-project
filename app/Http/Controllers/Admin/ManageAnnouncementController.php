@@ -79,7 +79,7 @@ class ManageAnnouncementController extends Controller
 
             // Check if the directory doesn't exist, then create it
             if (!Storage::exists($directoryPath)) {
-                Storage::makeDirectory($directoryPath, 0777, true); // Recursive creation with permissions
+                Storage::makeDirectory($directoryPath, 0777, true, true); // Recursive creation with permissions
             }
 
             // Generate a unique filename
@@ -109,9 +109,9 @@ class ManageAnnouncementController extends Controller
     public function downloadFile($filename)
     {
         // Check if the file exists
-        if (Storage::disk('public')->exists('docs/announcement/' . $filename)) {
+        if (Storage::disk('public')->exists('docs/announcement/'.$filename)) {
             // Get the file path
-            $filePath = storage_path('public/' . $filename);
+            $filePath = storage_path('app/public/docs/announcement/'.$filename);
 
             // Return the file as a download response
             return response()->download($filePath);
