@@ -37,7 +37,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // manage pengumuman content
     Route::get('/announcement/edit/{announcement}', [ManageAnnouncementController::class, 'edit'])->name('admin.editAnnouncement');
     Route::put('/announcement/update/{announcement}', [ManageAnnouncementController::class, 'update'])->name('admin.updateAnnouncement');
-    Route::get('/download-announcement-file/{filename}', [ManageAnnouncementController::class, 'downloadFile'])->name('admin.downloadFile');
+    Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('admin.downloadFile');
 
     // manage admin
     Route::get('/manage-admin', [ManageAdminController::class, 'index'])->name('admin.manageAdmin');
