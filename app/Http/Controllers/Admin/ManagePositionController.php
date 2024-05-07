@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Meta;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use File;
 
 class ManagePositionController extends Controller
 {
@@ -45,21 +48,21 @@ class ManagePositionController extends Controller
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        // Store the image
         if ($request->hasFile('gambar')) {
-            // Get the uploaded file
-            $gambar = $request->file('gambar');
+            $file = $request->file('gambar');
+            $directoryPath = 'img';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $gambar->getClientOriginalName();
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0777, true, true);
+            }
 
-            // Store the image in the storage directory
-            $path = $gambar->storeAs('public/frontend/assets/img', $filename);
-
-            // Update the 'gambar' field in the database with the image path
-            $validatedData['gambar'] = $path;
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedData['gambar'] = $filename;
+        } else {
+            // Code block intentionally left empty
         }
-
         $position = Position::create($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
@@ -84,6 +87,7 @@ class ManagePositionController extends Controller
         $data['pageTitle'] = 'Edit Roles';
 
         $data['positionData'] = Position::where('uuid', $uuid)->get();
+        $data['metaData'] = Meta::where('slug', "home")->get();
 
         return view('admin.position.position_edit', $data);
     }
@@ -101,19 +105,20 @@ class ManagePositionController extends Controller
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        // Store the image
         if ($request->hasFile('gambar')) {
-            // Get the uploaded file
-            $gambar = $request->file('gambar');
+            $file = $request->file('gambar');
+            $directoryPath = 'img';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $gambar->getClientOriginalName();
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0777, true, true);
+            }
 
-            // Store the image in the storage directory
-            $path = $gambar->storeAs('public/frontend/assets/img', $filename);
-
-            // Update the 'gambar' field in the database with the image path
-            $validatedData['gambar'] = $path;
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedData['gambar'] = $filename;
+        } else {
+            // Code block intentionally left empty
         }
 
         $newSlug = Str::slug($request->input('role'));

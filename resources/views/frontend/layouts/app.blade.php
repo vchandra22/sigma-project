@@ -23,18 +23,18 @@
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:title" content="{{ $defaultMeta['meta_title'] }}">
         <meta property="og:description" content="{{ $defaultMeta['meta_description'] }}">
-        <meta property="og:image" content="{{ asset('assets/favicon/favicon-32x32.png') }}">
+        <meta property="og:image" content="{{ $defaultMeta['og_image'] }}">
         <meta property="og:site_name" content="{{ get_app_name() }}">
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url()->current() }}">
         <meta property="twitter:title" content="{{ $defaultMeta['meta_title'] }}">
         <meta property="twitter:description" content="{{ $defaultMeta['meta_description'] }}">
-        <meta property="twitter:image" content="{{ asset('assets/favicon/favicon-32x32.png') }}">
+        <meta property="twitter:image" content="{{ $defaultMeta['og_image'] }}">
         <!-- Google / Search Engine Tags -->
         <meta itemprop="name" content="{{ $defaultMeta['meta_title'] }}">
         <meta itemprop="description" content="{{ $defaultMeta['meta_description'] }}">
-        <meta itemprop="image" content="{{ asset('assets/favicon/favicon-32x32.png') }}">
+        <meta itemprop="image" content="{{ $defaultMeta['og_image'] }}">
     @endif
 
     <!-- Favicon -->

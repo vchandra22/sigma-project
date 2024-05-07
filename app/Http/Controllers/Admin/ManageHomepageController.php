@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Homepage;
+use App\Models\Meta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 class ManageHomepageController extends Controller
 {
@@ -50,6 +53,7 @@ class ManageHomepageController extends Controller
         $data['pageTitle'] = 'Homepage Content';
 
         $data['homepageData'] = Homepage::where('uuid', $uuid)->get();
+        $data['metaData'] = Meta::where('slug', "home")->get();
 
         return view('admin.edit_homepage', $data);
     }
@@ -73,7 +77,31 @@ class ManageHomepageController extends Controller
             'gmaps_kantor' => ['required'],
         ]);
 
+        $validatedDataMeta = $request->validate([
+            'meta_title' => ['required', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:160'],
+            'meta_keyword' => ['nullable'],
+            'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
+        ]);
+
         $homepage = Homepage::where('uuid', $homepage->uuid)->update($validatedData);
+
+        if ($request->hasFile('og_image')) {
+            $file = $request->file('og_image');
+            $directoryPath = 'img';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0777, true, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedDataMeta['og_image'] = $filename;
+        } else {
+            // Code block intentionally left empty
+        }
+        Meta::where('slug', "home")->update($validatedDataMeta);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($homepage)->log($getUser . ' melakukan update data Homepage');

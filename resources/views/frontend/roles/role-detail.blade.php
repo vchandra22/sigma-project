@@ -35,16 +35,16 @@
             {{-- breadcrums end --}}
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 pb-12">
-                <div class="relative w-full h-full dark:border dark:border-neutral-900">
-                    <img src="{{ asset('frontend/assets/img/illustration-image-role-developer.webp') }}"
-                        class="object-cover w-full h-full" width="100" height="100" title="{{ $pageTitle }}"
-                        alt="Gambar ilustrasi posisi {{ $pageTitle }}">
-                    <div
-                        class="absolute top-0 right-0 w-full h-full bg-primary-800 bg-opacity-20 dark:bg-neutral-900 dark:bg-opacity-60">
+                @foreach ($positionData as $data)
+                    <div class="relative w-full h-full dark:border dark:border-neutral-900">
+                        <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/no-image.png') }}"
+                            class="object-cover w-full h-full" width="100" height="100" title="{{ $pageTitle }}"
+                            alt="Gambar ilustrasi posisi {{ $pageTitle }}">
+                        <div
+                            class="absolute top-0 right-0 w-full h-full bg-primary-800 bg-opacity-20 dark:bg-neutral-900 dark:bg-opacity-60">
+                        </div>
                     </div>
-                </div>
-                <div class="grid grid-cols-1 content-between border border-l border-abu-500 dark:border-neutral-800">
-                    @foreach ($positionData as $data)
+                    <div class="grid grid-cols-1 content-between border border-l border-abu-500 dark:border-neutral-800">
                         <h1 class="hidden">Lowongan Magang {{ $data->role }}</h1>
                         <h2
                             class="p-6 text-3xl text-start border border-abu-500 md:text-4xl font-bold text-primary-800 dark:text-secondary dark:border-neutral-800">
@@ -53,14 +53,14 @@
                         <p class="p-6 text-xl font-paragraf text-primary-800 dark:text-secondary">Job Description:</p>
                         <ol
                             class="pl-12 pr-4 w-full space-y-2 font-paragraf text-xl leading-5 text-primary-800 list-decimal list-outside dark:text-secondary">
-                            {{ $data->jobdesk }}
+                            {{ strip_tags($data->jobdesk) }}
                         </ol>
                         <h3
                             class="mt-5 p-6 text-2xl font-bold text-primary-800 border border-t border-abu-500 dark:text-secondary dark:border-neutral-800">
                             Skill yang diperlukan: {{ $data->requirement }}
                         </h3>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

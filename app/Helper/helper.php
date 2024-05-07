@@ -28,7 +28,7 @@ function getImageFile($file)
     if ($file != '') {
         return asset($file);
     } else {
-        return asset('frontend/assets/img/no-image.png');
+        return asset('frontend/assets/img/logo-sigma-single.png');
     }
 }
 
@@ -96,7 +96,7 @@ if (!function_exists('getMeta')) {
         $metaData['meta_title'] = $metaData['meta_title'] != NULL ? $metaData['meta_title'] : get_option('app_name');
         $metaData['meta_description'] = $metaData['meta_description'] != NULL ? $metaData['meta_description'] : get_option('app_name');
         $metaData['meta_keyword'] = $metaData['meta_keyword'] != NULL ? $metaData['meta_keyword'] : get_option('app_name');
-        $metaData['og_image'] = $metaData['og_image'] != NULL ? getImageFile($metaData['og_image']) : getImageFile(get_option('app_logo'));
+        $metaData['og_image'] = $metaData['og_image'] != NULL ? asset('storage/img/' . $metaData['og_image']) : getImageFile(get_option('app_logo'));
 
         return $metaData;
     }

@@ -72,7 +72,7 @@ class ManageAnnouncementController extends Controller
 
             // Create directory if not exists
             if (!file_exists($directoryPath)) {
-                Storage::disk('local')->makeDirectory($directoryPath, 0775, true); // Recursive creation with permissions
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
             }
 
             $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
@@ -87,7 +87,6 @@ class ManageAnnouncementController extends Controller
             $validatedData['file'] = null;
         }
 
-        // Update the announcement with the new data
         $announcement->update($validatedData);
 
         // Log the update action
