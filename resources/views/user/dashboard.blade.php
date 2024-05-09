@@ -8,12 +8,20 @@
                     class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="md:col-span-2 px-6 py-8">
                         <h2 class="text-2xl md:text-4xl font-bold text-primary-800 dark:text-secondary mb-2">Pengumuman</h2>
-                        <p
-                            class="text-primary-800 font-paragraf text-md md:text-lg dark:text-secondary leading-4 md:leading-5">
-                            @foreach ($announcementData as $announcement)
+                        @foreach ($announcementData as $announcement)
+                            <p
+                                class="text-primary-800 font-paragraf text-md md:text-lg dark:text-secondary leading-4 md:leading-5">
                                 {{ strip_tags($announcement->pengumuman) }}
-                            @endforeach
-                        </p>
+                            </p>
+                            @if ($announcement->file !== null)
+                                <br>
+                                <a href="{{ route('admin.downloadFile', ['announcement' => $announcement->file]) }}"
+                                    class="mt-4 text-blue-500 text-md hover:underline" style="margin-top: 20px">Unduh File
+                                    Pengumuman
+                                </a>
+                            @else
+                            @endif
+                        @endforeach
                     </div>
                     <div>
                         <div
@@ -103,6 +111,29 @@
                                         </p>
                                     @endif
                                 </div>
+                                @if ($data->status->doc_balasan !== null)
+                                    <div>
+                                        <h2
+                                            class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary my-4 text-center">
+                                            Surat Balasan
+                                        </h2>
+                                        <a href="{{ route('user.downloadDocuments', $data->status->doc_balasan) }}"
+                                            class="align-baseline mt-2">
+                                            <div
+                                                class="text-center font-bold capitalize text-2xl md:text-3xl bg-primary-800 hover:bg-primary-500 rounded py-2 text-secondary mb-4 w-full">
+                                                Download Dokumen
+                                            </div>
+                                        </a>
+                                    </div>
+                                @else
+                                    <h2
+                                        class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary my-4 text-center">
+                                        Surat Balasan
+                                    </h2>
+                                    <p class="text-center text-primary-500">
+                                        Belum ada dokumen balasan
+                                    </p>
+                                @endif
                             </div>
                         </div>
                     </div>

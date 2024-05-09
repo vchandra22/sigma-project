@@ -23,6 +23,8 @@ class Document extends Model
         'no_identitas',
         'jurusan',
         'instansi_asal',
+        'nama_pembimbing',
+        'no_hp_pembimbing',
         'u_tgl_mulai',
         'u_tgl_selesai',
         'e_tgl_mulai',

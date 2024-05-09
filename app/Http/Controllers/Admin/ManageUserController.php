@@ -13,12 +13,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Traits\FileHandlerTrait;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class ManageUserController extends Controller
 {
-    use FileHandlerTrait;
 
     /**
      * Display a listing of the resource.
@@ -32,7 +31,7 @@ class ManageUserController extends Controller
 
     public function tableUser()
     {
-        $query = Document::with(['user', 'office', 'position', 'status']);
+        $query = Document::with(['user', 'office', 'position', 'status'])->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()
@@ -76,6 +75,8 @@ class ManageUserController extends Controller
             'password' => ['required', 'min:8'],
             'password_confirmation' => ['required', 'same:password'],
             'instansi_asal' => ['required'],
+            'nama_pembimbing' => ['required'],
+            'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
             'jurusan' => ['required'],
             'office_id' => 'required',
             'position_id' => 'required',
@@ -98,47 +99,61 @@ class ManageUserController extends Controller
         $validatedData['e_tgl_mulai'] = Carbon::createFromFormat('d/m/Y', $validatedData['e_tgl_mulai'])->format('Y-m-d');
         $validatedData['e_tgl_selesai'] = Carbon::createFromFormat('d/m/Y', $validatedData['e_tgl_selesai'])->format('Y-m-d');
 
-        $currentDate = now()->format('d-m-Y');
+        if ($request->hasFile('doc_pengantar')) {
+            $file = $request->file('doc_pengantar');
+            $directoryPath = 'private/documents';
 
-        $doc_pengantar = $request->file('doc_pengantar');
-        $doc_kesbang = $request->file('doc_kesbang');
-        $doc_proposal = $request->file('doc_proposal');
-        $doc_balasan = $request->file('doc_balasan');
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
 
-        $doc_pengantar_path = $doc_pengantar->storeAs('docs', 'pengantar_' . Str::random(8) . '_' . $currentDate . '.' . $doc_pengantar->getClientOriginalExtension());
-
-        $doc_kesbang_path = NULL;
-        if ($doc_kesbang) {
-            $doc_kesbang_path = $doc_kesbang->storeAs('docs', 'kesbang_' . Str::random(8) . '_' . $currentDate . '.' . $doc_kesbang->getClientOriginalExtension());
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_pengantar'] = $filename;
         }
 
-        $doc_proposal_path = NULL;
-        if ($doc_proposal) {
-            $doc_proposal_path = $doc_proposal->storeAs('docs', 'proposal_' . Str::random(8) . '_' . $currentDate . '.' . $doc_proposal->getClientOriginalExtension());
+        if ($request->hasFile('doc_kesbang')) {
+            $file = $request->file('doc_kesbang');
+            $directoryPath = 'private/documents';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_kesbang'] = $filename;
         }
 
-        $doc_balasan_path = NULL;
-        if ($doc_balasan) {
-            $doc_balasan_path = $doc_balasan->storeAs('docs', 'balasan_' . Str::random(8) . '_' . $currentDate . '.' . $doc_balasan->getClientOriginalExtension());
+        if ($request->hasFile('doc_proposal')) {
+            $file = $request->file('doc_proposal');
+            $directoryPath = 'private/documents';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_proposal'] = $filename;
         }
 
-        $valuesDoc = [
-            'no_identitas' => $validatedData['no_identitas'],
-            'jurusan' => $validatedData['jurusan'],
-            'instansi_asal' => $validatedData['instansi_asal'],
-            'office_id' => $validatedData['office_id'],
-            'position_id' => $validatedData['position_id'],
-            'u_tgl_mulai' => $validatedData['u_tgl_mulai'],
-            'u_tgl_selesai' => $validatedData['u_tgl_selesai'],
-            'e_tgl_mulai' => $validatedData['e_tgl_mulai'],
-            'e_tgl_selesai' => $validatedData['e_tgl_selesai'],
-            'doc_pengantar' => $doc_pengantar_path,
-            'doc_kesbang' => $doc_kesbang_path,
-            'doc_proposal' => $doc_proposal_path,
-            'status' => $validatedData['status'],
-            'keterangan' => $validatedData['keterangan'],
-            'doc_balasan' => $doc_balasan_path,
-        ];
+        if ($request->hasFile('doc_balasan')) {
+            $file = $request->file('doc_balasan');
+            $directoryPath = 'private/documents';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_balasan'] = $filename;
+        }
 
         $user = User::create([
             'username' => $validatedData['username'],
@@ -149,8 +164,8 @@ class ManageUserController extends Controller
             'password' => $validatedData['password']
         ]);
 
-        $document = $user->document()->create($valuesDoc);
-        $document->status()->create($valuesDoc);
+        $document = $user->document()->create($validatedData);
+        $document->status()->create($validatedData);
 
         return redirect(route('admin.manageUser'))->with('success', 'Registrasi Berhasil!');
     }
@@ -187,7 +202,7 @@ class ManageUserController extends Controller
             'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
             'username' => ['required', 'unique:users,username,' . $document->user->id],
             'jenis_kelamin' => ['required'],
-            'no_hp' => ['required', 'numeric', 'digits_between:11,14', 'unique:users,no_hp,' . $document->user->id],
+            'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp,' . $document->user->id],
             'email' => ['required', 'email', 'unique:users,email,' . $document->user->id],
 
             // Document data
@@ -196,6 +211,8 @@ class ManageUserController extends Controller
             'instansi_asal' => ['required'],
             'office_id' => ['required'],
             'position_id' => ['required'],
+            'nama_pembimbing' => ['required'],
+            'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
             'u_tgl_mulai' => ['required', 'date_format:d/m/Y'],
             'u_tgl_selesai' => ['required', 'date_format:d/m/Y'],
             'e_tgl_mulai' => ['required', 'date_format:d/m/Y'],
@@ -203,7 +220,7 @@ class ManageUserController extends Controller
 
             // Status data
             'status' => ['required', 'in:menunggu,diterima,ditolak,selesai'],
-            'keterangan' => ['required'],
+            'keterangan' => ['nullable'],
             'doc_balasan' => 'nullable|mimes:pdf|max:2048',
         ]);
 
@@ -223,10 +240,21 @@ class ManageUserController extends Controller
         $statusData = [
             'status' => $validatedData['status'],
             'keterangan' => $validatedData['keterangan'],
+            'doc_balasan' => $validatedData['doc_balasan'],
         ];
 
         if ($request->hasFile('doc_balasan')) {
-            $statusData['doc_balasan'] = $this->uploadFile('doc_balasan', $validatedData['doc_balasan']);
+            $file = $request->file('doc_balasan');
+            $directoryPath = 'private/documents';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $statusData['doc_balasan'] = $filename;
         }
 
         $document->status->update($statusData);
@@ -246,5 +274,14 @@ class ManageUserController extends Controller
         activity()->causedBy($user)->log($getUser . ' melakukan delete data User');
 
         return redirect(route('admin.manageUser'))->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function downloadFile($documents)
+    {
+
+        $filePath = storage_path('app/private/documents/' . $documents);
+
+        // Return the file as a download response
+        return response()->download($filePath);
     }
 }

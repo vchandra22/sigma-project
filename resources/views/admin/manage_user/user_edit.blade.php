@@ -237,6 +237,41 @@
                                         @enderror
                                     </div>
 
+                                    <div>
+                                        <label for="nama_pembimbing"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
+                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                        <input type="text" name="nama_pembimbing" id="nama_pembimbing"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="Hardianto" required
+                                            value="{{ old('nama_pembimbing', $data->nama_pembimbing) }}" />
+
+                                        @error('nama_pembimbing')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="no_hp_pembimbing"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.HP
+                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                        <input type="text" name="no_hp_pembimbing" id="no_hp_pembimbing"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="081255555555" required
+                                            value="{{ old('no_hp_pembimbing', $data->no_hp_pembimbing) }}" />
+
+                                        @error('no_hp_pembimbing')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan teliti,
+                                            pastikan nomor dapat dihubungi!</p>
+                                    </div>
+
                                 </div>
                                 <div class="space-y-6">
                                     <div>
@@ -385,54 +420,70 @@
                                                     </td>
                                                     <td class="px-4 py-4">
                                                         <div class="flex justify-center items-center h-full gap-4">
-                                                            {{ $data->doc_pengantar }}
-                                                            <a href="#"
+                                                            <a href="{{ route('admin.downloadDocuments', $data->doc_pengantar) }}"
                                                                 class="py-2 text-md text-center text-blue-500 hover:underline">
                                                                 Download
                                                             </a>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr
-                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">
-                                                            2
-                                                        </p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">Surat Pengantar
-                                                            (BAKESBANGPOL)
-                                                        </p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <div class="flex justify-center items-center h-full gap-4">
-                                                            <a href="#"
-                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                                Download
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr
-                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">
-                                                            3
-                                                        </p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">Dokumen Lain</p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <div class="flex justify-center items-center h-full gap-4">
-                                                            <a href="#"
-                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                                Download
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @if ($data->doc_kesbang !== null)
+                                                    <tr
+                                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">
+                                                                2
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">Surat Pengantar
+                                                                (BAKESBANGPOL)
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <div class="flex justify-center items-center h-full gap-4">
+                                                                <a href="#"
+                                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                    Download
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <td colspan="3" class="px-4 py-4 text-center">
+                                                            Pendaftar tidak
+                                                            mengunggah dokumen (BAKESBANGPOL)</td>
+                                                    </tr>
+                                                @endif
+                                                @if ($data->doc_proposan !== null)
+                                                    <tr
+                                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">
+                                                                3
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">Dokumen Lain
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <div class="flex justify-center items-center h-full gap-4">
+                                                                <a href="#"
+                                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                    Download
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <td colspan="3" class="px-4 py-4 text-center">Pendaftar tidak
+                                                            mengunggah dokumen</td>
+                                                    </tr>
+                                                @endif
+
                                             </tbody>
                                         </table>
                                     </div>

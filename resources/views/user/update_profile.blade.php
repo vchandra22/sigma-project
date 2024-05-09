@@ -91,7 +91,7 @@
                                             Email <span class="text-red-500">*</span></label>
                                         <input type="email" name="email" id="email"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('email',$user->email) }}" />
+                                            required value="{{ old('email', $user->email) }}" />
                                         @error('email')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -105,7 +105,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_hp" id="no_hp"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('no_hp',$user->no_hp) }}" />
+                                            required value="{{ old('no_hp', $user->no_hp) }}" />
                                         @error('no_hp')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -119,7 +119,7 @@
                                             Asal <span class="text-red-500">*</span></label>
                                         <input type="text" name="instansi_asal" id="instansi_asal"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('instansi_asal',$user->document->instansi_asal) }}" />
+                                            required value="{{ old('instansi_asal', $user->document->instansi_asal) }}" />
 
                                         @error('instansi_asal')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -149,6 +149,41 @@
                                         <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan jurusan
                                             atau
                                             bidang keahlian yang kalian ambil.</p>
+                                    </div>
+
+                                    <div>
+                                        <label for="nama_pembimbing"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
+                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                        <input type="text" name="nama_pembimbing" id="nama_pembimbing"
+                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="Hardianto" required
+                                            value="{{ old('nama_pembimbing', $user->document->nama_pembimbing) }}" />
+
+                                        @error('nama_pembimbing')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="no_hp_pembimbing"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.HP
+                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                        <input type="text" name="no_hp_pembimbing" id="no_hp_pembimbing"
+                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="081255555555" required
+                                            value="{{ old('no_hp_pembimbing', $user->document->no_hp_pembimbing) }}" />
+
+                                        @error('no_hp_pembimbing')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan teliti,
+                                            pastikan nomor dapat dihubungi!</p>
                                     </div>
                                 @endforeach
 

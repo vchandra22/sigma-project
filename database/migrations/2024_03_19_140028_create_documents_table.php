@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('no_identitas')->unique();
             $table->string('jurusan')->nullable();
             $table->string('instansi_asal')->nullable();
+            $table->string('nama_pembimbing')->nullable();
+            $table->string('no_hp_pembimbing')->nullable();
             $table->date('u_tgl_mulai')->nullable();
             $table->date('u_tgl_selesai')->nullable();
             $table->date('e_tgl_mulai')->nullable();

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ManageAnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/welcome', function () {
     return view('welcome');
 });
+Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('admin.downloadFile');

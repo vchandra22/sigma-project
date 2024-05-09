@@ -77,6 +77,8 @@ class SettingUserController extends Controller
         $validatedDocs = $request->validate([
             'instansi_asal' => ['required'],
             'jurusan' => ['required'],
+            'nama_pembimbing' => ['required'],
+            'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
             'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas,' . $userId->id . ',user_id'],
         ]);
 

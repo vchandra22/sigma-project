@@ -32,7 +32,7 @@ class ManageUserController extends Controller
 
     public function tableUser()
     {
-        $query = Document::with(['user', 'office', 'position', 'status']);
+        $query = Document::with(['user', 'office', 'position', 'status'])->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()

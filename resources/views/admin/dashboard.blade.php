@@ -27,9 +27,8 @@
                             @if ($announcement->file !== null)
                                 <br>
                                 <a href="{{ route('admin.downloadFile', ['announcement' => $announcement->file]) }}"
-                                    class="mt-4 text-blue-500 text-md hover:underline">Unduh File Pengumuman
+                                    class="mt-4 text-blue-500 text-md hover:underline" style="margin-top: 20px">Unduh File Pengumuman
                                 </a>
-                                <p>{{ $announcement->file }}</p>
                             @else
                             @endif
                         @endforeach

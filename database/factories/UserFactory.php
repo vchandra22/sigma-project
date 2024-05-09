@@ -37,7 +37,7 @@ class UserFactory extends Factory
             'nama_lengkap' => $this->faker->name,
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'email' => $this->faker->unique()->safeEmail,
-            'no_hp' => $this->faker->unique()->phoneNumber,
+            'no_hp' => '08' . $this->faker->numerify('##########'),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
             'created_at' => now(),

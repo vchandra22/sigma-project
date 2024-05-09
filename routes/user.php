@@ -46,4 +46,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     // mengeluarkan user dari autentikasi
     Route::post('/logout', [AuthUserController::class, 'destroy'])->name('user.logout');
+
+    //download file
+    Route::get('/download-documents-file/{documents}', [DashboardUserController::class, 'downloadFile'])->name('user.downloadDocuments');
 });

@@ -10,14 +10,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterUserController extends Controller
 {
-    public $doc_pengantar;
-    public $doc_kesbang;
-    public $doc_proposal;
-
-
     /**
      * Display a listing of the resource.
      */
@@ -46,13 +43,15 @@ class RegisterUserController extends Controller
         $validatedData = $request->validate([
             'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
             'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas'],
-            'username' => ['required', 'same:no_identitas', 'unique:users,username'],
+            'username' => ['required', 'same:no_identitas', 'unique:users,username', 'regex:/^[a-zA-Z0-9_]+$/'],
             'jenis_kelamin' => ['required'],
-            'no_hp' => ['required', 'numeric', 'digits_between:11,14', 'unique:users,no_hp'],
+            'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8'],
             'password_confirmation' => ['required', 'same:password'],
             'instansi_asal' => ['required'],
+            'nama_pembimbing' => ['required'],
+            'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
             'jurusan' => ['required'],
             'office_id' => 'required',
             'position_id' => 'required',
@@ -68,36 +67,47 @@ class RegisterUserController extends Controller
         $validatedData['u_tgl_mulai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_mulai'])->format('Y-m-d');
         $validatedData['u_tgl_selesai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_selesai'])->format('Y-m-d');
 
-        $currentDate = now()->format('d-m-Y');
+        if ($request->hasFile('doc_pengantar')) {
+            $file = $request->file('doc_pengantar');
+            $directoryPath = 'private/documents';
 
-        $doc_pengantar = $request->file('doc_pengantar');
-        $doc_kesbang = $request->file('doc_kesbang');
-        $doc_proposal = $request->file('doc_proposal');
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
 
-        $doc_pengantar_path = $doc_pengantar->storeAs('docs', 'pengantar_' . Str::random(8) . '_' . $currentDate . '.' . $doc_pengantar->getClientOriginalExtension());
-
-        $doc_kesbang_path = NULL;
-        if ($doc_kesbang) {
-            $doc_kesbang_path = $doc_kesbang->storeAs('docs', 'kesbang_' . Str::random(8) . '_' . $currentDate . '.' . $doc_kesbang->getClientOriginalExtension());
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_pengantar'] = $filename;
         }
 
-        $doc_proposal_path = NULL;
-        if ($doc_proposal) {
-            $doc_proposal_path = $doc_proposal->storeAs('docs', 'proposal_' . Str::random(8) . '_' . $currentDate . '.' . $doc_proposal->getClientOriginalExtension());
+        if ($request->hasFile('doc_kesbang')) {
+            $file = $request->file('doc_kesbang');
+            $directoryPath = 'private/documents';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_kesbang'] = $filename;
         }
 
-        $values = [
-            'no_identitas' => $validatedData['no_identitas'],
-            'jurusan' => $validatedData['jurusan'],
-            'instansi_asal' => $validatedData['instansi_asal'],
-            'office_id' => $validatedData['office_id'],
-            'position_id' => $validatedData['position_id'],
-            'u_tgl_mulai' => $validatedData['u_tgl_mulai'],
-            'u_tgl_selesai' => $validatedData['u_tgl_selesai'],
-            'doc_pengantar' => $doc_pengantar_path,
-            'doc_kesbang' => $doc_kesbang_path,
-            'doc_proposal' => $doc_proposal_path,
-        ];
+        if ($request->hasFile('doc_proposal')) {
+            $file = $request->file('doc_proposal');
+            $directoryPath = 'private/documents';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+            $validatedData['doc_proposal'] = $filename;
+        }
 
         $user = User::create([
             'username' => $validatedData['username'],
@@ -108,8 +118,8 @@ class RegisterUserController extends Controller
             'password' => $validatedData['password']
         ]);
 
-        $document = $user->document()->create($values);
-        $document->status()->create($values);
+        $document = $user->document()->create($validatedData);
+        $document->status()->create($validatedData);
 
         return redirect(route('auth.login'))->with('success', 'Registrasi Berhasil, silakan login menggunakan nomor identitasmu');
     }

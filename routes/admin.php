@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ManageJourneyController;
 use App\Http\Controllers\Admin\ManageOfficeController;
 use App\Http\Controllers\Admin\ManagePositionController;
 use App\Http\Controllers\Admin\ManageRequirementController;
+use App\Http\Controllers\Admin\ManageTeacherController;
 use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Admin\UpdatePasswordAdminController;
@@ -37,7 +38,6 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // manage pengumuman content
     Route::get('/announcement/edit/{announcement}', [ManageAnnouncementController::class, 'edit'])->name('admin.editAnnouncement');
     Route::put('/announcement/update/{announcement}', [ManageAnnouncementController::class, 'update'])->name('admin.updateAnnouncement');
-    Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('admin.downloadFile');
 
     // manage admin
     Route::get('/manage-admin', [ManageAdminController::class, 'index'])->name('admin.manageAdmin');
@@ -56,6 +56,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('admin.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('admin.updatePeserta');
     Route::delete('/manage-user/delete/{id}', [ManageUserController::class, 'destroy'])->name('admin.deleteUser');
+    Route::get('/download-documents-file/{documents}', [ManageUserController::class, 'downloadFile'])->name('admin.downloadDocuments');
 
     // manage content
     Route::get('/manage-content', [ManageContentController::class, 'index'])->name('admin.manageContent');
@@ -131,4 +132,9 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::patch('update-password', [UpdatePasswordAdminController::class, 'update'])->name('admin.updatePassword');
     Route::get('/force-reset-password/{admin}', [ForcesResetPasswordController::class, 'edit'])->name('admin.forceResetPassword');
     Route::patch('/force-update-password/{admin}', [ForcesResetPasswordController::class, 'update'])->name('admin.forceUpdatePassword');
+
+    //list kontak dosen atau guru
+    Route::get('/manage-teacher', [ManageTeacherController::class, 'index'])->name('admin.manageTeacher');
+    Route::get('/table-manage-teacher', [ManageTeacherController::class, 'tableTeacher'])->name('admin.tableTeacher');
+
 });

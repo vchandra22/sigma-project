@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 class ManageAnnouncementController extends Controller
 {
@@ -60,26 +61,32 @@ class ManageAnnouncementController extends Controller
     public function update(Request $request, Announcement $announcement)
     {
         $validatedData = $request->validate([
-            'pengumuman' => ['required'],
-            'file' => ['mimes:pdf|max:2048']
+            'pengumuman' => 'required',
+            'file' => 'nullable|mimes:pdf|max:2048'
         ]);
 
-        // Store the image
         if ($request->hasFile('file')) {
-            // Get the uploaded file
             $file = $request->file('file');
+            $directoryPath = 'private/announcement';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $file->getClientOriginalName();
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
 
-            // Store the image in the storage directory
-            $path = $file->storeAs('docs/announcement', $filename);
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/announcement/' . $filename, File::get($file));
+            $validatedData['file'] = $filename;
+        } else {
 
-            // Update the 'file' field in the database with the image path
-            $validatedData['file'] = $path;
+            $oldFilePath = 'private/announcement/' . $announcement->file;
+            if (Storage::disk('local')->exists($oldFilePath)) {
+                Storage::disk('local')->delete($oldFilePath);
+            }
+            $validatedData['file'] = null;
         }
 
-        $announcement = Announcement::where('uuid', $announcement->uuid)->update($validatedData);
+        $announcement->update($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
         activity()->causedBy($announcement)->log($getUser . ' melakukan update Pengumuman');
