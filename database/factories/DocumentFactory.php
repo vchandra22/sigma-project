@@ -45,7 +45,7 @@ class DocumentFactory extends Factory
             'u_tgl_selesai' => $this->faker->dateTimeBetween('+2 month', '+6 month'),
             'e_tgl_mulai' => NULL,
             'e_tgl_selesai' => NULL,
-            'doc_pengantar' => NULL,
+            'doc_pengantar' => 'p8xsX2hEKGMyILuumu1E.pdf',
             'doc_kesbang' => NULL,
             'doc_proposal' => NULL,
             'doc_laporan' => NULL,

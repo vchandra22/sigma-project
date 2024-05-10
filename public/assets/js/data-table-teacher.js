@@ -45,9 +45,7 @@ $(document).ready(function () {
                 data: 'status.status',
                 name: 'status.status',
                 render: function(data, type, row, meta) {
-                    if (data === 'menunggu') {
-                        return '<div class="text-yellow-300 uppercase mx-auto text-start py-2 pointer-events-none rounded-sm">' + data + '</div>';
-                    } else if (data === 'diterima') {
+                    if (data === 'diterima') {
                         return '<div class="text-green-500 uppercase mx-auto text-start py-2 pointer-events-none rounded-sm">' + data + '</div>';
                     } else if (data === 'ditolak') {
                         return '<div class="text-red-500 uppercase mx-auto text-start py-2 pointer-events-none rounded-sm">' + data + '</div>';

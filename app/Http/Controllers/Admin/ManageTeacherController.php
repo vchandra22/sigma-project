@@ -18,14 +18,6 @@ class ManageTeacherController extends Controller
         $data['pageTitle'] = 'Kontak Dosen / Guru';
 
         $admin = Auth::guard('admin')->user();
-        $data['teacherData'] = Document::with('status')
-            ->where('office_id', $admin->office_id)
-            ->whereHas('status', function ($query) {
-                $query->where('status', 'diterima');
-            })
-            ->latest()
-            ->distinct()
-            ->paginate(20);
 
         return view('admin.teacher.teacher_list', $data);
     }
@@ -36,10 +28,9 @@ class ManageTeacherController extends Controller
         $query = Document::with('status', 'user')
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($query) {
-                $query->whereNot('status', '!=', 'diterima');
+                $query->whereNot('status', 'menunggu');
             })
             ->latest()
-            ->distinct()
             ->get();
 
         return DataTables::of($query)

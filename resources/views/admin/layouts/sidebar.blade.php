@@ -125,6 +125,16 @@
                     class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
                     <div
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
+                        <i class="fa-solid fa-scroll fa-lg"></i>
+                    </div>
+                    <span class="ms-4">Sertifikat Peserta</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.manageContent') }}"
+                    class="flex items-center p-2 text-primary-800 rounded-lg dark:text-secondary hover:text-primary-500 dark:hover:text-white group">
+                    <div
+                        class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-puzzle-piece fa-lg"></i>
                     </div>
                     <span class="ms-4">Manage Content</span>

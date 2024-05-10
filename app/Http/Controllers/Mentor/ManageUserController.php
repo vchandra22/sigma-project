@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Traits\FileHandlerTrait;
 use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Support\Facades\Auth;
 
 class ManageUserController extends Controller
 {
@@ -32,7 +33,8 @@ class ManageUserController extends Controller
 
     public function tableUser()
     {
-        $query = Document::with(['user', 'office', 'position', 'status'])->latest();
+        $admin = Auth::guard('admin')->user();
+        $query = Document::with(['user', 'office', 'position', 'status'])->where('office_id', $admin->office_id)->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()

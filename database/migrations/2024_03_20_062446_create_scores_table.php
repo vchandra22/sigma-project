@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certificates', function (Blueprint $table) {
+        Schema::create('scores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->index();
-            $table->unsignedBigInteger('status_id')->index()->nullable();
-            $table->string('no_sertifikat')->nullable();
-            $table->string('doc_sertifikat')->nullable();
-            $table->string('qr_code')->nullable();
+            $table->unsignedBigInteger('certificate_id')->index()->nullable();
+            $table->string('judul_kompetensi')->nullable();
+            $table->float('nilai_uji')->nullable();
             $table->timestamps();
-            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
+            $table->foreign('certificate_id')->references('id')->on('certificates')->onDelete('cascade');
+
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificates');
+        Schema::dropIfExists('scores');
     }
 };

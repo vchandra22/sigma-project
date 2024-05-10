@@ -8,6 +8,7 @@ use App\Http\Controllers\Mentor\ManageAssignmentController;
 use App\Http\Controllers\Mentor\ManageUserController;
 use App\Http\Controllers\Mentor\SettingMentorController;
 use App\Http\Controllers\Admin\SettingAdminController;
+use App\Http\Controllers\Mentor\ManageCertificateController;
 use App\Http\Controllers\Mentor\ManageLogbookController;
 use App\Http\Controllers\Mentor\UpdatePasswordMentorController;
 
@@ -53,4 +54,9 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     // ganti password admin
     Route::get('/update-password', [UpdatePasswordMentorController::class, 'edit'])->name('mentor.editPassword');
     Route::patch('update-password', [UpdatePasswordMentorController::class, 'update'])->name('mentor.updatePassword');
+
+    // manage sertifikat & penilaian
+    Route::get('manage-score', [ManageCertificateController::class, 'index'])->name('mentor.managePenilaian');
+    Route::get('create-score', [ManageCertificateController::class, 'create'])->name('mentor.createPenilaian');
+    Route::post('store-score', [ManageCertificateController::class, 'store'])->name('mentor.storePenilaian');
 });

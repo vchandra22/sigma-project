@@ -167,6 +167,9 @@ class ManageUserController extends Controller
         $document = $user->document()->create($validatedData);
         $document->status()->create($validatedData);
 
+        $status = $document->status;
+        $status->certificate()->create($validatedData);
+
         return redirect(route('admin.manageUser'))->with('success', 'Registrasi Berhasil!');
     }
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Status extends Model
 {
@@ -31,6 +31,16 @@ class Status extends Model
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class, 'document_id', 'id');
+    }
+
+    /**
+     * Get the certificate associated with the Office
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function certificate(): HasOne
+    {
+        return $this->hasOne(Certificate::class);
     }
 
     /**
