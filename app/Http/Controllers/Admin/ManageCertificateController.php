@@ -84,4 +84,8 @@ class ManageCertificateController extends Controller
     {
         //
     }
+
+    public function template() {
+        return view('admin.certificate.template_certificate');
+    }
 }

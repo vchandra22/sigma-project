@@ -26,7 +26,7 @@
                             </p>
                             @if ($announcement->file !== null)
                                 <br>
-                                <a href="{{ route('admin.downloadFile', ['announcement' => $announcement->file]) }}"
+                                <a href="{{ route('downloadFileAnnouncement', ['announcement' => $announcement->file]) }}"
                                     class="mt-4 text-blue-500 text-md hover:underline" style="margin-top: 20px">Unduh File Pengumuman
                                 </a>
                             @else

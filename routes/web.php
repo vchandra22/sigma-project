@@ -18,4 +18,4 @@ use App\Http\Controllers\Admin\ManageAnnouncementController;
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('admin.downloadFile');
+Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('downloadFileAnnouncement');
