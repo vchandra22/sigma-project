@@ -7,6 +7,7 @@ use App\Models\Certificate;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use PDF;
 
 class ManageCertificateController extends Controller
 {
@@ -53,9 +54,9 @@ class ManageCertificateController extends Controller
         $data['scoreDetail'] = Certificate::join('scores', 'certificates.id', 'scores.certificate_id')->where('scores.certificate_id', $decryptId)->get();
         $data['getCertificateId'] = Certificate::where('id', $decryptId)->first();
         $data['getUserData'] = Document::with('user', 'status')
-        ->whereHas('status.certificate', function ($query) use ($decryptId) {
-            $query->where('id', $decryptId);
-        })
+            ->whereHas('status.certificate', function ($query) use ($decryptId) {
+                $query->where('id', $decryptId);
+            })
             ->first();
 
         return view('admin.certificate.certificate_detail', $data);
@@ -85,7 +86,18 @@ class ManageCertificateController extends Controller
         //
     }
 
-    public function template() {
-        return view('admin.certificate.template_certificate');
+    public function generateCertificate($id)
+    {
+        $decryptId =  Crypt::decryptString($id);
+        $data['userData'] = Document::with('user', 'office', 'position', 'status.certificate.score')
+            ->whereHas('status.certificate.score', function ($query) use ($decryptId) {
+                $query->where('certificate_id', $decryptId);
+            })->get();
+        $data['scoreData'] = Certificate::join('scores', 'certificates.id', 'scores.certificate_id')->where('scores.certificate_id', $decryptId)->get();
+
+        $pdf = PDF::loadView('admin.certificate.template_certificate', $data)->setPaper('a4', 'landscape');
+
+        return $pdf->download();
+
     }
 }

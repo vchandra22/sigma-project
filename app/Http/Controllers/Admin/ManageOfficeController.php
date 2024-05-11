@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use File;
 
 class ManageOfficeController extends Controller
 {
@@ -45,19 +46,22 @@ class ManageOfficeController extends Controller
             'ttd_kepala' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        // Store the image
-        if ($request->hasFile('ttd_kepala')) {
-            // Get the uploaded file
-            $ttd_kepala = $request->file('ttd_kepala');
+        if (isset($validatedData['ttd_kepala'])) {
+            // Process 'ttd_kepala' if it exists
+            if ($request->hasFile('ttd_kepala')) {
+                // Handle file upload and storage
+                $file = $request->file('ttd_kepala');
+                $directoryPath = 'img';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $ttd_kepala->getClientOriginalName();
+                // Create directory if not exists
+                if (!file_exists($directoryPath)) {
+                    Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+                }
 
-            // Store the image in the storage directory
-            $path = $ttd_kepala->storeAs('public/docs/office/ttd', $filename);
-
-            // Update the 'gambar' field in the database with the image path
-            $validatedData['ttd_kepala'] = $path;
+                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                Storage::disk('local')->put('/img/' . $filename, File::get($file));
+                $validatedData['ttd_kepala'] = $filename;
+            }
         }
 
         $office = Office::create($validatedData);
@@ -100,19 +104,22 @@ class ManageOfficeController extends Controller
             'ttd_kepala' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        // Store the image
-        if ($request->hasFile('ttd_kepala')) {
-            // Get the uploaded file
-            $ttd_kepala = $request->file('ttd_kepala');
+        if (isset($validatedData['ttd_kepala'])) {
+            // Process 'ttd_kepala' if it exists
+            if ($request->hasFile('ttd_kepala')) {
+                // Handle file upload and storage
+                $file = $request->file('ttd_kepala');
+                $directoryPath = 'img';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $ttd_kepala->getClientOriginalName();
+                // Create directory if not exists
+                if (!file_exists($directoryPath)) {
+                    Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+                }
 
-            // Store the image in the storage directory
-            $path = $ttd_kepala->storeAs('public/docs/office/ttd', $filename);
-
-            // Update the 'gambar' field in the database with the image path
-            $validatedData['ttd_kepala'] = $path;
+                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                Storage::disk('local')->put('/img/' . $filename, File::get($file));
+                $validatedData['ttd_kepala'] = $filename;
+            }
         }
 
         $newSlug = Str::slug($request->input('nama_kantor'));

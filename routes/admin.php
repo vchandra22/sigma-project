@@ -140,6 +140,6 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // sertifikat
     Route::get('/manage-certificates', [ManageCertificateController::class, 'index'])->name('admin.manageCertificate');
     Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('mentor.manageCertificate');
-    Route::get('/certificate', [ManageCertificateController::class, 'template'])->name('admin.Certificate');
+    Route::get('/generate-certificate/{certificate}', [ManageCertificateController::class, 'generateCertificate'])->name('admin.generateCertificate');
 
 });
