@@ -167,8 +167,14 @@ class ManageUserController extends Controller
         $document = $user->document()->create($validatedData);
         $document->status()->create($validatedData);
 
-        $status = $document->status;
-        $status->certificate()->create($validatedData);
+        if ($validatedData['status'] === 'diterima') {
+            // Get the document's current status
+            $status = $document->status;
+
+            // Create a certificate if the status is changing to "diterima"
+            $status->certificate()->create($validatedData);
+        }
+
 
         return redirect(route('admin.manageUser'))->with('success', 'Registrasi Berhasil!');
     }
@@ -243,24 +249,39 @@ class ManageUserController extends Controller
         $statusData = [
             'status' => $validatedData['status'],
             'keterangan' => $validatedData['keterangan'],
-            'doc_balasan' => $validatedData['doc_balasan'],
         ];
 
-        if ($request->hasFile('doc_balasan')) {
-            $file = $request->file('doc_balasan');
-            $directoryPath = 'private/documents';
+        if (isset($validatedData['doc_balasan'])) {
+            // Process 'doc_balasan' if it exists
+            if ($request->hasFile('doc_balasan')) {
+                // Handle file upload and storage
+                $file = $request->file('doc_balasan');
+                $directoryPath = 'private/documents';
 
-            // Create directory if not exists
-            if (!file_exists($directoryPath)) {
-                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+                // Create directory if not exists
+                if (!file_exists($directoryPath)) {
+                    Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+                }
+
+                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
+                $statusData['doc_balasan'] = $filename;
             }
-
-            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
-            $statusData['doc_balasan'] = $filename;
         }
 
         $document->status->update($statusData);
+
+        if ($validatedData['status'] === 'diterima') {
+            // Get the document's current status
+            $status = $document->status;
+
+            // Create a certificate if the status is changing to "diterima"
+            $status->certificate()->create($validatedData);
+        } elseif ($validatedData['status'] === 'ditolak') {
+            $status = $document->status;
+
+            $status->certificate()->delete();
+        }
 
         return redirect(route('admin.manageUser'))->with('success', 'Data berhasil diupdate!');
     }

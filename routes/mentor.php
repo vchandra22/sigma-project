@@ -32,6 +32,8 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('mentor.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('mentor.updatePeserta');
     Route::delete('/manage-user/delete/{id}', [ManageUserController::class, 'destroy'])->name('mentor.deleteUser');
+    Route::get('/download-documents-file/{documents}', [ManageUserController::class, 'downloadFile'])->name('mentor.downloadDocuments');
+
 
     //manage logbook
     Route::get('/manage-logbook', [ManageLogbookController::class, 'index'])->name('mentor.manageLogbook');
@@ -59,4 +61,9 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::get('manage-score', [ManageCertificateController::class, 'index'])->name('mentor.managePenilaian');
     Route::get('create-score', [ManageCertificateController::class, 'create'])->name('mentor.createPenilaian');
     Route::post('store-score', [ManageCertificateController::class, 'store'])->name('mentor.storePenilaian');
+    Route::get('add-new-score/{certificate}', [ManageCertificateController::class, 'add'])->name('mentor.addPenilaian');
+    Route::get('detail-score/{certificate}', [ManageCertificateController::class, 'show'])->name('mentor.detailPenilaian');
+    Route::get('edit-score/{score}', [ManageCertificateController::class, 'edit'])->name('mentor.editPenilaian');
+    Route::put('update-score/{score}', [ManageCertificateController::class, 'update'])->name('mentor.updatePenilaian');
+    Route::delete('/delete-score/{id}', [ManageCertificateController::class, 'destroy'])->name('mentor.deletePenilaian');
 });

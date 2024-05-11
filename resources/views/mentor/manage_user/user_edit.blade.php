@@ -239,6 +239,41 @@
                                 </div>
                                 <div class="space-y-6">
                                     <div>
+                                        <label for="nama_pembimbing"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
+                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                        <input type="text" name="nama_pembimbing" id="nama_pembimbing"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="Hardianto" required
+                                            value="{{ old('nama_pembimbing', $data->nama_pembimbing) }}" />
+
+                                        @error('nama_pembimbing')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="no_hp_pembimbing"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.HP
+                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                        <input type="text" name="no_hp_pembimbing" id="no_hp_pembimbing"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="081255555555" required
+                                            value="{{ old('no_hp_pembimbing', $data->no_hp_pembimbing) }}" />
+
+                                        @error('no_hp_pembimbing')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan teliti,
+                                            pastikan nomor dapat dihubungi!</p>
+                                    </div>
+
+                                    <div>
                                         <label for="u_tgl_mulai"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Rencana
                                             Pelaksanaan </label>
@@ -292,60 +327,6 @@
                                     </div>
 
                                     <div>
-                                        <label for="e_tgl_mulai"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Tanggal
-                                            disetujui <span class="text-red-500">*</span></label>
-                                        <div class="flex items-center">
-                                            <div class="relative w-full">
-                                                <div
-                                                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input datepicker-format="dd/mm/yyyy" name="e_tgl_mulai" id="e_tgl_mulai"
-                                                    datepicker type="text" placeholder="Pilih tanggal" value="{{ date('d/m/Y', strtotime($data->e_tgl_mulai ?? $data->u_tgl_mulai)) }}"
-                                                    class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                                @error('e_tgl_mulai')
-                                                    <div
-                                                        class="mt-1
-                                                    text-red-500 text-xs">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-
-                                            <span
-                                                class="mx-3 text-primary-800 text-sm text-center dark:text-secondary">sampai
-                                            </span>
-
-                                            <div class="relative w-full">
-                                                <div
-                                                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input datepicker-format="dd/mm/yyyy" name="e_tgl_selesai"
-                                                    id="e_tgl_selesai" type="text" placeholder="Pilih tanggal" value="{{ date('d/m/Y', strtotime($data->e_tgl_selesai ?? $data->u_tgl_selesai)) }}"
-                                                    datepicker
-                                                    class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                                @error('e_tgl_selesai')
-                                                    <div class="mt-1 text-red-500 text-xs">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
                                         <label
                                             class="block mb-4 text-sm font-medium text-primary-800 dark:text-secondary">Dokumen
                                             Calon Peserta
@@ -382,118 +363,74 @@
                                                     </td>
                                                     <td class="px-4 py-4">
                                                         <div class="flex justify-center items-center h-full gap-4">
-                                                            {{ $data->doc_pengantar }}
-                                                            <a href="#"
+                                                            <a href="{{ route('mentor.downloadDocuments', $data->doc_pengantar) }}"
                                                                 class="py-2 text-md text-center text-blue-500 hover:underline">
                                                                 Download
                                                             </a>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr
-                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">
-                                                            2
-                                                        </p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">Surat Pengantar
-                                                            (BAKESBANGPOL)
-                                                        </p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <div class="flex justify-center items-center h-full gap-4">
-                                                            <a href="#"
-                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                                Download
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr
-                                                    class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">
-                                                            3
-                                                        </p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <p class="text-primary-800 dark:text-secondary">Dokumen Lain</p>
-                                                    </td>
-                                                    <td class="px-4 py-4">
-                                                        <div class="flex justify-center items-center h-full gap-4">
-                                                            <a href="#"
-                                                                class="py-2 text-md text-center text-blue-500 hover:underline">
-                                                                Download
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @if ($data->doc_kesbang !== null)
+                                                    <tr
+                                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">
+                                                                2
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">Surat Pengantar
+                                                                (BAKESBANGPOL)
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <div class="flex justify-center items-center h-full gap-4">
+                                                                <a href="#"
+                                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                    Download
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <td colspan="3" class="px-4 py-4 text-center">
+                                                            Pendaftar tidak
+                                                            mengunggah dokumen (BAKESBANGPOL)</td>
+                                                    </tr>
+                                                @endif
+                                                @if ($data->doc_proposan !== null)
+                                                    <tr
+                                                        class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">
+                                                                3
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <p class="text-primary-800 dark:text-secondary">Dokumen Lain
+                                                            </p>
+                                                        </td>
+                                                        <td class="px-4 py-4">
+                                                            <div class="flex justify-center items-center h-full gap-4">
+                                                                <a href="#"
+                                                                    class="py-2 text-md text-center text-blue-500 hover:underline">
+                                                                    Download
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <td colspan="3" class="px-4 py-4 text-center">Pendaftar tidak
+                                                            mengunggah dokumen</td>
+                                                    </tr>
+                                                @endif
+
                                             </tbody>
                                         </table>
                                     </div>
 
-                                    <div>
-                                        <label for="status"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Status
-                                            <span class="text-red-500">*</span>
-                                        </label>
-                                        <select type="text" name="status" id="status"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                            <option value="menunggu"
-                                                {{ $data->status->status === 'menunggu' ? 'selected' : '' }}>
-                                                Menunggu
-                                            </option>
-                                            <option value="diterima"
-                                                {{ $data->status->status === 'diterima' ? 'selected' : '' }}>
-                                                Diterima
-                                            </option>
-
-                                            <option value="ditolak"
-                                                {{ $data->status->status === 'ditolak' ? 'selected' : '' }}>
-                                                Ditolak
-                                            </option>
-                                            <option value="selesai"
-                                                {{ $data->status->status === 'selesai' ? 'selected' : '' }}>
-                                                Selesai
-                                            </option>
-                                        </select>
-                                        @error('status')
-                                            <div class="mt-1 text-red-500 text-xs">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div>
-                                        <label for="keterangan"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
-                                            <span class="text-red-500">*</span></label>
-                                        <textarea name="keterangan" id="keterangan" rows="8"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">{{ old('keterangan', $data->status->keterangan) }}</textarea>
-                                        @error('keterangan')
-                                            <div class="mt-1 text-red-500 text-xs">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div>
-                                        <label for="doc_balasan"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                            Surat Balasan</label>
-                                        <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="doc_balasan" type="file" name="doc_balasan" value="">
-                                        @error('doc_balasan')
-                                            <div class="mt-1 text-red-500 text-xs">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                        <ul
-                                            class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                            <li>Unggah file dengan format .pdf (Max. 2MB)</li>
-                                        </ul>
-                                    </div>
                                     <div class="flex flex-col items-end pt-4 lg:pt-[5.5rem]">
                                         <button type="submit"
                                             class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Update

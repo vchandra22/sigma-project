@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Models\Document;
 use App\Models\Score;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -21,13 +23,14 @@ class ManageCertificateController extends Controller
         $data['pageTitle'] = 'Penilaian';
 
         $admin = Auth::guard('admin')->user();
-        $data['dataCertificate'] = Document::with('user', 'status', 'position')
+        $data['dataCertificate'] = Document::with('user', 'status.certificate.score', 'position')
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($query) {
                 $query->whereNot('status', 'menunggu');
             })
+            ->whereHas('status.certificate')
             ->latest()
-            ->get();
+            ->paginate(20);
 
         return view('mentor.penilaian.penilaian_list', $data);
     }
@@ -39,9 +42,11 @@ class ManageCertificateController extends Controller
     {
         $data['pageTitle'] = 'Buat Penilaian';
         $user = Auth::user();
-        $data['userData'] = Document::with('user', 'status.certificate')
+        $data['userData'] = Document::with('user', 'status.certificate.score')
             ->where('office_id', $user->office_id)
-            ->whereHas('status.certificate') // Ensure that the document has a related status with a certificate
+            ->whereHas('status.certificate', function ($query) {
+                $query->whereDoesntHave('score');
+            })
             ->get();
 
         return view('mentor.penilaian.penilaian_create', $data);
@@ -68,15 +73,18 @@ class ManageCertificateController extends Controller
         $now = now(); // Get the current time
 
         foreach ($judul as $key => $judul) {
-            $uuid = Str::uuid();
-            $newScores[] = [
-                'uuid' => $uuid,
-                'certificate_id' => $certificateId,
-                'judul_kompetensi' => $judul,
-                'nilai_uji' => $nilai[$key],
-                'created_at' => $now, // Set created_at timestamp
-                'updated_at' => $now, // Set created_at timestamp
-            ];
+            // Ensure the array key exists in the other array
+            if (isset($nilai[$key])) {
+                $uuid = Str::uuid();
+                $newScores[] = [
+                    'uuid' => $uuid,
+                    'certificate_id' => $certificateId,
+                    'judul_kompetensi' => $judul, // Use the value from the $judul array
+                    'nilai_uji' => $nilai[$key], // Use the value from the $nilai array
+                    'created_at' => $now, // Set created_at timestamp
+                    'updated_at' => $now, // Set updated_at timestamp
+                ];
+            }
         }
 
         // Insert the new records into the database
@@ -85,35 +93,74 @@ class ManageCertificateController extends Controller
         return redirect(route('mentor.managePenilaian'))->with('success', 'Registrasi Berhasil!');
     }
 
+    public function add(Request $request)
+    {
+        $certificateId = Crypt::decryptString($request->route('certificate'));
+        $data['pageTitle'] = 'Tambah Penilaian';
+        $user = Auth::user();
+        $data['userData'] = Document::with('user', 'status.certificate.score')
+        ->where('office_id', $user->office_id)
+            ->whereHas('status.certificate', function ($query) use ($certificateId) {
+                $query->where('id', $certificateId);
+            })
+            ->get();
+
+        return view('mentor.penilaian.penilaian_add', $data);
+    }
+
     /**
      * Display the specified resource.
      */
-    public function show(Certificate $certificate)
+    public function show($id)
     {
-        //
+        $decryptId =  Crypt::decryptString($id);
+        $data['pageTitle'] = 'Detail Penilaian';
+        $data['scoreDetail'] = Certificate::join('scores', 'certificates.id', 'scores.certificate_id')->where('scores.certificate_id', $decryptId)->get();
+        $data['getCertificateId'] = Certificate::where('id', $decryptId)->first();
+        $data['getUserData'] = Document::with('user', 'status')
+            ->whereHas('status.certificate', function ($query) use ($decryptId) {
+                $query->where('id', $decryptId);
+            })
+            ->first();
+
+        return view('mentor.penilaian.penilaian_detail', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Certificate $certificate)
+    public function edit($uuid)
     {
-        //
+        // $decryptId =  Crypt::decryptString($id);
+        $data['pageTitle'] = 'Detail Penilaian';
+        $data['scoreDetail'] = Score::where('uuid', $uuid)->get();
+
+        return view('mentor.penilaian.penilaian_edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Certificate $certificate)
+    public function update(Request $request, Score $score)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_kompetensi' => ['required'],
+            'nilai_uji' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+        ]);
+
+        $score->update($validatedData);
+
+        return back()->with('success', 'Data berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Certificate $certificate)
+    public function destroy($id)
     {
-        //
+        $score = Score::find($id);
+        $score->delete();
+
+        return back()->with('success', 'Data berhasil dihapus!');
     }
 }

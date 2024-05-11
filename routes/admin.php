@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ForcesResetPasswordController;
 use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
 use App\Http\Controllers\Admin\ManageBenefitController;
+use App\Http\Controllers\Admin\ManageCertificateController;
 use App\Http\Controllers\Admin\ManageContentController;
 use App\Http\Controllers\Admin\ManageFaqController;
 use App\Http\Controllers\Admin\ManageHomepageController;
@@ -121,7 +122,6 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('/manage-requirement-content/update/{requirement}', [ManageRequirementController::class, 'update'])->name('admin.updateRequirement');
     Route::delete('/manage-requirement-content/delete/{id}', [ManageRequirementController::class, 'destroy'])->name('admin.deleteRequirement');
 
-
     // settings admin
     Route::get('/settings', [SettingAdminController::class, 'index'])->name('admin.settings');
     Route::get('/settings/edit/{id}', [SettingAdminController::class, 'edit'])->name('admin.editProfile');
@@ -136,5 +136,9 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     //list kontak dosen atau guru
     Route::get('/manage-teacher', [ManageTeacherController::class, 'index'])->name('admin.manageTeacher');
     Route::get('/table-manage-teacher', [ManageTeacherController::class, 'tableTeacher'])->name('admin.tableTeacher');
+
+    // sertifikat
+    Route::get('/manage-certificates', [ManageCertificateController::class, 'index'])->name('admin.manageCertificate');
+    Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('mentor.manageCertificate');
 
 });

@@ -42,7 +42,7 @@
                             @csrf
                             <div class="py-8">
                                 <label for="certificate_id"
-                                    class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Pilih
+                                    class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
                                     Peserta <span class="text-red-500">*</span></label>
                                 <select type="text" name="certificate_id" id="certificate_id"
                                     class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
@@ -60,6 +60,7 @@
                                 @enderror
                             </div>
 
+
                             <div class="grid grid-cols-4 gap-2" id="inputFieldsContainer">
                                 <div class="col-span-3 py-3" id="kompetensi">
                                     <label for="judul_kompetensi"
@@ -67,9 +68,8 @@
                                         Judul Kompetensi
                                         <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text" name="judul_kompetensi[]" id="judul_kompetensi"
-                                        placeholder="Memiliki Ketekunan Bekerja" value="{{ old('judul_kompetensi') }}"
-                                        required autofocus
+                                    <input type="text" name="judul_kompetensi[]" id="judul_kompetensi" placeholder="Memiliki Ketekunan Bekerja"
+                                        value="{{ old('judul_kompetensi') }}" required autofocus
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                     @error('judul_kompetensi')
                                         <div class="mt-1 text-red-500 text-xs">
@@ -83,8 +83,8 @@
                                         Nilai
                                         <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text" name="nilai_uji[]" id="nilai_uji" placeholder="80.78"
-                                        value="{{ old('nilai_uji') }}" required autofocus
+                                    <input type="text" name="nilai_uji[]" id="nilai_uji" placeholder="80.50"
+                                        value="{{ old('nilai_uji') }}" required
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                     @error('nilai_uji')
                                         <div class="mt-1 text-red-500 text-xs">
@@ -94,14 +94,13 @@
                                 </div>
                             </div>
 
-
                             <button type="button" id="addInputFields" class="text-blue-500 hover:underline text-md py-6">
                                 Tambah Kompetensi
                             </button>
 
                             <div class="flex flex-col items-end pt-4 lg:pt-[5.5rem]">
                                 <button type="submit"
-                                    class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Simpan
+                                    class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Update
                                 </button>
                             </div>
                         </form>

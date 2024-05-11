@@ -1,7 +1,7 @@
-@extends('mentor.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    @include('mentor.layouts.sidebar')
+    @include('admin.layouts.sidebar')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-1 md:p-4 mt-14">
             @if (session('success'))
@@ -38,16 +38,10 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div>
-                                <a href="{{ route('mentor.createPenilaian') }}"
-                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Buat
-                                    Penilaian Baru
-                                </a>
-                            </div>
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">
-                            <input type="hidden" id="searchTableTeacher" value="{{ route('admin.tableTeacher') }}">
+                            <input type="hidden" id="searchTableTeacher" value="#">
                             <table id="tableManageTeacher"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
@@ -117,26 +111,16 @@
 
                                             </td>
                                             <td class="px-4 py-4 flex justify-center">
-                                                @if ($data->status->certificate->score)
-                                                    <a href="{{ route('mentor.detailPenilaian', Crypt::encryptString($data->status->certificate->id)) }}"
-                                                        class="py-2 text-center text-md text-blue-500 hover:underline">
-                                                        Detail
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('mentor.createPenilaian') }}"
-                                                        class="py-2 text-center text-md text-red-500 hover:underline">Buat
-                                                        Penilaian
-                                                    </a>
-                                                @endif
-
+                                                <a href="{{ route('mentor.manageCertificate', Crypt::encryptString($data->status->certificate->id)) }}"
+                                                    class="py-2 text-center text-md text-blue-500 hover:underline">
+                                                    Detail
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="mt-8">
-                                {{ $dataCertificate->links() }}
-                            </div>
+
                         </div>
                     </div>
                 </div>

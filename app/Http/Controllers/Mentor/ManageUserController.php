@@ -13,14 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Traits\FileHandlerTrait;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Support\Facades\Auth;
 
 class ManageUserController extends Controller
 {
-    use FileHandlerTrait;
-
     /**
      * Display a listing of the resource.
      */
@@ -189,7 +185,7 @@ class ManageUserController extends Controller
             'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
             'username' => ['required', 'unique:users,username,' . $document->user->id],
             'jenis_kelamin' => ['required'],
-            'no_hp' => ['required', 'numeric', 'digits_between:11,14', 'unique:users,no_hp,' . $document->user->id],
+            'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp,' . $document->user->id],
             'email' => ['required', 'email', 'unique:users,email,' . $document->user->id],
 
             // Document data
@@ -198,40 +194,21 @@ class ManageUserController extends Controller
             'instansi_asal' => ['required'],
             'office_id' => ['required'],
             'position_id' => ['required'],
+            'nama_pembimbing' => ['required'],
+            'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
             'u_tgl_mulai' => ['required', 'date_format:d/m/Y'],
             'u_tgl_selesai' => ['required', 'date_format:d/m/Y'],
-            'e_tgl_mulai' => ['required', 'date_format:d/m/Y'],
-            'e_tgl_selesai' => ['required', 'date_format:d/m/Y'],
-
-            // Status data
-            'status' => ['required', 'in:menunggu,diterima,ditolak,selesai'],
-            'keterangan' => ['required'],
-            'doc_balasan' => 'nullable|mimes:pdf|max:2048',
         ]);
 
         // Convert date formats
         $validatedData['u_tgl_mulai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_mulai'])->format('Y-m-d');
         $validatedData['u_tgl_selesai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_selesai'])->format('Y-m-d');
-        $validatedData['e_tgl_mulai'] = Carbon::createFromFormat('d/m/Y', $validatedData['e_tgl_mulai'])->format('Y-m-d');
-        $validatedData['e_tgl_selesai'] = Carbon::createFromFormat('d/m/Y', $validatedData['e_tgl_selesai'])->format('Y-m-d');
 
         // Update document
         $document->update($validatedData);
 
         // Update user
         $document->user->update($validatedData);
-
-        // Update status
-        $statusData = [
-            'status' => $validatedData['status'],
-            'keterangan' => $validatedData['keterangan'],
-        ];
-
-        // if ($request->hasFile('doc_balasan')) {
-        //     $statusData['doc_balasan'] = $this->uploadFile('doc_balasan', $validatedData['doc_balasan']);
-        // }
-
-        $document->status->update($statusData);
 
         return redirect(route('mentor.manageUser'))->with('success', 'Data berhasil diupdate!');
     }
@@ -258,5 +235,14 @@ class ManageUserController extends Controller
         $user->delete();
 
         return redirect(route('mentor.manageUser'))->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function downloadFile($documents)
+    {
+
+        $filePath = storage_path('app/private/documents/' . $documents);
+
+        // Return the file as a download response
+        return response()->download($filePath);
     }
 }

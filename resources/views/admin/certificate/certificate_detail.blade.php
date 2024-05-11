@@ -1,7 +1,7 @@
-@extends('mentor.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    @include('mentor.layouts.sidebar')
+    @include('admin.layouts.sidebar')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
         <div class="p-1 md:p-4 mt-14">
             @if (session('success'))
@@ -38,16 +38,19 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div>
-                                <a href="{{ route('mentor.createPenilaian') }}"
-                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Buat
-                                    Penilaian Baru
-                                </a>
-                            </div>
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">
-                            <input type="hidden" id="searchTableTeacher" value="{{ route('admin.tableTeacher') }}">
+                            <div>
+                                <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-primary-800 dark:text-secondary">
+                                    {{ $getUserData->user->nama_lengkap }}
+                                </h2>
+                                <h2
+                                    class="text-md md:text-lg lg:text-xl font-regular text-primary-800 dark:text-secondary mb-4">
+                                    {{ $getUserData->instansi_asal }}
+                                </h2>
+                            </div>
+                            {{-- <input type="hidden" id="searchTableTeacher" value="{{ route('admin.tableTeacher') }}"> --}}
                             <table id="tableManageTeacher"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
@@ -56,86 +59,52 @@
                                             No.
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Nama Peserta
+                                            Judul Kompetensi
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-start py-6 text-primary-800 dark:text-secondary">
-                                            No. HP Peserta
-                                        </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Instansi
-                                        </th>
-                                        <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
-                                            Status
-                                        </th>
-                                        <th scope="col"
-                                            class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
-                                            Action
+                                            Nilai
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($dataCertificate as $data)
+                                    @foreach ($scoreDetail as $data)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
                                                 <p class="text-primary-800 dark:text-secondary">
-                                                    {{ ($dataCertificate->currentPage() - 1) * $dataCertificate->perPage() + $loop->iteration }}
+                                                    {{ $loop->iteration }}
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <p class="text-primary-800 dark:text-secondary">
-                                                    {{ $data->user->nama_lengkap }}
+                                                    {{ $data->judul_kompetensi }}
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
                                                 <p class="text-primary-800 text-start dark:text-secondary">
-                                                    {{ $data->user->no_hp }}
+                                                    {{ $data->nilai_uji }}
                                                 </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 text-start dark:text-secondary">
-                                                    {{ $data->instansi_asal }}
-                                                </p>
-                                                <p class="text-primary-800 text-start dark:text-secondary">
-                                                    {{ $data->position->role }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                @if ($data->status->certificate->score)
-                                                    <!-- certificate_id exists -->
-                                                    <p
-                                                        class="bg-green-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">
-                                                        sudah dinilai</p>
-                                                @else
-                                                    <!-- certificate_id does not exist -->
-                                                    <p
-                                                        class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">
-                                                        belum dinilai</p>
-                                                @endif
-
-                                            </td>
-                                            <td class="px-4 py-4 flex justify-center">
-                                                @if ($data->status->certificate->score)
-                                                    <a href="{{ route('mentor.detailPenilaian', Crypt::encryptString($data->status->certificate->id)) }}"
-                                                        class="py-2 text-center text-md text-blue-500 hover:underline">
-                                                        Detail
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('mentor.createPenilaian') }}"
-                                                        class="py-2 text-center text-md text-red-500 hover:underline">Buat
-                                                        Penilaian
-                                                    </a>
-                                                @endif
-
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="mt-8">
-                                {{ $dataCertificate->links() }}
+                            <div>
+                            </div>
+                            <div class="lg:max-w-1/2 py-4">
+                                <p class="text-md text-start text-primary-800 dark:text-white font-semibold">Range Nilai:
+                                </p>
+                                <ul>
+                                    <li class="text-md text-start text-primary-800 dark:text-white">Nilai Kurang: 0-65.0
+                                    </li>
+                                    <li class="text-md text-start text-primary-800 dark:text-white">Nilai Cukup: 65.01-75.0
+                                    </li>
+                                    <li class="text-md text-start text-primary-800 dark:text-white">Nilai Baik: 75.01-80.0
+                                    </li>
+                                    <li class="text-md text-start text-primary-800 dark:text-white">Nilai Baik Sekali:
+                                        80.01-100.0</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -143,9 +112,4 @@
             </div>
         </div>
     </div>
-    {{-- @push('data-table')
-        @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-teacher.js') }}"></script>
-        @endonce
-    @endpush --}}
 @endsection
