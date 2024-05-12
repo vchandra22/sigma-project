@@ -39,10 +39,20 @@
                                 {{ $pageTitle }}
                             </h2>
                             @if ($getCertificateId->doc_sertifikat)
-                                <div
-                                    class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-green-800 rounded-none hover:bg-green-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">
-                                    Sudah Generate Sertifikat
-                                </div>
+                                <form id="delete-certificate-{{ $getCertificateId->id }}"
+                                    action="{{ route('admin.deleteCertificate', ['certificate' => $getCertificateId->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <div class="px-0 text-sm text-red-500">
+                                        <button data-id="{{ $getCertificateId->id }}" type="submit" value="Delete">
+                                            <div
+                                                class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-red-500 rounded-none hover:bg-red-600 focus:ring-2 focus:ring-red-500 sm:w-auto dark:bg-red-500 dark:text-secondary dark:hover:bg-red-600 dark:focus:ring-red-500">
+                                                Batal Generate Sertifikat
+                                            </div>
+                                        </button>
+                                    </div>
+                                </form>
                             @else
                                 <div>
                                     <a href="{{ route('admin.generateCertificate', Crypt::encryptString($getCertificateId->id)) }}"

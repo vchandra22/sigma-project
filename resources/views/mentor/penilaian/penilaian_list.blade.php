@@ -67,8 +67,13 @@
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
-                                            Status
+                                            No. Sertifikat
                                         </th>
+                                        <th scope="col"
+                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                            Nilai
+                                        </th>
+                                        
                                         <th scope="col"
                                             class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
@@ -103,6 +108,20 @@
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
+                                                @if ($data->status->certificate->doc_sertifikat)
+                                                    <!-- certificate_id exists -->
+                                                    <p
+                                                        class="capitalize mx-auto font-bold text-center py-2 pointer-events-none text-primary-800">
+                                                        {{ $data->status->certificate->no_sertifikat }}
+                                                    </p>
+                                                @else
+                                                    <p
+                                                        class="capitalize mx-auto text-center py-2 pointer-events-none text-red-500">
+                                                        Sertifikat belum tersedia
+                                                    </p>
+                                                @endif
+                                            </td>
+                                            <td class="px-4 py-4">
                                                 @if ($data->status->certificate->score)
                                                     <!-- certificate_id exists -->
                                                     <p
@@ -114,8 +133,8 @@
                                                         class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">
                                                         belum dinilai</p>
                                                 @endif
-
                                             </td>
+                                            
                                             <td class="px-4 py-4 flex justify-center">
                                                 @if ($data->status->certificate->score)
                                                     <a href="{{ route('mentor.detailPenilaian', Crypt::encryptString($data->status->certificate->id)) }}"

@@ -147,6 +147,9 @@ class ManagePublicationController extends Controller
     public function destroy($id)
     {
         $publication = Publication::find($id);
+        if ($publication->gambar) {
+            Storage::disk('public')->delete('/img/' . $publication->gambar);
+        }
         $publication->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;

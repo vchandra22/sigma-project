@@ -104,22 +104,23 @@ class ManageOfficeController extends Controller
             'ttd_kepala' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        if (isset($validatedData['ttd_kepala'])) {
-            // Process 'ttd_kepala' if it exists
-            if ($request->hasFile('ttd_kepala')) {
-                // Handle file upload and storage
-                $file = $request->file('ttd_kepala');
-                $directoryPath = 'img';
+        if ($request->hasFile('ttd_kepala')) {
+            $file = $request->file('ttd_kepala');
+            $directoryPath = 'img';
 
-                // Create directory if not exists
-                if (!file_exists($directoryPath)) {
-                    Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
-                }
-
-                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-                Storage::disk('public')->put('/img/' . $filename, File::get($file));
-                $validatedData['ttd_kepala'] = $filename;
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
             }
+
+            // Delete the old file if it exists
+            if ($office->ttd_kepala) {
+                Storage::disk('public')->delete('/img/' . $validatedData['ttd_kepala']);
+            }
+
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedData['ttd_kepala'] = $filename;
         }
 
         $newSlug = Str::slug($request->input('nama_kantor'));
@@ -150,6 +151,9 @@ class ManageOfficeController extends Controller
     public function destroy($id)
     {
         $office = Office::find($id);
+        if ($office->ttd_kepala) {
+            Storage::disk('public')->delete('/img/' . $office->ttd_kepala);
+        }
         $office->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;

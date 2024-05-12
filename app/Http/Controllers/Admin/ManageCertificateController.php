@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Models\Document;
+use App\Models\Status;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -88,7 +89,16 @@ class ManageCertificateController extends Controller
      */
     public function destroy(Certificate $certificate)
     {
-        //
+        $certificate = Certificate::find($certificate->id);
+
+        if ($certificate->doc_sertifikat) {
+            Storage::disk('local')->delete('private/certificates/' . $certificate->doc_sertifikat);
+        }
+        $certificate->delete();
+
+        Status::where('id', $certificate->status_id)->update(['status' => 'ditolak']);
+
+        return redirect(route('admin.manageCertificate'))->with('success', 'Data berhasil dihapus!');
     }
 
     public function generateCertificate($id)

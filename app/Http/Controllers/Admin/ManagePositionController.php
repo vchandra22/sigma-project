@@ -114,11 +114,13 @@ class ManagePositionController extends Controller
                 Storage::disk('public')->makeDirectory($directoryPath, 0777, true, true);
             }
 
+            if ($position->gambar) {
+                Storage::disk('public')->delete('img/' . $position->gambar);
+            }
+
             $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
             Storage::disk('public')->put('/img/' . $filename, File::get($file));
             $validatedData['gambar'] = $filename;
-        } else {
-            // Code block intentionally left empty
         }
 
         $newSlug = Str::slug($request->input('role'));
@@ -150,6 +152,10 @@ class ManagePositionController extends Controller
     public function destroy($id)
     {
         $position = Position::find($id);
+
+        if ($position->gambar) {
+            Storage::disk('public')->delete('/img/' . $position->gambar);
+        }
         $position->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;

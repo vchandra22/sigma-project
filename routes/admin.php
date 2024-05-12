@@ -141,5 +141,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/manage-certificates', [ManageCertificateController::class, 'index'])->name('admin.manageCertificate');
     Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('mentor.manageCertificate');
     Route::get('/generate-certificate/{certificate}', [ManageCertificateController::class, 'generateCertificate'])->name('admin.generateCertificate');
+    Route::delete('/delete-certificate/{certificate}', [ManageCertificateController::class, 'destroy'])->name('admin.deleteCertificate');
+
 
 });
