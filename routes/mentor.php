@@ -27,13 +27,9 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     //manage user
     Route::get('/manage-user', [ManageUserController::class, 'index'])->name('mentor.manageUser');
     Route::get('/table-manage-user', [ManageUserController::class, 'tableUser'])->name('mentor.tableUser');
-    Route::get('/manage-user/add-new-user', [ManageUserController::class, 'create'])->name('mentor.createUser');
-    Route::post('/manage-user/add-new-user', [ManageUserController::class, 'store'])->name('mentor.storeUser');
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('mentor.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('mentor.updatePeserta');
-    Route::delete('/manage-user/delete/{id}', [ManageUserController::class, 'destroy'])->name('mentor.deleteUser');
     Route::get('/download-documents-file/{documents}', [ManageUserController::class, 'downloadFile'])->name('mentor.downloadDocuments');
-
 
     //manage logbook
     Route::get('/manage-logbook', [ManageLogbookController::class, 'index'])->name('mentor.manageLogbook');

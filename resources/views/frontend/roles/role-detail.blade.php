@@ -24,10 +24,12 @@
                     <li>
                         <div class="flex items-start">
                             <i class="fa-solid fa-chevron-right w-5 h-3 text-abu-800 pt-1"></i>
-                            <a href="{{ url()->current() }}"
-                                class="ms-1 text-lg font-bold text-primary-800 hover:text-primary-500 md:ms-2 dark:text-abu-500 dark:hover:text-secondary">
-                                {{ $pageTitle }}
-                            </a>
+                            @foreach ($positionData as $item)
+                                <a href="{{ url()->current() }}"
+                                    class="ms-1 text-lg font-bold text-primary-800 hover:text-primary-500 md:ms-2 dark:text-abu-500 dark:hover:text-secondary">
+                                    {{ $item->role }}
+                                </a>
+                            @endforeach
                         </div>
                     </li>
                 </ol>
@@ -37,7 +39,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 pb-12">
                 @foreach ($positionData as $data)
                     <div class="relative w-full h-full dark:border dark:border-neutral-900">
-                        <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/no-image.png') }}"
+                        <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
                             class="object-cover w-full h-full" width="100" height="100" title="{{ $pageTitle }}"
                             alt="Gambar ilustrasi posisi {{ $pageTitle }}">
                         <div
@@ -51,10 +53,10 @@
                             {{ $data->role }}
                         </h2>
                         <p class="p-6 text-xl font-paragraf text-primary-800 dark:text-secondary">Job Description:</p>
-                        <ol
-                            class="pl-12 pr-4 w-full space-y-2 font-paragraf text-xl leading-5 text-primary-800 list-decimal list-outside dark:text-secondary">
-                            {{ strip_tags($data->jobdesk) }}
-                        </ol>
+                        <div
+                            class="pl-12 pr-4 w-full space-y-2 font-paragraf text-xl leading-7 text-primary-800 list-decimal list-outside dark:text-secondary">
+                            {!! str_replace('<ol>', '<ol class="list-decimal pl-5">', $data->jobdesk) !!}
+                        </div>
                         <h3
                             class="mt-5 p-6 text-2xl font-bold text-primary-800 border border-t border-abu-500 dark:text-secondary dark:border-neutral-800">
                             Skill yang diperlukan: {{ $data->requirement }}

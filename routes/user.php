@@ -23,6 +23,8 @@ Route::middleware(['guest', 'redirect.auth'])->group(function () {
 Route::middleware(['auth:web'])->group(function () {
     // dashboard user
     Route::get('/dashboard', [DashboardUserController::class, 'index'])->name('user.dashboard');
+    Route::put('/store-laporan', [DashboardUserController::class, 'update'])->name('user.storeLaporan');
+
 
     // logbook user
     Route::get('/logbook', [LogbookUserController::class, 'create'])->name('user.logbook');
@@ -34,6 +36,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/assignment-list', [AssignmentController::class, 'index'])->name('user.assignment');
     Route::get('/assignment-detail/{assignment}', [AssignmentController::class, 'edit'])->name('user.editAssignment');
     Route::put('/assignment-update/{assignment}', [AssignmentController::class, 'update'])->name('user.updateAssignment');
+    Route::put('assignments/{assignment}', [AssignmentController::class, 'cancelJawaban'])->name('user.cancelAssignment');
 
     // pengaturan user
     Route::get('/settings', [SettingUserController::class, 'index'])->name('user.settings');

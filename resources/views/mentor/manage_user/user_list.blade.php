@@ -38,12 +38,6 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div>
-                                <a href="{{ route('mentor.createUser') }}"
-                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
-                                    User
-                                </a>
-                            </div>
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">

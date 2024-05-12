@@ -155,21 +155,21 @@
                                     </div>
 
                                     <div>
-                                        <label for="doc_jawaban"
+                                        <label for="doc_pertanyaan"
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Dokumen Pertanyaan
                                         </label>
                                         <input
                                             class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="doc_jawaban" type="file" name="doc_jawaban">
-                                        @error('doc_jawaban')
+                                            id="doc_pertanyaan" type="file" name="doc_pertanyaan">
+                                        @error('doc_pertanyaan')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                         <ul
                                             class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                            <li>Unggah file dengan format .pdf (Max. 2MB)</li>
+                                            <li>Unggah file dengan format (.pdf, .zip, .rar, .docx, .xlsx, .xls, .txt) (Max. 2MB)</li>
                                         </ul>
                                     </div>
                                     <div class="flex flex-col items-end">

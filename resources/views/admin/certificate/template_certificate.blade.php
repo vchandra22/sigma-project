@@ -13,10 +13,10 @@
         }
 
         .container {
-            height: 100%;
             width: 100%;
+            height: 100%;
             background-image: url('data:image/png;base64,{{ base64_encode(file_get_contents(public_path('storage/img/background-certificate.png'))) }}');
-                background-size: cover;
+            background-size: cover;
             background-position: center;
             display: flex;
             justify-content: center;
@@ -88,7 +88,6 @@
         .ttd {
             text-size: 20px;
             color: #000000;
-            margin-bottom: 90px;
             padding-left: 250px;
             padding-right: 250px;
             color: #000000;
@@ -113,7 +112,15 @@
             color: #000000;
         }
 
-        table {
+        .verivikasi-tte {
+            color: rgb(0, 36, 219);
+            font-size: 8px;
+            text-align: start;
+            line-height: -18px;
+            width: 70%;
+        }
+
+        .table-score {
             margin-top: 20px;
             width: 100%;
             border-collapse: collapse;
@@ -123,8 +130,8 @@
             border: 1px solid #ddd;
         }
 
-        th,
-        td {
+        .table-score th,
+        .table-score td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -132,8 +139,39 @@
         }
 
         /* CSS for alternate row colors */
-        tr:nth-child(even) {
+        .table-score tr:nth-child(even) {
             background-color: #f2f2f2;
+        }
+
+        .table-ttd {
+            border: none;
+            max-width: 40%;
+        }
+
+        .table-ttd td {
+            padding: 8px;
+            text-align: start;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .qr_code {
+            width: 90px;
+            height: 90px;
+        }
+
+        .verivikasi-tte .text {
+            color: rgb(0, 36, 219);
+            font-size: 10px;
+            text-align: start;
+            line-height: -20px;
+        }
+
+        .qr_code img {
+            width: 90px;
+            height: 90px;
         }
     </style>
 </head>
@@ -143,9 +181,8 @@
         <div class="content">
             <div>
                 <div class="logo">
-                    {{-- <a href="https://ibb.co/zPnK9H8"><img src="https://i.ibb.co/JrBX6Fx/logo-sigma-Light.png" alt="logo-sigma-Light" border="0"></a> --}}
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('storage/img/logo-sigmaLight.png'))) }}" alt="Logo Sigma" width="80"
-                    height="50">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('storage/img/logo-sigmaLight.png'))) }}"
+                        alt="Logo Sigma" width="80" height="50">
                 </div>
                 @foreach ($userData as $data)
                     <div>
@@ -158,18 +195,45 @@
                         <div class="detail">telah melaksanakan Praktek Kerja Lapangan (On Job Training) sebagai
                             {{ $data->position->role }} di
                             {{ $data->office->nama_kantor }}</div>
-                        <div class="date">Terhitung mulai dari tanggal, <br> {{ convertDate($data->e_tgl_mulai) }} -
+                        <div class="date">Terhitung mulai dari tanggal, <br>
+                            {{ convertDate($data->e_tgl_mulai) }} -
                             {{ convertDate($data->e_tgl_selesai) }}</div>
                         <div class="ttd">Blitar,
                             {{ Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }} <br> Kepala
-                            {{ $data->office->nama_kantor }}</div>
+                            {{ $data->office->nama_kantor }}
+                        </div>
+                        <div style="margin-left: 37%;">
+                            <table class="table-ttd">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="qr_code">
+                                                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('storage/img/qr_code/' . $data->status->certificate->qr_code))) }}"
+                                                    alt="Kode QR Sertifikat">
+                                            </div>
+                                        </td>
+                                        <td class="verivikasi-tte">
+                                            <div class="text">TTE Oleh:</div>
+                                            <div class="text">{{ $data->office->nama_kepala }}</div>
+                                            <div class="text">{{ Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                                            </div>
+                                            <div class="text">Verivikasi melalui</div>
+                                            <div class="text">{{ config('app.url') }}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <div class="kepala">{{ $data->office->nama_kepala }}</div>
                         <div class="nip">NIP. {{ $data->office->nip_kepala }}</div>
                     </div>
                 @endforeach
+
                 <div class="score-title">Competency Result</div>
                 <div>
-                    <table>
+                    <table class="table-score">
                         <thead>
                             <tr>
                                 <th class="judul-kompetensi">Uraian Kompetensi</th>
@@ -187,11 +251,9 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Add more content here -->
 </body>
 
 </html>

@@ -40,20 +40,6 @@
                                     {{ $pageTitle }}
                                 </h2>
                             </div>
-                            <div>
-                                @foreach ($userData as $data)
-                                    <form id="delete-user-{{ $data->user->id }}"
-                                        action="{{ route('mentor.deleteUser', ['id' => $data->user->id]) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <div class="px-0 text-sm text-red-500">
-                                            <button class="delete-button hover:underline" data-id="{{ $data->user->id }}"
-                                                type="submit" value="Delete">Hapus
-                                            </button>
-                                        </div>
-                                    </form>
-                                @endforeach
-                            </div>
                         </div>
                         @foreach ($userData as $data)
                             <form class="grid lg:grid-cols-2 gap-8 lg:gap-16"
@@ -325,6 +311,69 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    @if ($data->e_tgl_mulai)
+                                        <div>
+                                            <label for="e_tgl_mulai"
+                                                class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Tanggal
+                                                disetujui</label>
+                                            <div class="flex items-center">
+                                                <div class="relative w-full">
+                                                    <div
+                                                        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                        </svg>
+                                                    </div>
+
+                                                    <input name="e_tgl_mulai"
+                                                        id="e_tgl_mulai" type="text"
+                                                        placeholder="Pilih tanggal" readonly
+                                                        value="{{ date('d/m/Y', strtotime($data->e_tgl_mulai)) }}"
+                                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                                    @error('e_tgl_mulai')
+                                                        <div
+                                                            class="mt-1
+                                                        text-red-500 text-xs">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+
+                                                <span
+                                                    class="mx-3 text-primary-800 text-sm text-center dark:text-secondary">sampai
+                                                </span>
+
+                                                <div class="relative w-full">
+                                                    <div
+                                                        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                        </svg>
+                                                    </div>
+                                                    <input name="e_tgl_selesai"
+                                                        id="e_tgl_selesai" type="text" placeholder="Pilih tanggal"
+                                                        value="{{ date('d/m/Y', strtotime($data->e_tgl_selesai)) }}"
+                                                        readonly
+                                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                                    @error('e_tgl_selesai')
+                                                        <div class="mt-1 text-red-500 text-xs">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <p class="block mb-4 text-sm font-medium text-primary-800 dark:text-secondary">
+                                            Status peserta belum diterima</p>
+                                    @endif
 
                                     <div>
                                         <label

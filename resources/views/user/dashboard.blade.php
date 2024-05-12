@@ -158,7 +158,7 @@
                                         Magang yang Disetujui</h2>
                                     <div
                                         class="text-start font-bold text-2xl text-primary-800 md:text-3xl py-2 dark:text-secondary mb-4">
-                                        @if ($data->e_tgl_mulai != null && $data->status->status == 'diterima')
+                                        @if ($data->e_tgl_mulai != null && $data->status->status == 'diterima' || $data->status->status == 'selesai')
                                             <p>{{ convertDate($data->e_tgl_mulai) }} -
                                                 {{ convertDate($data->e_tgl_selesai) }}</p>
                                         @else
@@ -170,31 +170,52 @@
                             <div class="h-full w-full grid grid-rows-2 gap-2">
                                 <div
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
-                                    <form action="#" method="POST">
-                                        <label for="laporan"
+                                    @if ($data->doc_laporan)
+                                        <p for="doc_laporan"
                                             class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
-                                            Laporan Magang</label>
-                                        <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-900 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            id="laporan" type="file" name="laporan">
-                                        <ul
-                                            class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                            <li>Unggah file dengan format .pdf (Max. 2MB)</li>
-                                        </ul>
-                                        <div class="pt-2">
-                                            <button type="submit"
-                                                class="w-full px-12 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Kirim</button>
-                                        </div>
-                                    </form>
+                                            Laporan Magang
+                                        </p>
+                                        <p
+                                            class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                            Kamu sudah mengunggah laporan
+                                        </p>
+                                    @else
+                                        <form action="{{ route('user.storeLaporan', ['id' => $data->user_id]) }}"
+                                            method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <label for="doc_laporan"
+                                                class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
+                                                Laporan Magang</label>
+                                            <input
+                                                class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-900 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                id="doc_laporan" type="file" name="doc_laporan">
+                                            @error('doc_laporan')
+                                                <div class="mt-1 text-red-500 text-xs">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <ul
+                                                class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
+                                                <li>Unggah file dengan format .pdf (Max. 2MB)</li>
+                                            </ul>
+                                            <div class="pt-2">
+                                                <button type="submit"
+                                                    class="w-full px-12 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Kirim</button>
+                                            </div>
+                                        </form>
+                                    @endif
                                 </div>
                                 <div
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
                                     @if ($data->status->certificate->doc_sertifikat)
-                                        <a href="{{ route('downloadFileCertificate', $data->status->certificate->doc_sertifikat) }}"
-                                            class="py-2 text-md text-center text-blue-500 hover:underline">
-                                            Download
+                                        <a href="{{ route('downloadFileCertificate', $data->status->certificate->uuid) }}">
+                                            <div
+                                                class="mt-6 text-center font-bold capitalize text-2xl md:text-2xl bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl rounded py-2 text-secondary mb-4 w-full">
+                                                Download Sertifikat
+                                            </div>
                                         </a>
                                     @else
                                         <p

@@ -12,6 +12,11 @@ RUN apt-get install -y libicu-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
+RUN apt-get update \
+    && apt-get install -y ghostscript libmagickwand-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick
+
 # Node.js, NPM, Yarn
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs

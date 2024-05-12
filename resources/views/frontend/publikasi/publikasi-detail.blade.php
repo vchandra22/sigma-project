@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="mt-[4.4rem] relative w-full h-96">
-        <img src="{{ asset('frontend/assets/img/illustration-image-discuss-2.webp') }}" class="object-cover w-full h-full"
-            alt="Illustration Image Discussion">
+        @foreach ($publikasiData as $getGambar)
+            <img src="{{ $getGambar->gambar ? asset('storage/img/' . $getGambar->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}" class="object-cover w-full h-full"
+                alt="Illustration Image Discussion">
+        @endforeach
         <div
             class="absolute top-0 right-0 w-full h-full bg-primary-800 bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-60">
             <div class="max-w-screen-xl px-4 mx-auto text-start grid grid-cols-1 content-between h-full">
@@ -58,15 +60,19 @@
                                 <h2>
                                     {{ $data->judul }}
                                 </h2>
+                                <div class="my-8 w-full">
+                                    <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/default-hero-image.webp') }}"
+                                        class="object-cover w-full h-full" alt="{{ $data->judul }}" width="100"
+                                        height="100">
+                                </div>
                             </div>
                             <div
-                                class="text-primary-800 text-justify leading-tight pt-8 text-balance text-md md:text-2xl font-paragraf dark:text-secondary">
-                                {{ $data->content }}
+                                class="text-primary-800 pb-12 text-justify leading-tight pt-8 text-balance text-md md:text-2xl font-paragraf dark:text-secondary">
+                                {{ strip_tags($data->content) }}
                             </div>
                         </div>
                     @endforeach
                 </div>
-
 
                 <div class="flex flex-col gap-4 mb-20">
                     <h3 class="pt-12 pb-4 text-3xl font-bold text-primary-800 text-start leading-9 dark:text-secondary">
@@ -77,8 +83,8 @@
                         <a href="{{ route('frontend.publikasiDetail', $data->slug) }}"
                             class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
                             <div class="relative w-1/3 h-44 lg:h-full">
-                                <img src="{{ asset('frontend/assets/img/illustration-image-discuss.webp') }}"
-                                    class="object-cover w-full h-full" alt="Illustration Image Discussion">
+                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+                                    class="object-cover w-full h-full" alt="{{ $data->judul }}">
                                 <div
                                     class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-40 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">
                                 </div>
@@ -91,8 +97,9 @@
                             </div>
                         </a>
                     @endforeach
-
-
+                    <div class="mt-8">
+                        {{ $publikasiAll->links() }}
+                    </div>
                 </div>
             </div>
         </div>

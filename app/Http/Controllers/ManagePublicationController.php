@@ -6,7 +6,8 @@ use App\Models\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class ManagePublicationController extends Controller
 {
@@ -42,19 +43,22 @@ class ManagePublicationController extends Controller
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        // Store the image
-        if ($request->hasFile('gambar')) {
-            // Get the uploaded file
-            $gambar = $request->file('gambar');
+        if (isset($validatedData['gambar'])) {
+            // Process 'ttd_kepala' if it exists
+            if ($request->hasFile('gambar')) {
+                // Handle file upload and storage
+                $file = $request->file('gambar');
+                $directoryPath = 'img';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $gambar->getClientOriginalName();
+                // Create directory if not exists
+                if (!file_exists($directoryPath)) {
+                    Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+                }
 
-            // Store the image in the storage directory
-            $path = $gambar->storeAs('public/frontend/assets/img', $filename);
-
-            // Update the 'gambar' field in the database with the image path
-            $validatedData['gambar'] = $path;
+                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                Storage::disk('public')->put('/img/' . $filename, File::get($file));
+                $validatedData['gambar'] = $filename;
+            }
         }
 
         $publication = Publication::create($validatedData);
@@ -95,19 +99,24 @@ class ManagePublicationController extends Controller
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
-        // Store the image
         if ($request->hasFile('gambar')) {
-            // Get the uploaded file
-            $gambar = $request->file('gambar');
+            $file = $request->file('gambar');
+            $directoryPath = 'img';
 
-            // Generate a unique filename
-            $filename = time() . '_' . $gambar->getClientOriginalName();
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+            }
 
-            // Store the image in the storage directory
-            $path = $gambar->storeAs('public/frontend/assets/img', $filename);
+            // Delete old 'gambar' if it exists
+            if ($publication->gambar) {
+                Storage::disk('public')->delete('img/' . $publication->gambar);
+            }
 
-            // Update the 'gambar' field in the database with the image path
-            $validatedData['gambar'] = $path;
+            // Handle file upload and storage
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedData['gambar'] = $filename;
         }
 
         $newSlug = Str::slug($request->input('judul'));

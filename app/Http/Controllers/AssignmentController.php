@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Assignment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use File;
+use Illuminate\Support\Str;
 
 class AssignmentController extends Controller
 {
@@ -76,10 +79,31 @@ class AssignmentController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'doc_jawaban' => 'nullable|mimes:pdf|max:2048',
+            'doc_jawaban' => 'nullable|mimes:pdf,zip,rar,docx,xlsx,xls,txt|max:2048',
         ]);
 
+        if ($request->hasFile('doc_jawaban')) {
+            $file = $request->file('doc_jawaban');
+            $directoryPath = 'private/assignments';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/assignments/' . $filename, File::get($file));
+            $validatedData['doc_jawaban'] = $filename;
+        }
+
         $validatedData['status'] = 'selesai';
+
+        // Check if assignment is overdue
+        if ($assignment->updated_at > $assignment->due_date) {
+            $validatedData['status'] = 'terlambat';
+        } else {
+            $validatedData['status'] = 'selesai';
+        }
 
         Assignment::where('id', $assignment->id)->update($validatedData);
 
@@ -92,5 +116,27 @@ class AssignmentController extends Controller
     public function destroy(Assignment $assignment)
     {
         //
+    }
+
+    public function downloadJawaban($assignment)
+    {
+        $assignment = Assignment::where('uuid', $assignment)->first();
+        $filePath = storage_path('app/private/assignments/' . $assignment->doc_jawaban);
+
+        // Return the file as a download response
+        return response()->download($filePath);
+    }
+
+    public function cancelJawaban(Assignment $assignment)
+    {
+        $filename = $assignment->doc_jawaban;
+
+        if ($filename) {
+            Storage::disk('local')->delete('private/assignments/' . $filename);
+        }
+        // Update assignment data
+        $assignment->update(['doc_jawaban' => null, 'status' => 'dikirim']);
+
+        return redirect(route('user.assignment'))->with('success', 'Sukses membatalkan jawaban!');
     }
 }

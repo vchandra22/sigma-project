@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ManageCertificateController extends Controller
 {
@@ -57,11 +58,16 @@ class ManageCertificateController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'certificate_id' => ['required'],
             'judul_kompetensi.*' => ['required'],
             'nilai_uji.*' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
         ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator->errors());
+        }
 
         // Retrieve the validated data from the request
         $certificateId = $request->certificate_id;

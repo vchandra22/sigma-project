@@ -82,12 +82,12 @@ class ManageUserController extends Controller
             'position_id' => 'required',
             'u_tgl_mulai' => ['required', 'date_format:d/m/Y'],
             'u_tgl_selesai' => ['required', 'date_format:d/m/Y'],
-            'e_tgl_mulai' => ['nullable', 'date_format:d/m/Y'],
-            'e_tgl_selesai' => ['nullable', 'date_format:d/m/Y'],
+            'e_tgl_mulai' => ['required', 'date_format:d/m/Y'],
+            'e_tgl_selesai' => ['required', 'date_format:d/m/Y'],
             'doc_pengantar' => 'required|mimes:pdf|max:2048',
             'doc_kesbang' => 'nullable|mimes:pdf|max:2048',
             'doc_proposal' => 'nullable|mimes:pdf|max:2048',
-            'status' => ['required', 'in:menunggu,diterima,ditolak,selesai'],
+            'status' => ['required', 'in:diterima'],
             'keterangan' => ['nullable'],
             'doc_balasan' => 'nullable|mimes:pdf|max:2048',
         ]);
@@ -168,13 +168,9 @@ class ManageUserController extends Controller
         $document->status()->create($validatedData);
 
         if ($validatedData['status'] === 'diterima') {
-            // Get the document's current status
             $status = $document->status;
-
-            // Create a certificate if the status is changing to "diterima"
             $status->certificate()->create($validatedData);
         }
-
 
         return redirect(route('admin.manageUser'))->with('success', 'Registrasi Berhasil!');
     }
@@ -279,7 +275,11 @@ class ManageUserController extends Controller
             $status->certificate()->create($validatedData);
         } elseif ($validatedData['status'] === 'ditolak') {
             $status = $document->status;
-
+            $document->update([
+                'e_tgl_mulai' => null,
+                'e_tgl_selesai' => null
+            ]);
+            
             $status->certificate()->delete();
         }
 

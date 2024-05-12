@@ -247,39 +247,37 @@
                                 </div>
 
                                 <div>
-                                        <label for="nama_pembimbing"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
-                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
-                                        <input type="text" name="nama_pembimbing" id="nama_pembimbing"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="Hardianto" required
-                                            value="{{ old('nama_pembimbing') }}" />
+                                    <label for="nama_pembimbing"
+                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
+                                        Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                    <input type="text" name="nama_pembimbing" id="nama_pembimbing"
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                        placeholder="Hardianto" required value="{{ old('nama_pembimbing') }}" />
 
-                                        @error('nama_pembimbing')
-                                            <div class="mt-1 text-red-500 text-xs">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                                    @error('nama_pembimbing')
+                                        <div class="mt-1 text-red-500 text-xs">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                                    <div>
-                                        <label for="no_hp_pembimbing"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.HP
-                                            Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
-                                        <input type="text" name="no_hp_pembimbing" id="no_hp_pembimbing"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="081255555555" required
-                                            value="{{ old('no_hp_pembimbing') }}" />
+                                <div>
+                                    <label for="no_hp_pembimbing"
+                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.HP
+                                        Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
+                                    <input type="text" name="no_hp_pembimbing" id="no_hp_pembimbing"
+                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                        placeholder="081255555555" required value="{{ old('no_hp_pembimbing') }}" />
 
-                                        @error('no_hp_pembimbing')
-                                            <div class="mt-1 text-red-500 text-xs">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                    @error('no_hp_pembimbing')
+                                        <div class="mt-1 text-red-500 text-xs">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
-                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan teliti,
-                                            pastikan nomor dapat dihubungi!</p>
-                                    </div>
+                                    <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan teliti,
+                                        pastikan nomor dapat dihubungi!</p>
+                                </div>
 
                             </div>
                             <div class="space-y-6">
@@ -327,58 +325,6 @@
                                                 type="text" datepicker placeholder="Pilih Tanggal"
                                                 class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @error('u_tgl_selesai')
-                                                <div class="mt-1 text-red-500 text-xs">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label for="e_tgl_mulai"
-                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Tanggal
-                                        disetujui <span class="text-red-500">*</span></label>
-                                    <div class="flex items-center">
-                                        <div class="relative w-full">
-                                            <div
-                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
-                                            </div>
-                                            <input datepicker-format="dd/mm/yyyy" name="e_tgl_mulai" id="e_tgl_mulai"
-                                                datepicker type="text" placeholder="Pilih Tanggal"
-                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                            @error('e_tgl_mulai')
-                                                <div
-                                                    class="mt-1
-                                                    text-red-500 text-xs">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-
-                                        <span class="mx-3 text-primary-800 text-sm text-center dark:text-secondary">sampai
-                                        </span>
-
-                                        <div class="relative w-full">
-                                            <div
-                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
-                                            </div>
-                                            <input datepicker-format="dd/mm/yyyy" name="e_tgl_selesai" id="e_tgl_selesai"
-                                                type="text" placeholder="Pilih Tanggal" datepicker
-                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                            @error('e_tgl_selesai')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
                                                 </div>
@@ -443,17 +389,8 @@
                                     </label>
                                     <select type="text" name="status" id="status"
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                        <option value="menunggu">
-                                            Menunggu
-                                        </option>
                                         <option value="diterima">
                                             Diterima
-                                        </option>
-                                        <option value="ditolak">
-                                            Ditolak
-                                        </option>
-                                        <option value="selesai">
-                                            Selesai
                                         </option>
                                     </select>
                                     @error('status')
@@ -462,9 +399,61 @@
                                 </div>
 
                                 <div>
+                                    <label for="e_tgl_mulai"
+                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Tanggal
+                                        disetujui <span class="text-red-500">*</span></label>
+                                    <div class="flex items-center">
+                                        <div class="relative w-full">
+                                            <div
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <path
+                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                </svg>
+                                            </div>
+                                            <input datepicker-format="dd/mm/yyyy" name="e_tgl_mulai" id="e_tgl_mulai"
+                                                datepicker type="text" placeholder="Pilih Tanggal"
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            @error('e_tgl_mulai')
+                                                <div
+                                                    class="mt-1
+                                                    text-red-500 text-xs">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <span class="mx-3 text-primary-800 text-sm text-center dark:text-secondary">sampai
+                                        </span>
+
+                                        <div class="relative w-full">
+                                            <div
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <path
+                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                </svg>
+                                            </div>
+                                            <input datepicker-format="dd/mm/yyyy" name="e_tgl_selesai" id="e_tgl_selesai"
+                                                type="text" placeholder="Pilih Tanggal" datepicker
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            @error('e_tgl_selesai')
+                                                <div class="mt-1 text-red-500 text-xs">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
                                     <label for="keterangan"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
-                                        <span class="text-red-500">*</span></label>
+                                    </label>
                                     <textarea name="keterangan" id="keterangan" rows="8"
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">{{ old('keterangan') }}</textarea>
                                     @error('keterangan')

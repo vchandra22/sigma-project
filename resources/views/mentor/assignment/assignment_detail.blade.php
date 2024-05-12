@@ -45,10 +45,13 @@
 
                                         <div class="block lg:flex justify-between items-center">
                                             <div>
-                                                <h3 class="text-lg md:text-2xl font-bold text-primary-800 dark:text-secondary">
+                                                <h3
+                                                    class="text-lg md:text-2xl font-bold text-primary-800 dark:text-secondary">
                                                     {{ $data->judul }}
                                                 </h3>
-                                                <p class="font-regular text-md text-start text-primary-800 dark:text-secondary">{{ $userData->user->nama_lengkap }}</p>
+                                                <p
+                                                    class="font-regular text-md text-start text-primary-800 dark:text-secondary">
+                                                    {{ $userData->user->nama_lengkap }}</p>
                                                 <p class="font-regular text-md text-start text-abu-800 dark:text-abu-800">
                                                     {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
                                                 </p>
@@ -62,17 +65,24 @@
                                     <div class="text-start text-primary-500 text-md dark:text-gray-200">
                                         {{ strip_tags($data->pertanyaan) }}
                                     </div>
+                                    @if ($data->doc_pertanyaan)
+                                        <a href="{{ route('downloadPertanyaan', $data->uuid) }}"
+                                            class="py-2 text-md text-start text-blue-500 hover:underline">
+                                            Download File Pertanyaan
+                                        </a>
+                                    @else
+                                    @endif
                                 </div>
 
                                 <div
                                     class="flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
                                     <div class="text-primary-800 dark:text-secondary dark:hover:text-gray-50">
                                         <h3 class="text-lg md:text-2xl font-bold">
-                                            Jawaban
+                                            Jawaban Peserta
                                         </h3>
                                         @if ($data->status == 'dikirim')
                                             <div class="text-blue-500 p-1 w-auto">
-                                                <p class="font-regular text-start capitalize">{{ __('Belum dikerjakan') }}
+                                                <p class="font-regular text-start capitalize">{{ __('Tugas Dikirim') }}
                                                 </p>
                                             </div>
                                         @elseif ($data->status == 'selesai')
@@ -85,36 +95,27 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <form action="{{ route('user.updateAssignment', ['assignment' => $data->id]) }}"
-                                        method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PUT')
+                                    @if ($data->doc_jawaban)
+                                        <a href="{{ route('downloadJawaban', $data->uuid) }}"
+                                            class="py-2 text-md text-start text-blue-500 hover:underline">
+                                            Download File Jawaban
+                                        </a>
+                                    @elseif ($data->status === 'dikirim')
+                                   
                                         <div>
-                                            <label for="doc_jawaban"
+                                            <p for="doc_jawaban"
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                                Dokumen Jawaban</label>
-                                            <input
-                                                class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                id="doc_jawaban" type="file" name="doc_jawaban">
-                                            @error('doc_jawaban')
-                                                <div class="mt-1 text-red-500 text-xs">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <ul
-                                                class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                                <li>Unggah file dengan format .pdf (Max. 2MB)</li>
-                                                <li>Jika tugas tidak bersangkutan dengan dokumen silakan simpan tanpa
-                                                    dokumen
-                                                    untuk menandai telah menyelesaikan tugas</li>
-                                            </ul>
+                                                Peserta belum menyelesaikan tugas
+                                            </p>
                                         </div>
-                                        <div class="flex flex-col items-end pt-8">
-                                            <button type="submit"
-                                                class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Simpan
-                                            </button>
+                                    @else
+                                        <div>
+                                            <p for="doc_jawaban"
+                                                class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                                Peserta telah menyelesaikan tugas
+                                            </p>
                                         </div>
-                                    </form>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

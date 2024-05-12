@@ -12,6 +12,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ManageCertificateController extends Controller
 {
@@ -93,6 +94,31 @@ class ManageCertificateController extends Controller
     public function generateCertificate($id)
     {
         $decryptId = Crypt::decryptString($id);
+        $data['scoreData'] = Certificate::join('scores', 'certificates.id', 'scores.certificate_id')
+            ->where('scores.certificate_id', $decryptId)
+            ->get();
+
+        $path_qrCode = Certificate::where('id', $decryptId)->first();
+
+        $downloadLink = route('downloadFileCertificate', ['certificate' => $path_qrCode->uuid]);
+
+        // Generate the QR code with the download link
+        $qrCode = QrCode::format('png')->size(300)->generate($downloadLink);
+
+        // Save the generated QR code to the storage directory
+        $directory_qr = 'img/qr_code';
+
+        // Create directory if not exists
+        if (!Storage::disk('public')->exists($directory_qr)) {
+            Storage::disk('public')->makeDirectory($directory_qr, 0775, true);
+        }
+
+        $filename_qr = 'qr_code_' . Str::random(20) . '.png';
+        $filePath = $directory_qr . '/' . $filename_qr;
+
+        Storage::disk('public')->put($filePath, $qrCode);
+        // save qr_code
+        Certificate::where('id', $decryptId)->update(['qr_code' => $filename_qr]);
 
         $now = Carbon::now();
         $id_certificate = str_pad($decryptId, 3, '0', STR_PAD_LEFT); // Add leading zeros if necessary
@@ -102,16 +128,13 @@ class ManageCertificateController extends Controller
 
         // Format the certificate number
         $certificateNumber = $id_certificate . '/SIGMA/' . $now->format('d') . '/' . $romanMonth . '/' . $year;
-
         // save certificate number
         Certificate::where('id', $decryptId)->update(['no_sertifikat' => $certificateNumber]);
+
         $data['userData'] = Document::with('user', 'office', 'position', 'status.certificate.score')
             ->whereHas('status.certificate.score', function ($query) use ($decryptId) {
                 $query->where('certificate_id', $decryptId);
             })->get();
-        $data['scoreData'] = Certificate::join('scores', 'certificates.id', 'scores.certificate_id')
-            ->where('scores.certificate_id', $decryptId)
-            ->get();
 
         // Load the certificate HTML view
         $certificateView = view('admin.certificate.template_certificate', $data)->render();
@@ -176,7 +199,20 @@ class ManageCertificateController extends Controller
 
     public function downloadCertificate($certificate)
     {
-        $filePath = storage_path('app/private/certificates/' . $certificate);
+        $certificate = Certificate::where('uuid', $certificate)->first();
+
+        // Check if certificate exists
+        if (!$certificate) {
+            abort(404);
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/private/certificates/' . $certificate->doc_sertifikat);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
 
         // Return the file as a download response
         return response()->download($filePath);

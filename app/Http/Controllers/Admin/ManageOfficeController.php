@@ -55,11 +55,11 @@ class ManageOfficeController extends Controller
 
                 // Create directory if not exists
                 if (!file_exists($directoryPath)) {
-                    Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+                    Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
                 }
 
                 $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-                Storage::disk('local')->put('/img/' . $filename, File::get($file));
+                Storage::disk('public')->put('/img/' . $filename, File::get($file));
                 $validatedData['ttd_kepala'] = $filename;
             }
         }
@@ -113,11 +113,11 @@ class ManageOfficeController extends Controller
 
                 // Create directory if not exists
                 if (!file_exists($directoryPath)) {
-                    Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+                    Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
                 }
 
                 $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-                Storage::disk('local')->put('/img/' . $filename, File::get($file));
+                Storage::disk('public')->put('/img/' . $filename, File::get($file));
                 $validatedData['ttd_kepala'] = $filename;
             }
         }

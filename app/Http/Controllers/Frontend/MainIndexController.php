@@ -59,7 +59,7 @@ class MainIndexController extends Controller
     public function publikasiList()
     {
         $data['pageTitle'] = 'Publikasi';
-        $data['publikasiData'] = Publication::all();
+        $data['publikasiData'] = Publication::latest()->paginate(16);
 
         return view('frontend.publikasi.publikasi-lists', $data);
     }
@@ -68,7 +68,7 @@ class MainIndexController extends Controller
     {
         $data['pageTitle'] = 'Judul Publikasi';
         $data['publikasiData'] = Publication::where('slug', $slug)->get();
-        $data['publikasiAll'] = Publication::all();
+        $data['publikasiAll'] = Publication::latest()->paginate(4);
 
         return view('frontend.publikasi.publikasi-detail', $data);
     }

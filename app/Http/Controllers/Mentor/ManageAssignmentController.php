@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\Document;
-use App\Models\Status;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use File;
 
 class ManageAssignmentController extends Controller
 {
@@ -22,6 +22,7 @@ class ManageAssignmentController extends Controller
         $data['pageTitle'] = 'Assignment List';
 
         $user = Auth::user();
+
         $data['assignmentData'] = Assignment::where('created_by', $user->id)->latest()->paginate(10);
 
         return view('mentor.assignment.assignment_list', $data);
@@ -34,11 +35,13 @@ class ManageAssignmentController extends Controller
     {
         $data['pageTitle'] = 'Create Assignment';
         $user = Auth::user();
-        $data['userData'] = Document::with('user', 'status')
+        $data['userData'] = Document::with('user', 'status', 'position')
             ->where('office_id', $user->office_id)
             ->whereHas('status', function ($query) {
                 $query->where('status', 'diterima');
-            })->get();
+            })
+            ->latest()
+            ->get();
 
         return view('mentor.assignment.assignment_create', $data);
     }
@@ -54,12 +57,26 @@ class ManageAssignmentController extends Controller
             'start_date' => ['nullable', 'date_format:d/m/Y'],
             'due_date' => ['nullable', 'date_format:d/m/Y'],
             'pertanyaan' => ['required'],
-            'doc_pertanyaan' => 'nullable|mimes:pdf|max:2048',
+            'doc_pertanyaan' => 'nullable|mimes:pdf,zip,rar,docx,xlsx,xls,txt|max:2048',
         ]);
 
         $validatedData['start_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['start_date'])->format('Y-m-d');
         $validatedData['due_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['due_date'])->format('Y-m-d');
         $validatedData['created_by'] = Auth::user()->id;
+
+        if ($request->hasFile('doc_pertanyaan')) {
+            $file = $request->file('doc_pertanyaan');
+            $directoryPath = 'private/assignments';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/assignments/' . $filename, File::get($file));
+            $validatedData['doc_pertanyaan'] = $filename;
+        }
 
         Assignment::create($validatedData);
 
@@ -108,12 +125,34 @@ class ManageAssignmentController extends Controller
             'start_date' => ['nullable', 'date_format:d/m/Y'],
             'due_date' => ['nullable', 'date_format:d/m/Y'],
             'pertanyaan' => ['required'],
-            'doc_pertanyaan' => 'nullable|mimes:pdf|max:2048',
+            'doc_pertanyaan' => 'nullable|mimes:pdf,zip,rar,docx,xlsx,xls,txt|max:2048',
         ]);
 
         $validatedData['start_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['start_date'])->format('Y-m-d');
         $validatedData['due_date'] = Carbon::createFromFormat('d/m/Y', $validatedData['due_date'])->format('Y-m-d');
         $validatedData['created_by'] = Auth::user()->id;
+
+        if ($request->hasFile('doc_pertanyaan')) {
+            
+            $oldFilename = $assignment->doc_pertanyaan;
+
+            // Delete the old file
+            if ($oldFilename) {
+                Storage::disk('local')->delete('private/assignments/' . $oldFilename);
+            }
+
+            // Upload the new file
+            $file = $request->file('doc_pertanyaan');
+            $directoryPath = 'private/assignments';
+
+            if (!file_exists($directoryPath)) {
+                Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('/private/assignments/' . $filename, File::get($file));
+            $validatedData['doc_pertanyaan'] = $filename;
+        }
 
         $newSlug = Str::slug($request->input('judul'));
 
@@ -127,8 +166,8 @@ class ManageAssignmentController extends Controller
             }
             $assignment->slug = $newSlug;
         }
-
         $validatedData['slug'] = $newSlug;
+
         Assignment::where('id', $assignment->id)->update($validatedData);
 
         return redirect(route('mentor.manageAssignment'))->with('success', 'Data berhasil disimpan!');
@@ -140,8 +179,24 @@ class ManageAssignmentController extends Controller
     public function destroy($id)
     {
         $assignment = Assignment::find($id);
+        // Delete files from storage if they exist
+        if ($assignment->doc_pertanyaan) {
+            Storage::disk('local')->delete('private/assignments/' . $assignment->doc_pertanyaan);
+        }
+        if ($assignment->doc_jawaban) {
+            Storage::disk('local')->delete('private/assignments/' . $assignment->doc_jawaban);
+        }
         $assignment->delete();
 
         return redirect(route('mentor.manageAssignment'))->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function downloadPertanyaan($assignment)
+    {
+        $assignment = Assignment::where('uuid', $assignment)->first();
+        $filePath = storage_path('app/private/assignments/' . $assignment->doc_pertanyaan);
+
+        // Return the file as a download response
+        return response()->download($filePath);
     }
 }

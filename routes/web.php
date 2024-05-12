@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
 use App\Http\Controllers\Admin\ManageCertificateController;
+use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\Mentor\ManageAssignmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,6 @@ Route::get('/welcome', function () {
 });
 Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('downloadFileAnnouncement');
 Route::get('/download-certificate/{certificate}', [ManageCertificateController::class, 'downloadCertificate'])->name('downloadFileCertificate');
+Route::get('/download-assignment-pertanyaan/{assignment}', [ManageAssignmentController::class, 'downloadPertanyaan'])->name('downloadPertanyaan');
+Route::get('/download-assignment-jawaban/{assignment}', [AssignmentController::class, 'downloadJawaban'])->name('downloadJawaban');
+

@@ -70,7 +70,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($dataCertificate as $data)
+                                    @forelse ($dataCertificate as $data)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
@@ -101,13 +101,11 @@
                                             <td class="px-4 py-4">
                                                 @if ($data->status->certificate->doc_sertifikat)
                                                     <!-- certificate_id exists -->
-                                                    <p
-                                                        class="text-primary-800 text-center font-bold dark:text-secondary">
+                                                    <p class="text-primary-800 text-center font-bold dark:text-secondary">
                                                         {{ $data->status->certificate->no_sertifikat }}</p>
                                                 @else
                                                     <!-- certificate_id does not exist -->
-                                                    <p
-                                                        class="text-red-500 text-center dark:text-secondary">
+                                                    <p class="text-red-500 text-center dark:text-secondary">
                                                         Sertifikat Belum Dibuat
                                                     </p>
                                                 @endif
@@ -120,10 +118,16 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td class="align-middle mb-4 text-center py-8 text-md text-hitam"
+                                                colspan="8">
+                                                Tidak ada data / Mentor belum memberikan nilai
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>

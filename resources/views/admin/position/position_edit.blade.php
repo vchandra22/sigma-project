@@ -50,7 +50,7 @@
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jobdesk
                                             <span class="text-red-500">*</span></label>
                                         <textarea name="jobdesk" id="jobdesk" rows="4"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">{{ $position->jobdesk }}</textarea>
+                                            class="bg-white border pl-4 border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">{{ $position->jobdesk }}</textarea>
                                         @error('jobdesk')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
