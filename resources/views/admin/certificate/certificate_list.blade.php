@@ -61,7 +61,7 @@
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
-                                            Status
+                                            No. Sertifikat
                                         </th>
                                         <th scope="col"
                                             class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
@@ -79,8 +79,10 @@
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">
+                                                <p class="text-primary-800 font-bold dark:text-secondary">
                                                     {{ $data->user->nama_lengkap }}
+                                                    <br>
+                                                    {{ $data->no_identitas }}
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
@@ -97,16 +99,17 @@
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
-                                                @if ($data->status->certificate->score)
+                                                @if ($data->status->certificate->doc_sertifikat)
                                                     <!-- certificate_id exists -->
                                                     <p
-                                                        class="bg-green-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">
-                                                        sudah dinilai</p>
+                                                        class="text-primary-800 text-center font-bold dark:text-secondary">
+                                                        {{ $data->status->certificate->no_sertifikat }}</p>
                                                 @else
                                                     <!-- certificate_id does not exist -->
                                                     <p
-                                                        class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">
-                                                        belum dinilai</p>
+                                                        class="text-red-500 text-center dark:text-secondary">
+                                                        Sertifikat Belum Dibuat
+                                                    </p>
                                                 @endif
 
                                             </td>

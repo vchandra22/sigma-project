@@ -38,12 +38,19 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div>
-                                <a href="{{ route('admin.generateCertificate', Crypt::encryptString($getCertificateId->id)) }}"
-                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
-                                    Unsur Kompetensi
-                                </a>
-                            </div>
+                            @if ($getCertificateId->doc_sertifikat)
+                                <div
+                                    class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-green-800 rounded-none hover:bg-green-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">
+                                    Sudah Generate Sertifikat
+                                </div>
+                            @else
+                                <div>
+                                    <a href="{{ route('admin.generateCertificate', Crypt::encryptString($getCertificateId->id)) }}"
+                                        class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Generate
+                                        Certificate
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">

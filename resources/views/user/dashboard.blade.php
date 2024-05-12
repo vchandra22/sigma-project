@@ -191,9 +191,17 @@
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
-                                    <p
-                                        class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
-                                        Sertifikat belum tersedia</p>
+                                    @if ($data->status->certificate->doc_sertifikat)
+                                        <a href="{{ route('downloadFileCertificate', $data->status->certificate->doc_sertifikat) }}"
+                                            class="py-2 text-md text-center text-blue-500 hover:underline">
+                                            Download
+                                        </a>
+                                    @else
+                                        <p
+                                            class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                            Sertifikat belum tersedia
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

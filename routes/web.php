@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
+use App\Http\Controllers\Admin\ManageCertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('downloadFileAnnouncement');
+Route::get('/download-certificate/{certificate}', [ManageCertificateController::class, 'downloadCertificate'])->name('downloadFileCertificate');

@@ -15,8 +15,8 @@
         .container {
             height: 100%;
             width: 100%;
-            background-image: url('storage/img/background-certificate.png');
-            background-size: cover;
+            background-image: url('data:image/png;base64,{{ base64_encode(file_get_contents(public_path('storage/img/background-certificate.png'))) }}');
+                background-size: cover;
             background-position: center;
             display: flex;
             justify-content: center;
@@ -143,21 +143,26 @@
         <div class="content">
             <div>
                 <div class="logo">
-                    <img src="{{ public_path('storage/img/logo-sigmaLight.png') }}" alt="Logo Sigma" width="80"
-                        height="50">
+                    {{-- <a href="https://ibb.co/zPnK9H8"><img src="https://i.ibb.co/JrBX6Fx/logo-sigma-Light.png" alt="logo-sigma-Light" border="0"></a> --}}
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('storage/img/logo-sigmaLight.png'))) }}" alt="Logo Sigma" width="80"
+                    height="50">
                 </div>
                 @foreach ($userData as $data)
                     <div>
                         <div class="title">Certificate of Achievement</div>
-                        <div class="certificate_id">Nomor Sertifikat: No. 0001/SIGMA/2024</div>
+                        <div class="certificate_id">Nomor Sertifikat:
+                            {{ $data->status->certificate->no_sertifikat ?? 'No Certificate' }}</div>
                         <div class="recipient">Diberikan Kepada:</div>
                         <div class="name">{{ $data->user->nama_lengkap }}</div>
                         <div class="id">{{ $data->no_identitas }}</div>
-                        <div class="detail">telah melaksanakan Praktek Kerja Lapangan (On Job Training) di
-                            {{ $data->office->nama_kantor }} sebagai {{ $data->position->role }}</div>
-                        <div class="date">Terhitung mulai dari tanggal, <br> {{ $data->e_tgl_mulai }} -
-                            {{ $data->e_tgl_selesai }}</div>
-                        <div class="ttd">Blitar, 14 Mei 2024 <br> Kepala {{ $data->office->nama_kantor }}</div>
+                        <div class="detail">telah melaksanakan Praktek Kerja Lapangan (On Job Training) sebagai
+                            {{ $data->position->role }} di
+                            {{ $data->office->nama_kantor }}</div>
+                        <div class="date">Terhitung mulai dari tanggal, <br> {{ convertDate($data->e_tgl_mulai) }} -
+                            {{ convertDate($data->e_tgl_selesai) }}</div>
+                        <div class="ttd">Blitar,
+                            {{ Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }} <br> Kepala
+                            {{ $data->office->nama_kantor }}</div>
                         <div class="kepala">{{ $data->office->nama_kepala }}</div>
                         <div class="nip">NIP. {{ $data->office->nip_kepala }}</div>
                     </div>

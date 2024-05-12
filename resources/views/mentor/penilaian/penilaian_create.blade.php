@@ -71,7 +71,7 @@
                                         placeholder="Memiliki Ketekunan Bekerja" value="{{ old('judul_kompetensi') }}"
                                         required autofocus
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                    @error('judul_kompetensi')
+                                    @error('judul_kompetensi[]')
                                         <div class="mt-1 text-red-500 text-xs">
                                             {{ $message }}
                                         </div>
@@ -86,7 +86,7 @@
                                     <input type="text" name="nilai_uji[]" id="nilai_uji" placeholder="80.78"
                                         value="{{ old('nilai_uji') }}" required autofocus
                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                    @error('nilai_uji')
+                                    @error('nilai_uji[]')
                                         <div class="mt-1 text-red-500 text-xs">
                                             {{ $message }}
                                         </div>
