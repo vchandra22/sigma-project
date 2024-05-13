@@ -41,8 +41,11 @@
                 {{-- breadcrums end --}}
 
                 <div class="pb-20">
-                    <h1 class="font-bold text-4xl text-start text-secondary overflow-hidden line-clamp-2">Judul Publikasi
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo voluptatem maiores sunt.</h1>
+                    @foreach ($publikasiData as $item)
+                        <h1 class="font-bold text-4xl text-start text-secondary overflow-hidden line-clamp-2">
+                            {{ $item->judul }}
+                        </h1>
+                    @endforeach
                 </div>
             </div>
         </div>
