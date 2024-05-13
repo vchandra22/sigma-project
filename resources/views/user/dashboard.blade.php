@@ -158,7 +158,7 @@
                                         Magang yang Disetujui</h2>
                                     <div
                                         class="text-start font-bold text-2xl text-primary-800 md:text-3xl py-2 dark:text-secondary mb-4">
-                                        @if ($data->e_tgl_mulai != null && $data->status->status == 'diterima' || $data->status->status == 'selesai')
+                                        @if (($data->e_tgl_mulai != null && $data->status->status == 'diterima') || $data->status->status == 'selesai')
                                             <p>{{ convertDate($data->e_tgl_mulai) }} -
                                                 {{ convertDate($data->e_tgl_selesai) }}</p>
                                         @else
@@ -179,6 +179,13 @@
                                             class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
                                             Kamu sudah mengunggah laporan
                                         </p>
+                                        <br>
+                                        <a href="{{ route('user.downloadLaporan', $data->uuid) }}">
+                                            <div
+                                                class="capitalize mx-auto text-start py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">
+                                                Download Laporan
+                                            </div>
+                                        </a>
                                     @else
                                         <form action="{{ route('user.storeLaporan', ['id' => $data->user_id]) }}"
                                             method="POST" enctype="multipart/form-data">

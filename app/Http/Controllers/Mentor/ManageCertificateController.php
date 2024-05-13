@@ -24,10 +24,10 @@ class ManageCertificateController extends Controller
         $data['pageTitle'] = 'Penilaian';
 
         $admin = Auth::guard('admin')->user();
-        $data['dataCertificate'] = Document::with('user', 'status.certificate.score', 'position')
+        $data['dataCertificate'] = Document::with(['user', 'status.certificate.score', 'position'])
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($query) {
-                $query->whereNot('status', 'menunggu');
+                $query->where('status', '!=', 'menunggu');
             })
             ->whereHas('status.certificate')
             ->latest()

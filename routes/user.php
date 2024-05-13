@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\LogbookUserController;
+use App\Http\Controllers\Mentor\ManageLaporanController;
 use App\Http\Controllers\SettingUserController;
 use App\Http\Controllers\UpdatePasswordController;
 use Illuminate\Support\Facades\Route;
@@ -52,4 +53,6 @@ Route::middleware(['auth:web'])->group(function () {
 
     //download file
     Route::get('/download-documents-file/{documents}', [DashboardUserController::class, 'downloadFile'])->name('user.downloadDocuments');
+    Route::get('download-laporan/{laporan}', [ManageLaporanController::class, 'downloadLaporan'])->name('user.downloadLaporan');
+
 });

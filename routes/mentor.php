@@ -9,6 +9,7 @@ use App\Http\Controllers\Mentor\ManageUserController;
 use App\Http\Controllers\Mentor\SettingMentorController;
 use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Mentor\ManageCertificateController;
+use App\Http\Controllers\Mentor\ManageLaporanController;
 use App\Http\Controllers\Mentor\ManageLogbookController;
 use App\Http\Controllers\Mentor\UpdatePasswordMentorController;
 
@@ -62,4 +63,8 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::get('edit-score/{score}', [ManageCertificateController::class, 'edit'])->name('mentor.editPenilaian');
     Route::put('update-score/{score}', [ManageCertificateController::class, 'update'])->name('mentor.updatePenilaian');
     Route::delete('/delete-score/{id}', [ManageCertificateController::class, 'destroy'])->name('mentor.deletePenilaian');
+
+    // manage laporan
+    Route::get('laporan-peserta', [ManageLaporanController::class, 'index'])->name('mentor.laporanPeserta');
+    Route::get('download-laporan/{laporan}', [ManageLaporanController::class, 'downloadLaporan'])->name('mentor.downloadLaporan');
 });
