@@ -57,8 +57,14 @@ class SettingAdminController extends Controller
         $data['pageTitle'] = 'Update Profile';
         $decryptId = Crypt::decryptString($id);
 
-        $data['adminDetail'] = Admin::where('id', $decryptId)->get();
-        $data['officeList'] = Office::all();
+        // Retrieve the admin details
+        $data['adminDetail'] = Admin::findOrFail($decryptId);
+
+        // Retrieve the associated office using the office_id
+        $officeId = $data['adminDetail']->office_id;
+
+        // Retrieve the list of offices
+        $data['officeList'] = Office::where('id', $officeId)->get();
 
         return view('admin.update_profile', $data);
     }

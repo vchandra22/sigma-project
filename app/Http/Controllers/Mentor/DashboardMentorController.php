@@ -8,14 +8,14 @@ use App\Models\Announcement;
 use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Activitylog\Models\Activity;
+use App\Charts\DataAssignmentChart;
 
 class DashboardMentorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(DataAssignmentChart $chart)
     {
         $data['pageTitle'] = 'Mentor Dashboard';
 
@@ -26,6 +26,7 @@ class DashboardMentorController extends Controller
         $data['userData'] = Admin::with('roles')->where('id', $admin->id)->get();
 
         $data['getOffice'] = Office::where('id', $admin->office_id)->get();
+        $data['chart'] = $chart->build();
 
         return view('mentor.dashboard', $data);
     }

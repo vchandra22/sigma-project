@@ -33,6 +33,7 @@ class ManageUserController extends Controller
     {
         $query = Document::select('documents.*')
             ->with(['user', 'office', 'position', 'status'])
+            ->where('office_id', Auth::user()->office_id)
             ->latest();
 
 
@@ -66,7 +67,7 @@ class ManageUserController extends Controller
     public function create()
     {
         $data['pageTitle'] = 'Tambah User';
-        $data['officeList'] = Office::all();
+        $data['officeList'] = Office::where('id', Auth::guard('admin')->user()->office_id)->get();
         $data['positionList'] = Position::all();
 
         return view('admin.manage_user.user_create', $data);

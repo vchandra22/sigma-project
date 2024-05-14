@@ -217,20 +217,28 @@
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
-
-                                    @if ($data->status->certificate->doc_sertifikat !== null)
-                                        <a href="{{ route('downloadFileCertificate', $data->status->certificate->uuid) }}">
-                                            <div
-                                                class="mt-6 text-center font-bold capitalize text-2xl md:text-2xl bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl rounded py-2 text-secondary mb-4 w-full">
-                                                Download Sertifikat
-                                            </div>
-                                        </a>
+                                    @if ($data->status->certificate !== null)
+                                        @if ($data->status->certificate->doc_srtifikat !== null)
+                                            <a
+                                                href="{{ route('downloadFileCertificate', $data->status->certificate->uuid) }}">
+                                                <div
+                                                    class="mt-6 text-center font-bold capitalize text-2xl md:text-2xl bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl rounded py-2 text-secondary mb-4 w-full">
+                                                    Download Sertifikat
+                                                </div>
+                                            </a>
+                                        @else
+                                            <p
+                                                class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                                Sertifikat belum tersedia
+                                            </p>
+                                        @endif
                                     @else
                                         <p
                                             class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
-                                            Sertifikat belum tersedia
+                                            Belum berhak mendapat sertifikat
                                         </p>
                                     @endif
+
                                 </div>
                             </div>
                         </div>

@@ -31,6 +31,7 @@ class ManageAdminController extends Controller
         $query = Admin::with('roles')
             ->leftJoin('offices', 'admins.office_id', '=', 'offices.id')
             ->select('admins.*', 'offices.nama_kantor')
+            ->where('admins.office_id', $currentUserId->office_id)
             ->whereNot('admins.id', $currentUserId->id)
             ->latest();
 

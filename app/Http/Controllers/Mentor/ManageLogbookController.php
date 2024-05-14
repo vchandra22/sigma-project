@@ -20,7 +20,7 @@ class ManageLogbookController extends Controller
     {
         $data['pageTitle'] = 'Logbook List';
 
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
         $data['findStatusId'] = Logbook::all();
         $status_id = $data['findStatusId']->pluck('status_id')->unique();
 

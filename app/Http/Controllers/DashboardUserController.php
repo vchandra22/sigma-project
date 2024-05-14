@@ -22,7 +22,9 @@ class DashboardUserController extends Controller
         $data['pageTitle'] = 'Dashboard'; //memberikan nama pada halaman
 
         $user = Auth::user(); //mengambil id user yang telah login
-        $data['userData'] = Document::with(['user', 'office', 'position', 'status'])->where('user_id', $user->id)->get();
+        $data['userData'] = Document::with(['user', 'office', 'position', 'status.certificate'])->where('user_id', $user->id)->get();
+
+        // dd($data['userData']);
 
         $data['announcementData'] = Announcement::latest()->get();
 

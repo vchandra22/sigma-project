@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -32,9 +33,10 @@ class ManageCertificateController extends Controller
     {
         $query = Document::select('documents.*')
             ->with('user', 'status.certificate.score', 'position')
+            ->where('office_id', Auth::guard('admin')->user()->office_id)
             ->whereHas('status', function ($queryS) {
                 $queryS->whereNot('status', 'menunggu')
-                ->whereHas('certificate.score');
+                    ->whereHas('certificate.score');
             })
             ->orderByDesc('updated_at');
 

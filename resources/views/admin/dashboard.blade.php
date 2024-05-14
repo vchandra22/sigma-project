@@ -5,7 +5,7 @@
 
     <div class="p-4 sm:ml-64 bg-abu-500 dark:bg-neutral-950 min-h-screen">
         @foreach ($userData as $user)
-            <div class="p-4 mt-14">
+            <div class="p-1 md:p-4 mt-14">
                 <div
                     class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="md:col-span-2 px-6 py-8">
@@ -27,7 +27,8 @@
                             @if ($announcement->file !== null)
                                 <br>
                                 <a href="{{ route('downloadFileAnnouncement', ['announcement' => $announcement->file]) }}"
-                                    class="mt-4 text-blue-500 text-md hover:underline" style="margin-top: 20px">Unduh File Pengumuman
+                                    class="mt-4 text-blue-500 text-md hover:underline" style="margin-top: 20px">Unduh File
+                                    Pengumuman
                                 </a>
                             @else
                             @endif
@@ -107,7 +108,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="mb-2">
+                    <div
+                        class="px-6 py-8 text-primary-800 w-full h-full bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                        <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Grafik Pendaftar dan Peserta
+                        </h2>
+                        {!! $chart->container() !!}
+                    </div>
+                </div>
             </div>
         @endforeach
     </div>
+    <script src="{{ $chart->cdn() }}"></script>
+    {{ $chart->script() }}
 @endsection

@@ -9,13 +9,14 @@ use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
+use App\Charts\DataPesertaChart;
 
 class DashboardAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(DataPesertaChart $chart)
     {
         $data['pageTitle'] = 'Admin Dashboard';
 
@@ -27,6 +28,7 @@ class DashboardAdminController extends Controller
         $data['activityLog'] = Activity::latest('created_at')->get();
 
         $data['getOffice'] = Office::where('id', $admin->office_id)->get();
+        $data['chart'] = $chart->build();
 
         return view('admin.dashboard', $data);
     }

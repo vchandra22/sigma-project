@@ -12,8 +12,8 @@
                                 {{ $pageTitle }}
                             </h2>
 
-                            @foreach ($adminDetail as $admin)
-                                <form action="{{ route('admin.updateProfile', $admin->id) }}" method="POST" class="space-y-6">
+
+                                <form action="{{ route('admin.updateProfile', $adminDetail->id) }}" method="POST" class="space-y-6">
                                     @method('PUT')
                                     @csrf
 
@@ -23,7 +23,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="username" id="username"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required autofocus value="{{ $admin->username }}" />
+                                            required autofocus value="{{ $adminDetail->username }}" />
                                         @error('username')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -37,7 +37,7 @@
                                             Lengkap <span class="text-red-500">*</span></label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('nama_lengkap', $admin->nama_lengkap) }}" />
+                                            required value="{{ old('nama_lengkap', $adminDetail->nama_lengkap) }}" />
                                         @error('nama_lengkap')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -51,7 +51,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="nip" id="nip"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('nip', $admin->nip) }}" />
+                                            required value="{{ old('nip', $adminDetail->nip) }}" />
                                         @error('nip')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -67,11 +67,11 @@
                                         <select type="text" name="jenis_kelamin" id="jenis_kelamin"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             <option value="Laki - Laki"
-                                                {{ old('jenis_kelamin', $admin->jenis_kelamin ?? '') == 'Laki - Laki' ? 'selected' : '' }}>
+                                                {{ old('jenis_kelamin', $adminDetail->jenis_kelamin ?? '') == 'Laki - Laki' ? 'selected' : '' }}>
                                                 Laki - Laki
                                             </option>
                                             <option value="Perempuan"
-                                                {{ old('jenis_kelamin', $admin->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
+                                                {{ old('jenis_kelamin', $adminDetail->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
                                                 Perempuan
                                             </option>
                                         </select>
@@ -84,8 +84,7 @@
 
                                     <div>
                                         <label for="office_id"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Instansi
-                                            Tujuan <span class="text-red-500">*</span>
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Instansi<span class="text-red-500">*</span>
                                         </label>
                                         <select type="text" name="office_id" id="office_id"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
@@ -111,7 +110,7 @@
                                             Email <span class="text-red-500">*</span></label>
                                         <input type="email" name="email" id="email"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('email',$admin->email) }}" />
+                                            required value="{{ old('email', $adminDetail->email) }}" />
                                         @error('email')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -125,7 +124,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_hp" id="no_hp"
                                             class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            required value="{{ old('no_hp', $admin->no_hp) }}" />
+                                            required value="{{ old('no_hp', $adminDetail->no_hp) }}" />
                                         @error('no_hp')
                                             <div class="mt-1 text-red-500 text-xs">
                                                 {{ $message }}
@@ -138,7 +137,7 @@
                                             class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Simpan</button>
                                     </div>
                                 </form>
-                            @endforeach
+
                         </div>
                     </div>
                 </div>

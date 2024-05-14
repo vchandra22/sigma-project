@@ -181,7 +181,7 @@
                                         <div>
                                             <label for="roles"
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                                Instansi / OPD <span class="text-red-500">*</span>
+                                                Role <span class="text-red-500">*</span>
                                             </label>
                                             <select type="text" name="roles" id="roles"
                                                 class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
