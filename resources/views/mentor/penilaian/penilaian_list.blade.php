@@ -73,7 +73,7 @@
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
                                             Nilai
                                         </th>
-                                        
+
                                         <th scope="col"
                                             class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
@@ -90,7 +90,7 @@
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">
+                                                <p class="text-primary-800 font-bold dark:text-secondary">
                                                     {{ $data->user->nama_lengkap }}
                                                 </p>
                                             </td>
@@ -134,7 +134,7 @@
                                                         belum dinilai</p>
                                                 @endif
                                             </td>
-                                            
+
                                             <td class="px-4 py-4 flex justify-center">
                                                 @if ($data->status->certificate->score)
                                                     <a href="{{ route('mentor.detailPenilaian', Crypt::encryptString($data->status->certificate->id)) }}"
@@ -142,7 +142,7 @@
                                                         Detail
                                                     </a>
                                                 @else
-                                                    <a href="{{ route('mentor.createPenilaian') }}"
+                                                    <a href="{{ route('mentor.newPenilaian', $data->uuid) }}"
                                                         class="py-2 text-center text-md text-red-500 hover:underline">Buat
                                                         Penilaian
                                                     </a>

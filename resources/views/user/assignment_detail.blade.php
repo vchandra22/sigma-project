@@ -86,17 +86,19 @@
                                     </div>
                                     @if ($data->doc_jawaban)
                                         <p for="doc_jawaban"
-                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                            class="block mb-2 text-md font-medium text-primary-800 dark:text-secondary">
                                             Dokumen Jawaban
                                         </p>
                                         <a href="{{ route('downloadJawaban', $data->uuid) }}"
-                                            class="py-2 text-md text-start text-blue-500 hover:underline">
+                                            class="py-2 text-sm text-start text-blue-500 hover:underline">
                                             Download File Jawaban
                                         </a>
                                         <form action="{{ route('user.cancelAssignment', $data->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit">Cancel</button>
+                                            <button type="submit"
+                                                class="w-full px-8 py-3 text-sm font-normal text-center text-red-500 border border-red-500 hover:text-white bg-transparent rounded-none hover:bg-red-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus:ring-red-800">Batal
+                                                Kirim</button>
                                         </form>
                                     @else
                                         <form action="{{ route('user.updateAssignment', ['assignment' => $data->id]) }}"
@@ -117,7 +119,8 @@
                                                 @enderror
                                                 <ul
                                                     class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                                    <li>Unggah file dengan format (.pdf, .zip, .rar, .docx, .xlsx, .xls, .txt) (Max. 2MB)</li>
+                                                    <li>Unggah file dengan format (.pdf, .zip, .rar, .docx, .xlsx, .xls,
+                                                        .txt) (Max. 2MB)</li>
                                                     <li>Jika tugas tidak bersangkutan dengan dokumen silakan simpan tanpa
                                                         dokumen
                                                         untuk menandai telah menyelesaikan tugas</li>

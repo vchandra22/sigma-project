@@ -35,6 +35,9 @@ Route::middleware(['auth:web'])->group(function () {
 
     // assignment user
     Route::get('/assignment-list', [AssignmentController::class, 'index'])->name('user.assignment');
+    Route::get('/assignment-list/belum-dikerjakan', [AssignmentController::class, 'statusBelumDikerjakan'])->name('user.assignmentBelumDikerjakan');
+    Route::get('/assignment-list/selesai', [AssignmentController::class, 'statusSelesai'])->name('user.assignmentstatusSelesai');
+    Route::get('/assignment-list/terlambat', [AssignmentController::class, 'statusTerlambat'])->name('user.assignmentstatusTerlambat');
     Route::get('/assignment-detail/{assignment}', [AssignmentController::class, 'edit'])->name('user.editAssignment');
     Route::put('/assignment-update/{assignment}', [AssignmentController::class, 'update'])->name('user.updateAssignment');
     Route::put('assignments/{assignment}', [AssignmentController::class, 'cancelJawaban'])->name('user.cancelAssignment');

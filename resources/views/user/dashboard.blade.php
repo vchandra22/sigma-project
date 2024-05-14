@@ -217,7 +217,8 @@
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
-                                    @if ($data->status->certificate->doc_sertifikat)
+
+                                    @if ($data->status->certificate->doc_sertifikat !== null)
                                         <a href="{{ route('downloadFileCertificate', $data->status->certificate->uuid) }}">
                                             <div
                                                 class="mt-6 text-center font-bold capitalize text-2xl md:text-2xl bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl rounded py-2 text-secondary mb-4 w-full">

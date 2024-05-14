@@ -71,7 +71,7 @@
                                             Nilai
                                         </th>
                                         <th scope="col"
-                                            class="px-4 text-start py-6 text-primary-800 dark:text-secondary">
+                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
                                         </th>
                                     </tr>
@@ -96,7 +96,7 @@
                                                 </p>
                                             </td>
                                             <td class="px-4 py-4">
-                                                <div class="flex items-center h-full gap-4">
+                                                <div class="flex justify-center items-center h-full gap-4">
                                                     <a href="{{ route('mentor.editPenilaian', $data->uuid) }}"
                                                         class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">
                                                         Edit

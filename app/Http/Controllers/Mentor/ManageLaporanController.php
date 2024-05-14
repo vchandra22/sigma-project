@@ -26,7 +26,7 @@ class ManageLaporanController extends Controller
                     $query->where('status', 'selesai');
                 });
             })
-            ->latest()
+            ->orderByDesc('updated_at')
             ->paginate(20);
 
         return view('mentor.laporan.laporan_list', $data);

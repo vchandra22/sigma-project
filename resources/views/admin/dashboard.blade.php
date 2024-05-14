@@ -7,7 +7,7 @@
         @foreach ($userData as $user)
             <div class="p-4 mt-14">
                 <div
-                    class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-700 dark:border-neutral-600">
+                    class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="md:col-span-2 px-6 py-8">
                         <div class="flex justify-between items-center mb-2">
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
@@ -36,7 +36,7 @@
 
                     <div>
                         <div
-                            class="hidden w-full h-full bg-primary-800 text-secondary md:flex items-center justify-center dark:bg-neutral-900">
+                            class="hidden w-full h-full bg-primary-800 text-secondary md:flex items-center justify-center dark:bg-black">
                             <i class="fa-solid fa-bullhorn fa-6x"></i>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                     </p>
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Role
                                     </h2>
@@ -67,7 +67,7 @@
                                     @endforeach
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Instansi / OPD
                                     </h2>
@@ -90,7 +90,7 @@
                                         @foreach ($activityLog as $log)
                                             <li class="mb-4 ms-6">
                                                 <div
-                                                    class="items-center justify-between p-2 bg-white border border-gray-200 lg:flex dark:bg-neutral-800 dark:border-neutral-700">
+                                                    class="items-center justify-between p-2 bg-white border border-gray-200 lg:flex dark:bg-neutral-900 dark:border-neutral-700">
                                                     <time
                                                         class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                                                         {{ date('d-m-Y h:m:s'), strtotime($log->created_at) }}
@@ -102,8 +102,6 @@
                                             </li>
                                         @endforeach
                                     </ol>
-
-
                                 </div>
                             </div>
                         </div>

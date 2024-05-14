@@ -200,7 +200,6 @@
                                                 bekerja</p>
                                         </div>
 
-
                                         <div
                                             class="flex flex-col lg:flex-row justify-end items-end gap-4 pt-4 lg:pt-[5.5rem]">
                                             <div class="flex justify-end mt-8">

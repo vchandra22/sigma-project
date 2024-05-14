@@ -17,8 +17,6 @@ class ManageTeacherController extends Controller
     {
         $data['pageTitle'] = 'Kontak Dosen / Guru';
 
-        $admin = Auth::guard('admin')->user();
-
         return view('admin.teacher.teacher_list', $data);
     }
 

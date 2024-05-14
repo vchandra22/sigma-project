@@ -34,7 +34,7 @@
                 <div
                     class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <div class="flex items-end justify-between">
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
                             <div>
                                 <h2 class="text-4xl mb-8 md:text-5xl font-bold text-primary-800 dark:text-secondary">
                                     {{ $pageTitle }}
@@ -548,7 +548,13 @@
                                             <li>Unggah file dengan format .pdf (Max. 2MB)</li>
                                         </ul>
                                     </div>
-                                    <div class="flex flex-col items-end pt-4 lg:pt-[5.5rem]">
+                                    <div class="flex flex-col lg:flex-row justify-end items-end gap-4 pt-4 lg:pt-[5.5rem]">
+                                        <div class="flex justify-end mt-8">
+                                            <a href="{{ route('admin.forceResetUserPassword', $data->user->uuid) }}"
+                                                class="w-full px-11 py-3 text-lg font-normal text-center text-primary-800 bg-transparent rounded-none border border-primary-800 hover:bg-primary-500 hover:text-secondary focus:ring-2 focus:ring-accent sm:w-auto dark:bg-transparent dark:text-secondary dark:border-secondary dark:hover:text-neutral-900 dark:hover:bg-white dark:focus:ring-blue-800">
+                                                Ganti Password
+                                            </a>
+                                        </div>
                                         <button type="submit"
                                             class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Update
                                         </button>

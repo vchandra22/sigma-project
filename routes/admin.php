@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Admin\UpdatePasswordAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuth\AuthAdminController;
+use App\Http\Controllers\ForceResetUserPasswordController;
 use App\Http\Controllers\ManagePublicationController;
 
 Route::middleware(['guest', 'redirect.auth'])->group(function () {
@@ -132,6 +133,8 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::patch('update-password', [UpdatePasswordAdminController::class, 'update'])->name('admin.updatePassword');
     Route::get('/force-reset-password/{admin}', [ForcesResetPasswordController::class, 'edit'])->name('admin.forceResetPassword');
     Route::patch('/force-update-password/{admin}', [ForcesResetPasswordController::class, 'update'])->name('admin.forceUpdatePassword');
+    Route::get('/force-reset-user-password/{user}', [ForceResetUserPasswordController::class, 'edit'])->name('admin.forceResetUserPassword');
+    Route::patch('/force-update-user-password/{user}', [ForceResetUserPasswordController::class, 'update'])->name('admin.forceUpdateUserPassword');
 
     //list kontak dosen atau guru
     Route::get('/manage-teacher', [ManageTeacherController::class, 'index'])->name('admin.manageTeacher');
@@ -139,7 +142,8 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     // sertifikat
     Route::get('/manage-certificates', [ManageCertificateController::class, 'index'])->name('admin.manageCertificate');
-    Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('mentor.manageCertificate');
+    Route::get('/table-manage-certificate', [ManageCertificateController::class, 'tableCertificate'])->name('admin.tableCertificate');
+    Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('admin.detailCertificate');
     Route::get('/generate-certificate/{certificate}', [ManageCertificateController::class, 'generateCertificate'])->name('admin.generateCertificate');
     Route::delete('/delete-certificate/{certificate}', [ManageCertificateController::class, 'destroy'])->name('admin.deleteCertificate');
 

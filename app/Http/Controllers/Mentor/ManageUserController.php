@@ -30,7 +30,15 @@ class ManageUserController extends Controller
     public function tableUser()
     {
         $admin = Auth::guard('admin')->user();
-        $query = Document::with(['user', 'office', 'position', 'status'])->where('office_id', $admin->office_id)->latest();
+        $query = Document::select('documents.*')
+            ->with(['user', 'office', 'position', 'status'])
+            ->where('office_id', $admin->office_id)
+            ->whereHas('status', function ($queryS) {
+                $queryS->where('status', 'diterima')
+                    ->orWhere('status', 'selesai');
+            })
+            ->orderByDesc('updated_at')
+            ->get();
 
         return DataTables::of($query)
             ->addIndexColumn()
@@ -52,7 +60,7 @@ class ManageUserController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -60,7 +68,7 @@ class ManageUserController extends Controller
      */
     public function store(Request $request)
     {
-       //
+        //
     }
 
     /**
@@ -141,7 +149,7 @@ class ManageUserController extends Controller
      */
     public function destroy($id)
     {
-       //
+        //
     }
 
     public function downloadFile($documents)

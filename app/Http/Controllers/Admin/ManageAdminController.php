@@ -28,7 +28,11 @@ class ManageAdminController extends Controller
     public function tableAdmin()
     {
         $currentUserId = Auth::guard('admin')->user();
-        $query = Admin::with('roles')->leftJoin('offices', 'admins.office_id', '=', 'offices.id')->select('admins.*', 'offices.nama_kantor')->where('admins.id', '!=', $currentUserId->id)->latest();
+        $query = Admin::with('roles')
+            ->leftJoin('offices', 'admins.office_id', '=', 'offices.id')
+            ->select('admins.*', 'offices.nama_kantor')
+            ->whereNot('admins.id', $currentUserId->id)
+            ->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()

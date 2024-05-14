@@ -54,6 +54,27 @@ class ManageCertificateController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function createOnUser($userId)
+    {
+        $data['pageTitle'] = 'Buat Penilaian';
+        $admin = Auth::user();
+        $user = Document::where('uuid', $userId)->first();
+        $data['userData'] = Document::with('user', 'status.certificate.score')
+            ->where('office_id', $admin->office_id)
+            ->where('uuid', $user->uuid)
+            ->whereHas('status.certificate', function ($query) {
+                $query->whereDoesntHave('score');
+            })
+            ->get();
+
+            // dd($data['userData']);
+
+        return view('mentor.penilaian.penilaian_create', $data);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

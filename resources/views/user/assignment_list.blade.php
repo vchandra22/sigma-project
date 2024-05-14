@@ -32,9 +32,43 @@
             <div class="w-full">
                 <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary mb-8">
-                            {{ $pageTitle }}
-                        </h2>
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
+                            <div>
+                                <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary mb-8">
+                                    {{ $pageTitle }}
+                                </h2>
+                            </div>
+                            <div class="flex justify-end mb-4">
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                    class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
+                                    type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 w-44 dark:bg-neutral-950">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <a href="{{ route('user.assignmentBelumDikerjakan') }}"
+                                                class="btn btn-primary">Belum dikerjakan</a>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <a href="{{ route('user.assignmentstatusSelesai') }}"
+                                                class="btn btn-primary">Selesai</a>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <a href="{{ route('user.assignmentstatusTerlambat') }}"
+                                                class="btn btn-primary">Terlambat</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                         @forelse ($assignmentData as $data)
                             <div

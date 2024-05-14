@@ -38,6 +38,9 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
 
     //manage assignment
     Route::get('/manage-assignment', [ManageAssignmentController::class, 'index'])->name('mentor.manageAssignment');
+    Route::get('/manage-assignment/belum-dikerjakan', [ManageAssignmentController::class, 'statusBelumDikerjakan'])->name('mentor.assignmentBelumDikerjakan');
+    Route::get('/manage-assignment/selesai', [ManageAssignmentController::class, 'statusSelesai'])->name('mentor.assignmentstatusSelesai');
+    Route::get('/manage-assignment/terlambat', [ManageAssignmentController::class, 'statusTerlambat'])->name('mentor.assignmentstatusTerlambat');
     Route::get('/create-assignment', [ManageAssignmentController::class, 'create'])->name('mentor.createAssignment');
     Route::post('/store-assignment', [ManageAssignmentController::class, 'store'])->name('mentor.storeAssignment');
     Route::get('/detail-assignment/{assignment}', [ManageAssignmentController::class, 'show'])->name('mentor.detailAssignment');
@@ -57,6 +60,7 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     // manage sertifikat & penilaian
     Route::get('manage-score', [ManageCertificateController::class, 'index'])->name('mentor.managePenilaian');
     Route::get('create-score', [ManageCertificateController::class, 'create'])->name('mentor.createPenilaian');
+    Route::get('create-new-score/{score}', [ManageCertificateController::class, 'createOnUser'])->name('mentor.newPenilaian');
     Route::post('store-score', [ManageCertificateController::class, 'store'])->name('mentor.storePenilaian');
     Route::get('add-new-score/{certificate}', [ManageCertificateController::class, 'add'])->name('mentor.addPenilaian');
     Route::get('detail-score/{certificate}', [ManageCertificateController::class, 'show'])->name('mentor.detailPenilaian');

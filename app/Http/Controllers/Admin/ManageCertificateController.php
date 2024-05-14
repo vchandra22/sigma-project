@@ -14,6 +14,7 @@ use Dompdf\Options;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Yajra\DataTables\Facades\DataTables;
 
 class ManageCertificateController extends Controller
 {
@@ -23,15 +24,46 @@ class ManageCertificateController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Data Sertifikat Peserta';
-        $data['dataCertificate'] = Document::with('user', 'status.certificate.score', 'position')
-            ->whereHas('status', function ($query) {
-                $query->whereNot('status', 'menunggu');
-            })
-            ->whereHas('status.certificate.score')
-            ->latest()
-            ->paginate(20);
 
         return view('admin.certificate.certificate_list', $data);
+    }
+
+    public function tableCertificate()
+    {
+        $query = Document::select('documents.*')
+            ->with('user', 'status.certificate.score', 'position')
+            ->whereHas('status', function ($queryS) {
+                $queryS->whereNot('status', 'menunggu')
+                ->whereHas('certificate.score');
+            })
+            ->orderByDesc('updated_at');
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->editColumn('user.nama_lengkap', function ($data) {
+                return $data->user->nama_lengkap;
+            })
+            ->editColumn('user.jenis_kelamin', function ($data) {
+                return $data->user->jenis_kelamin;
+            })
+            ->editColumn('instansi_asal', function ($data) {
+                return $data->instansi_asal;
+            })
+            ->editColumn('e_tgl_mulai', function ($data) {
+                return $data->e_tgl_mulai;
+            })
+            ->editColumn('e_tgl_selesai', function ($data) {
+                return $data->e_tgl_selesai;
+            })
+
+            ->addColumn('opsi', function ($data) {
+                // Assuming you have a route named 'mentor.manageCertificate' to show certificate details
+                $detailRoute = route('admin.detailCertificate', ['certificate' => Crypt::encryptString($data->status->certificate->id)]);
+
+                return '<a href="' . $detailRoute . '" class="py-2 text-center text-md text-blue-500 cursor-pointer hover:underline">Detail</a>';
+            })
+            ->rawColumns(['opsi'])
+            ->make(true);
     }
 
     /**

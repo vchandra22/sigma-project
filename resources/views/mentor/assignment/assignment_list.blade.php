@@ -45,6 +45,36 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="flex justify-end my-4">
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                    class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
+                                    type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 w-44 dark:bg-neutral-950">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <a href="{{ route('mentor.assignmentBelumDikerjakan') }}"
+                                                class="btn btn-primary">Dikirim</a>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <a href="{{ route('mentor.assignmentstatusSelesai') }}"
+                                                class="btn btn-primary">Selesai</a>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <a href="{{ route('mentor.assignmentstatusTerlambat') }}"
+                                                class="btn btn-primary">Terlambat</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
                         @forelse ($assignmentData as $data)
                             <div
@@ -85,15 +115,15 @@
                                 <div>
                                     @if ($data->status == 'dikirim')
                                         <div class="bg-blue-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
-                                            <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                            <p class="font-bold capitalize text-center text-white">{{ $data->status }}</p>
                                         </div>
                                     @elseif ($data->status == 'selesai')
                                         <div class="bg-green-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
-                                            <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                            <p class="font-bold capitalize text-center text-white">{{ $data->status }}</p>
                                         </div>
                                     @elseif ($data->status == 'terlambat')
                                         <div class="bg-red-500 p-1 w-auto md:w-56 lg:w-1/6 mb-4">
-                                            <p class="font-bold text-center text-white">{{ $data->status }}</p>
+                                            <p class="font-bold capitalize text-center text-white">{{ $data->status }}</p>
                                         </div>
                                     @endif
                                     <div

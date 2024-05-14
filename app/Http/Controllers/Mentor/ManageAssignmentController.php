@@ -28,6 +28,37 @@ class ManageAssignmentController extends Controller
         return view('mentor.assignment.assignment_list', $data);
     }
 
+    public function statusBelumDikerjakan()
+    {
+        $data['pageTitle'] = 'Assignment';
+        $user = Auth::user(); // Retrieve the authenticated user
+
+        $data['assignmentData'] = Assignment::where('created_by', $user->id)->where('status', 'dikirim')->latest()->paginate(10);
+
+        return view('mentor.assignment.assignment_list', $data);
+    }
+
+
+    public function statusSelesai()
+    {
+        $data['pageTitle'] = 'Assignment';
+        $user = Auth::user(); // Retrieve the authenticated user
+
+        $data['assignmentData'] = Assignment::where('created_by', $user->id)->where('status', 'selesai')->latest()->paginate(10);
+
+        return view('mentor.assignment.assignment_list', $data);
+    }
+
+    public function statusTerlambat()
+    {
+        $data['pageTitle'] = 'Assignment';
+        $user = Auth::user(); // Retrieve the authenticated user
+
+        $data['assignmentData'] = Assignment::where('created_by', $user->id)->where('status', 'terlambat')->latest()->paginate(10);
+
+        return view('mentor.assignment.assignment_list', $data);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -133,7 +164,7 @@ class ManageAssignmentController extends Controller
         $validatedData['created_by'] = Auth::user()->id;
 
         if ($request->hasFile('doc_pertanyaan')) {
-            
+
             $oldFilename = $assignment->doc_pertanyaan;
 
             // Delete the old file

@@ -40,9 +40,9 @@
                             </h2>
                         </div>
 
-                        <div class="relative overflow-x-auto mt-12">
-                            <input type="hidden" id="searchTableTeacher" value="#">
-                            <table id="tableManageTeacher"
+                        <div class="relative overflow-x-auto mt-6">
+                            <input type="hidden" id="searchTableCertificate" value="{{ route('admin.tableCertificate') }}">
+                            <table id="tableManageCertificate"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
                                     <tr>
@@ -59,8 +59,11 @@
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             Instansi
                                         </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Tanggal Magang
+                                        </th>
                                         <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                            class="px-4 text-start py-6 text-primary-800 dark:text-secondary">
                                             No. Sertifikat
                                         </th>
                                         <th scope="col"
@@ -70,62 +73,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($dataCertificate as $data)
-                                        <tr
-                                            class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">
-                                                    {{ ($dataCertificate->currentPage() - 1) * $dataCertificate->perPage() + $loop->iteration }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 font-bold dark:text-secondary">
-                                                    {{ $data->user->nama_lengkap }}
-                                                    <br>
-                                                    {{ $data->no_identitas }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 text-start dark:text-secondary">
-                                                    {{ $data->user->no_hp }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 text-start dark:text-secondary">
-                                                    {{ $data->instansi_asal }}
-                                                </p>
-                                                <p class="text-primary-800 text-start dark:text-secondary">
-                                                    {{ $data->position->role }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                @if ($data->status->certificate->doc_sertifikat)
-                                                    <!-- certificate_id exists -->
-                                                    <p class="text-primary-800 text-center font-bold dark:text-secondary">
-                                                        {{ $data->status->certificate->no_sertifikat }}</p>
-                                                @else
-                                                    <!-- certificate_id does not exist -->
-                                                    <p class="text-red-500 text-center dark:text-secondary">
-                                                        Sertifikat Belum Dibuat
-                                                    </p>
-                                                @endif
 
-                                            </td>
-                                            <td class="px-4 py-4 flex justify-center">
-                                                <a href="{{ route('mentor.manageCertificate', Crypt::encryptString($data->status->certificate->id)) }}"
-                                                    class="py-2 text-center text-md text-blue-500 hover:underline">
-                                                    Detail
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td class="align-middle mb-4 text-center py-8 text-md text-hitam"
-                                                colspan="8">
-                                                Tidak ada data / Mentor belum memberikan nilai
-                                            </td>
-                                        </tr>
-                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -134,9 +82,9 @@
             </div>
         </div>
     </div>
-    {{-- @push('data-table')
+    @push('data-table')
         @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-teacher.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/data-table-certificate.js') }}"></script>
         @endonce
-    @endpush --}}
+    @endpush
 @endsection

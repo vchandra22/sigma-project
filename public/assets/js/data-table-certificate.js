@@ -15,7 +15,7 @@ function convertDate(dateString) {
 }
 
 $(document).ready(function () {
-    $('#tableManageUser').DataTable({
+    $('#tableManageCertificate').DataTable({
         dom: 'frtip',
         ordering: true,
         serverSide: true,
@@ -24,7 +24,7 @@ $(document).ready(function () {
         responsive: true,
         pageLength: 20,
         ajax: {
-            'url': $('#searchTableUser').val(),
+            'url': $('#searchTableCertificate').val(),
         },
         columns: [
             {
@@ -45,62 +45,36 @@ $(document).ready(function () {
             {
                 data: 'user.no_hp',
                 name: 'user.no_hp',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                data: 'user.jenis_kelamin',
-                name: 'user.jenis_kelamin',
-                className: 'text-primary-800 text-center dark:text-secondary'
-            },
-            {
-                data: 'instansi_asal',
-                name: 'instansi_asal',
-                className: 'text-primary-800 dark:text-secondary'
+                className: 'text-primary-800 dark:text-secondary',
+                orderable: false,
+                searchable: false
             },
             {   render: function(data, type, row) {
-                    return '<div>' + row.office.nama_kantor + '</div>' +
+                    return '<div>' + row.instansi_asal + '</div>' +
                            '<div>' + row.position.role + '</div>';
                 },
-                name: 'office.nama_kantor',
+                name: 'instansi_asal',
                 className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                data: null, render: function(data, type, row) {
-                    if (row.u_tgl_mulai && row.u_tgl_selesai) {
-                        return convertDate(row.u_tgl_mulai) + '<br> - <br>' + convertDate(row.u_tgl_selesai);
-                    } else {
-                        return '<span class="font-normal text-xs text-abu-800">belum diatur</span>';
-                    }
-                },
-                name: 'u_tgl_mulai',
-                className: 'text-primary-800 text-center dark:text-secondary'
             },
             {
                 data: null, render: function(data, type, row) {
                     if (row.e_tgl_mulai && row.e_tgl_selesai) {
-                        return convertDate(row.e_tgl_mulai) + '<br> - <br>' + convertDate(row.e_tgl_selesai);
+                        return convertDate(row.e_tgl_mulai) + ' - ' + convertDate(row.e_tgl_selesai);
                     } else {
                         return '<span class="font-normal text-xs text-abu-800">belum diatur</span>';
                     }
                 },
                 name: 'e_tgl_mulai',
-                className: 'text-primary-800 text-center dark:text-secondary'
+                className: 'text-primary-800 text-start dark:text-secondary',
+                orderable: false,
+                searchable: false
             },
             {
-                data: 'status.status',
-                name: 'status.status',
-                render: function(data, type, row, meta) {
-                    if (data === 'menunggu') {
-                        return '<div class="bg-yellow-300 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
-                    } else if (data === 'diterima') {
-                        return '<div class="bg-green-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
-                    } else if (data === 'ditolak') {
-                        return '<div class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
-                    } else if (data === 'selesai') {
-                        return '<div class="bg-blue-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
-                    } else {
-                        return data; // Return data as it is if it doesn't match any condition
-                    }
+                data: 'status.certificate.no_sertifikat',
+                name: 'status.certificate.no_sertifikat',
+                className: 'text-primary-800 dark:text-secondary',
+                render: function(data, type, row) {
+                    return data ? '<p class="text-primary-800 text-start font-bold dark:text-secondary">' + data + '</p>' : '<p class="text-red-500 text-start dark:text-secondary">Sertifikat Belum Dibuat</p>';
                 }
             },
             {

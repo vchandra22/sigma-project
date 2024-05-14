@@ -31,12 +31,24 @@ class ManageUserController extends Controller
 
     public function tableUser()
     {
-        $query = Document::with(['user', 'office', 'position', 'status'])->latest();
+        $query = Document::select('documents.*')
+            ->with(['user', 'office', 'position', 'status'])
+            ->latest();
+
 
         return DataTables::of($query)
             ->addIndexColumn()
             ->editColumn('user.nama_lengkap', function ($data) {
                 return $data->user->nama_lengkap;
+            })
+            ->editColumn('user.jenis_kelamin', function ($data) {
+                return $data->user->jenis_kelamin;
+            })
+            ->editColumn('office.nama_kantor', function ($data) {
+                return $data->office->nama_kantor;
+            })
+            ->editColumn('status.status', function ($data) {
+                return $data->status->status;
             })
             ->addColumn('opsi', function ($data) {
                 // Assuming you have a route named 'detail' to show details
@@ -279,7 +291,7 @@ class ManageUserController extends Controller
                 'e_tgl_mulai' => null,
                 'e_tgl_selesai' => null
             ]);
-            
+
             $status->certificate()->delete();
         }
 

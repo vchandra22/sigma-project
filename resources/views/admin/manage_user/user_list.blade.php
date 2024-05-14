@@ -46,8 +46,44 @@
                             </div>
                         </div>
 
-                        <div class="relative overflow-x-auto mt-12">
-                            <input type="hidden" id="searchTableUser" value="{{ route('admin.tableUser') }}">
+
+                        <div class="relative overflow-x-auto mt-6">
+                            <div class="flex justify-end mb-4">
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                    class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
+                                    type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 w-44 dark:bg-neutral-950">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus(' ')">Semua</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus('menunggu')">Menunggu</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus('diterima')">Diterima</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus('ditolak')">Ditolak</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus('selesai')">Selesai</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" id="searchTableUser" value="{{ route('admin.tableUser') }}">
+                            </div>
                             <table id="tableManageUser"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
@@ -100,6 +136,12 @@
             </div>
         </div>
     </div>
+    <script>
+        function filterByStatus(status) {
+            // Use DataTables API to filter data by status
+            $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
+        }
+    </script>
     @push('data-table')
         @once
             <script type="text/javascript" src="{{ asset('assets/js/data-table-user.js') }}"></script>

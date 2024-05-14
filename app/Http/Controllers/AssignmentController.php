@@ -19,20 +19,76 @@ class AssignmentController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Assignment';
-        $user = Auth::user(); //mengambil id user yang telah login
+        $user = Auth::user(); // Retrieve the authenticated user
+
         $data['assignmentData'] = Assignment::where('status_id', $user->id)->latest()->paginate(10);
-
+        // Check if assignment data is empty
         if ($data['assignmentData']->isEmpty()) {
-
             $data['mentorData'] = null;
         } else {
             // If assignment data is not empty, fetch mentor data based on assignment data
-            $mentor_id = $data['assignmentData']->pluck('created_by')->unique();
-            $data['mentorData'] = Admin::whereIn('id', $mentor_id)->firstOrFail();
+            $mentor_ids = $data['assignmentData']->pluck('created_by')->unique();
+            $data['mentorData'] = Admin::whereIn('id', $mentor_ids)->get();
         }
 
         return view('user.assignment_list', $data);
     }
+
+    public function statusBelumDikerjakan()
+    {
+        $data['pageTitle'] = 'Assignment';
+        $user = Auth::user(); // Retrieve the authenticated user
+
+        $data['assignmentData'] = Assignment::where('status_id', $user->id)->where('status', 'dikirim')->latest()->paginate(10);
+        // Check if assignment data is empty
+        if ($data['assignmentData']->isEmpty()) {
+            $data['mentorData'] = null;
+        } else {
+            // If assignment data is not empty, fetch mentor data based on assignment data
+            $mentor_ids = $data['assignmentData']->pluck('created_by')->unique();
+            $data['mentorData'] = Admin::whereIn('id', $mentor_ids)->get();
+        }
+
+        return view('user.assignment_list', $data);
+    }
+
+
+    public function statusSelesai()
+    {
+        $data['pageTitle'] = 'Assignment';
+        $user = Auth::user(); // Retrieve the authenticated user
+
+        $data['assignmentData'] = Assignment::where('status_id', $user->id)->where('status', 'selesai')->latest()->paginate(10);
+        // Check if assignment data is empty
+        if ($data['assignmentData']->isEmpty()) {
+            $data['mentorData'] = null;
+        } else {
+            // If assignment data is not empty, fetch mentor data based on assignment data
+            $mentor_ids = $data['assignmentData']->pluck('created_by')->unique();
+            $data['mentorData'] = Admin::whereIn('id', $mentor_ids)->get();
+        }
+
+        return view('user.assignment_list', $data);
+    }
+
+    public function statusTerlambat()
+    {
+        $data['pageTitle'] = 'Assignment';
+        $user = Auth::user(); // Retrieve the authenticated user
+
+        $data['assignmentData'] = Assignment::where('status_id', $user->id)->where('status', 'terlambat')->latest()->paginate(10);
+        // Check if assignment data is empty
+        if ($data['assignmentData']->isEmpty()) {
+            $data['mentorData'] = null;
+        } else {
+            // If assignment data is not empty, fetch mentor data based on assignment data
+            $mentor_ids = $data['assignmentData']->pluck('created_by')->unique();
+            $data['mentorData'] = Admin::whereIn('id', $mentor_ids)->get();
+        }
+
+        return view('user.assignment_list', $data);
+    }
+
 
     /**
      * Show the form for creating a new resource.
