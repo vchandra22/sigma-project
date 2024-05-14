@@ -5,7 +5,7 @@
 
     <div class="p-4 sm:ml-64 bg-abu-500 dark:bg-neutral-950 min-h-screen">
         @foreach ($userData as $user)
-            <div class="p-4 mt-14">
+            <div class="p-1 md:p-4 mt-14">
                 <div
                     class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-600">
                     <div class="md:col-span-2 px-6 py-8">

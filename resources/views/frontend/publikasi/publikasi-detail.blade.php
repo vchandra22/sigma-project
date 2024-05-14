@@ -3,8 +3,8 @@
 @section('content')
     <div class="mt-[4.4rem] relative w-full h-96">
         @foreach ($publikasiData as $getGambar)
-            <img src="{{ $getGambar->gambar ? asset('storage/img/' . $getGambar->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}" class="object-cover w-full h-full"
-                alt="Illustration Image Discussion">
+            <img src="{{ $getGambar->gambar ? asset('storage/img/' . $getGambar->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+                class="object-cover w-full h-full" alt="Illustration Image Discussion">
         @endforeach
         <div
             class="absolute top-0 right-0 w-full h-full bg-primary-800 bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-60">
@@ -64,7 +64,7 @@
                                     {{ $data->judul }}
                                 </h2>
                                 <div class="my-8 w-full">
-                                    <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/default-hero-image.webp') }}"
+                                    <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
                                         class="object-cover w-full h-full" alt="{{ $data->judul }}" width="100"
                                         height="100">
                                 </div>
@@ -85,7 +85,7 @@
                     @foreach ($publikasiAll as $data)
                         <a href="{{ route('frontend.publikasiDetail', $data->slug) }}"
                             class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
-                            <div class="relative w-1/3 h-44 lg:h-full">
+                            <div class="relative w-full h-32 md:w-1/3 md:h-44 lg:h-full">
                                 <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
                                     class="object-cover w-full h-full" alt="{{ $data->judul }}">
                                 <div
@@ -93,8 +93,9 @@
                                 </div>
                             </div>
                             <div
-                                class="flex flex-col justify-between w-2/3 p-6 leading-normal text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-neutral-900">
-                                <h5 class="text-2xl font-bold tracking-tight leading-7 overflow-hidden line-clamp-3">
+                                class="flex flex-col justify-between md:w-2/3 p-6 leading-normal text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-neutral-900">
+                                <h5
+                                    class="text-2xl font-bold text-start tracking-tight leading-7 overflow-hidden line-clamp-3">
                                     {{ $data->judul }}
                                 </h5>
                             </div>

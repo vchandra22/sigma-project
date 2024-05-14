@@ -57,7 +57,7 @@
                         </div>
 
                         @foreach ($userData as $data)
-                            <form class="grid lg:grid-cols-2 gap-8 lg:gap-16"
+                            <form class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16"
                                 action="{{ route('admin.updatePeserta', ['document' => $data->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf

@@ -3,7 +3,7 @@
 @section('content')
     @include('mentor.layouts.sidebar')
     <div class="p-4 sm:ml-64 min-h-screen bg-abu-500 dark:bg-neutral-950">
-        <div class="p-4 mt-14">
+        <div class="p-1 md:p-4 mt-14">
             @if (session('success'))
                 <div id="toast-success"
                     class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-primary-800 border border-gray-100 bg-white shadow-sm top-5 right-5 mt-[4.4rem] dark:text-secondary dark:bg-neutral-800 dark:border dark:border-neutral-700 z-50"
@@ -34,7 +34,7 @@
                 <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         @foreach ($adminData as $admin)
-                            <div class="flex items-center justify-between mb-8">
+                            <div class="flex flex-row lg:flex-row justify-between items-end lg:items-end">
                                 <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
                                     {{ $pageTitle }}
                                 </h2>

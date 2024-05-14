@@ -34,7 +34,7 @@
                 <div
                     class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
+                        <div class="flex flex-row lg:flex-row justify-between items-end lg:items-end">
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
