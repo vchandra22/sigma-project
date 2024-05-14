@@ -128,6 +128,7 @@
                                                 <div class="relative">
                                                     <label for="tgl_magang"
                                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Tanggal
+                                                        <span class="text-red-500">*</span>
                                                     </label>
                                                     <div
                                                         class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -151,7 +152,7 @@
                                                 <div>
                                                     <label for="jam_mulai"
                                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Waktu
-                                                        Mulai</label>
+                                                        Mulai <span class="text-red-500">*</span></label>
                                                     <input type="time" name="jam_mulai" id="jam_mulai"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                         required />
@@ -164,7 +165,7 @@
                                                 <div>
                                                     <label for="jam_selesai"
                                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Waktu
-                                                        Selesai</label>
+                                                        Selesai <span class="text-red-500">*</span></label>
                                                     <input type="time" name="jam_selesai" id="jam_selesai"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                         required />
@@ -180,7 +181,7 @@
                                         <div>
                                             <label for="topik_diskusi"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Topik
-                                                Diskusi</label>
+                                                Diskusi <span class="text-red-500">*</span></label>
                                             <textarea name="topik_diskusi" id="topik_diskusi" rows="8"
                                                 class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
                                             @error('topik_diskusi')
@@ -193,7 +194,7 @@
                                         <div>
                                             <label for="arahan_pembimbing"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arahan
-                                                Pembimbing</label>
+                                                Pembimbing <span class="text-red-500">*</span></label>
                                             <textarea name="arahan_pembimbing" id="arahan_pembimbing" rows="4"
                                                 class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
                                             @error('arahan_pembimbing')
@@ -206,7 +207,7 @@
                                         <div>
                                             <label for="bukti"
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Bukti
-                                                Dukung (link)
+                                                Dukung (link) <span class="text-red-500">*</span>
                                             </label>
                                             <input type="text" name="bukti" id="bukti"
                                                 class="bg-white border border-abu-800 text-blue-500 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent"
@@ -260,8 +261,8 @@
                                 @endif
                                 <p class="text-red-500 text-sm font-normal leading-tight mt-4">Perhatian!!! data Logbook
                                     Kegiatan
-                                    tidak bisa di ubah, pastikan Anda mengisi dengan Hati - Hati dan Teliti</p>
-
+                                    tidak bisa di ubah, pastikan Anda mengisi dengan Hati - Hati dan Teliti
+                                </p>
                                 <div class="relative overflow-x-auto mt-4">
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 z-10">
@@ -288,7 +289,13 @@
                                                     class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                                     <td class="px-8 py-4">
                                                         <p class="text-primary-800 dark:text-secondary">
-                                                            {{ convertDate($logbook->tgl_magang) }} </p>
+                                                            {{ convertDate($logbook->tgl_magang) }}
+                                                            <br>
+                                                            {{ \Carbon\Carbon::parse($logbook->jam_mulai)->format('H:i') }}
+                                                            -
+                                                            {{ \Carbon\Carbon::parse($logbook->jam_selesai)->format('H:i') }}
+
+                                                        </p>
                                                     </td>
                                                     <td class="px-8 py-4">
                                                         <div class="mb-2">

@@ -44,7 +44,7 @@
                             <input type="hidden" id="searchTableTeacher" value="{{ route('admin.tableTeacher') }}">
                             <table id="tableManageTeacher"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
-                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
+                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                     <tr>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             No.
@@ -63,7 +63,8 @@
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
                                             Status
                                         </th>
-                                        <th scope="col" class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                        <th scope="col"
+                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
                                             File Laporan
                                         </th>
                                     </tr>
@@ -114,7 +115,8 @@
                                             <td class="px-4 py-4">
                                                 @if ($data->doc_laporan)
                                                     <a href="{{ route('mentor.downloadLaporan', $data->uuid) }}">
-                                                        <div class="capitalize mx-auto text-center py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">
+                                                        <div
+                                                            class="capitalize mx-auto text-center py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">
                                                             Download Laporan
                                                         </div>
                                                     </a>

@@ -217,8 +217,8 @@
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
-                                    @if ($data->status->certificate !== null)
-                                        @if ($data->status->certificate->doc_srtifikat !== null)
+                                    @if ($data->status->certificate)
+                                        @if ($data->status->certificate->doc_sertifikat)
                                             <a
                                                 href="{{ route('downloadFileCertificate', $data->status->certificate->uuid) }}">
                                                 <div

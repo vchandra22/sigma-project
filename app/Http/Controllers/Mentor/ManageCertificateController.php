@@ -27,10 +27,9 @@ class ManageCertificateController extends Controller
         $data['dataCertificate'] = Document::with(['user', 'status.certificate.score', 'position'])
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($query) {
-                $query->where('status', '!=', 'menunggu');
+                $query->where('status', '!=', 'menunggu')->orderByDesc('created_at');
             })
             ->whereHas('status.certificate')
-            ->latest()
             ->paginate(20);
 
         return view('mentor.penilaian.penilaian_list', $data);
@@ -69,7 +68,7 @@ class ManageCertificateController extends Controller
             })
             ->get();
 
-            // dd($data['userData']);
+        // dd($data['userData']);
 
         return view('mentor.penilaian.penilaian_create', $data);
     }
@@ -126,7 +125,7 @@ class ManageCertificateController extends Controller
         $data['pageTitle'] = 'Tambah Penilaian';
         $user = Auth::user();
         $data['userData'] = Document::with('user', 'status.certificate.score')
-        ->where('office_id', $user->office_id)
+            ->where('office_id', $user->office_id)
             ->whereHas('status.certificate', function ($query) use ($certificateId) {
                 $query->where('id', $certificateId);
             })

@@ -29,18 +29,18 @@ Route::middleware(['auth:web'])->group(function () {
 
     // logbook user
     Route::get('/logbook', [LogbookUserController::class, 'create'])->name('user.logbook');
-    Route::post('/logbook', [LogbookUserController::class, 'store'])->name('user.storeLogbook');
-    Route::get('/print-logbook/{id}', [LogbookUserController::class, 'show'])->name('user.showLogbook');
+    Route::post('/store-logbook', [LogbookUserController::class, 'store'])->name('user.storeLogbook');
+    Route::get('/show-logbook/{id}', [LogbookUserController::class, 'show'])->name('user.showLogbook');
     Route::delete('/logbook/{id}/delete', [LogbookUserController::class, 'destroy'])->name('delete.logbook');
 
     // assignment user
-    Route::get('/assignment-list', [AssignmentController::class, 'index'])->name('user.assignment');
-    Route::get('/assignment-list/belum-dikerjakan', [AssignmentController::class, 'statusBelumDikerjakan'])->name('user.assignmentBelumDikerjakan');
-    Route::get('/assignment-list/selesai', [AssignmentController::class, 'statusSelesai'])->name('user.assignmentstatusSelesai');
-    Route::get('/assignment-list/terlambat', [AssignmentController::class, 'statusTerlambat'])->name('user.assignmentstatusTerlambat');
-    Route::get('/assignment-detail/{assignment}', [AssignmentController::class, 'edit'])->name('user.editAssignment');
-    Route::put('/assignment-update/{assignment}', [AssignmentController::class, 'update'])->name('user.updateAssignment');
-    Route::put('assignments/{assignment}', [AssignmentController::class, 'cancelJawaban'])->name('user.cancelAssignment');
+    Route::get('/assignment', [AssignmentController::class, 'index'])->name('user.assignment');
+    Route::get('/assignment/belum-dikerjakan', [AssignmentController::class, 'statusBelumDikerjakan'])->name('user.assignmentBelumDikerjakan');
+    Route::get('/assignment/selesai', [AssignmentController::class, 'statusSelesai'])->name('user.assignmentstatusSelesai');
+    Route::get('/assignment/terlambat', [AssignmentController::class, 'statusTerlambat'])->name('user.assignmentstatusTerlambat');
+    Route::get('/detail-assignment/{assignment}', [AssignmentController::class, 'edit'])->name('user.editAssignment');
+    Route::put('/update-assignment/{assignment}', [AssignmentController::class, 'update'])->name('user.updateAssignment');
+    Route::put('/cancel-assignments/{assignment}', [AssignmentController::class, 'cancelJawaban'])->name('user.cancelAssignment');
 
     // pengaturan user
     Route::get('/settings', [SettingUserController::class, 'index'])->name('user.settings');
@@ -56,6 +56,6 @@ Route::middleware(['auth:web'])->group(function () {
 
     //download file
     Route::get('/download-documents-file/{documents}', [DashboardUserController::class, 'downloadFile'])->name('user.downloadDocuments');
-    Route::get('download-laporan/{laporan}', [ManageLaporanController::class, 'downloadLaporan'])->name('user.downloadLaporan');
+    Route::get('/download-laporan/{laporan}', [ManageLaporanController::class, 'downloadLaporan'])->name('user.downloadLaporan');
 
 });

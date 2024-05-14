@@ -50,7 +50,7 @@
                             <input type="hidden" id="searchTableTeacher" value="{{ route('admin.tableTeacher') }}">
                             <table id="tableManageTeacher"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
-                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
+                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                     <tr>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             No.
@@ -111,7 +111,7 @@
                                                 @if ($data->status->certificate->doc_sertifikat)
                                                     <!-- certificate_id exists -->
                                                     <p
-                                                        class="capitalize mx-auto font-bold text-center py-2 pointer-events-none text-primary-800">
+                                                        class="capitalize mx-auto font-bold text-center py-2 pointer-events-none text-primary-800 dark:text-secondary">
                                                         {{ $data->status->certificate->no_sertifikat }}
                                                     </p>
                                                 @else

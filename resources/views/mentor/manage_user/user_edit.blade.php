@@ -189,7 +189,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Instansi
                                             Tujuan <span class="text-red-500">*</span></label>
                                         <select type="text" name="office_id" id="office_id"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            class="bg-white border border-abu-800 text-primary-800 pointer-events-none text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @foreach ($officeList as $office)
                                                 <option value="{{ $office->id }}"
                                                     {{ old('office_id', $data->office->id ?? null) == $office->id ? 'selected' : '' }}>
@@ -200,8 +200,6 @@
                                         @error('office_id')
                                             <div class="mt-1 text-red-500 text-xs">{{ $message }}</div>
                                         @enderror
-                                        <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan instansi
-                                            tujuan melakukan kegiatan magang</p>
                                     </div>
 
                                     <div>
@@ -209,7 +207,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Posisi
                                             Pekerjaan <span class="text-red-500">*</span></label>
                                         <select type="text" name="position_id" id="position_id"
-                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            class="bg-white border border-abu-800 text-primary-800 pointer-events-none text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @foreach ($positionList as $position)
                                                 <option value="{{ $position->id }}"
                                                     {{ old('position_id', $data->position->id ?? null) == $position->id ? 'selected' : '' }}>
@@ -256,7 +254,7 @@
                                         @enderror
 
                                         <p class="mt-1 text-xs text-gray-500 dark:text-secondary">Isikan dengan teliti,
-                                            pastikan nomor dapat dihubungi!</p>
+                                            pastikan nomor dapat dihubungi</p>
                                     </div>
 
                                     <div>

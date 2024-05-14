@@ -81,8 +81,8 @@
                             </div>
                             <div
                                 class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
-                                <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Grafik
-                                    Pendaftar dan Peserta
+                                <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
+                                    Grafik Penyelesaian Tugas
                                 </h2>
                                 {!! $chart->container() !!}
                             </div>

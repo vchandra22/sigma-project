@@ -43,7 +43,7 @@
                         <div class="relative overflow-x-auto mt-12">
                             <table
                                 class="w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
-                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
+                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                     <tr>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             No.

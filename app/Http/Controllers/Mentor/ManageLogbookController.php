@@ -29,7 +29,8 @@ class ManageLogbookController extends Controller
             ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
             ->where('documents.office_id', $user->office_id)
             ->whereIn('logbooks.status_id', $status_id)
-            ->select('users.nama_lengkap', 'documents.no_identitas', 'documents.instansi_asal', 'logbooks.status_id')
+            ->select('users.nama_lengkap', 'documents.no_identitas', 'documents.instansi_asal', 'logbooks.status_id', 'statuses.created_at')
+            ->orderByDesc('statuses.created_at')
             ->distinct()
             ->get();
 

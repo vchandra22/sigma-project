@@ -154,7 +154,6 @@ class ManageUserController extends Controller
 
     public function downloadFile($documents)
     {
-
         $filePath = storage_path('app/private/documents/' . $documents);
 
         // Return the file as a download response
