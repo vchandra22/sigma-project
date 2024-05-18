@@ -170,47 +170,58 @@
                             <div class="h-full w-full grid grid-rows-2 gap-2">
                                 <div
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
-                                    @if ($data->doc_laporan)
+                                    @if ($data->status->status === 'diterima' || $data->status->status === 'selesai')
+                                        @if ($data->doc_laporan)
+                                            <p for="doc_laporan"
+                                                class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
+                                                Laporan Magang
+                                            </p>
+                                            <p
+                                                class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
+                                                Kamu sudah mengunggah laporan
+                                            </p>
+                                            <br>
+                                            <a href="{{ route('user.downloadLaporan', $data->uuid) }}">
+                                                <div
+                                                    class="capitalize mx-auto text-start py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">
+                                                    Download Laporan
+                                                </div>
+                                            </a>
+                                        @else
+                                            <form action="{{ route('user.storeLaporan', ['id' => $data->user_id]) }}"
+                                                method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <label for="doc_laporan"
+                                                    class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
+                                                    Laporan Magang</label>
+                                                <input
+                                                    class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-900 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                    id="doc_laporan" type="file" name="doc_laporan">
+                                                @error('doc_laporan')
+                                                    <div class="mt-1 text-red-500 text-xs">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                                <ul
+                                                    class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
+                                                    <li>Unggah file dengan format .pdf (Max. 2MB)</li>
+                                                </ul>
+                                                <div class="pt-2">
+                                                    <button type="submit"
+                                                        class="w-full px-12 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Kirim</button>
+                                                </div>
+                                            </form>
+                                        @endif
+                                    @else
                                         <p for="doc_laporan"
                                             class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
                                             Laporan Magang
                                         </p>
                                         <p
                                             class="text-primary-800 font-paragraf text-lg md:text-xl dark:text-secondary leading-4 md:leading-5">
-                                            Kamu sudah mengunggah laporan
+                                            Kamu belum berhak mengisi
                                         </p>
-                                        <br>
-                                        <a href="{{ route('user.downloadLaporan', $data->uuid) }}">
-                                            <div
-                                                class="capitalize mx-auto text-start py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">
-                                                Download Laporan
-                                            </div>
-                                        </a>
-                                    @else
-                                        <form action="{{ route('user.storeLaporan', ['id' => $data->user_id]) }}"
-                                            method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                            <label for="doc_laporan"
-                                                class="block mb-2 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary">
-                                                Laporan Magang</label>
-                                            <input
-                                                class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-900 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                id="doc_laporan" type="file" name="doc_laporan">
-                                            @error('doc_laporan')
-                                                <div class="mt-1 text-red-500 text-xs">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <ul
-                                                class="mt-1 pl-2 list-disc list-inside text-xs text-gray-500 dark:text-secondary">
-                                                <li>Unggah file dengan format .pdf (Max. 2MB)</li>
-                                            </ul>
-                                            <div class="pt-2">
-                                                <button type="submit"
-                                                    class="w-full px-12 py-2 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Kirim</button>
-                                            </div>
-                                        </form>
                                     @endif
                                 </div>
                                 <div

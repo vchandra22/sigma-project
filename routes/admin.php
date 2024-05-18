@@ -137,7 +137,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::patch('/force-update-user-password/{user}', [ForceResetUserPasswordController::class, 'update'])->name('admin.forceUpdateUserPassword');
 
     //list kontak dosen atau guru
-    Route::get('/manage-teacher', [ManageTeacherController::class, 'index'])->name('admin.manageTeacher');
+    Route::get('/daftar-kontak-pembimbing', [ManageTeacherController::class, 'index'])->name('admin.manageTeacher');
     Route::get('/table-manage-teacher', [ManageTeacherController::class, 'tableTeacher'])->name('admin.tableTeacher');
 
     // sertifikat

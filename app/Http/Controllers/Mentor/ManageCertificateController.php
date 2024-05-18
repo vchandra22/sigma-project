@@ -158,7 +158,7 @@ class ManageCertificateController extends Controller
     public function edit($uuid)
     {
         // $decryptId =  Crypt::decryptString($id);
-        $data['pageTitle'] = 'Detail Penilaian';
+        $data['pageTitle'] = 'Update Nilai';
         $data['scoreDetail'] = Score::where('uuid', $uuid)->get();
 
         return view('mentor.penilaian.penilaian_edit', $data);

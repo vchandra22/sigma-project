@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         @foreach ($userData as $data)
-                            <form class="grid lg:grid-cols-2 gap-8 lg:gap-16"
+                            <form class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16"
                                 action="{{ route('mentor.updatePeserta', ['document' => $data->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -327,8 +327,7 @@
                                                         </svg>
                                                     </div>
 
-                                                    <input name="e_tgl_mulai"
-                                                        id="e_tgl_mulai" type="text"
+                                                    <input name="e_tgl_mulai" id="e_tgl_mulai" type="text"
                                                         placeholder="Pilih tanggal" readonly
                                                         value="{{ date('d/m/Y', strtotime($data->e_tgl_mulai)) }}"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
@@ -355,8 +354,8 @@
                                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                                         </svg>
                                                     </div>
-                                                    <input name="e_tgl_selesai"
-                                                        id="e_tgl_selesai" type="text" placeholder="Pilih tanggal"
+                                                    <input name="e_tgl_selesai" id="e_tgl_selesai" type="text"
+                                                        placeholder="Pilih tanggal"
                                                         value="{{ date('d/m/Y', strtotime($data->e_tgl_selesai)) }}"
                                                         readonly
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">

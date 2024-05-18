@@ -30,7 +30,7 @@
                 Sistem Informasi Kegiatan Magang {{ $userData->nama_kantor }}
             </h2>
             <p style="font-size: 12px; font-weight: bold; width: 500px; text-align: center; margin: auto;">
-                {{ $aboutData->alamat }} Telp. {{ $aboutData->no_telp }}
+                {{ $userData->alamat }}
             </p>
             <p style="font-size: 12px; margin:auto">Website : <a
                     href="{{ Config::get('app.url') }}">{{ Config::get('app.url') }}</a>
