@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Homepage;
 use App\Models\Office;
 use App\Models\Position;
 use App\Models\User;
@@ -31,6 +32,7 @@ class RegisterUserController extends Controller
         $data['pageTitle'] = 'Register';
         $data['officeList'] = Office::all();
         $data['positionList'] = Position::all();
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('auth.sign-up', $data);
     }

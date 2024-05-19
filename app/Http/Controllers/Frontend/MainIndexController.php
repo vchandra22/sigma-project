@@ -24,7 +24,7 @@ class MainIndexController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Beranda';
-        $data['homeData'] = Homepage::latest()->get();
+        $data['homeData'] = Homepage::latest()->firstOrFail();
         $data['journeyData'] = Journey::all();
         $data['benefitData'] = Benefit::all();
         $data['benefitData'] = Benefit::all();
@@ -44,6 +44,7 @@ class MainIndexController extends Controller
     {
         $data['pageTitle'] = 'Internship Roles';
         $data['positionData'] = Position::all();
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.roles.role-lists', $data);
     }
@@ -52,6 +53,7 @@ class MainIndexController extends Controller
     {
         $data['pageTitle'] = 'Developer';
         $data['positionData'] = Position::where('slug', $slug)->get();
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.roles.role-detail', $data);
     }
@@ -60,6 +62,7 @@ class MainIndexController extends Controller
     {
         $data['pageTitle'] = 'Publikasi';
         $data['publikasiData'] = Publication::latest()->paginate(16);
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.publikasi.publikasi-lists', $data);
     }
@@ -69,6 +72,7 @@ class MainIndexController extends Controller
         $data['pageTitle'] = 'Judul Publikasi';
         $data['publikasiData'] = Publication::where('slug', $slug)->get();
         $data['publikasiAll'] = Publication::latest()->paginate(4);
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.publikasi.publikasi-detail', $data);
     }
@@ -78,6 +82,7 @@ class MainIndexController extends Controller
         $data['pageTitle'] = 'FAQ';
         $data['faqData'] = Faq::all();
         $data['homeData'] = Homepage::first();
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.faq.faq', $data);
     }

@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-    @foreach ($homeData as $data)
+
         {{-- jumbotron / hero homepage start --}}
         <div class="mt-[4.4rem] mx-auto h-96 md:h-full relative">
             <img src="{{ asset('frontend/assets/img/default-hero-image.webp') }}" width="100" height="100"
@@ -36,11 +36,11 @@
                 class="absolute top-0 flex flex-col items-center justify-center w-full h-full px-4 py-2 my-auto text-center lg:px-0 bg-opacity-80 bg-primary-800 lg:py-56 dark:bg-neutral-950 dark:bg-opacity-60">
                 <h1
                     class="max-w-screen-lg text-3xl font-extrabold leading-none tracking-normal text-secondary md:mb-4 md:text-4xl lg:text-6xl lg:max-w-screen-xl">
-                    {{ $data->heading }}
+                    {{ $homeData->heading }}
                 </h1>
                 <p
                     class="max-w-screen-lg my-2 text-xs font-normal leading-tight text-gray-300 lg:px-4 lg:text-xl lg:leading-tight">
-                    {{ strip_tags($data->deskripsi_app) }}
+                    {{ strip_tags($homeData->deskripsi_app) }}
                 </p>
             </div>
         </div>
@@ -218,9 +218,9 @@
                 </h2>
                 <p class="text-center mt-4 text-2xl md:text-3xl text-primary-800 dark:text-secondary">
                     Kunjungi <a class="font-bold hover:text-primary-500 dark:hover:text-abu-500"
-                        href="{{ $data->instagram_link }}" target="_blank">Instagram</a>
+                        href="{{ $homeData->instagram_link }}" target="_blank">Instagram</a>
                     dan <a class="font-bold hover:text-primary-500 dark:hover:text-abu-500"
-                        href="{{ $data->youtube_link }}" target="_blank">YouTube</a>
+                        href="{{ $homeData->youtube_link }}" target="_blank">YouTube</a>
                     Kami
                     ya!
                 </p>
@@ -238,7 +238,7 @@
                     </h2>
                     <div class="w-full h-full mt-8 md:w-2/3">
                         <iframe class="w-full h-80" width="560" height="315"
-                            src="https://www.youtube.com/embed/{{ $data->id_video }}" title="YouTube video player"
+                            src="https://www.youtube.com/embed/{{ $homeData->id_video }}" title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
@@ -247,5 +247,5 @@
             </div>
         </div>
         {{-- section internlife video end --}}
-    @endforeach
+
 @endsection

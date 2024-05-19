@@ -13,13 +13,10 @@
                     {{-- logo on navbar end --}}
                     <span class="font-paragraf text-sm md:text-md md:leading-6 text-primary-800 text-start dark:text-secondary">
                         <p>
-                            Jl. Dr. Moh. Hatta No.05, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113.
+                            {{ $homeData->alamat }}
                         </p>
                         <p>
-                            diskominfotik@blitarkota.go.id
-                        </p>
-                        <p>
-                            Diskominfotik Pemkot Blitar, Jawa Timur Indonesia
+                            {{ $homeData->email }}
                         </p>
                     </span>
                 </div>
@@ -30,24 +27,23 @@
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-brands fa-instagram fa-2x w-10"></i>
-                            <a href="https://flowbite.com/" class="font-paragraf text-md md:text-lg">diskominfotikblitarkota</a>
+                            <a href="{{ $homeData->instagram_link }}" target="_blank" class="font-paragraf text-md md:text-lg">{{ $homeData->instagram_username }}</a>
                         </li>
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-brands fa-youtube fa-2x w-10"></i>
-                            <a href="https://tailwindcss.com/" class="font-paragraf text-md md:text-lg">Diskominfotik Blitar
-                                Kota</a>
+                            <a href="{{ $homeData->youtube_link }}" target="_blank" class="font-paragraf text-md md:text-lg">{{ $homeData->youtube_channel }}</a>
                         </li>
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-solid fa-phone fa-2x w-10"></i>
-                            <a href="https://tailwindcss.com/" class="font-paragraf text-md md:text-lg">(0342) 807805</a>
+                            <a href="tel:{{ $homeData->no_telp }}" class="font-paragraf text-md md:text-lg">{{ $homeData->no_telp }}</a>
                         </li>
                         <li
                             class="flex justify-start justify-items-center mb-4 gap-2 hover:text-primary-500 dark:hover:text-secondary">
                             <i class="fa-regular fa-envelope fa-2x w-10"></i>
-                            <a href="https://tailwindcss.com/"
-                                class="font-paragraf text-md md:text-lg">diskominfotik@blitarkota.go.id</a>
+                            <a href="mailto:{{ $homeData->email }}" target="_blank"
+                                class="font-paragraf text-md md:text-lg">{{ $homeData->email }}</a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +52,7 @@
                     </h2>
                     <div class="aspect-w-16 aspect-h-9">
                         <iframe class="w-full h-full overflow-hidden"
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15800.401683501328!2d112.1720179!3d-8.0912411!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78ec6a2320c57f%3A0x5466129e34187596!2sDinas%20Komunikasi%2C%20Informatika%20dan%20Statisitik%20Kota%20Blitar!5e0!3m2!1sen!2sid!4v1710001022757!5m2!1sen!2sid"
+                            src="{{ $homeData->gmaps_kantor }}"
                             width="600" height="550" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>

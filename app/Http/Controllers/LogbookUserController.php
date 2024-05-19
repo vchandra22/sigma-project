@@ -7,6 +7,7 @@ use App\Models\Homepage;
 use Illuminate\Http\Request;
 use App\Models\Logbook;
 use App\Models\User;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -51,8 +52,7 @@ class LogbookUserController extends Controller
             'bukti' => ['required', 'url'],
         ]);
 
-        $tgl_magang = DateTime::createFromFormat('m/d/Y', $validatedData['tgl_magang']);
-        $validatedData['tgl_magang'] = trim($tgl_magang->format('Y-m-d'));
+        $validatedData['tgl_magang'] = Carbon::createFromFormat('d/m/Y', $validatedData['tgl_magang'])->format('Y-m-d');
 
         Logbook::create($validatedData);
 

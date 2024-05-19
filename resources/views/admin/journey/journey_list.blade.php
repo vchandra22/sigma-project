@@ -113,5 +113,80 @@
                 </div>
             </div>
         </div>
+        <div class="hidden justify-center m-5">
+            <button id="deleteButton" data-modal-target="deleteModal" data-modal-toggle="deleteModal"
+                class="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                type="button">
+            </button>
+        </div>
+
+        <!-- Main modal -->
+        <div id="deleteModal" tabindex="-1" aria-hidden="true"
+            class="hidden fixed inset-0 z-50 flex items-center justify-center">
+            <!-- Background overlay with opacity -->
+            <div class="fixed inset-0 bg-black opacity-50"></div>
+            <!-- Modal content -->
+            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+                <div class="relative p-4 text-center bg-white rounded-sm shadow dark:bg-neutral-800 sm:p-5">
+                    <button type="button"
+                        class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="deleteModal">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <i class="fa-solid fa-triangle-exclamation fa-4x text-red-500 py-4"></i>
+                    <p class="mb-4 text-primary-500 dark:text-secondary font-paragraf text-md">Kamu akan
+                        menghapus item ini
+                        selamanya. Apakah Kamu yakin?</p>
+                    <div class="flex justify-center items-center space-x-4">
+                        <button data-modal-hide="deleteModal" type="button"
+                            class="py-2 px-6 text-sm font-medium text-primary-500 bg-white rounded-none border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-400 hover:text-primary-800 focus:z-10 dark:bg-neutral-800 dark:text-secondary dark:border-neutral-700 dark:hover:text-white dark:hover:bg-neutral-700 dark:focus:ring-gray-600">
+                            Tidak, batalkan
+                        </button>
+                        <button id="confirm-delete-button" type="button"
+                            class="py-2 px-6 text-sm font-medium text-center text-white bg-red-500 rounded-none hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                            Iya, Saya Yakin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            const modal = document.getElementById('deleteModal');
+            const confirmDeleteButton = document.getElementById('confirm-delete-button');
+            let formToSubmit;
+
+            // Show modal when delete button is clicked
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    formToSubmit = document.getElementById('delete-journey-' + this.dataset.id);
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                });
+            });
+
+            // Submit form when confirm delete button is clicked
+            confirmDeleteButton.addEventListener('click', function() {
+                formToSubmit.submit();
+            });
+
+            // Hide modal when cancel button is clicked or modal close button is clicked
+            document.querySelectorAll('[data-modal-toggle="deleteModal"]').forEach(element => {
+                element.addEventListener('click', function() {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                });
+            });
+        });
+    </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Homepage;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class AuthUserController extends Controller
     public function create()
     {
         $data['pageTitle'] = 'Login';
+        $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('auth.login', $data);
     }
