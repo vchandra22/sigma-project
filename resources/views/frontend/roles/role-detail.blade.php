@@ -39,7 +39,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 pb-12">
                 @foreach ($positionData as $data)
                     <div class="relative w-full h-full dark:border dark:border-neutral-900">
-                        <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+                        <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
                             class="object-cover w-full h-full" width="100" height="100" title="{{ $pageTitle }}"
                             alt="Gambar ilustrasi posisi {{ $pageTitle }}">
                         <div

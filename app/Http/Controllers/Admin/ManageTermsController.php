@@ -3,23 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Announcement;
-use App\Models\Homepage;
 use App\Models\Term;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
-class ManageContentController extends Controller
+class ManageTermsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['pageTitle'] = 'Manage Content';
-        $data['homepageUuid'] = Homepage::first();
-        $data['termsId'] = Term::first();
-
-        return view('admin.manage_content', $data);
+        //
     }
 
     /**
@@ -41,7 +36,7 @@ class ManageContentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Term $term)
     {
         //
     }
@@ -49,23 +44,34 @@ class ManageContentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data['pageTitle'] = 'Edit Content Terms & Condition';
+
+        $decryptId = Crypt::decryptString($id);
+        $data['termsData'] = Term::where('id', $decryptId)->first();
+
+        return view('admin.terms.terms_edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Term $term)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => ['required'],
+        ]);
+
+        $term = Term::where('id', $term->id)->update($validatedData);
+
+        return redirect(route('admin.manageContent'))->with('success', 'Data berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Term $term)
     {
         //
     }

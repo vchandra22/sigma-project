@@ -56,9 +56,11 @@
                                                     {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
                                                 </p>
                                             </div>
-                                            <a href="{{ route('mentor.editAssignment', $data->slug) }}"
-                                                class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Edit
-                                            </a>
+                                            @if ($data->status !== 'selesai')
+                                                <a href="{{ route('mentor.editAssignment', $data->slug) }}"
+                                                    class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Edit
+                                                </a>
+                                            @endif
                                         </div>
 
                                     </div>
@@ -101,7 +103,7 @@
                                             Download File Jawaban
                                         </a>
                                     @elseif ($data->status === 'dikirim')
-                                   
+
                                         <div>
                                             <p for="doc_jawaban"
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">

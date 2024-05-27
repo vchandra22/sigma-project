@@ -53,7 +53,7 @@ class ManageHomepageController extends Controller
         $data['pageTitle'] = 'Homepage Content';
 
         $data['homepageData'] = Homepage::where('uuid', $uuid)->get();
-        $data['metaData'] = Meta::where('slug', "home")->get();
+        $data['metaData'] = Meta::where('slug', 'home')->get();
 
         return view('admin.edit_homepage', $data);
     }

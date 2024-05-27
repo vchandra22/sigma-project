@@ -469,19 +469,7 @@
                             <div class="px-6 pb-8 md:px-8 md:pb-8">
                                 <span
                                     class="text-xs md:text-sm leading-tight text-justify text-primary-800 dark:text-secondary">
-                                    Kami percaya bahwa Kamu harus selalu tahu dan memiliki kontrol mengenai data apa yang
-                                    Kami kumpulkan dari Kamu dan bagaimana Kami menggunakannya. Kebijakan Privasi ini
-                                    menjelaskan bagaimana Kami menangani informasi yang Kamu berikan saat registrasi akun
-                                    website <a class="text-blue-500 hover:underline"
-                                        href="/">sigma.blitarkota.go.id</a> Dengan menyetujui kebijakan privasi ini,
-                                    maka Kamu menyatakan bahwa data yang diberikan adalah benar dan Kamu menyetujui bahwa
-                                    data tersebut dapat Kami gunakan untuk tujuan operasional akun <a
-                                        class="text-blue-500 hover:underline" href="/">sigma.blitarkota.go.id</a>
-                                    dan/atau tujuan lain yang Kami anggap
-                                    pantas. Jika Kamu telah melakukan registrasi akun, Kamu dianggap telah menyetujui
-                                    Kebijakan Privasi ini. Namun jika Kamu tidak menyetujui bagian apapun dari perjanjian
-                                    ini, mohon agar tidak melanjutkan proses registrasi akun. Buatlah keputusan terbaik
-                                    mengenai informasi yang Kamu bagikan kepada Kami.
+                                    {{ strip_tags($termsData->content) }}
                                 </span>
                             </div>
                         </div>

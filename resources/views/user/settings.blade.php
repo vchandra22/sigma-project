@@ -115,6 +115,26 @@
                                     </p>
                                 </div>
 
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
+                                    <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
+                                        Nama Pembimbing (Guru/Dosen)
+                                    </h2>
+                                    <p
+                                        class="text-primary-800 font-bold text-lg md:text-2xl dark:text-secondary leading-4 md:leading-5">
+                                        {{ $user->document->nama_pembimbing }}
+                                    </p>
+                                </div>
+
+                                <div class="bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-none">
+                                    <h2 class="text-xl md:text-xl font-normal text-primary-800 dark:text-secondary mb-2">
+                                        No.HP Pembimbing (Guru/Dosen)
+                                    </h2>
+                                    <p
+                                        class="text-primary-800 font-bold text-lg md:text-2xl dark:text-secondary leading-4 md:leading-5">
+                                        {{ $user->document->no_hp_pembimbing }}
+                                    </p>
+                                </div>
+
                                 <div class="flex flex-col items-end">
                                     <a href="{{ route('user.editPassword') }}"
                                         class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Ubah

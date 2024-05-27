@@ -27,8 +27,9 @@ class ManageCertificateController extends Controller
         $data['dataCertificate'] = Document::with(['user', 'status.certificate.score', 'position'])
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($query) {
-                $query->where('status', '!=', 'menunggu')->orderByDesc('created_at');
+                $query->where('status', '!=', 'menunggu');
             })
+            ->orderByDesc('updated_at')
             ->whereHas('status.certificate')
             ->paginate(20);
 

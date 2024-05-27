@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             JourneySeeder::class,
             BenefitSeeder::class,
             RequirementSeeder::class,
+            TermSeeder::class
         ]);
     }
 }

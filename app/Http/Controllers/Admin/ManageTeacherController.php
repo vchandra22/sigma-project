@@ -43,7 +43,7 @@ class ManageTeacherController extends Controller
                 $whatsappLink = 'https://wa.me/' . $internationalNumber;
 
                 // Generate anchor tag with WhatsApp chat link
-                return '<a href="' . $whatsappLink . '" target="_blank" class="text-secondary bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-100 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2"><i class="fa-brands fa-whatsapp mr-2 fa-lg"></i>Coba Hubungi WA</a>';
+                return '<a href="' . $whatsappLink . '" target="_blank" class="text-secondary bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-100 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2"><i class="fa-brands fa-whatsapp px-2 fa-lg"></i>Coba Hubungi WA</a>';
             })
             ->rawColumns(['opsi'])
             ->make(true);

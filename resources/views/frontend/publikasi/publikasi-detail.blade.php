@@ -3,7 +3,7 @@
 @section('content')
     <div class="mt-[4.4rem] relative w-full h-96">
         @foreach ($publikasiData as $getGambar)
-            <img src="{{ $getGambar->gambar ? asset('storage/img/' . $getGambar->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+            <img src="{{ $getGambar->gambar ? asset('storage/img/' . $getGambar->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
                 class="object-cover w-full h-full" alt="Illustration Image Discussion">
         @endforeach
         <div
@@ -32,7 +32,14 @@
                                 <i class="fa-solid fa-chevron-right w-5 h-3 text-secondary pt-1"></i>
                                 <a href="{{ url()->current() }}"
                                     class="ms-1 text-lg font-bold w-full text-secondary overflow-hidden line-clamp-2 hover:text-white md:ms-2 dark:text-abu-500 dark:hover:text-secondary">
-                                    {{ $pageTitle }}
+                                    @foreach ($publikasiData as $judul)
+                                        @php
+                                            $content = $judul->judul;
+                                            $strippedContent = strip_tags($content);
+                                            $limitedContent = \Illuminate\Support\Str::limit($strippedContent, 80);
+                                        @endphp
+                                        {{ $limitedContent }}
+                                    @endforeach
                                 </a>
                             </div>
                         </li>
@@ -64,15 +71,14 @@
                                     {{ $data->judul }}
                                 </h2>
                                 <div class="my-8 w-full">
-                                    <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+                                    <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
                                         class="object-cover w-full h-full" alt="{{ $data->judul }}" width="100"
                                         height="100">
                                 </div>
                             </div>
-                            <div
-                                class="text-primary-800 pb-12 text-justify leading-tight pt-8 text-balance text-md md:text-2xl font-paragraf dark:text-secondary">
-                                {{ strip_tags($data->content) }}
-                            </div>
+                            <article class="prose lg:prose-xl dark:prose-invert">
+                                {!! $data->content !!}
+                            </article>
                         </div>
                     @endforeach
                 </div>
@@ -86,7 +92,7 @@
                         <a href="{{ route('frontend.publikasiDetail', $data->slug) }}"
                             class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
                             <div class="relative w-full h-32 md:w-1/3 md:h-44 lg:h-full">
-                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
                                     class="object-cover w-full h-full" alt="{{ $data->judul }}">
                                 <div
                                     class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-40 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">
@@ -96,7 +102,7 @@
                                 class="flex flex-col justify-between md:w-2/3 p-6 leading-normal text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-neutral-900">
                                 <h5
                                     class="text-2xl font-bold text-start tracking-tight leading-7 overflow-hidden line-clamp-3">
-                                    {{ $data->judul }}
+                                    {{ strip_tags($data->judul) }}
                                 </h5>
                             </div>
                         </a>

@@ -69,7 +69,7 @@ class MainIndexController extends Controller
 
     public function publikasiDetail($slug)
     {
-        $data['pageTitle'] = 'Judul Publikasi';
+        $data['pageTitle'] = "Detail Publikasi";
         $data['publikasiData'] = Publication::where('slug', $slug)->get();
         $data['publikasiAll'] = Publication::latest()->paginate(4);
         $data['homeData'] = Homepage::latest()->firstOrFail();

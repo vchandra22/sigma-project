@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->index();
-            $table->unsignedBigInteger('status_id')->index()->nullable();
+            $table->unsignedBigInteger('status_id')->unique()->nullable();
             $table->string('no_sertifikat')->nullable();
             $table->string('doc_sertifikat')->nullable();
             $table->string('qr_code')->nullable();

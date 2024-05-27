@@ -33,7 +33,7 @@
                         class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
                         <a href="{{ route('frontend.publikasiDetail', $data->slug) }}">
                             <div class="relative w-full h-44">
-                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/logo-sigma-single.png') }}"
+                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
                                     class="object-cover w-full h-full" alt="Illustration Image Discussion">
                                 <div
                                     class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">

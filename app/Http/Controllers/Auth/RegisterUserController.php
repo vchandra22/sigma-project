@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Homepage;
 use App\Models\Office;
 use App\Models\Position;
+use App\Models\Term;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class RegisterUserController extends Controller
         $data['pageTitle'] = 'Register';
         $data['officeList'] = Office::all();
         $data['positionList'] = Position::all();
-        $data['homeData'] = Homepage::latest()->firstOrFail();
+        $data['homeData'] = Homepage::firstOrFail();
+        $data['termsData'] = Term::firstOrFail();
 
         return view('auth.sign-up', $data);
     }

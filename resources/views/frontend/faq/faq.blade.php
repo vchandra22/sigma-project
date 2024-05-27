@@ -46,7 +46,7 @@
                                     class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-b-0 border-abu-500 dark:bg-neutral-900 dark:border-neutral-800 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
                                     data-accordion-target="#accordion-open-body-{{ $data->id }}" aria-expanded="true"
                                     aria-controls="accordion-open-body-{{ $data->id }}">
-                                    <span class="text-2xl font-bold">{{ $data->pertanyaan }}</span>
+                                    <span class="text-2xl font-bold">{{ strip_tags($data->pertanyaan) }}</span>
                                     <span class="-m-[20px] p-4">
                                         <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
                                     </span>
@@ -58,7 +58,7 @@
                                     class="p-5 border border-b-0 border-gray-200 dark:border-neutral-500 dark:bg-neutral-500">
                                     <p
                                         class="mb-2 text-primary-800 font-paragraf text-lg leading-tight dark:text-secondary">
-                                        {{ $data->jawaban }}
+                                        {{ strip_tags($data->jawaban) }}
                                     </p>
                                 </div>
                             </div>

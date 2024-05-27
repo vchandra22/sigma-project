@@ -80,8 +80,13 @@
                                                 </h5>
                                             </td>
                                             <td class="px-4 py-4">
+                                                @php
+                                                    $content = $publication->content;
+                                                    $limitedContent = \Illuminate\Support\Str::limit($content, 500);
+                                                    $limitedContent = str_replace('&nbsp;', '', $limitedContent);
+                                                @endphp
                                                 <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ strip_tags($publication->content) }}
+                                                    {{ strip_tags($limitedContent) }}
                                                 </h5>
                                             </td>
                                             <td class="px-8">

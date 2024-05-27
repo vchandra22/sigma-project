@@ -59,7 +59,6 @@ class ManageCertificateController extends Controller
             })
 
             ->addColumn('opsi', function ($data) {
-                // Assuming you have a route named 'mentor.manageCertificate' to show certificate details
                 $detailRoute = route('admin.detailCertificate', ['certificate' => Crypt::encryptString($data->status->certificate->id)]);
 
                 return '<a href="' . $detailRoute . '" class="py-2 text-center text-md text-blue-500 cursor-pointer hover:underline">Detail</a>';
@@ -131,6 +130,9 @@ class ManageCertificateController extends Controller
         $certificate->delete();
 
         Status::where('id', $certificate->status_id)->update(['status' => 'ditolak']);
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($certificate)->log($getUser . ' menghapus sertifikat peserta');
 
         return redirect(route('admin.manageCertificate'))->with('success', 'Data berhasil dihapus!');
     }
@@ -236,6 +238,9 @@ class ManageCertificateController extends Controller
         // Update the status to 'selesai'
         $status = $certificate->status;
         $status->update(['status' => 'selesai']);
+
+        $getUser = Auth::guard('admin')->user()->nama_lengkap;
+        activity()->causedBy($status)->log($getUser . ' menerbitkan sertifikat baru');
 
         // Return the path to the saved PDF file
         return back()->with('success', 'Sukses Generate Sertifikat!');

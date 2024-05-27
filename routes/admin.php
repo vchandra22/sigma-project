@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ManageOfficeController;
 use App\Http\Controllers\Admin\ManagePositionController;
 use App\Http\Controllers\Admin\ManageRequirementController;
 use App\Http\Controllers\Admin\ManageTeacherController;
+use App\Http\Controllers\Admin\ManageTermsController;
 use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Admin\UpdatePasswordAdminController;
@@ -123,6 +124,10 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('/manage-requirement-content/update/{requirement}', [ManageRequirementController::class, 'update'])->name('admin.updateRequirement');
     Route::delete('/manage-requirement-content/delete/{id}', [ManageRequirementController::class, 'destroy'])->name('admin.deleteRequirement');
 
+    // terms content
+    Route::get('/manage-terms/{term}', [ManageTermsController::class, 'edit'])->name('admin.manageTerms');
+    Route::put('/manage-term/update/{term}', [ManageTermsController::class, 'update'])->name('admin.updateTerms');
+
     // settings admin
     Route::get('/settings', [SettingAdminController::class, 'index'])->name('admin.settings');
     Route::get('/settings/edit/{id}', [SettingAdminController::class, 'edit'])->name('admin.editProfile');
@@ -146,6 +151,4 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('admin.detailCertificate');
     Route::get('/generate-certificate/{certificate}', [ManageCertificateController::class, 'generateCertificate'])->name('admin.generateCertificate');
     Route::delete('/delete-certificate/{certificate}', [ManageCertificateController::class, 'destroy'])->name('admin.deleteCertificate');
-
-
 });
