@@ -41,6 +41,11 @@ class ManagePublicationController extends Controller
             'judul' => ['required'],
             'content' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            // meta validation
+            'meta_title' => ['required', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:160'],
+            'meta_keywords' => ['nullable'],
+            'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);
 
         if (isset($validatedData['gambar'])) {
@@ -58,6 +63,24 @@ class ManagePublicationController extends Controller
                 $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
                 Storage::disk('public')->put('/img/' . $filename, File::get($file));
                 $validatedData['gambar'] = $filename;
+            }
+        }
+
+        if (isset($validatedData['og_image'])) {
+            // Process 'ttd_kepala' if it exists
+            if ($request->hasFile('og_image')) {
+                // Handle file upload and storage
+                $file = $request->file('og_image');
+                $directoryPath = 'img';
+
+                // Create directory if not exists
+                if (!file_exists($directoryPath)) {
+                    Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+                }
+
+                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                Storage::disk('public')->put('/img/' . $filename, File::get($file));
+                $validatedData['og_image'] = $filename;
             }
         }
 
@@ -97,6 +120,11 @@ class ManagePublicationController extends Controller
             'judul' => ['required'],
             'content' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            // meta validation
+            'meta_title' => ['required', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:160'],
+            'meta_keywords' => ['nullable'],
+            'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -117,6 +145,26 @@ class ManagePublicationController extends Controller
             $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
             Storage::disk('public')->put('/img/' . $filename, File::get($file));
             $validatedData['gambar'] = $filename;
+        }
+
+        if ($request->hasFile('og_image')) {
+            $file = $request->file('og_image');
+            $directoryPath = 'img';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            // Delete old 'gambar' if it exists
+            if ($publication->gambar) {
+                Storage::disk('public')->delete('img/' . $publication->og_image);
+            }
+
+            // Handle file upload and storage
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedData['og_image'] = $filename;
         }
 
         $newSlug = Str::slug($request->input('judul'));
@@ -150,6 +198,11 @@ class ManagePublicationController extends Controller
         if ($publication->gambar) {
             Storage::disk('public')->delete('/img/' . $publication->gambar);
         }
+
+        if ($publication->og_image) {
+            Storage::disk('public')->delete('/img/' . $publication->og_image);
+        }
+
         $publication->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;

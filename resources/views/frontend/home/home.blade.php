@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+
 @section('meta')
     @php
         $metaData = getMeta('home');
@@ -8,14 +9,14 @@
     <meta name="keywords" content="{{ $metaData['meta_keyword'] }}">
     <meta name="author" content="DISKOMINFOTIK Kota Blitar">
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="Internship">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $metaData['meta_title'] }}">
     <meta property="og:description" content="{{ $metaData['meta_description'] }}">
     <meta property="og:image" content="{{ __($metaData['og_image']) }}">
     <meta property="og:site_name" content="{{ get_app_name() }}">
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:card" content="Internship">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="{{ $metaData['meta_title'] }}">
     <meta property="twitter:description" content="{{ $metaData['meta_description'] }}">

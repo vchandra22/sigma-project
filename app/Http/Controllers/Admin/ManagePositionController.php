@@ -46,6 +46,11 @@ class ManagePositionController extends Controller
             'jobdesk' => ['required'],
             'requirement' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            // meta validation
+            'meta_title' => ['required', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:160'],
+            'meta_keywords' => ['nullable'],
+            'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -60,9 +65,26 @@ class ManagePositionController extends Controller
             $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
             Storage::disk('public')->put('/img/' . $filename, File::get($file));
             $validatedData['gambar'] = $filename;
-        } else {
-            // Code block intentionally left empty
         }
+
+        if (isset($validatedData['og_image'])) {
+            // Process 'ttd_kepala' if it exists
+            if ($request->hasFile('og_image')) {
+                // Handle file upload and storage
+                $file = $request->file('og_image');
+                $directoryPath = 'img';
+
+                // Create directory if not exists
+                if (!file_exists($directoryPath)) {
+                    Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+                }
+
+                $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                Storage::disk('public')->put('/img/' . $filename, File::get($file));
+                $validatedData['og_image'] = $filename;
+            }
+        }
+
         $position = Position::create($validatedData);
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
@@ -103,6 +125,11 @@ class ManagePositionController extends Controller
             'jobdesk' => ['required'],
             'requirement' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            // meta validation
+            'meta_title' => ['required', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:160'],
+            'meta_keywords' => ['nullable'],
+            'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -121,6 +148,26 @@ class ManagePositionController extends Controller
             $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
             Storage::disk('public')->put('/img/' . $filename, File::get($file));
             $validatedData['gambar'] = $filename;
+        }
+
+        if ($request->hasFile('og_image')) {
+            $file = $request->file('og_image');
+            $directoryPath = 'img';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            // Delete old 'gambar' if it exists
+            if ($position->gambar) {
+                Storage::disk('public')->delete('img/' . $position->og_image);
+            }
+
+            // Handle file upload and storage
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/' . $filename, File::get($file));
+            $validatedData['og_image'] = $filename;
         }
 
         $newSlug = Str::slug($request->input('role'));
@@ -156,6 +203,11 @@ class ManagePositionController extends Controller
         if ($position->gambar) {
             Storage::disk('public')->delete('/img/' . $position->gambar);
         }
+
+        if ($position->og_image) {
+            Storage::disk('public')->delete('/img/' . $position->og_image);
+        }
+
         $position->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;

@@ -21,6 +21,10 @@ class Publication extends Model
         'slug',
         'content',
         'gambar',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'og_image'
     ]);
 
     /**

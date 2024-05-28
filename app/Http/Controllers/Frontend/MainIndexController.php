@@ -42,7 +42,7 @@ class MainIndexController extends Controller
 
     public function roleList()
     {
-        $data['pageTitle'] = 'Internship Roles';
+        $data['pageTitle'] = 'Posisi Pekerjaan';
         $data['positionData'] = Position::all();
         $data['homeData'] = Homepage::latest()->firstOrFail();
 
@@ -51,8 +51,10 @@ class MainIndexController extends Controller
 
     public function roleDetail($slug)
     {
-        $data['pageTitle'] = 'Developer';
-        $data['positionData'] = Position::where('slug', $slug)->get();
+        $positionData = Position::where('slug', $slug)->firstOrFail();
+
+        $data['pageTitle'] = $positionData->role;
+        $data['positionData'] = $positionData;
         $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.roles.role-detail', $data);
@@ -69,9 +71,11 @@ class MainIndexController extends Controller
 
     public function publikasiDetail($slug)
     {
-        $data['pageTitle'] = "Detail Publikasi";
-        $data['publikasiData'] = Publication::where('slug', $slug)->get();
-        $data['publikasiAll'] = Publication::latest()->paginate(4);
+        $publikasiData = Publication::where('slug', $slug)->firstOrFail();
+
+        $data['pageTitle'] = $publikasiData->judul;
+        $data['publikasiData'] = $publikasiData;
+        $data['publikasiAll'] = Publication::whereNot('slug', $slug)->latest()->paginate(4);
         $data['homeData'] = Homepage::latest()->firstOrFail();
 
         return view('frontend.publikasi.publikasi-detail', $data);

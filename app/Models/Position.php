@@ -24,6 +24,10 @@ class Position extends Model
         'jobdesk',
         'requirement',
         'gambar',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'og_image'
     ]);
 
     /**

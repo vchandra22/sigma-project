@@ -26,9 +26,9 @@ function get_copyright_year()
 function getImageFile($file)
 {
     if ($file != '') {
-        return asset($file);
+        return asset('storage/img/' . $file);
     } else {
-        return asset('frontend/assets/img/logo-sigma-single.png');
+        return asset('frontend/assets/img/sigma-logo-full.png');
     }
 }
 

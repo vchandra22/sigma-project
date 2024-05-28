@@ -15,11 +15,12 @@
                     <li>
                         <div class="flex items-start">
                             <i class="fa-solid fa-chevron-right w-5 h-3 text-abu-800 pt-1"></i>
+                            <h1 class="hidden">Posisi Pekerjaan yang tersedia untuk magang di Kota Blitar</h1>
                             <a href="{{ route('frontend.roleList') }}">
-                                <h1
+                                <h2
                                     class="ms-1 text-lg font-bold text-primary-800 hover:text-primary-500 md:ms-2 dark:text-abu-500 dark:hover:text-secondary">
                                     {{ $pageTitle }}
-                                </h1>
+                                </h2>
                             </a>
                         </div>
                     </li>

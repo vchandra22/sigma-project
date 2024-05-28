@@ -41,9 +41,9 @@
                     data-active-classes="bg-gray-100 dark:bg-neutral-600 text-primary-800 dark:text-secondary">
                     @foreach ($faqData as $data)
                         <div class="w-full">
-                            <h3 id="accordion-open-heading-{{ $data->id }}">
+                            <h2 id="accordion-open-heading-{{ $data->id }}">
                                 <button type="button"
-                                    class="flex items-center justify-between w-full p-5 font-medium text-gray-300 bg-transparent border border-b-0 border-abu-500 dark:bg-neutral-900 dark:border-neutral-800 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
+                                    class="flex items-center justify-between text-start w-full p-5 font-medium text-gray-300 bg-transparent border border-b-0 border-abu-500 dark:bg-neutral-900 dark:border-neutral-800 dark:text-secondary hover:bg-gray-100 dark:hover:bg-neutral-600 gap-3"
                                     data-accordion-target="#accordion-open-body-{{ $data->id }}" aria-expanded="true"
                                     aria-controls="accordion-open-body-{{ $data->id }}">
                                     <span class="text-2xl font-bold">{{ strip_tags($data->pertanyaan) }}</span>
@@ -51,7 +51,7 @@
                                         <i class="fa-solid fa-arrow-right fa-3x -rotate-45"></i>
                                     </span>
                                 </button>
-                            </h3>
+                            </h2>
                             <div id="accordion-open-body-{{ $data->id }}" class="hidden"
                                 aria-labelledby="accordion-open-heading-{{ $data->id }}">
                                 <div

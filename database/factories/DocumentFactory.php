@@ -38,7 +38,7 @@ class DocumentFactory extends Factory
             'position_id' => $this->faker->numberBetween(1, 4),
             'no_identitas' => $commonIdentifier,
             'jurusan' => $this->faker->randomElement(['Rekayasa Perangkat Lunak', 'Manajemen', 'Jaringan Komputer', 'Administrasi Perkantoran']),
-            'instansi_asal' => $this->faker->company,
+            'instansi_asal' => 'SMKN 1 Blitar',
             'nama_pembimbing' => $this->faker->name,
             'no_hp_pembimbing' => '08' . $this->faker->numerify('##########'),
             'u_tgl_mulai' => $this->faker->dateTimeBetween('+0 days', '+1 month'),

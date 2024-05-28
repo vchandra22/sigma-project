@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('content')->nullable();
             $table->string('gambar')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->string('og_image')->nullable();
             $table->timestamps();
         });
     }

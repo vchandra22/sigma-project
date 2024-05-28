@@ -422,7 +422,7 @@
                                                 menyatakan memahami dan setuju dengan
                                                 <button type="button" data-modal-target="default-modal"
                                                     data-modal-toggle="default-modal"
-                                                    class="text-primary-800 hover:underline hover:text-primary-500 dark:text-gray-100">Kebijakan
+                                                    class="text-primary-800 hover:underline text-start hover:text-primary-500 dark:text-gray-100">Kebijakan
                                                     Privasi registrasi akun Internship SIGMA
                                                 </button>
                                             </span>

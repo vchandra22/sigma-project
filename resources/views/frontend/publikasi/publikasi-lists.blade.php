@@ -15,11 +15,12 @@
                     <li>
                         <div class="flex items-start">
                             <i class="fa-solid fa-chevron-right w-5 h-3 text-abu-800 pt-1"></i>
+                            <h1 class="hidden">Publikasi kegiatan magang SIGMA</h1>
                             <a href="{{ route('frontend.roleList') }}"
                                 class="ms-1 text-lg font-bold text-primary-800 hover:text-primary-500 md:ms-2 dark:text-abu-500 dark:hover:text-secondary">
-                                <h1>
+                                <h2>
                                     {{ $pageTitle }}
-                                </h1>
+                                </h2>
                             </a>
                         </div>
                     </li>
@@ -33,8 +34,9 @@
                         class="w-full h-full bg-secondary border border-abu-500 dark:bg-neutral-900 dark:border-neutral-800">
                         <a href="{{ route('frontend.publikasiDetail', $data->slug) }}">
                             <div class="relative w-full h-44">
-                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
-                                    class="object-cover w-full h-full" alt="Illustration Image Discussion">
+                                <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/storage/img/sigma-logo-full.png') }}"
+                                    class="object-cover w-full h-full" width="100" height="100"
+                                    alt="{{ $data->judul }}">
                                 <div
                                     class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-80 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">
                                 </div>
