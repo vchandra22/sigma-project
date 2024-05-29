@@ -202,7 +202,7 @@
                             {{ Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }} <br> Kepala
                             {{ $data->office->nama_kantor }}
                         </div>
-                        <div style="margin-left: 43%;">
+                        <div style="margin-left: 35%;">
                             <table class="table-ttd">
                                 <thead></thead>
                                 <tbody>

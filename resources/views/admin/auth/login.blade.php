@@ -136,10 +136,10 @@
                                             {{-- remember me end --}}
 
                                             {{-- forgot password start --}}
-                                            <a href="#"
-                                                class="ms-auto text-sm font-medium text-accent hover:text-primary-500 hover:underline dark:text-abu-500">Lupa
-                                                Password?
-                                            </a>
+                                                {{-- <a href="#"
+                                                    class="ms-auto text-sm font-medium text-accent hover:text-primary-500 hover:underline dark:text-abu-500">Lupa
+                                                    Password?
+                                                </a> --}}
                                             {{-- forgot password end --}}
                                         </div>
 

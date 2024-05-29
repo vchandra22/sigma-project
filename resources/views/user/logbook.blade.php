@@ -120,7 +120,7 @@
                                             </label>
                                             <input type="text" name="jurusan" id="jurusan"
                                                 class="bg-gray-200 cursor-not-allowed border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                value="Rekayasa Perangkat Lunak" required readonly />
+                                                value="{{ $data->jurusan }}" required readonly />
                                         </div>
 
                                         <div>
@@ -139,8 +139,9 @@
                                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                                         </svg>
                                                     </div>
-                                                    <input name="tgl_magang" datepicker datepicker-buttons datepicker-format="dd/mm/yyyy"
-                                                        datepicker-autoselect-today type="text"
+                                                    <input name="tgl_magang" datepicker datepicker-buttons
+                                                        datepicker-format="dd/mm/yyyy" datepicker-autoselect-today
+                                                        type="text"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                         placeholder="Pilih tanggal" autofocus>
                                                     @error('tgl_magang')
