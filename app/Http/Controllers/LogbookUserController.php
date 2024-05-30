@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Logbook;
 use App\Models\User;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
@@ -27,13 +26,16 @@ class LogbookUserController extends Controller
      */
     public function create()
     {
-        $data['pageTitle'] = 'Logbook';
-        $user = Auth::user(); //mengambil id user yang telah login
+        $data['pageTitle'] = 'Logbook'; // Setel judul halaman menjadi 'Logbook'
+        $user = Auth::user(); // Mendapatkan user yang sedang login
 
+        // Mendapatkan data peserta
         $data['userDetail'] = Document::with('user', 'status')->where('documents.user_id', $user->id)->get();
+
+        // Mendapatkan entri logbook peserta, diurutkan berdasarkan tanggal, dan paginasi (2 per halaman)
         $data['logbookUser'] = Logbook::with('status')->where('status_id', $user->id)->latest('logbooks.tgl_magang')->paginate(2);
 
-        return view('user.logbook', $data);
+        return view('user.logbook', $data); // Kembalikan view dengan data
     }
 
     /**
@@ -41,21 +43,23 @@ class LogbookUserController extends Controller
      */
     public function store(Request $request)
     {
-
+        // Validasi data yang diterima dari request
         $validatedData = $request->validate([
             'status_id' => ['required'],
-            'tgl_magang' => ['required'],
-            'jam_mulai' => ['required'],
-            'jam_selesai' => ['required'],
+            'tgl_magang' => ['required', 'date_format:d/m/Y'],
+            'jam_mulai' => ['required', 'date_format:H:i'],
+            'jam_selesai' => ['required', 'date_format:H:i'],
             'topik_diskusi' => ['required'],
             'arahan_pembimbing' => ['required'],
             'bukti' => ['required', 'url'],
         ]);
 
+        // Ubah format tanggal magang menjadi format yang sesuai dengan database
         $validatedData['tgl_magang'] = Carbon::createFromFormat('d/m/Y', $validatedData['tgl_magang'])->format('Y-m-d');
 
-        Logbook::create($validatedData);
+        Logbook::create($validatedData); // Buat entri logbook baru dengan data yang divalidasi
 
+        // Redirect ke halaman logbook dengan pesan sukses
         return redirect(route('user.logbook'))->with('success', 'Berhasil menambahkan logbook!');
     }
 
@@ -107,14 +111,17 @@ class LogbookUserController extends Controller
      */
     public function destroy($id)
     {
+        // Mencari entri logbook berdasarkan id
         $logbook = Logbook::find($id);
 
+        // Jika entri logbook tidak ditemukan, redirect dengan pesan error
         if (!$logbook) {
             return redirect(route('user.logbook'))->with('error', 'Data tidak ditemukan.');
         }
 
-        $logbook->delete();
+        $logbook->delete(); // Hapus entri logbook
 
+        // Redirect ke halaman logbook dengan pesan sukses
         return redirect(route('user.logbook'))->with('success', 'Data berhasil dihapus!');
     }
 }

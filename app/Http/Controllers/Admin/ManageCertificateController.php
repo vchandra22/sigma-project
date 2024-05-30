@@ -248,22 +248,19 @@ class ManageCertificateController extends Controller
 
     public function downloadCertificate($certificate)
     {
-        $certificate = Certificate::where('uuid', $certificate)->first();
-
-        // Check if certificate exists
-        if (!$certificate) {
-            abort(404);
-        }
+        $document = Document::with('user', 'status', 'status.certificate')
+            ->whereHas('status.certificate', function ($query) use ($certificate) {
+                $query->where('uuid', $certificate);
+            })
+            ->first();
 
         // Get the file path
-        $filePath = storage_path('app/private/certificates/' . $certificate->doc_sertifikat);
+        $filePath = storage_path('app/private/certificates/' . $document->status->certificate->doc_sertifikat);
 
-        // Check if the file exists
-        if (!file_exists($filePath)) {
-            abort(404);
-        }
+        // Tetapkan nama file yang akan diunduh dengan nama Sertifikat diikuti dengan nama lengkap dan nomor identitas
+        $downloadFileName = 'Sertifikat_' . $document->user->nama_lengkap . '_' . $document->no_identitas . '.' . pathinfo($document->status->certificate->doc_sertifikat, PATHINFO_EXTENSION);
 
         // Return the file as a download response
-        return response()->download($filePath);
+        return response()->download($filePath, $downloadFileName);
     }
 }

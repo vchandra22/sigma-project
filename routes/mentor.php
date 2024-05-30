@@ -25,7 +25,7 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::get('/edit-announcement/{announcement}', [ManageAnnouncementController::class, 'edit'])->name('mentor.editAnnouncement');
     Route::put('/update-announcement/{announcement}', [ManageAnnouncementController::class, 'update'])->name('mentor.updateAnnouncement');
 
-    //manage user
+    // manage user
     Route::get('/manage-user', [ManageUserController::class, 'index'])->name('mentor.manageUser');
     Route::get('/table-manage-user', [ManageUserController::class, 'tableUser'])->name('mentor.tableUser');
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('mentor.editUser');

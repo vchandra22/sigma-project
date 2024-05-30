@@ -431,7 +431,7 @@
                                                         </td>
                                                         <td class="px-4 py-4">
                                                             <div class="flex justify-center items-center h-full gap-4">
-                                                                <a href="#"
+                                                                <a href="{{ route('mentor.downloadDocuments', $data->doc_kesbang) }}"
                                                                     class="py-2 text-md text-center text-blue-500 hover:underline">
                                                                     Download
                                                                 </a>
@@ -445,7 +445,7 @@
                                                             mengunggah dokumen (BAKESBANGPOL)</td>
                                                     </tr>
                                                 @endif
-                                                @if ($data->doc_proposan !== null)
+                                                @if ($data->doc_proposal !== null)
                                                     <tr
                                                         class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-700">
                                                         <td class="px-4 py-4">
@@ -459,7 +459,7 @@
                                                         </td>
                                                         <td class="px-4 py-4">
                                                             <div class="flex justify-center items-center h-full gap-4">
-                                                                <a href="#"
+                                                                <a href="{{ route('mentor.downloadDocuments', $data->doc_proposal) }}"
                                                                     class="py-2 text-md text-center text-blue-500 hover:underline">
                                                                     Download
                                                                 </a>

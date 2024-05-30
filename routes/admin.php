@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\ForceResetUserPasswordController;
 use App\Http\Controllers\Admin\ForcesResetPasswordController;
 use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\ManageAnnouncementController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\ManageHomepageController;
 use App\Http\Controllers\Admin\ManageJourneyController;
 use App\Http\Controllers\Admin\ManageOfficeController;
 use App\Http\Controllers\Admin\ManagePositionController;
+use App\Http\Controllers\Admin\ManagePublicationController;
 use App\Http\Controllers\Admin\ManageRequirementController;
 use App\Http\Controllers\Admin\ManageTeacherController;
 use App\Http\Controllers\Admin\ManageTermsController;
@@ -20,8 +22,7 @@ use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Admin\UpdatePasswordAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuth\AuthAdminController;
-use App\Http\Controllers\ForceResetUserPasswordController;
-use App\Http\Controllers\ManagePublicationController;
+
 
 Route::middleware(['guest', 'redirect.auth'])->group(function () {
     // login admin

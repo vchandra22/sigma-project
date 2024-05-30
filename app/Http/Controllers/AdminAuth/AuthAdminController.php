@@ -10,16 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthAdminController extends Controller
 {
+
+    /**
+     * Menampilkan halaman login.
+     */
     public function create()
     {
-        $data['pageTitle'] = 'Login Admin';
+        $data['pageTitle'] = 'Login Admin'; // Setel judul halaman menjadi 'Login Admin'
 
-        return view('admin.auth.login', $data);
+        return view('admin.auth.login', $data); // Kembalikan view form login admin dengan data
     }
 
     public function store(Request $request)
     {
-        // validasi input form login
+        // Validasi data yang diterima dari request
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
@@ -29,35 +33,36 @@ class AuthAdminController extends Controller
 
         // autentikasi menggunakan guard ('admin')
         if (Auth::guard('admin')->attempt($credentials, $remember)) {
-            $request->session()->regenerate(); // regenerate session
+            $request->session()->regenerate(); // Regenerate session
 
-            $user = Auth::guard('admin')->user(); // get user object
+            $user = Auth::guard('admin')->user(); // Mendapatkan data user
 
-            // perikas role user
+            // Periksa role user
             if ($user->hasRole('admin')) {
-                activity()->causedBy($user)->log($user->nama_lengkap . ' telah login');
+                activity()->causedBy($user)->log($user->nama_lengkap . ' telah login'); // Membuat activity log login
 
-                return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD); // jika role admin redirect ke dashboard admin
+                return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD); // Jika role admin redirect ke dashboard admin
+
             } elseif ($user->hasRole('mentor')) {
-                activity()->causedBy($user)->log($user->nama_lengkap . ' telah login');
+                activity()->causedBy($user)->log($user->nama_lengkap . ' telah login'); // Membuat activity log login
 
-                return redirect()->intended(RouteServiceProvider::MENTOR_DASHBOARD); // jika role mentor redirect ke dashboard admin
+                return redirect()->intended(RouteServiceProvider::MENTOR_DASHBOARD); // jika role mentor redirect ke dashboard mentor
             }
         }
 
-        return back()->with('loginError', 'Login Gagal'); // jika autentikasi gagal, back to login
+        return back()->with('loginError', 'Login Gagal'); // Jika autentikasi gagal, back to login
     }
 
     public function destroy(Request $request): RedirectResponse
     {
+        activity()->causedBy(Auth::guard('admin')->user())->log('' . auth()->user()->nama_lengkap . ' telah logout'); // Membuat activity log logout
 
-        activity()->causedBy(Auth::guard('admin')->user())->log('' . auth()->user()->nama_lengkap . ' telah logout');
         Auth::guard('admin')->logout(); //Melakukan logout admin dari sistem
 
         $request->session()->invalidate(); //Menghapus sesi
 
         $request->session()->regenerateToken(); //Membuat token baru
 
-        return redirect()->intended(route('admin.login')); //Mengarahkan ke halaman login setelah logout berhasil
+        return redirect()->intended(route('admin.login')); //Mengarahkan ke halaman login admin setelah logout berhasil
     }
 }

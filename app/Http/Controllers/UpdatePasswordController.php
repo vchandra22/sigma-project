@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UpdatePasswordController extends Controller
 {
-    public function edit() {
-        $data['pageTitle'] = 'Ubah Password';
+    public function edit()
+    {
+        $data['pageTitle'] = 'Ubah Password'; // Setel judul halaman menjadi 'Ubah Password'
 
-        return view('user.update_password', $data);
+        return view('user.update_password', $data); // Kembalikan view dengan data
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         // Validasi data yang diterima dari request
         $validatedData = $request->validate([
             'old_password' => 'required',
@@ -23,21 +25,21 @@ class UpdatePasswordController extends Controller
             'password_confirmation' => ['required', 'min:8', 'same:password'],
         ]);
 
-        $currentPassword = Auth::user()->password; //mendapatkan password dari user yang login
-        $old_password = $validatedData['old_password']; //mengambil password lama dari validasi
+        $currentPassword = Auth::user()->password; // Mendapatkan password dari user yang login
+        $old_password = $validatedData['old_password']; // Mendapatkan password lama dari validasi
 
-        //Memeriksa apakah password lama yang dimasukkan sudah sesuai
-        if(Hash::check($old_password, $currentPassword)) {
+        // Memeriksa apakah password lama yang dimasukkan sudah sesuai
+        if (Hash::check($old_password, $currentPassword)) {
 
-            $currentPassword = $validatedData['password']; //mendapatkan password baru dari form validasi
+            $currentPassword = $validatedData['password']; // Mendapatkan password baru
 
-            $hashedPassword = Hash::make($currentPassword); //hash password baru sebelum disimpan ke database
+            $hashedPassword = Hash::make($currentPassword); // Hash password baru sebelum disimpan ke database
 
             $user = Auth::user(); //mendapatkan data user yang sedang login
 
             User::where('id', $user->id)->update(['password' => $hashedPassword]); //update password user dengan eloquent
 
-            return redirect (route('user.settings'))->with('success', 'Password baru berhasil diubah');
+            return redirect(route('user.settings'))->with('success', 'Password baru berhasil diubah');
         } else {
             return back()->withErrors(['old_password' => 'Pastikan anda memasukkan password lama dengan benar']);
         }

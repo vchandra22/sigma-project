@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 
 class SettingUserController extends Controller
 {
@@ -14,13 +13,14 @@ class SettingUserController extends Controller
      */
     public function index()
     {
+        $data['pageTitle'] = 'Pengaturan'; // Setel judul halaman menjadi 'Pengaturan'
 
-        $data['pageTitle'] = 'Pengaturan';
+        $user = Auth::user(); // Mendapatkan user yang sedang login
 
-        $user = Auth::user();
+        // Mendapatkan data peserta berdasarkan uuid
         $data['userDetail'] = User::with('document')->where('uuid', $user->uuid)->get();
 
-        return view('user.settings', $data);
+        return view('user.settings', $data); // Kembalikan view dengan data
     }
 
     /**
@@ -52,11 +52,12 @@ class SettingUserController extends Controller
      */
     public function edit($uuid)
     {
-        $data['pageTitle'] = 'Ubah Profil';
+        $data['pageTitle'] = 'Ubah Profil'; // Setel judul halaman menjadi 'Ubah Profil'
 
+        // Mendapatkan data peserta berdasarkan uuid
         $data['userDetail'] = User::with('document')->where('uuid', $uuid)->get();
 
-        return view('user.update_profile', $data);
+        return view('user.update_profile', $data); // Kembalikan view dengan data
     }
 
     /**
@@ -64,27 +65,28 @@ class SettingUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
-        $userId = Auth::user();
+        $userId = Auth::user(); // Mendapatkan user yang sedang login
         $validatedUser = $request->validate([
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:255'],
             'username' => ['required', 'same:no_identitas', 'unique:documents,no_identitas,' . $userId->id . ',user_id'],
             'jenis_kelamin' => ['required'],
-            'no_hp' => ['required', 'numeric', 'digits_between:11,14', 'unique:users,no_hp,' . $userId->id . ',id'],
+            'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp,' . $userId->id . ',id'],
             'email' => ['required', 'email', 'unique:users,email,' . $userId->id . ',id'],
         ]);
 
         $validatedDocs = $request->validate([
             'instansi_asal' => ['required'],
             'jurusan' => ['required'],
-            'nama_pembimbing' => ['required'],
+            'nama_pembimbing' => ['required', 'string', 'min:4', 'max:255'],
             'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
             'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas,' . $userId->id . ',user_id'],
         ]);
 
-        $user->update($validatedUser);
-        $user->document()->update($validatedDocs);
+        $user->update($validatedUser); // Perbarui data peserta
 
+        $user->document()->update($validatedDocs); // Perbarui data dokumen peserta yang terkait
+
+        // Redirect ke halaman pengaturan pengguna dengan pesan sukses
         return redirect(route('user.settings'))->with('success', 'Data berhasil diupdate!');
     }
 

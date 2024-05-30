@@ -43,7 +43,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::put('/cancel-assignments/{assignment}', [AssignmentController::class, 'cancelJawaban'])->name('user.cancelAssignment');
 
     // pengaturan user
-    Route::get('/settings', [SettingUserController::class, 'index'])->name('user.settings');
+    Route::get('/pengaturan', [SettingUserController::class, 'index'])->name('user.settings');
     Route::get('/update-profile/edit/{user}', [SettingUserController::class, 'edit'])->name('user.profile');
     Route::post('/update-profile/{user}', [SettingUserController::class, 'update'])->name('user.update-profile');
 
@@ -55,7 +55,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/logout', [AuthUserController::class, 'destroy'])->name('user.logout');
 
     //download file
-    Route::get('/download-documents-file/{documents}', [DashboardUserController::class, 'downloadFile'])->name('user.downloadDocuments');
+    Route::get('/download-documents-file/{documents}', [DashboardUserController::class, 'downloadSuratBalasan'])->name('user.downloadDocuments');
     Route::get('/download-laporan/{laporan}', [ManageLaporanController::class, 'downloadLaporan'])->name('user.downloadLaporan');
-
 });

@@ -8,22 +8,29 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Console\Input\Input;
 
 class AuthUserController extends Controller
 {
 
+    /**
+     * Menampilkan halaman login.
+     */
     public function create()
     {
-        $data['pageTitle'] = 'Login';
+        $data['pageTitle'] = 'Login'; // Setel judul halaman menjadi 'Login'
+
+        // Dapatkan data terbaru dari halaman depan untuk digunakan dalam halaman login
         $data['homeData'] = Homepage::latest()->firstOrFail();
 
-        return view('auth.login', $data);
+        return view('auth.login', $data); // Kembalikan view dengan data
     }
 
+    /**
+     * Login function
+     */
     public function store(Request $request)
     {
-        // validasi input form login
+        // Validasi data yang diterima dari request
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
@@ -31,16 +38,19 @@ class AuthUserController extends Controller
 
         $remember = request('remember'); // get nilai dari checkbox 'remember'
 
-        // autentikasi user
+        // Autentikasi user menggunakan metode Auth::attempt()
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate(); // regenerate session
 
-            return redirect()->intended(RouteServiceProvider::HOME); // diarahkan ke halaman yang sebelumnya coba diakses oleh user
+            return redirect()->intended(RouteServiceProvider::HOME); // Mengarahkan ke halaman yang sebelumnya coba diakses oleh user
         }
 
         return back()->with('loginError', 'Login Gagal'); // jika autentikasi gagal, back to login
     }
 
+    /**
+     * Logout function
+     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::logout(); //Melakukan logout pengguna dari sistem

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -46,10 +47,11 @@ class ForceResetUserPasswordController extends Controller
      */
     public function edit($uuid)
     {
-        $data['pageTitle'] = 'Force Reset Password';
-        $data['userData'] = User::where('uuid', $uuid)->first();
+        $data['pageTitle'] = 'Force Reset Password'; // Setel judul halaman menjadi 'Force Reset Password'\
 
-        return view('admin.manage_user.update_password', $data);
+        $data['userData'] = User::where('uuid', $uuid)->first(); // Mengambil data pengguna berdasarkan uuid
+
+        return view('admin.manage_user.update_password', $data); // Mengembalikan tampilan untuk mengedit password peserta
     }
 
     /**

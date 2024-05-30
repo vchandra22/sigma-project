@@ -30,13 +30,13 @@ class RegisterUserController extends Controller
      */
     public function create()
     {
-        $data['pageTitle'] = 'Register';
-        $data['officeList'] = Office::all();
-        $data['positionList'] = Position::all();
-        $data['homeData'] = Homepage::firstOrFail();
-        $data['termsData'] = Term::firstOrFail();
+        $data['pageTitle'] = 'Register'; // Setel judul halaman menjadi 'Assignment Detail'
+        $data['officeList'] = Office::all(); // Mendapatkan data kantor
+        $data['positionList'] = Position::all(); // Mendapatkan data posisi
+        $data['homeData'] = Homepage::firstOrFail(); // Mendapatkan data beranda
+        $data['termsData'] = Term::firstOrFail(); // Mendapatkan data kebijakan
 
-        return view('auth.sign-up', $data);
+        return view('auth.sign-up', $data); // Kembalikan view register dengan data
     }
 
     /**
@@ -44,19 +44,20 @@ class RegisterUserController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi data yang diterima dari request
         $validatedData = $request->validate([
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
-            'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:255'],
+            'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas', 'regex:/^[a-zA-Z0-9_]+$/'],
             'username' => ['required', 'same:no_identitas', 'unique:users,username', 'regex:/^[a-zA-Z0-9_]+$/'],
             'jenis_kelamin' => ['required'],
             'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8'],
             'password_confirmation' => ['required', 'same:password'],
-            'instansi_asal' => ['required'],
-            'nama_pembimbing' => ['required'],
+            'instansi_asal' => ['required', 'string', 'max:255'],
+            'nama_pembimbing' => ['required', 'string', 'min:4', 'max:255'],
             'no_hp_pembimbing' => ['required', 'numeric', 'digits_between:10,14'],
-            'jurusan' => ['required'],
+            'jurusan' => ['required','string', 'max:255'],
             'office_id' => 'required',
             'position_id' => 'required',
             'u_tgl_mulai' => ['required', 'date_format:d/m/Y'],
@@ -66,51 +67,56 @@ class RegisterUserController extends Controller
             'doc_proposal' => 'nullable|mimes:pdf|max:2048',
         ]);
 
+        // Hash password baru sebelum disimpan ke database
         $validatedData['password'] = Hash::make($validatedData['password']);
 
+        // Ubah format tanggal menjadi format yang sesuai dengan database
         $validatedData['u_tgl_mulai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_mulai'])->format('Y-m-d');
         $validatedData['u_tgl_selesai'] = Carbon::createFromFormat('d/m/Y', $validatedData['u_tgl_selesai'])->format('Y-m-d');
 
+        // Periksa apakah ada file yang diunggah dalam request
         if ($request->hasFile('doc_pengantar')) {
-            $file = $request->file('doc_pengantar');
-            $directoryPath = 'private/documents';
+            $file = $request->file('doc_pengantar'); // Mendapatkan file
+            $directoryPath = 'private/documents'; // Menentukan path direktori untuk menyimpan file
 
-            // Create directory if not exists
+            // Buat direktori jika belum ada
             if (!file_exists($directoryPath)) {
                 Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
             }
 
-            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
-            $validatedData['doc_pengantar'] = $filename;
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension(); // Buat nama file acak dengan ekstensi asli file
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file)); // Simpan file ke direktori yang ditentukan
+            $validatedData['doc_pengantar'] = $filename; // Setel nama file ke dalam array data yang tervalidasi
         }
 
+        // Periksa apakah ada file yang diunggah dalam request
         if ($request->hasFile('doc_kesbang')) {
-            $file = $request->file('doc_kesbang');
-            $directoryPath = 'private/documents';
+            $file = $request->file('doc_kesbang'); // Mendapatkan file
+            $directoryPath = 'private/documents'; // Menentukan path direktori untuk menyimpan file
 
-            // Create directory if not exists
+            // Buat direktori jika belum ada
             if (!file_exists($directoryPath)) {
                 Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
             }
 
-            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
-            $validatedData['doc_kesbang'] = $filename;
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension(); // Buat nama file acak dengan ekstensi asli file
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file)); // Simpan file ke direktori yang ditentukan
+            $validatedData['doc_kesbang'] = $filename; // Setel nama file ke dalam array data yang tervalidasi
         }
 
+        // Periksa apakah ada file yang diunggah dalam request
         if ($request->hasFile('doc_proposal')) {
-            $file = $request->file('doc_proposal');
-            $directoryPath = 'private/documents';
+            $file = $request->file('doc_proposal'); // Mendapatkan file
+            $directoryPath = 'private/documents'; // Menentukan path direktori untuk menyimpan file
 
-            // Create directory if not exists
+            // Buat direktori jika belum ada
             if (!file_exists($directoryPath)) {
                 Storage::disk('local')->makeDirectory($directoryPath, 0775, true);
             }
 
-            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file));
-            $validatedData['doc_proposal'] = $filename;
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension(); // Buat nama file acak dengan ekstensi asli file
+            Storage::disk('local')->put('/private/documents/' . $filename, File::get($file)); // Simpan file ke direktori yang ditentukan
+            $validatedData['doc_proposal'] = $filename; // Setel nama file ke dalam array data yang tervalidasi
         }
 
         $user = User::create([
@@ -122,9 +128,13 @@ class RegisterUserController extends Controller
             'password' => $validatedData['password']
         ]);
 
+        // Simpan data dokumen baru
         $document = $user->document()->create($validatedData);
+
+        // Simpan status awal dokumen yang baru dibuat
         $document->status()->create($validatedData);
 
+        // Redirect ke halaman login user dengan pesan sukses
         return redirect(route('auth.login'))->with('success', 'Registrasi Berhasil, silakan login menggunakan nomor identitasmu');
     }
 

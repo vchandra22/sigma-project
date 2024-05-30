@@ -21,8 +21,12 @@ use App\Http\Controllers\Mentor\ManageAssignmentController;
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('downloadFileAnnouncement');
-Route::get('/download-certificate/{certificate}', [ManageCertificateController::class, 'downloadCertificate'])->name('downloadFileCertificate');
-Route::get('/download-assignment-pertanyaan/{assignment}', [ManageAssignmentController::class, 'downloadPertanyaan'])->name('downloadPertanyaan');
-Route::get('/download-assignment-jawaban/{assignment}', [AssignmentController::class, 'downloadJawaban'])->name('downloadJawaban');
 
+// download file pengumuman
+Route::get('/download-announcement-file/{announcement}', [ManageAnnouncementController::class, 'downloadFile'])->name('downloadFileAnnouncement');
+// download sertifikat
+Route::get('/download-certificate/{certificate}', [ManageCertificateController::class, 'downloadCertificate'])->name('downloadFileCertificate');
+//download file pertanyaan
+Route::get('/download-assignment-pertanyaan/{assignment}', [ManageAssignmentController::class, 'downloadPertanyaan'])->name('downloadPertanyaan');
+// download file jawaban
+Route::get('/download-assignment-jawaban/{assignment}', [AssignmentController::class, 'downloadJawaban'])->name('downloadJawaban');

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Benefit;
 use App\Models\Faq;
-use App\Models\Home;
 use App\Models\Homepage;
 use App\Models\Journey;
 use App\Models\Office;
@@ -14,7 +13,6 @@ use App\Models\Position;
 use App\Models\Publication;
 use App\Models\Requirement;
 use App\Models\Status;
-use Illuminate\Http\Request;
 
 class MainIndexController extends Controller
 {
@@ -23,87 +21,77 @@ class MainIndexController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Beranda';
-        $data['homeData'] = Homepage::latest()->firstOrFail();
-        $data['journeyData'] = Journey::all();
-        $data['benefitData'] = Benefit::all();
-        $data['benefitData'] = Benefit::all();
-        $data['requirementData'] = Requirement::all();
+        $data['pageTitle'] = 'Beranda'; // Setel judul halaman menjadi 'Beranda'
+        $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
+        $data['journeyData'] = Journey::all(); // Mendapatkan data konten tahapan magang
+        $data['benefitData'] = Benefit::all(); // Mendapatkan data konten keuntungan magang
+        $data['requirementData'] = Requirement::all(); // Mendapatkan data konten kebutuhan
+
+        // Menghitung jumlah peserta berdasarkan status
         $data['countDiterima'] = Status::where('status', 'diterima')->count();
         $data['countSelesai'] = Status::where('status', 'selesai')->count();
         $data['countMentor'] = Admin::whereHas('roles', function ($query) {
             $query->where('name', 'mentor');
         })->count();
 
-        $data['countOffice'] = Office::count();
+        $data['countOffice'] = Office::count(); // Menghitung jumlah kantor
 
-        return view('frontend.home.home', $data);
+        return view('frontend.home.home', $data); // Kembalikan view home dengan data
     }
 
     public function roleList()
     {
-        $data['pageTitle'] = 'Posisi Pekerjaan';
-        $data['positionData'] = Position::all();
-        $data['homeData'] = Homepage::latest()->firstOrFail();
+        $data['pageTitle'] = 'Posisi Pekerjaan'; // Setel judul halaman menjadi 'Posisi Pekerjaan'
+        $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
+        $data['positionData'] = Position::all(); // Mendapatkan posisi pekerjaan yang tersedia
 
-        return view('frontend.roles.role-lists', $data);
+        return view('frontend.roles.role-lists', $data); // Kembalikan view daftar posisi dengan data
     }
 
     public function roleDetail($slug)
     {
+        // Mendapatkan data posisi yang sesuai dengan slug
         $positionData = Position::where('slug', $slug)->firstOrFail();
-
-        $data['pageTitle'] = $positionData->role;
         $data['positionData'] = $positionData;
-        $data['homeData'] = Homepage::latest()->firstOrFail();
+
+        $data['pageTitle'] = $positionData->role; // Setel judul halaman dengan data role
+        $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
 
         return view('frontend.roles.role-detail', $data);
     }
 
     public function publikasiList()
     {
-        $data['pageTitle'] = 'Publikasi';
-        $data['publikasiData'] = Publication::latest()->paginate(16);
-        $data['homeData'] = Homepage::latest()->firstOrFail();
+        $data['pageTitle'] = 'Publikasi'; // Setel judul halaman menjadi 'Publikasi'
+        $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
 
-        return view('frontend.publikasi.publikasi-lists', $data);
+        // Mendapatkan data publikasi, urutkan berdasarkan yang terbaru, dan paginasi (16 per halaman)
+        $data['publikasiData'] = Publication::latest()->paginate(16);
+
+        return view('frontend.publikasi.publikasi-lists', $data); // Kembalikan view daftar publikasi dengan data
     }
 
     public function publikasiDetail($slug)
     {
+        // Mendapatkan data publikasi yang sesuai dengan slug
         $publikasiData = Publication::where('slug', $slug)->firstOrFail();
-
-        $data['pageTitle'] = $publikasiData->judul;
         $data['publikasiData'] = $publikasiData;
-        $data['publikasiAll'] = Publication::whereNot('slug', $slug)->latest()->paginate(4);
-        $data['homeData'] = Homepage::latest()->firstOrFail();
 
-        return view('frontend.publikasi.publikasi-detail', $data);
+        $data['pageTitle'] = $publikasiData->judul; // Setel judul halaman dengan data judul publikasi
+
+        // Mendapatkan daftar publikasi selain slug, urut berdasarkan terbaru, paginasi (4 per halaman)
+        $data['publikasiAll'] = Publication::whereNot('slug', $slug)->latest()->paginate(4);
+        $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
+
+        return view('frontend.publikasi.publikasi-detail', $data); // Kembalikan view publikasi detail dengan data
     }
 
     public function faq()
     {
-        $data['pageTitle'] = 'FAQ';
-        $data['faqData'] = Faq::all();
-        $data['homeData'] = Homepage::first();
-        $data['homeData'] = Homepage::latest()->firstOrFail();
+        $data['pageTitle'] = 'FAQ'; // Setel judul halaman menjadi 'FAQ'
+        $data['faqData'] = Faq::all(); // Mendapatkan data FAQ
+        $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
 
-        return view('frontend.faq.faq', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('frontend.faq.faq', $data); // Kembalikan view faq dengan data
     }
 }
