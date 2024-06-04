@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Models\Document;
 use App\Models\Score;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class ManageCertificateController extends Controller
 {
@@ -23,17 +23,51 @@ class ManageCertificateController extends Controller
     {
         $data['pageTitle'] = 'Penilaian';
 
+        return view('mentor.penilaian.penilaian_list', $data);
+    }
+
+    public function tablePenilaian()
+    {
         $admin = Auth::guard('admin')->user();
-        $data['dataCertificate'] = Document::with(['user', 'status.certificate.score', 'position'])
+        $query = Document::with(['user', 'status.certificate.score', 'position'])
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($query) {
                 $query->where('status', '!=', 'menunggu');
             })
             ->orderByDesc('updated_at')
-            ->whereHas('status.certificate')
-            ->paginate(20);
+            ->whereHas('status.certificate');
 
-        return view('mentor.penilaian.penilaian_list', $data);
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->editColumn('user.nama_lengkap', function ($data) {
+                return $data->user->nama_lengkap;
+            })
+            ->editColumn('user.no_hp', function ($data) {
+                return $data->user->no_hp;
+            })
+            ->editColumn('no_identitas', function ($data) {
+                return $data->no_identitas;
+            })
+            ->editColumn('instansi_asal', function ($data) {
+                return $data->instansi_asal;
+            })
+            ->editColumn('status.certificate.no_sertifikat', function ($data) {
+                return $data->status->certificate->no_sertifikat;
+            })
+            ->editColumn('status.certificate.score', function ($data) {
+                return $data->status->certificate->score;
+            })
+            ->addColumn('opsi', function ($data) {
+                if ($data->status->certificate->score) {
+                    $detailRoute = route('mentor.detailPenilaian', Crypt::encryptString($data->status->certificate->id));
+                    return '<a href="' . $detailRoute . '" class="py-2 text-center text-md text-blue-500 cursor-pointer hover:underline">Detail</a>';
+                } else {
+                    $newPenilaianRoute = route('mentor.newPenilaian', $data->uuid);
+                    return '<a href="' . $newPenilaianRoute . '" class="py-2 text-center text-md text-red-500 cursor-pointer hover:underline">Buat Penilaian</a>';
+                }
+            })
+            ->rawColumns(['opsi'])
+            ->make(true);
     }
 
     /**

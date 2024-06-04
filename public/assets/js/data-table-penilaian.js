@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#tableManageAdmin').DataTable({
+    $('#tableManagePenilaian').DataTable({
         dom: 'frtip',
         ordering: false,
         serverSide: true,
@@ -8,7 +8,7 @@ $(document).ready(function () {
         responsive: true,
         pageLength: 20,
         ajax: {
-            'url': $('#searchTableAdmin').val(),
+            'url': $('#searchTablePenilaian').val(),
         },
         columns: [
             {
@@ -20,51 +20,49 @@ $(document).ready(function () {
             },
             {
                 orderable: false,
-                data: 'nama_lengkap',
-                name: 'nama_lengkap',
+                searchable: true,
+                render: function(data, type, row) {
+                    return '<div>' + row.user.nama_lengkap + '</div>' +
+                           '<div clas="font-regular">' + row.no_identitas + '</div>';
+                },
+                name: 'user.nama_lengkap',
+                className: 'font-bold text-primary-800 dark:text-secondary',
+            },
+            {
+                orderable: false,
+                data: 'user.no_hp',
+                name: 'user.no_hp',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,
-                data: 'username',
-                name: 'username',
+                data: 'instansi_asal',
+                name: 'instansi_asal',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,
-                data: 'nip',
-                name: 'nip',
-                className: 'text-primary-800 text-start dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'offices.nama_kantor',
-                name: 'offices.nama_kantor',
-                className: 'text-primary-800 dark:text-secondary',
-            },
-            {
-                orderable: false,
-                data: 'email',
-                name: 'email',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'no_hp',
-                name: 'no_hp',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'roles.name',
-                name: 'roles.name',
+                searchable: true,
+                data: 'status.certificate.no_sertifikat',
+                name: 'status.certificate.no_sertifikat',
                 render: function(data, type, row, meta) {
-                    if (data === 'admin') {
-                        return '<div class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
-                    } else if (data === 'mentor') {
-                        return '<div class="bg-blue-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
+                    if (data === null) {
+                        return '<p class="capitalize text-start py-2 pointer-events-none text-red-500">' + 'Sertifikat belum diterbitkan' + '</p>';
                     } else {
-                        return data;
+                        return '<p class="capitalize font-bold text-start py-2 pointer-events-none text-blue-500 dark:text-secondary">' + data + '</p>';
+                    }
+                }
+            },
+            {
+                orderable: false,
+                searchable: false,
+                data: 'status.certificate.score',
+                name: 'status.certificate.score',
+                render: function(data, type, row, meta) {
+                    if (data === null) {
+                        return '<p class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + 'Belum Dinilai' + '</p>';
+                    } else {
+                        return '<p class="bg-green-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + 'Sudah Dinilai' + '</p>';
                     }
                 }
             },

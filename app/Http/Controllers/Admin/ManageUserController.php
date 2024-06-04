@@ -33,20 +33,24 @@ class ManageUserController extends Controller
     {
         $query = Document::select('documents.*')
             ->with(['user', 'office', 'position', 'status'])
-            ->where('office_id', Auth::user()->office_id)
-            ->latest();
-
+            ->where('office_id', Auth::user()->office_id)->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()
             ->editColumn('user.nama_lengkap', function ($data) {
                 return $data->user->nama_lengkap;
             })
+            ->editColumn('user.no_hp', function ($data) {
+                return $data->user->no_hp;
+            })
             ->editColumn('user.jenis_kelamin', function ($data) {
                 return $data->user->jenis_kelamin;
             })
             ->editColumn('office.nama_kantor', function ($data) {
                 return $data->office->nama_kantor;
+            })
+            ->editColumn('position.role', function ($data) {
+                return $data->position->role;
             })
             ->editColumn('status.status', function ($data) {
                 return $data->status->status;
@@ -304,7 +308,24 @@ class ManageUserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = Document::with('user', 'status')
+            ->whereHas('user', function ($query) use ($id) {
+                $query->where('id', $id);
+            })
+            ->firstOrFail();
+
+        if ($user->doc_pengantar) {
+            Storage::disk('local')->delete('private/documents/' . $user->doc_pengantar);
+        }
+        if ($user->doc_kesbang) {
+            Storage::disk('local')->delete('private/documents/' . $user->doc_kesbang);
+        }
+        if ($user->doc_proposal) {
+            Storage::disk('local')->delete('private/documents/' . $user->doc_proposal);
+        }
+        if ($user->status->doc_balasan) {
+            Storage::disk('local')->delete('private/documents/' . $user->status->doc_balasan);
+        }
         $user->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;

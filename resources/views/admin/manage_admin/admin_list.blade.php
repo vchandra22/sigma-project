@@ -63,6 +63,9 @@
                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownDefaultButton">
                                         <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByRole('')">Semua</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
                                             <button onclick="filterByRole('admin')">Admin</button>
                                         </li>
                                         <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">

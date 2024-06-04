@@ -79,16 +79,21 @@
                                 <div>
                                     <label for="gambar"
                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                        Ilustrasi / Gambar</label>
-                                    <input
-                                        class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                        id="gambar" type="file" name="gambar" value="{{ old('gambar') }}">
+                                        Foto / Gambar Publikasi <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="upload-img-box h-auto w-full md:max-w-sm">
+                                        <img class="h-auto w-full overflow-y-hidden border-abu-500 rounded-sm border-2" src="">
+                                        <input type="file" name="gambar" id="gambar" accept="image/*"
+                                            class="mt-2 w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            value="{{ old('gambar') }}" onchange="previewFile(this)">
+                                    </div>
                                     @error('gambar')
                                         <div class="mt-1 text-red-500 text-xs">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
+
 
                                 <div class="pt-8">
                                     <label for="meta_title"
@@ -154,10 +159,14 @@
                                 <div>
                                     <label for="og_image"
                                         class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                        OG Image</label>
-                                    <input
-                                        class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                        id="og_image" type="file" name="og_image">
+                                        OG Image
+                                    </label>
+                                    <div class="upload-img-box h-auto w-full md:max-w-sm">
+                                        <img class="h-auto w-full overflow-y-hidden border-abu-500 rounded-sm border-2" src="">
+                                        <input type="file" name="og_image" id="og_image" accept="image/*"
+                                            class="mt-2 w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            value="{{ old('og_image') }}" onchange="previewFile(this)">
+                                    </div>
                                     @error('og_image')
                                         <div class="mt-1 text-red-500 text-xs">
                                             {{ $message }}
@@ -186,4 +195,8 @@
                 console.error(error);
             });
     </script>
+
+    @push('script')
+        <script src="{{ asset('assets/js/custom/image-preview.js') }}"></script>
+    @endpush
 @endsection

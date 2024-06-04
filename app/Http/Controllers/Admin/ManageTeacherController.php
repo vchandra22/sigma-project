@@ -28,7 +28,7 @@ class ManageTeacherController extends Controller
             ->whereHas('status', function ($query) {
                 $query->whereNot('status', 'menunggu');
             })
-            ->latest()
+            ->latest('updated_at')
             ->get();
 
         return DataTables::of($query)

@@ -79,7 +79,7 @@
                         @forelse ($assignmentData as $data)
                             <div
                                 class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                                <div class="block lg:flex justify-between items-center">
+                                <div class="block lg:flex justify-between items-start gap-2">
                                     <div>
                                         <a href="{{ route('mentor.detailAssignment', $data->slug) }}"
                                             class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#tableManageTeacher').DataTable({
         dom: 'frtip',
-        ordering: true,
+        ordering: false,
         serverSide: true,
         processing: true,
         paging: true,
@@ -19,6 +19,7 @@ $(document).ready(function () {
                 className: 'text-primary-800 text-center dark:text-secondary'
             },
             {
+                orderable: false,
                 render: function(data, type, row) {
                     return '<div>' + row.user.nama_lengkap + '</div>' +
                            '<div clas="font-regular">' + row.no_identitas + '</div>';
@@ -27,21 +28,25 @@ $(document).ready(function () {
                 className: 'font-bold text-primary-800 dark:text-secondary',
             },
             {
+                orderable: false,
                 data: 'nama_pembimbing',
                 name: 'nama_pembimbing',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
+                orderable: false,
                 data: 'instansi_asal',
                 name: 'instansi_asal',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
+                orderable: false,
                 data: 'no_hp_pembimbing',
                 name: 'no_hp_pembimbing',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
+                orderable: false,
                 data: 'status.status',
                 name: 'status.status',
                 render: function(data, type, row, meta) {
@@ -73,7 +78,7 @@ $(document).ready(function () {
         $(this).attr("placeholder", "Cari...").addClass('mb-4 bg-white border border-abu-800 text-blue-500 text-md focus:ring-primary-800 focus:border-primary-500 p-4 ps-10 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent');
     });
     $('.dt-search').each(function () {
-        $(this).addClass('flex justify-end')
+        $(this).addClass('flex justify-start');
     });
     $('[for=dt-search-0]').each(function () {
         $(this).addClass('hidden')

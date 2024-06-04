@@ -42,10 +42,10 @@ class ManagePositionController extends Controller
     {
         $validatedData = $request->validate([
             'role' => ['required'],
-            'deskripsi' => ['required'],
+            'deskripsi' => ['required', 'string', 'max:255'],
             'jobdesk' => ['required'],
             'requirement' => ['required'],
-            'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            'gambar' => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             // meta validation
             'meta_title' => ['required', 'max:255', 'min:10'],
             'meta_description' => ['nullable', 'max:160'],

@@ -17,7 +17,7 @@ function convertDate(dateString) {
 $(document).ready(function () {
     $('#tableManageCertificate').DataTable({
         dom: 'frtip',
-        ordering: true,
+        ordering: false,
         serverSide: true,
         processing: true,
         paging: true,
@@ -35,6 +35,7 @@ $(document).ready(function () {
                 className: 'text-primary-800 text-center dark:text-secondary'
             },
             {
+                orderable: false,
                 render: function(data, type, row) {
                     return '<div>' + row.user.nama_lengkap + '</div>' +
                            '<div clas="font-regular">' + row.no_identitas + '</div>';
@@ -47,9 +48,11 @@ $(document).ready(function () {
                 name: 'user.no_hp',
                 className: 'text-primary-800 dark:text-secondary',
                 orderable: false,
-                searchable: false
+                searchable: true,
             },
-            {   render: function(data, type, row) {
+            {
+                orderable: false,
+                render: function(data, type, row) {
                     return '<div>' + row.instansi_asal + '</div>' +
                            '<div>' + row.position.role + '</div>';
                 },
@@ -57,6 +60,7 @@ $(document).ready(function () {
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
+                orderable: false,
                 data: null, render: function(data, type, row) {
                     if (row.e_tgl_mulai && row.e_tgl_selesai) {
                         return convertDate(row.e_tgl_mulai) + ' - ' + convertDate(row.e_tgl_selesai);
@@ -70,6 +74,8 @@ $(document).ready(function () {
                 searchable: false
             },
             {
+                orderable: false,
+                searchable: true,
                 data: 'status.certificate.no_sertifikat',
                 name: 'status.certificate.no_sertifikat',
                 className: 'text-primary-800 dark:text-secondary',
@@ -94,7 +100,7 @@ $(document).ready(function () {
         $(this).attr("placeholder", "Cari...").addClass('mb-4 bg-white border border-abu-800 text-blue-500 text-md focus:ring-primary-800 focus:border-primary-500 p-4 ps-10 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent');
     });
     $('.dt-search').each(function () {
-        $(this).addClass('flex justify-end');
+        $(this).addClass('flex justify-start');
     });
     $('[for=dt-search-0]').each(function () {
         $(this).addClass('hidden')

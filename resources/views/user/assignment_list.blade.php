@@ -30,15 +30,15 @@
                 </div>
             @endif
             <div class="w-full">
-                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-8">
                             <div>
-                                <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary mb-8">
+                                <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
                                     {{ $pageTitle }}
                                 </h2>
                             </div>
-                            <div class="flex justify-end mb-4">
+                            <div class="flex justify-end">
                                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                                     class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
                                     type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
@@ -72,8 +72,8 @@
 
                         @forelse ($assignmentData as $data)
                             <div
-                                class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
-                                <div class="md:flex justify-between items-center">
+                                class="flex flex-col gap-4 w-full p-4 lg:p-6 my-6 border border-abu-500 bg-gray-50 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
+                                <div class="md:flex justify-between items-start gap-2">
                                     <a href="{{ route('user.editAssignment', $data->slug) }}"
                                         class="text-primary-800 hover:text-primary-500 dark:text-secondary dark:hover:text-gray-50">
                                         <h3 class="text-lg md:text-2xl font-bold overflow-hidden line-clamp-2">

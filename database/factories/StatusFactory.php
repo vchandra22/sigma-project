@@ -27,9 +27,12 @@ class StatusFactory extends Factory
     public function definition(): array
     {
         static $id = 1;
+
         return [
             'document_id' => $id++,
             'status' => 'menunggu',
+            'created_at' => now(),
+            'updated_at' => NULL
         ];
     }
 }

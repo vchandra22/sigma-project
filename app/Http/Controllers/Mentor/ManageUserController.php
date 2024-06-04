@@ -8,9 +8,7 @@ use App\Models\Office;
 use App\Models\Position;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -27,23 +25,39 @@ class ManageUserController extends Controller
         return view('mentor.manage_user.user_list', $data);
     }
 
+    
+
     public function tableUser()
     {
         $admin = Auth::guard('admin')->user();
-        $query = Document::select('documents.*')
-            ->with(['user', 'office', 'position', 'status'])
+        $query = Document::with(['user', 'status.certificate.score', 'position'])
             ->where('office_id', $admin->office_id)
-            ->whereHas('status', function ($queryS) {
-                $queryS->where('status', 'diterima')
-                    ->orWhere('status', 'selesai');
+            ->whereHas('status', function ($q) {
+                $q->where('status', '!=', 'menunggu');
             })
             ->orderByDesc('updated_at')
-            ->get();
+            ->whereHas('status.certificate')
+            ->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()
             ->editColumn('user.nama_lengkap', function ($data) {
                 return $data->user->nama_lengkap;
+            })
+            ->editColumn('user.no_hp', function ($data) {
+                return $data->user->no_hp;
+            })
+            ->editColumn('user.jenis_kelamin', function ($data) {
+                return $data->user->jenis_kelamin;
+            })
+            ->editColumn('office.nama_kantor', function ($data) {
+                return $data->office->nama_kantor;
+            })
+            ->editColumn('position.role', function ($data) {
+                return $data->position->role;
+            })
+            ->editColumn('status.status', function ($data) {
+                return $data->status->status;
             })
             ->addColumn('opsi', function ($data) {
                 // Assuming you have a route named 'detail' to show details

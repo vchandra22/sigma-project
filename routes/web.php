@@ -30,3 +30,9 @@ Route::get('/download-certificate/{certificate}', [ManageCertificateController::
 Route::get('/download-assignment-pertanyaan/{assignment}', [ManageAssignmentController::class, 'downloadPertanyaan'])->name('downloadPertanyaan');
 // download file jawaban
 Route::get('/download-assignment-jawaban/{assignment}', [AssignmentController::class, 'downloadJawaban'])->name('downloadJawaban');
+
+// route handles the optimization and cache clearing
+Route::get('/optimize-clear', function () {
+    Artisan::call('optimize:clear');
+    return 'Optimization and cache cleared!';
+});

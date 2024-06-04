@@ -34,14 +34,42 @@
                 <div
                     class="bg-zinc-50 w-full min-h-screen border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
-                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end">
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-start">
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
+                            <div class="flex justify-end">
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                    class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
+                                    type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 w-44 dark:bg-neutral-950">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus(' ')">Semua</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus('diterima')">Diterima</button>
+                                        </li>
+                                        <li class="px-4 py-2 hover:text-primary-500 hover:font-bold">
+                                            <button onclick="filterByStatus('selesai')">Selesai</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">
-                            <table
+                            <input type="hidden" id="searchTableLogbook" value="{{ route('mentor.tableLogbook') }}">
+                            <table id="tableManageLogbook"
                                 class="w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                     <tr>
@@ -54,6 +82,9 @@
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             Instansi Asal
                                         </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Status
+                                        </th>
                                         <th scope="col"
                                             class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
                                             Action
@@ -61,7 +92,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($logbookData as $data)
+                                    {{-- @forelse ($logbookData as $data)
                                         <tr
                                             class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
                                             <td class="px-4 py-4">
@@ -100,7 +131,7 @@
                                                 Tidak ada data
                                             </td>
                                         </tr>
-                                    @endforelse
+                                    @endforelse --}}
                                 </tbody>
                             </table>
                         </div>
@@ -109,4 +140,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function filterByStatus(status) {
+            // Use DataTables API to filter data by status
+            $('#tableManageLogbook').DataTable().column('status:name').search(status).draw();
+        }
+    </script>
+    @push('data-table')
+        @once
+            <script type="text/javascript" src="{{ asset('assets/js/data-table-logbook.js') }}"></script>
+        @endonce
+    @endpush
 @endsection

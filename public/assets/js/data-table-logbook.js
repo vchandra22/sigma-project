@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#tableManageAdmin').DataTable({
+    $('#tableManageLogbook').DataTable({
         dom: 'frtip',
         ordering: false,
         serverSide: true,
@@ -8,7 +8,7 @@ $(document).ready(function () {
         responsive: true,
         pageLength: 20,
         ajax: {
-            'url': $('#searchTableAdmin').val(),
+            'url': $('#searchTableLogbook').val(),
         },
         columns: [
             {
@@ -20,51 +20,35 @@ $(document).ready(function () {
             },
             {
                 orderable: false,
-                data: 'nama_lengkap',
+                render: function(data, type, row) {
+                    return '<div>' + row.nama_lengkap + '</div>' +
+                           '<div clas="font-regular">' + row.no_identitas + '</div>';
+                },
                 name: 'nama_lengkap',
+                className: 'font-bold text-primary-800 dark:text-secondary',
+            },
+            {
+                orderable: false,
+                data: 'instansi_asal',
+                name: 'instansi_asal',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,
-                data: 'username',
-                name: 'username',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'nip',
-                name: 'nip',
-                className: 'text-primary-800 text-start dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'offices.nama_kantor',
-                name: 'offices.nama_kantor',
-                className: 'text-primary-800 dark:text-secondary',
-            },
-            {
-                orderable: false,
-                data: 'email',
-                name: 'email',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'no_hp',
-                name: 'no_hp',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                orderable: false,
-                data: 'roles.name',
-                name: 'roles.name',
+                searchable: true,
+                data: 'status',
+                name: 'status',
                 render: function(data, type, row, meta) {
-                    if (data === 'admin') {
-                        return '<div class="bg-red-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
-                    } else if (data === 'mentor') {
-                        return '<div class="bg-blue-500 px-4 uppercase mx-auto text-center py-2 pointer-events-none rounded-sm text-secondary">' + data + '</div>';
+                    if (data === 'menunggu') {
+                        return '<div class="text-yellow-300 capitalize font-bold mx-auto text-start py-2 pointer-events-none">' + data + '</div>';
+                    } else if (data === 'diterima') {
+                        return '<div class="text-green-500 capitalize font-bold mx-auto text-start py-2 pointer-events-none">' + data + '</div>';
+                    } else if (data === 'ditolak') {
+                        return '<div class="text-red-500 capitalize font-bold mx-auto text-start py-2 pointer-events-none">' + data + '</div>';
+                    } else if (data === 'selesai') {
+                        return '<div class="text-blue-500 capitalize font-bold mx-auto text-start py-2 pointer-events-none">' + data + '</div>';
                     } else {
-                        return data;
+                        return data; // Return data as it is if it doesn't match any condition
                     }
                 }
             },

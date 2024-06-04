@@ -30,14 +30,13 @@
                 </div>
             @endif
             <div class="w-full">
-                <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                <div class="bg-gray-50 w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary mb-8">
                             {{ $pageTitle }}
                         </h2>
 
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
-
                             <div
                                 class="lg:col-span-2 flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
                                 <div class="text-primary-800 dark:text-secondary dark:hover:text-gray-50">

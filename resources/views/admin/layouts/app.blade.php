@@ -30,6 +30,7 @@
     {{-- Menggunakan Vite untuk mengelola sumber daya seperti CSS dan JavaScript --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+
     {{-- Memuat font dari Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +65,7 @@
 
     {{-- Scripts --}}
     @stack('data-table')
+    @stack('script')
 
 </body>
 

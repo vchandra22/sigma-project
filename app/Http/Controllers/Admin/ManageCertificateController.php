@@ -45,11 +45,17 @@ class ManageCertificateController extends Controller
             ->editColumn('user.nama_lengkap', function ($data) {
                 return $data->user->nama_lengkap;
             })
-            ->editColumn('user.jenis_kelamin', function ($data) {
-                return $data->user->jenis_kelamin;
+            ->editColumn('no_identitas', function ($data) {
+                return $data->no_identitas;
+            })
+            ->editColumn('user.no_hp', function ($data) {
+                return $data->user->no_hp;
             })
             ->editColumn('instansi_asal', function ($data) {
                 return $data->instansi_asal;
+            })
+            ->editColumn('position.role', function ($data) {
+                return $data->position->role;
             })
             ->editColumn('e_tgl_mulai', function ($data) {
                 return $data->e_tgl_mulai;
@@ -57,7 +63,9 @@ class ManageCertificateController extends Controller
             ->editColumn('e_tgl_selesai', function ($data) {
                 return $data->e_tgl_selesai;
             })
-
+            ->editColumn('status.certificate.no_sertifikat', function ($data) {
+                return $data->status->certificate->no_sertifikat;
+            })
             ->addColumn('opsi', function ($data) {
                 $detailRoute = route('admin.detailCertificate', ['certificate' => Crypt::encryptString($data->status->certificate->id)]);
 

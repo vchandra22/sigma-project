@@ -34,6 +34,7 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
 
     //manage logbook
     Route::get('/manage-logbook', [ManageLogbookController::class, 'index'])->name('mentor.manageLogbook');
+    Route::get('/table-manage-logbook', [ManageLogbookController::class, 'tableLogbook'])->name('mentor.tableLogbook');
     Route::get('/print-logbook/{id}', [ManageLogbookController::class, 'show'])->name('mentor.showLogbook');
 
     //manage assignment
@@ -59,6 +60,7 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
 
     // manage sertifikat & penilaian
     Route::get('manage-score', [ManageCertificateController::class, 'index'])->name('mentor.managePenilaian');
+    Route::get('manage-table-score', [ManageCertificateController::class, 'tablePenilaian'])->name('mentor.tablePenilaian');
     Route::get('create-score', [ManageCertificateController::class, 'create'])->name('mentor.createPenilaian');
     Route::get('create-new-score/{score}', [ManageCertificateController::class, 'createOnUser'])->name('mentor.newPenilaian');
     Route::post('store-score', [ManageCertificateController::class, 'store'])->name('mentor.storePenilaian');

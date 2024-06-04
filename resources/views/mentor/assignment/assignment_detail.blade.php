@@ -43,7 +43,7 @@
                                     class="lg:col-span-2 flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
                                     <div class="text-primary-800 dark:text-secondary dark:hover:text-gray-50">
 
-                                        <div class="block lg:flex justify-between items-center">
+                                        <div class="block lg:flex justify-between items-start gap-2">
                                             <div>
                                                 <h3
                                                     class="text-lg md:text-2xl font-bold text-primary-800 dark:text-secondary">

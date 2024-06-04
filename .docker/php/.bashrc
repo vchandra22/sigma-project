@@ -5,14 +5,6 @@
 PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
 umask 022
 
-# You may uncomment the following lines if you want `ls' to be colorized:
-# export SHELL
-# export LS_OPTIONS='--color=auto'
-# eval $(dircolors ~/dircolors-solarized/dircolors.256dark)
-# alias ls='ls $LS_OPTIONS'
-# alias ll='ls $LS_OPTIONS -l'
-# alias l='ls $LS_OPTIONS -lA'
-
 # Some more alias to avoid making mistakes:
 alias rm='rm -i'
 alias cp='cp -i'

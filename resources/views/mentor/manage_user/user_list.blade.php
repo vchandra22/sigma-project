@@ -38,7 +38,7 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div class="flex justify-end mb-4">
+                            <div class="flex justify-end">
                                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                                     class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
                                     type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
@@ -92,6 +92,9 @@
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             Instansi Tujuan Magang
+                                        </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Posisi Pekerjaan
                                         </th>
                                         <th scope="col"
                                             class="px-4 py-6 text-center text-primary-800 dark:text-secondary">

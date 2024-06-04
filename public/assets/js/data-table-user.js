@@ -17,7 +17,7 @@ function convertDate(dateString) {
 $(document).ready(function () {
     $('#tableManageUser').DataTable({
         dom: 'frtip',
-        ordering: true,
+        ordering: false,
         serverSide: true,
         processing: true,
         paging: true,
@@ -30,41 +30,59 @@ $(document).ready(function () {
             {
                 data: 'DT_RowIndex',
                 name: 'DT_RowIndex',
+                className: 'text-primary-800 text-center dark:text-secondary',
                 orderable: false,
-                searchable: false,
-                className: 'text-primary-800 text-center dark:text-secondary'
+                searchable: false
             },
             {
+                orderable: false,
+                searchable: true,
                 render: function(data, type, row) {
                     return '<div>' + row.user.nama_lengkap + '</div>' +
                            '<div clas="font-regular">' + row.no_identitas + '</div>';
                 },
                 name: 'user.nama_lengkap',
                 className: 'font-bold text-primary-800 dark:text-secondary',
+
             },
             {
+                orderable: false,
+                searchable: true,
                 data: 'user.no_hp',
                 name: 'user.no_hp',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
+                orderable: false,
+                searchable: true,
                 data: 'user.jenis_kelamin',
                 name: 'user.jenis_kelamin',
-                className: 'text-primary-800 text-center dark:text-secondary'
+                className: 'text-primary-800 text-center dark:text-secondary',
             },
             {
+                orderable: false,
+                searchable: true,
                 data: 'instansi_asal',
                 name: 'instansi_asal',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {   render: function(data, type, row) {
-                    return '<div>' + row.office.nama_kantor + '</div>' +
-                           '<div>' + row.position.role + '</div>';
-                },
-                name: 'office.nama_kantor',
-                className: 'text-primary-800 dark:text-secondary'
+                className: 'text-primary-800 dark:text-secondary',
             },
             {
+                orderable: false,
+                searchable: true,
+                data: 'office.nama_kantor',
+                name: 'office.nama_kantor',
+                className: 'text-primary-800 dark:text-secondary',
+            },
+            {
+                orderable: false,
+                searchable: true,
+                data: 'position.role',
+                name: 'position.role',
+                className: 'text-primary-800 dark:text-secondary',
+            },
+            {
+                orderable: false,
+                searchable: true,
                 data: null, render: function(data, type, row) {
                     if (row.u_tgl_mulai && row.u_tgl_selesai) {
                         return convertDate(row.u_tgl_mulai) + '<br> - <br>' + convertDate(row.u_tgl_selesai);
@@ -73,9 +91,11 @@ $(document).ready(function () {
                     }
                 },
                 name: 'u_tgl_mulai',
-                className: 'text-primary-800 text-center dark:text-secondary'
+                className: 'text-primary-800 text-center dark:text-secondary',
             },
             {
+                orderable: false,
+                searchable: true,
                 data: null, render: function(data, type, row) {
                     if (row.e_tgl_mulai && row.e_tgl_selesai) {
                         return convertDate(row.e_tgl_mulai) + '<br> - <br>' + convertDate(row.e_tgl_selesai);
@@ -84,9 +104,11 @@ $(document).ready(function () {
                     }
                 },
                 name: 'e_tgl_mulai',
-                className: 'text-primary-800 text-center dark:text-secondary'
+                className: 'text-primary-800 text-center dark:text-secondary',
             },
             {
+                orderable: false,
+                searchable: true,
                 data: 'status.status',
                 name: 'status.status',
                 render: function(data, type, row, meta) {
@@ -120,7 +142,7 @@ $(document).ready(function () {
         $(this).attr("placeholder", "Cari...").addClass('mb-4 bg-white border border-abu-800 text-blue-500 text-md focus:ring-primary-800 focus:border-primary-500 p-4 ps-10 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent');
     });
     $('.dt-search').each(function () {
-        $(this).addClass('flex justify-end');
+        $(this).addClass('flex justify-start');
     });
     $('[for=dt-search-0]').each(function () {
         $(this).addClass('hidden')

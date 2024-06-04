@@ -27,9 +27,9 @@ class DocumentFactory extends Factory
     public function definition(): array
     {
         static $commonIdentifier = '0003452641'; // Starting value for both username and no_identitas
+        static $id = 1;
 
         $commonIdentifier++; // Increment the common identifier
-        static $id = 1;
 
         return [
             'uuid' => $this->faker->uuid,
@@ -50,7 +50,7 @@ class DocumentFactory extends Factory
             'doc_proposal' => NULL,
             'doc_laporan' => NULL,
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => NULL
         ];
     }
 }

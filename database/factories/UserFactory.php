@@ -41,7 +41,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => NULL
         ];
     }
 }

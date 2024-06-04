@@ -309,9 +309,17 @@
                                             <label for="og_image"
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                                 OG Image</label>
-                                            <input
-                                                class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                id="og_image" type="file" name="og_image">
+                                            <div class="upload-img-box h-auto w-full md:max-w-sm">
+                                                @if ($item->og_image != null && $item->og_image != '')
+                                                    <img class="h-56 w-full overflow-y-hidden border-abu-500 rounded-sm border-2"
+                                                        src="{{ getImageFile($item->og_image) }}">
+                                                @else
+                                                    <img src="">
+                                                @endif
+                                                <input type="file" name="og_image" id="og_image" accept="image/*"
+                                                    class="mt-2 block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                    value="{{ $item->og_image }}" onchange="previewFile(this)">
+                                            </div>
                                             @error('og_image')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
@@ -341,4 +349,8 @@
                 console.error(error);
             });
     </script>
+
+    @push('script')
+        <script src="{{ asset('assets/js/custom/image-preview.js') }}"></script>
+    @endpush
 @endsection
