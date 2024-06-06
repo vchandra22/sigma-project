@@ -24,6 +24,9 @@ class ManageLogbookController extends Controller
         return view('mentor.logbook.logbook_list', $data);
     }
 
+    /**
+     * Display a listing of the logbook data.
+     */
     public function tableLogbook()
     {
         $user = Auth::guard('admin')->user();

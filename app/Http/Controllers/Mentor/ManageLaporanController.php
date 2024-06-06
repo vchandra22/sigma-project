@@ -17,22 +17,12 @@ class ManageLaporanController extends Controller
     {
         $data['pageTitle'] = 'Laporan Magang';
 
-        $user = Auth::user();
-        $data['laporanData'] = Document::with('user', 'status', 'position')
-            ->where('office_id', $user->office_id)
-            ->where(function ($query) {
-                $query->whereHas('status', function ($query) {
-                    $query->where('status', 'diterima');
-                })->orWhereHas('status', function ($query) {
-                    $query->where('status', 'selesai');
-                });
-            })
-            ->orderByDesc('updated_at')
-            ->paginate(20);
-
         return view('mentor.laporan.laporan_list', $data);
     }
 
+    /**
+     * Display a listing of the laporan data    .
+     */
     public function tableLaporan()
     {
         $user = Auth::user();

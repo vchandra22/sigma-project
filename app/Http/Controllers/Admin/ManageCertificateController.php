@@ -29,6 +29,9 @@ class ManageCertificateController extends Controller
         return view('admin.certificate.certificate_list', $data);
     }
 
+    /**
+     * Display a listing of the sertifikat data.
+     */
     public function tableCertificate()
     {
         $query = Document::select('documents.*')

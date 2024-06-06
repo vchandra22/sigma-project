@@ -23,6 +23,9 @@ class ManagePublicationController extends Controller
         return view('admin.publication.publication_list', $data);
     }
 
+    /**
+     * Display a listing of the publikasi data.
+     */
     public function tablePublication()
     {
         $query = Publication::latest();

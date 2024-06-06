@@ -26,6 +26,9 @@ class ManageCertificateController extends Controller
         return view('mentor.penilaian.penilaian_list', $data);
     }
 
+    /**
+     * Display a listing of the penilaian peserta data.
+     */
     public function tablePenilaian()
     {
         $admin = Auth::guard('admin')->user();

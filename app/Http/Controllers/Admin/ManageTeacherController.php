@@ -20,6 +20,9 @@ class ManageTeacherController extends Controller
         return view('admin.teacher.teacher_list', $data);
     }
 
+    /**
+     * Display a listing of the teacher data.
+     */
     public function tableTeacher()
     {
         $admin = Auth::guard('admin')->user();

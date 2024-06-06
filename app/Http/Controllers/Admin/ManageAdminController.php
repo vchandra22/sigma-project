@@ -25,6 +25,9 @@ class ManageAdminController extends Controller
         return view('admin.manage_admin.admin_list', $data);
     }
 
+    /**
+     * Display a listing of the admin data.
+     */
     public function tableAdmin()
     {
         $currentUserId = Auth::guard('admin')->user();

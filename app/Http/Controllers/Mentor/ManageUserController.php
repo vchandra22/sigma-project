@@ -25,6 +25,9 @@ class ManageUserController extends Controller
         return view('mentor.manage_user.user_list', $data);
     }
 
+    /**
+     * Display a listing of the user data.
+     */
     public function tableUser()
     {
         $admin = Auth::guard('admin')->user();

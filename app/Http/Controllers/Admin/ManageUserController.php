@@ -29,6 +29,9 @@ class ManageUserController extends Controller
         return view('admin.manage_user.user_list', $data);
     }
 
+    /**
+     * Display a listing of the user data.
+     */
     public function tableUser()
     {
         $query = Document::select('documents.*')
