@@ -162,13 +162,13 @@
                     <div class="hidden md:block relative w-full h-72 md:h-[720px]">
                         <img src="{{ asset('frontend/assets/img/illustration-image-discuss-2.webp') }}"
                             class="object-cover w-full h-full" width="100" height="100"
-                            alt="Illustration Image Discussion">
+                            alt="Illustration Image Discussion SIGMA">
                         <div
                             class="absolute top-0 right-0 w-full h-full bg-primary-800 bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-60">
                         </div>
                     </div>
 
-                    <div>
+                    <div class="max-w-screen-sm">
                         <div class="flex flex-row md:flex-row-reverse px-4 md:px-6">
                             <h2
                                 class="pt-12 text-start md:text-end w-1/2 text-4xl md:w-full md:text-5xl lg:w-1/2 font-bold text-primary-800 dark:text-secondary">
