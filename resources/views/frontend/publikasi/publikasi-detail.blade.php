@@ -67,6 +67,7 @@
                     <h1 class="font-bold text-4xl text-start text-secondary overflow-hidden line-clamp-2">
                         {{ $publikasiData->judul }}
                     </h1>
+                    <p class="text-sm text-secondary text-start pt-2">{{ convertDate($publikasiData->created_at) }}</p>
                 </div>
             </div>
         </div>
@@ -83,6 +84,7 @@
                             <h2>
                                 {{ $publikasiData->judul }}
                             </h2>
+                            <p class="text-sm text-primary-500 text-start pt-2">{{ convertDate($publikasiData->created_at) }}</p>
                             <div class="my-8 w-full">
                                 <img src="{{ $publikasiData->gambar ? asset('storage/img/' . $publikasiData->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
                                     class="object-cover w-full h-full" width="100" height="100"

@@ -72,5 +72,6 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
 
     // manage laporan
     Route::get('laporan-peserta', [ManageLaporanController::class, 'index'])->name('mentor.laporanPeserta');
+    Route::get('/table-laporan-peserta', [ManageLaporanController::class, 'tableLaporan'])->name('mentor.tableLaporan');
     Route::get('download-laporan/{laporan}', [ManageLaporanController::class, 'downloadLaporan'])->name('mentor.downloadLaporan');
 });

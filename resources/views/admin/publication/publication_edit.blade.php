@@ -55,7 +55,7 @@
                                                     <img class="h-56 w-full overflow-y-hidden border-abu-500 rounded-sm border-2"
                                                         src="{{ getImageFile($publication->gambar) }}">
                                                 @else
-                                                    <img src="">
+                                                    <img src="{{ getImageFile($publication->gambar) }}">
                                                 @endif
                                                 <input type="file" name="gambar" id="gambar" accept="image/*"
                                                     class="mt-2 w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
@@ -138,7 +138,7 @@
                                                     <img class="h-56 w-full overflow-y-hidden border-abu-500 rounded-sm border-2"
                                                         src="{{ getImageFile($publication->og_image) }}">
                                                 @else
-                                                    <img src="">
+                                                    <img src="{{ getImageFile($publication->og_image) }}">
                                                 @endif
                                                 <input type="file" name="og_image" id="og_image" accept="image/*"
                                                     class="mt-2 block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"

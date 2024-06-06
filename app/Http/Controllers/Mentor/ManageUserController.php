@@ -25,17 +25,14 @@ class ManageUserController extends Controller
         return view('mentor.manage_user.user_list', $data);
     }
 
-    
-
     public function tableUser()
     {
         $admin = Auth::guard('admin')->user();
-        $query = Document::with(['user', 'status.certificate.score', 'position'])
+        $query = Document::select('documents.*')->with(['user', 'office', 'status.certificate', 'position'])
             ->where('office_id', $admin->office_id)
             ->whereHas('status', function ($q) {
                 $q->where('status', '!=', 'menunggu');
             })
-            ->orderByDesc('updated_at')
             ->whereHas('status.certificate')
             ->latest();
 

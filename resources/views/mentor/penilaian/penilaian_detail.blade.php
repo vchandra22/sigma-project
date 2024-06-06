@@ -38,15 +38,20 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div>
-                                <a href="{{ route('mentor.addPenilaian', Crypt::encryptString($getCertificateId->id)) }}"
-                                    class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
-                                    Unsur Kompetensi
-                                </a>
-                            </div>
+                            @if ($getCertificateId->no_sertifikat != null)
+                                <p class="text-sm md:text-sm lg:text-md font-bold text-blue-500 dark:text-secondary">No.
+                                    Sertifikat: {{ $getCertificateId->no_sertifikat }}</p>
+                            @else
+                                <div>
+                                    <a href="{{ route('mentor.addPenilaian', Crypt::encryptString($getCertificateId->id)) }}"
+                                        class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Tambah
+                                        Unsur Kompetensi
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
-                        <div class="relative overflow-x-auto mt-12">
+                        <div class="relative overflow-x-auto mt-4 md:mt-12">
                             <div>
                                 <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-primary-800 dark:text-secondary">
                                     {{ $getUserData->user->nama_lengkap }}
@@ -71,10 +76,13 @@
                                             class="px-4 text-start py-6 text-primary-800 dark:text-secondary">
                                             Nilai
                                         </th>
-                                        <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
-                                            Action
-                                        </th>
+                                        @if ($getCertificateId->no_sertifikat != null)
+                                        @else
+                                            <th scope="col"
+                                                class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                                Action
+                                            </th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,23 +104,27 @@
                                                     {{ $data->nilai_uji }}
                                                 </p>
                                             </td>
-                                            <td class="px-4 py-4">
-                                                <div class="flex justify-center items-center h-full gap-4">
-                                                    <a href="{{ route('mentor.editPenilaian', $data->uuid) }}"
-                                                        class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">
-                                                        Edit
-                                                    </a>
-                                                    <form id="delete-penilaian-{{ $data->id }}"
-                                                        action="{{ route('mentor.deletePenilaian', ['id' => $data->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <div class="py-2 text-center text-md text-red-500 hover:underline">
-                                                            <button class="delete-button" data-id="{{ $data->id }}"
-                                                                type="submit" value="Delete">Hapus </button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                            @if ($getCertificateId->no_sertifikat != null)
+                                            @else
+                                                <td class="px-4 py-4">
+                                                    <div class="flex justify-center items-center h-full gap-4">
+                                                        <a href="{{ route('mentor.editPenilaian', $data->uuid) }}"
+                                                            class="w-full text-md font-normal text-end text-primary-500 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">
+                                                            Edit
+                                                        </a>
+                                                        <form id="delete-penilaian-{{ $data->id }}"
+                                                            action="{{ route('mentor.deletePenilaian', ['id' => $data->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <div
+                                                                class="py-2 text-center text-md text-red-500 hover:underline">
+                                                                <button class="delete-button" data-id="{{ $data->id }}"
+                                                                    type="submit" value="Delete">Hapus </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -131,6 +143,7 @@
                                     </li>
                                     <li class="text-md text-start text-primary-800 dark:text-white">Nilai Baik Sekali:
                                         80.01-100.0</li>
+                                    <li class="text-sm text-start text-red-500 dark:text-white mt-4">*Jika sertifikat telah diterbitkan, Anda tidak dapat mengubah data nilai peserta</li>
                                 </ul>
                             </div>
                         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class ManageLaporanController extends Controller
 {
@@ -30,6 +31,57 @@ class ManageLaporanController extends Controller
             ->paginate(20);
 
         return view('mentor.laporan.laporan_list', $data);
+    }
+
+    public function tableLaporan()
+    {
+        $user = Auth::user();
+        $query = Document::select('documents.*')->with('user', 'status', 'position')
+            ->where('office_id', $user->office_id)
+            ->where(function ($query) {
+                $query->whereHas('status', function ($query) {
+                    $query->where('status', 'diterima');
+                })->orWhereHas('status', function ($query) {
+                    $query->where('status', 'selesai');
+                });
+            })
+            ->orderByDesc('updated_at');
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->editColumn('user.nama_lengkap', function ($data) {
+                return $data->user->nama_lengkap;
+            })
+            ->editColumn('no_identitas', function ($data) {
+                return $data->no_identitas;
+            })
+            ->editColumn('user.no_hp', function ($data) {
+                return $data->user->no_hp;
+            })
+            ->editColumn('instansi_asal', function ($data) {
+                return $data->instansi_asal;
+            })
+            ->editColumn('position.role', function ($data) {
+                return $data->position->role;
+            })
+            ->editColumn('status.status', function ($data) {
+                return $data->status->status;
+            })
+            ->addColumn('opsi', function ($data) {
+                if ($data->doc_laporan) {
+                    return '<a href="' . route('mentor.downloadLaporan', $data->uuid) . '">'
+                        . '<div class="capitalize mx-auto text-start py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">'
+                        . 'Unduh Laporan'
+                        . '</div>'
+                        . '</a>';
+                } else {
+                    return '<p class="capitalize mx-auto text-start py-2 pointer-events-none text-red-500">'
+                        . 'Peserta belum mengunggah laporan'
+                        . '</p>';
+                }
+            })
+            ->rawColumns(['opsi'])
+            ->make(true);
     }
 
     public function downloadLaporan($laporan)

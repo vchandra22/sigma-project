@@ -47,8 +47,8 @@ class ManagePositionController extends Controller
             'requirement' => ['required'],
             'gambar' => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             // meta validation
-            'meta_title' => ['required', 'max:255', 'min:10'],
-            'meta_description' => ['nullable', 'max:160'],
+            'meta_title' => ['nullable', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:255'],
             'meta_keywords' => ['nullable'],
             'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);
@@ -126,8 +126,8 @@ class ManagePositionController extends Controller
             'requirement' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             // meta validation
-            'meta_title' => ['required', 'max:255', 'min:10'],
-            'meta_description' => ['nullable', 'max:160'],
+            'meta_title' => ['nullable', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:255'],
             'meta_keywords' => ['nullable'],
             'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);

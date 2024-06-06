@@ -1,21 +1,5 @@
-function convertDate(dateString) {
-    // Parse the date string in the format 'Y-m-d'
-    var year = parseInt(dateString.substring(0, 4));
-    var month = parseInt(dateString.substring(5, 7)) - 1; // Months are zero-based in JavaScript Date object
-    var day = parseInt(dateString.substring(8, 10));
-
-    // Create a JavaScript Date object
-    var date = new Date(year, month, day);
-
-    // Format the date as 'd M Y'
-    var options = { day: 'numeric', month: 'short', year: 'numeric' };
-    var formattedDate = date.toLocaleDateString('id-ID', options);
-
-    return formattedDate;
-}
-
 $(document).ready(function () {
-    $('#tableManageCertificate').DataTable({
+    $('#tableManageLaporan').DataTable({
         dom: 'frtip',
         ordering: false,
         serverSide: true,
@@ -24,7 +8,7 @@ $(document).ready(function () {
         responsive: true,
         pageLength: 20,
         ajax: {
-            'url': $('#searchTableCertificate').val(),
+            'url': $('#searchTableLaporan').val(),
         },
         columns: [
             {
@@ -36,51 +20,49 @@ $(document).ready(function () {
             },
             {
                 orderable: false,
+                searchable: true,
                 render: function(data, type, row) {
                     return '<div>' + row.user.nama_lengkap + '</div>' +
                            '<div clas="font-regular">' + row.no_identitas + '</div>';
                 },
                 name: 'user.nama_lengkap',
                 className: 'font-bold text-primary-800 dark:text-secondary',
+
             },
             {
-                data: 'user.no_hp',
-                name: 'user.no_hp',
-                className: 'text-primary-800 dark:text-secondary',
                 orderable: false,
                 searchable: true,
-            },
-            {
-                orderable: false,
-                render: function(data, type, row) {
-                    return '<div>' + row.instansi_asal + '</div>' +
-                           '<div>' + row.position.role + '</div>';
-                },
-                name: 'instansi_asal',
+                data: 'user.no_hp',
+                name: 'user.no_hp',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,
-                data: null, render: function(data, type, row) {
-                    if (row.e_tgl_mulai && row.e_tgl_selesai) {
-                        return convertDate(row.e_tgl_mulai) + ' - ' + convertDate(row.e_tgl_selesai);
-                    } else {
-                        return '<span class="font-normal text-xs text-abu-800">belum diatur</span>';
-                    }
-                },
-                name: 'e_tgl_mulai',
-                className: 'text-primary-800 text-start dark:text-secondary',
-                orderable: false,
-                searchable: false
+                searchable: true,
+                data: 'instansi_asal',
+                name: 'instansi_asal',
+                className: 'text-primary-800 dark:text-secondary',
             },
             {
                 orderable: false,
                 searchable: true,
-                data: 'status.certificate.no_sertifikat',
-                name: 'status.certificate.no_sertifikat',
+                data: 'position.role',
+                name: 'position.role',
                 className: 'text-primary-800 dark:text-secondary',
-                render: function(data, type, row) {
-                    return data ? '<p class="text-primary-800 text-start font-bold dark:text-secondary">' + data + '</p>' : '<p class="text-red-500 text-start dark:text-secondary">Sertifikat Belum Dibuat</p>';
+            },
+            {
+                orderable: false,
+                searchable: true,
+                data: 'status.status',
+                name: 'status.status',
+                render: function(data, type, row, meta) {
+                    if (data === 'diterima') {
+                        return '<div class="uppercase text-start py-2 pointer-events-none rounded-sm text-green-500">' + data + '</div>';
+                    } else if (data === 'selesai') {
+                        return '<div class="uppercase text-start py-2 pointer-events-none rounded-sm text-blue-500">' + data + '</div>';
+                    } else {
+                        return data; // Return data as it is if it doesn't match any condition
+                    }
                 }
             },
             {

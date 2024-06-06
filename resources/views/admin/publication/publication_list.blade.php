@@ -46,7 +46,11 @@
                         </div>
 
                         <div class="relative overflow-x-auto mt-12">
-                            <table
+                            <div>
+                                <input type="hidden" id="searchTablePublication"
+                                    value="{{ route('admin.tablePublication') }}">
+                            </div>
+                            <table id="tableManagePublication"
                                 class="w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-900 dark:text-secondary">
                                     <tr>
@@ -66,53 +70,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($publicationData as $publication)
-                                        <tr
-                                            class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">
-                                                    {{ ($publicationData->currentPage() - 1) * $publicationData->perPage() + $loop->iteration }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="font-bold text-primary-800 dark:text-secondary">
-                                                    {{ $publication->judul }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                @php
-                                                    $content = $publication->content;
-                                                    $limitedContent = \Illuminate\Support\Str::limit($content, 500);
-                                                    $limitedContent = str_replace('&nbsp;', '', $limitedContent);
-                                                @endphp
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ strip_tags($limitedContent) }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-8">
-                                                <div class="flex items-center h-full gap-4">
-                                                    <a href="{{ route('admin.editPublication', $publication->uuid) }}"
-                                                        class="py-2 text-center text-md text-blue-500 hover:underline">
-                                                        Edit
-                                                    </a>
-                                                    <form id="delete-publication-{{ $publication->id }}"
-                                                        action="{{ route('admin.deletePublication', ['id' => $publication->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <div class="py-2 text-center text-md text-red-500 hover:underline">
-                                                            <button class="delete-button" data-id="{{ $publication->id }}"
-                                                                type="submit" value="Delete">Hapus </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    
                                 </tbody>
                             </table>
-                            <div class="mt-8">
-                                {{ $publicationData->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,21 +124,28 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get elements
-            const deleteButtons = document.querySelectorAll('.delete-button');
             const modal = document.getElementById('deleteModal');
             const confirmDeleteButton = document.getElementById('confirm-delete-button');
             let formToSubmit;
 
-            // Show modal when delete button is clicked
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    formToSubmit = document.getElementById('delete-publication-' + this.dataset.id);
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
+            function bindDeleteButtons() {
+                // Get all delete buttons
+                const deleteButtons = document.querySelectorAll('.delete-button');
+
+                // Show modal when delete button is clicked
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        formToSubmit = document.getElementById('delete-publication-' + this.dataset
+                            .id);
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                    });
                 });
-            });
+            }
+
+            // Initial binding
+            bindDeleteButtons();
 
             // Submit form when confirm delete button is clicked
             confirmDeleteButton.addEventListener('click', function() {
@@ -192,6 +159,18 @@
                     modal.classList.remove('flex');
                 });
             });
+
+            // Re-bind delete buttons on DataTable draw event
+            $('#tableManagePublication').on('draw.dt', function() {
+                bindDeleteButtons();
+            });
         });
     </script>
+
+
+    @push('data-table')
+        @once
+            <script type="text/javascript" src="{{ asset('assets/js/data-table-publication.js') }}"></script>
+        @endonce
+    @endpush
 @endsection

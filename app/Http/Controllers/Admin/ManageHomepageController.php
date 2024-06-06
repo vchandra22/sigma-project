@@ -78,8 +78,8 @@ class ManageHomepageController extends Controller
         ]);
 
         $validatedDataMeta = $request->validate([
-            'meta_title' => ['required', 'max:255', 'min:10'],
-            'meta_description' => ['nullable', 'max:160'],
+            'meta_title' => ['nullable', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:255'],
             'meta_keyword' => ['nullable'],
             'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);

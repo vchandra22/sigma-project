@@ -34,8 +34,8 @@ class ManageCertificateController extends Controller
             ->whereHas('status', function ($query) {
                 $query->where('status', '!=', 'menunggu');
             })
-            ->orderByDesc('updated_at')
-            ->whereHas('status.certificate');
+            ->whereHas('status.certificate')
+            ->orderByDesc('updated_at');
 
         return DataTables::of($query)
             ->addIndexColumn()
@@ -210,8 +210,9 @@ class ManageCertificateController extends Controller
         ]);
 
         $score->update($validatedData);
-
-        return back()->with('success', 'Data berhasil diupdate!');
+        $certificateId = $score->certificate_id;
+        $encryptedCertificateId = Crypt::encryptString($certificateId);
+        return redirect()->route('mentor.detailPenilaian', ['certificate' => $encryptedCertificateId]);
     }
 
     /**

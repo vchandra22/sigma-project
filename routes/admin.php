@@ -95,6 +95,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     // publication content
     Route::get('/manage-publication-content', [ManagePublicationController::class, 'index'])->name('admin.managePublication');
+    Route::get('/table-manage-publication', [ManagePublicationController::class, 'tablePublication'])->name('admin.tablePublication');
     Route::get('/manage-publication-content/add-new-publication', [ManagePublicationController::class, 'create'])->name('admin.createPublication');
     Route::post('/manage-publication-content/add-new-publication', [ManagePublicationController::class, 'store'])->name('admin.storePublication');
     Route::get('/manage-publication-content/edit/{publication}', [ManagePublicationController::class, 'edit'])->name('admin.editPublication');

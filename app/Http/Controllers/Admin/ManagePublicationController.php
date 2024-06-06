@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 use File;
 
 class ManagePublicationController extends Controller
@@ -18,9 +19,42 @@ class ManagePublicationController extends Controller
     public function index()
     {
         $data['pageTitle'] = 'Publikasi';
-        $data['publicationData'] = Publication::latest()->paginate(10);
 
         return view('admin.publication.publication_list', $data);
+    }
+
+    public function tablePublication()
+    {
+        $query = Publication::latest();
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->editColumn('judul', function ($data) {
+                return $data->judul;
+            })
+            ->editColumn('content', function ($data) {
+                return strip_tags($data->content);
+            })
+            ->addColumn('opsi', function ($data) {
+                $editRoute = route('admin.editPublication', $data->uuid);
+                $deleteRoute = route('admin.deletePublication', ['id' => $data->id]);
+
+                return '
+                <div class="flex items-center h-full gap-4">
+                    <a href="' . $editRoute . '" class="py-2 text-center text-md text-blue-500 hover:underline">
+                        Edit
+                    </a>
+                    <form id="delete-publication-' . $data->id . '" action="' . $deleteRoute . '" method="POST">
+                        ' . csrf_field() . '
+                        ' . method_field('DELETE') . '
+                        <div class="py-2 text-center text-md text-red-500 hover:underline">
+                            <button class="delete-button" data-id="' . $data->id . '" type="submit" value="Delete">Hapus</button>
+                        </div>
+                    </form>
+                </div>';
+            })
+            ->rawColumns(['opsi'])
+            ->make(true);
     }
 
     /**
@@ -43,8 +77,8 @@ class ManagePublicationController extends Controller
             'content' => ['required'],
             'gambar' => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             // meta validation
-            'meta_title' => ['required', 'max:255', 'min:10'],
-            'meta_description' => ['nullable', 'max:160'],
+            'meta_title' => ['nullable', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:255'],
             'meta_keywords' => ['nullable'],
             'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);
@@ -122,8 +156,8 @@ class ManagePublicationController extends Controller
             'content' => ['required'],
             'gambar' => ['image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             // meta validation
-            'meta_title' => ['required', 'max:255', 'min:10'],
-            'meta_description' => ['nullable', 'max:160'],
+            'meta_title' => ['nullable', 'max:255', 'min:10'],
+            'meta_description' => ['nullable', 'max:255'],
             'meta_keywords' => ['nullable'],
             'og_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048', 'nullable'],
         ]);

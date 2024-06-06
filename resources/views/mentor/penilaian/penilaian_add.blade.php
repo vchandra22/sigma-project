@@ -61,36 +61,39 @@
                             </div>
 
 
-                            <div class="grid grid-cols-4 gap-2" id="inputFieldsContainer">
-                                <div class="col-span-3 py-3" id="kompetensi">
-                                    <label for="judul_kompetensi"
-                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                        Judul Kompetensi
-                                        <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="text" name="judul_kompetensi[]" id="judul_kompetensi" placeholder="Memiliki Ketekunan Bekerja"
-                                        value="{{ old('judul_kompetensi[]') }}" required autofocus
-                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                    @error('judul_kompetensi')
-                                        <div class="mt-1 text-red-500 text-xs">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="py-3">
-                                    <label for="nilai_uji"
-                                        class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
-                                        Nilai
-                                        <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="text" name="nilai_uji[]" id="nilai_uji" placeholder="80.50"
-                                        value="{{ old('nilai_uji[]') }}" required
-                                        class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
-                                    @error('nilai_uji')
-                                        <div class="mt-1 text-red-500 text-xs">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                            <div id="inputFieldsContainer">
+                                <div class="grid grid-cols-5 gap-2 w-full">
+                                    <div class="col-span-3 py-3" id="kompetensi">
+                                        <label for="judul_kompetensi"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                            Judul Kompetensi
+                                            <span class="text-red-500">*</span>
+                                        </label>
+                                        <input type="text" name="judul_kompetensi[]" id="judul_kompetensi"
+                                            placeholder="Memiliki Ketekunan Bekerja" value="{{ old('judul_kompetensi[]') }}"
+                                            required autofocus
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                        @error('judul_kompetensi')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-span-1 py-3">
+                                        <label for="nilai_uji"
+                                            class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                            Nilai
+                                            <span class="text-red-500">*</span>
+                                        </label>
+                                        <input type="text" name="nilai_uji[]" id="nilai_uji" placeholder="80.78"
+                                            value="{{ old('nilai_uji[]') }}" required autofocus
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                        @error('nilai_uji')
+                                            <div class="mt-1 text-red-500 text-xs">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -116,8 +119,12 @@
             var inputFieldsContainer = document.getElementById('inputFieldsContainer');
 
             // Create new div to hold label and input fields
-            var newInputKompetensi = document.createElement('div');
-            newInputKompetensi.classList.add('col-span-3', 'py-3');
+            var newInputWrapper = document.createElement('div');
+            newInputWrapper.classList.add('grid', 'grid-cols-5', 'gap-2', 'w-full', 'inputFieldsWrapper');
+
+            // Create div for kompetensi input
+            var kompetensiDiv = document.createElement('div');
+            kompetensiDiv.classList.add('col-span-3', 'py-3');
 
             // Create label for "Judul Kompetensi"
             var judulKompetensiLabel = document.createElement('label');
@@ -136,9 +143,14 @@
                 'dark:bg-neutral-700', 'dark:border-neutral-700', 'dark:placeholder:text-neutral-400',
                 'dark:text-secondary', 'dark:focus:ring-primary-800', 'dark:focus:border-accent');
 
+            // Append label and input fields to the kompetensi div
+            kompetensiDiv.appendChild(judulKompetensiLabel);
+            kompetensiDiv.appendChild(judulKompetensiInput);
 
-            var newInputNilai = document.createElement('div');
-            newInputNilai.classList.add('py-3');
+            // Create div for nilai input
+            var nilaiDiv = document.createElement('div');
+            nilaiDiv.classList.add('col-span-1', 'py-3');
+
             // Create label for "Nilai Uji"
             var nilaiUjiLabel = document.createElement('label');
             nilaiUjiLabel.setAttribute('for', 'nilai_uji');
@@ -157,14 +169,38 @@
                 'dark:text-secondary', 'dark:focus:ring-primary-800', 'dark:focus:border-accent');
 
             // Append label and input fields to the new div
-            newInputKompetensi.appendChild(judulKompetensiLabel);
-            newInputKompetensi.appendChild(judulKompetensiInput);
-            newInputNilai.appendChild(nilaiUjiLabel);
-            newInputNilai.appendChild(nilaiUjiInput);
+            nilaiDiv.appendChild(nilaiUjiLabel);
+            nilaiDiv.appendChild(nilaiUjiInput);
 
-            // Append the new div to the container
-            inputFieldsContainer.appendChild(newInputKompetensi);
-            inputFieldsContainer.appendChild(newInputNilai);
+            // Create div for remove button
+            var removeDiv = document.createElement('div');
+            removeDiv.classList.add('w-auto', 'py-3', 'flex', 'items-center', 'mt-6', 'justify-start');
+
+            // Create remove button
+            var removeButton = document.createElement('button');
+            removeButton.setAttribute('type', 'button');
+            removeButton.classList.add('text-white', 'bg-red-500', 'hover:bg-red-600', 'focus:ring-4',
+                'focus:ring-red-300',
+                'font-medium', 'rounded-sm', 'text-sm', 'px-5', 'py-2.5', 'me-2', 'dark:bg-red-600',
+                'dark:hover:bg-red-700',
+                'focus:outline-none', 'dark:focus:ring-red-800');
+            removeButton.innerHTML = '<i class="fa-solid fa-xmark fa-lg"></i>';
+
+            // Append remove button to the remove div
+            removeDiv.appendChild(removeButton);
+
+            // Append kompetensi, nilai, and remove divs to the newInputWrapper div
+            newInputWrapper.appendChild(kompetensiDiv);
+            newInputWrapper.appendChild(nilaiDiv);
+            newInputWrapper.appendChild(removeDiv);
+
+            // Append the newInputWrapper div to the container
+            inputFieldsContainer.appendChild(newInputWrapper);
+
+            // Add event listener to remove button
+            removeButton.addEventListener('click', function() {
+                newInputWrapper.remove();
+            });
         });
     </script>
 @endsection
