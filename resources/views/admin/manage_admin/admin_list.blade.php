@@ -124,16 +124,15 @@
             </div>
         </div>
     </div>
-    <script>
-        function filterByRole(roles) {
-            // Use DataTables API to filter data by role
-            var table = $('#tableManageAdmin').DataTable();
-            table.column('roles.name:name').search(roles).draw();
-        }
-    </script>
-    @push('data-table')
+    @push('script')
         @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-admin.js') }}"></script>
+            <script>
+                function filterByRole(roles) {
+                    // Use DataTables API to filter data by role
+                    var table = $('#tableManageAdmin').DataTable();
+                    table.column('roles.name:name').search(roles).draw();
+                }
+            </script>
         @endonce
     @endpush
 @endsection

@@ -112,15 +112,14 @@
             </div>
         </div>
     </div>
-    <script>
-        function filterByStatus(status) {
-            // Use DataTables API to filter data by status
-            $('#tableManageTeacher').DataTable().column('status.status:name').search(status).draw();
-        }
-    </script>
-    @push('data-table')
+    @push('script')
         @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-teacher.js') }}"></script>
+            <script>
+                function filterByStatus(status) {
+                    // Use DataTables API to filter data by status
+                    $('#tableManageTeacher').DataTable().column('status.status:name').search(status).draw();
+                }
+            </script>
         @endonce
     @endpush
 @endsection

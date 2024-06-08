@@ -45,7 +45,8 @@
                                     @csrf
                                     @method('delete')
                                     <div class="px-0 text-sm text-red-500">
-                                        <button data-id="{{ $getCertificateId->id }}" type="submit" value="Delete"  class="delete-button">
+                                        <button data-id="{{ $getCertificateId->id }}" type="submit" value="Delete"
+                                            class="delete-button">
                                             <div
                                                 class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-red-500 rounded-none hover:bg-red-600 focus:ring-2 focus:ring-red-500 sm:w-auto dark:bg-red-500 dark:text-secondary dark:hover:bg-red-600 dark:focus:ring-red-500">
                                                 Batal Generate Sertifikat
@@ -73,8 +74,7 @@
                                     {{ $getUserData->instansi_asal }}
                                 </h2>
                             </div>
-                            {{-- <input type="hidden" id="searchTableTeacher" value="{{ route('admin.tableTeacher') }}"> --}}
-                            <table id="tableManageTeacher"
+                            <table
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                 <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                     <tr>
@@ -162,7 +162,8 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <i class="fa-solid fa-triangle-exclamation fa-4x text-red-500 py-4"></i>
-                    <p class="mb-4 text-primary-500 dark:text-secondary font-paragraf text-md">Membatalkan sertifikat akan mengubah status peserta menjadi DITOLAK! Apakah anda yakin?</p>
+                    <p class="mb-4 text-primary-500 dark:text-secondary font-paragraf text-md">Membatalkan sertifikat akan
+                        mengubah status peserta menjadi DITOLAK! Apakah anda yakin?</p>
                     <div class="flex justify-center items-center space-x-4">
                         <button data-modal-hide="deleteModal" type="button"
                             class="py-2 px-6 text-sm font-medium text-primary-500 bg-white rounded-none border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-400 hover:text-primary-800 focus:z-10 dark:bg-neutral-800 dark:text-secondary dark:border-neutral-700 dark:hover:text-white dark:hover:bg-neutral-700 dark:focus:ring-gray-600">

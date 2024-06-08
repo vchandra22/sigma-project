@@ -1,4 +1,3 @@
-# version: '3.9'
 name: sigma-project
 
 services:
@@ -60,40 +59,7 @@ services:
             - db
         environment:
             PMA_HOST: db
-            PMA_PORT: 3306
+            PMA_PORT: 3306 
             PMA_ARBITRARY: 1
         volumes:
             - .docker/phpmyadmin/sessions:/sessions
-
-    ####################################################################################################
-    # Adminer
-    ####################################################################################################
-    # adminer:
-    #     image: adminer
-    #     container_name: adminer
-    #     ports:
-    #         - 9090:8080
-    #     depends_on:
-    #     - db
-
-    ####################################################################################################
-    # Mailpit
-    ####################################################################################################
-    # mail:
-    #     image: axllent/mailpit:latest
-    #     container_name: mailpit
-    #     ports:
-    #     - 8025:8025
-    #     - 1025:1025
-
-    ####################################################################################################
-    # Redis
-    ####################################################################################################
-    # redis:
-    #     image: redis:latest
-    #     container_name: redis
-    #     command: redis-server --appendonly yes
-    #     volumes:
-    #     - .docker/redis/data:/data
-    #     ports:
-    #     - 6379:6379

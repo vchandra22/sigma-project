@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/favicon/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
 
@@ -59,7 +59,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        
+
     {{-- Fontawesome icon CDN --}}
     <script src="https://kit.fontawesome.com/bfb24335ca.js" crossorigin="anonymous"></script>
 
@@ -75,7 +75,7 @@
     <!--Main Menu/Navbar Area Start -->
 
     <!-- Main Content Start-->
-    <section class="antialiased">
+    <section>
         @yield('content')
     </section>
     <!-- Main Content End-->

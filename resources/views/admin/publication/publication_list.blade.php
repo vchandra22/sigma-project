@@ -70,7 +70,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -166,11 +166,4 @@
             });
         });
     </script>
-
-
-    @push('data-table')
-        @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-publication.js') }}"></script>
-        @endonce
-    @endpush
 @endsection

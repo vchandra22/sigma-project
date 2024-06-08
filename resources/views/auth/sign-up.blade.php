@@ -467,10 +467,10 @@
                             </div>
                             <!-- Modal body -->
                             <div class="px-6 pb-8 md:px-8 md:pb-8">
-                                <span
+                                <p
                                     class="text-xs md:text-sm leading-tight text-justify text-primary-800 dark:text-secondary">
                                     {{ strip_tags($termsData->content) }}
-                                </span>
+                                </p>
                             </div>
                         </div>
                     </div>

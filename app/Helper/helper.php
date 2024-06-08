@@ -5,9 +5,10 @@ use Illuminate\Support\Carbon;
 
 function get_app_name()
 {
-    return env('APP_NAME');
+    return env('APP_NAME'); // mendapatkan data nama aplikasi
 }
 
+// mengubah format tanggal
 function convertDate($date)
 {
     $convertedDate = Carbon::createFromFormat('ymd', substr($date, 2, 2) . substr($date, 5, 2) . substr($date, 8, 2))->format('d M Y');
@@ -15,14 +16,14 @@ function convertDate($date)
     return $convertedDate;
 }
 
-
-// Mendapatkan tahun saat ini menggunakan fungsi PHP
+// Mendapatkan tahun saat ini
 function get_copyright_year()
 {
     $currentYear = date("Y");
     return $currentYear;
 }
 
+// Menampilkan gambar
 function getImageFile($file)
 {
     if ($file != '') {
@@ -102,6 +103,7 @@ if (!function_exists('getMeta')) {
     }
 }
 
+// Mengubah nilai ke romawi
 if (!function_exists('toRoman')) {
     function toRoman($num)
     {

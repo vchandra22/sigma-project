@@ -86,46 +86,39 @@
                             </div>
                             <table id="tableManageUser"
                                 class="border-collapse overflow-x-auto w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
-                                <thead
-                                    class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
+                                <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                     <tr>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             No.
                                         </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             Nama Lengkap
                                         </th>
-                                        <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             No. HP
                                         </th>
-                                        <th scope="col"
-                                            class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             Gender
                                         </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             Asal Instansi
                                         </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             Instansi Tujuan Magang
                                         </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             Posisi Pekerjaan
                                         </th>
-                                        <th scope="col"
-                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
+                                        <th>
                                             Tanggal Rencana Mulai
                                         </th>
-                                        <th scope="col"
-                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
+                                        <th>
                                             Tanggal Magang Disetujui
                                         </th>
-                                        <th scope="col"
-                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
+                                        <th>
                                             Status
                                         </th>
-                                        <th scope="col"
-                                            class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
+                                        <th>
                                             Action
                                         </th>
                                     </tr>
@@ -140,15 +133,14 @@
             </div>
         </div>
     </div>
-    <script>
-        function filterByStatus(status) {
-            // Use DataTables API to filter data by status
-            $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
-        }
-    </script>
-    @push('data-table')
+    @push('script')
         @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-user.js') }}"></script>
+            <script>
+                function filterByStatus(status) {
+                    // Use DataTables API to filter data by status
+                    $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
+                }
+            </script>
         @endonce
     @endpush
 @endsection

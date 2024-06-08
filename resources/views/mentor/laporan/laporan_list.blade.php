@@ -115,9 +115,4 @@
             $('#tableManageLaporan').DataTable().column('status.status:name').search(status).draw();
         }
     </script>
-    @push('data-table')
-        @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-laporan.js') }}"></script>
-        @endonce
-    @endpush
 @endsection

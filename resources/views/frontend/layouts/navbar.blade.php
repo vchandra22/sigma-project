@@ -65,6 +65,15 @@
                                             </div>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('admin.settings') }}"
+                                            class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            <div class="space-x-4 flex items-center justify-start text-sm">
+                                                <i class="fa-solid fa-gear"></i>
+                                                <span>Pengaturan</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                 @else
                                     <li>
                                         <a href="{{ route('mentor.dashboard') }}"
@@ -75,16 +84,16 @@
                                             </div>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('mentor.settings') }}"
+                                            class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            <div class="space-x-4 flex items-center justify-start text-sm">
+                                                <i class="fa-solid fa-gear"></i>
+                                                <span>Pengaturan</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                 @endif
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        <div class="space-x-4 flex items-center justify-start text-sm">
-                                            <i class="fa-solid fa-gear"></i>
-                                            <span>Pengaturan</span>
-                                        </div>
-                                    </a>
-                                </li>
                                 <li>
                                     <form action="{{ route('admin.logout') }}" method="POST"
                                         class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -139,7 +148,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('user.settings') }}"
                                         class="block px-4 py-3 text-primary-800 hover:bg-abu-500 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">
                                         <div class="space-x-4 flex items-center justify-start text-sm">
                                             <i class="fa-solid fa-gear"></i>
@@ -254,6 +263,5 @@
             </div>
         </div>
         {{-- bottom navbar: only show on small screen end --}}
-
     </nav>
 </section>

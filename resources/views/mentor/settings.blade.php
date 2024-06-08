@@ -34,7 +34,8 @@
                 <div class="bg-secondary w-full border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
                     <div class="px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-16">
                         @foreach ($adminData as $admin)
-                            <div class="flex flex-row lg:flex-row justify-between items-end lg:items-end">
+                            <div
+                                class="flex flex-row lg:flex-row justify-between items-end lg:items-end mb-2 md:mb-6 lg:mb-12">
                                 <h2 class="text-4xl md:text-5xl font-bold text-primary-800 dark:text-secondary">
                                     {{ $pageTitle }}
                                 </h2>
@@ -125,7 +126,6 @@
                                     </a>
                                 </div>
                         @endforeach
-
                     </div>
                 </div>
             </div>

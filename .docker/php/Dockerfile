@@ -12,6 +12,7 @@ RUN apt-get install -y libicu-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
+# php image-magick extension
 RUN apt-get update \
     && apt-get install -y ghostscript libmagickwand-dev \
     && pecl install imagick \

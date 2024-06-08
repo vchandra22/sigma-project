@@ -86,9 +86,4 @@
             </div>
         </div>
     </div>
-    @push('data-table')
-        @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-penilaian.js') }}"></script>
-        @endonce
-    @endpush
 @endsection

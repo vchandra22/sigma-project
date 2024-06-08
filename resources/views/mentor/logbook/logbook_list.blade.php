@@ -92,46 +92,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($logbookData as $data)
-                                        <tr
-                                            class="odd:bg-gray-100 odd:dark:bg-neutral-700 even:bg-slate-100 even:dark:bg-neutral-600 border-b dark:border-neutral-500">
-                                            <td class="px-4 py-4">
-                                                <p class="text-primary-800 dark:text-secondary">{{ $loop->iteration }}
-                                                </p>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="font-bold text-primary-800 dark:text-secondary">
-                                                    {{ $data->nama_lengkap }}
-                                                    <br>
-                                                    {{ $data->no_identitas }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-4 py-4">
-                                                <h5 class="text-primary-800 dark:text-secondary">
-                                                    {{ $data->instansi_asal }}
-                                                </h5>
-                                            </td>
-                                            <td class="px-8">
-                                                <div class="flex items-center justify-center h-full gap-4">
-                                                    <a href="{{ route('mentor.showLogbook', encrypt($data->status_id)) }}"
-                                                        onclick="var newWindow = window.open('{{ route('mentor.showLogbook', encrypt($data->status_id)) }}', 'newwindow', 'width=900,height=480'); newWindow.onload = function() { newWindow.print(); }; return false;"
-                                                        target="_blank">
-                                                        @csrf
-                                                        <p class="py-2 text-center text-md text-blue-500 hover:underline">
-                                                            Lihat Logbook
-                                                        </p>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td class="align-middle mb-4 text-center py-8 text-md text-hitam"
-                                                colspan="8">
-                                                Tidak ada data
-                                            </td>
-                                        </tr>
-                                    @endforelse --}}
+
                                 </tbody>
                             </table>
                         </div>
@@ -147,9 +108,4 @@
             $('#tableManageLogbook').DataTable().column('status:name').search(status).draw();
         }
     </script>
-    @push('data-table')
-        @once
-            <script type="text/javascript" src="{{ asset('assets/js/data-table-logbook.js') }}"></script>
-        @endonce
-    @endpush
 @endsection
