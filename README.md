@@ -23,11 +23,10 @@
 -   Gunakan perintah `docker compose exec php bash`
 
 ### Cara mengakses phpmyadmin/db
-
--   URL: http://localhost:8088
--   Username: `user`
--   Password: `password`
--   Database: `sigma_db`
+- URL: http://localhost:8088
+- Username: `user`
+- Password: `password`
+- Database: `sigma_db`
 
 # Catatan
 
