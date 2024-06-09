@@ -1,73 +1,82 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 # Requirements
-- Stable version of [Docker](https://docs.docker.com/engine/install/)
-- Compatible version of [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+
+-   Stable version of [Docker](https://docs.docker.com/engine/install/)
+-   Compatible version of [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
 
 # Cara - Cara
-### Cara Menjalankan Aplikasi
-- Buka terminal dan docker desktop di komputer
-- Buka directory dimana file project akan di install menggunakan perintah `cd` di ikuti path
-- Clone project menggunakan perintah `git clone https://github.com/vchandra22/sigma-v2.git`
-- Jalankan perintah `docker-compose build --no-cache`
-- Tunggu sampai proses build selesai, kemudian `docker-compose up -d`
-- Buka web browser kemudian akses url http://localhost/
 
-### Artisan commands or manage package 
-- Aplikasi berjalan menggunakan docker container
-- Menjalankan artisan commands atau manage package dapat dilakukan dalam container
-- Gunakan perintah `docker compose exec php bash`
+### Cara Menjalankan Aplikasi
+
+-   Buka terminal dan docker desktop di komputer
+-   Buka directory dimana file project akan di install menggunakan perintah `cd` di ikuti path
+-   Clone project menggunakan perintah `git clone https://github.com/vchandra22/sigma-v2.git`
+-   Jalankan perintah `docker-compose build --no-cache`
+-   Tunggu sampai proses build selesai, kemudian `docker-compose up -d`
+-   Buka web browser kemudian akses url http://localhost/
+
+### Artisan commands or manage package
+
+-   Aplikasi berjalan menggunakan docker container
+-   Menjalankan artisan commands atau manage package dapat dilakukan dalam container
+-   Gunakan perintah `docker compose exec php bash`
 
 ### Cara mengakses phpmyadmin/db
-- URL: http://localhost:1010
-- Username: `user`
-- Password: `password`
-- Database: `sigma_db`
+
+-   URL: http://localhost:8088
+-   Username: `user`
+-   Password: `password`
+-   Database: `sigma_db`
 
 # Catatan
+
 ### Basic docker compose commands
-- Build or rebuild services
-    - `docker compose build`
-- Create and start containers
-    - `docker compose up -d`
-- Stop and remove containers, networks
-    - `docker compose down`
-- Stop all services
-    - `docker compose stop`
-- Restart service containers
-    - `docker compose restart`
-- Run a command inside a container
-    - `docker compose exec [container] [command]`
+
+-   Build or rebuild services
+    -   `docker compose build`
+-   Create and start containers
+    -   `docker compose up -d`
+-   Stop and remove containers, networks
+    -   `docker compose down`
+-   Stop all services
+    -   `docker compose stop`
+-   Restart service containers
+    -   `docker compose restart`
+-   Run a command inside a container
+    -   `docker compose exec [container] [command]`
 
 ### Useful Laravel Commands
-- Display basic information about your application
-    - `php artisan about`
-- Remove the configuration cache file
-    - `php artisan config:clear`
-- Flush the application cache
-    - `php artisan cache:clear`
-- Clear all cached events and listeners
-    - `php artisan event:clear`
-- Delete all of the jobs from the specified queue
-    - `php artisan queue:clear`
-- Remove the route cache file
-    - `php artisan route:clear`
-- Clear all compiled view files
-    - `php artisan view:clear`
-- Remove the compiled class file
-    - `php artisan clear-compiled`
-- Remove the cached bootstrap files
-    - `php artisan optimize:clear`
-- Delete the cached mutex files created by scheduler
-    - `php artisan schedule:clear-cache`
-- Flush expired password reset tokens
-    - `php artisan auth:clear-resets`
- 
+
+-   Display basic information about your application
+    -   `php artisan about`
+-   Remove the configuration cache file
+    -   `php artisan config:clear`
+-   Flush the application cache
+    -   `php artisan cache:clear`
+-   Clear all cached events and listeners
+    -   `php artisan event:clear`
+-   Delete all of the jobs from the specified queue
+    -   `php artisan queue:clear`
+-   Remove the route cache file
+    -   `php artisan route:clear`
+-   Clear all compiled view files
+    -   `php artisan view:clear`
+-   Remove the compiled class file
+    -   `php artisan clear-compiled`
+-   Remove the cached bootstrap files
+    -   `php artisan optimize:clear`
+-   Delete the cached mutex files created by scheduler
+    -   `php artisan schedule:clear-cache`
+-   Flush expired password reset tokens
+    -   `php artisan auth:clear-resets`
+
 ### Vite Commands
-- Start Development Serve
-    - `npm run dev`
-- Build or compile all the tailwind clasess
-    - `npm run build` 
+
+-   Start Development Serve
+    -   `npm run dev`
+-   Build or compile all the tailwind clasess
+    -   `npm run build`
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -80,13 +89,13 @@
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
@@ -104,19 +113,19 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 ### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   **[Vehikl](https://vehikl.com/)**
+-   **[Tighten Co.](https://tighten.co)**
+-   **[WebReinvent](https://webreinvent.com/)**
+-   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+-   **[64 Robots](https://64robots.com)**
+-   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+-   **[Cyber-Duck](https://cyber-duck.co.uk)**
+-   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+-   **[Jump24](https://jump24.co.uk)**
+-   **[Redberry](https://redberry.international/laravel/)**
+-   **[Active Logic](https://activelogic.com)**
+-   **[byte5](https://byte5.de)**
+-   **[OP.GG](https://op.gg)**
 
 ## Contributing
 
