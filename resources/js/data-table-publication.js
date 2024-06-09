@@ -16,24 +16,20 @@ $(document).ready(function () {
                 name: 'DT_RowIndex',
                 orderable: false,
                 searchable: false,
-                className: 'text-primary-800 text-center dark:text-secondary'
+                className: 'text-primary-800 text-center dark:text-secondary font-bold'
             },
             {
                 orderable: false,
                 data: 'judul',
                 name: 'judul',
-                className: 'text-primary-800 dark:text-secondary'
+                className: 'text-primary-800 dark:text-secondary font-bold'
             },
             {
                 orderable: false,
                 searchable: false,
                 data: 'content',
                 name: 'content',
-                className: 'text-primary-800 dark:text-secondary',
-                render: function(data, type, row, meta) {
-                // Use a regular expression to strip HTML tags
-                return data.replace(/<\/?[^>]+(>|$)/g, "");
-                }
+                className: 'text-primary-800 dark:text-secondary text-justify'
             },
             {
                 data: 'opsi',

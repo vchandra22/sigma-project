@@ -311,28 +311,30 @@ class ManageUserController extends Controller
      */
     public function destroy($id)
     {
-        $user = Document::with('user', 'status')
+        $document = Document::with('user', 'status')
             ->whereHas('user', function ($query) use ($id) {
                 $query->where('id', $id);
             })
             ->firstOrFail();
 
-        if ($user->doc_pengantar) {
-            Storage::disk('local')->delete('private/documents/' . $user->doc_pengantar);
+        if ($document->doc_pengantar) {
+            Storage::disk('local')->delete('private/documents/' . $document->doc_pengantar);
         }
-        if ($user->doc_kesbang) {
-            Storage::disk('local')->delete('private/documents/' . $user->doc_kesbang);
+        if ($document->doc_kesbang) {
+            Storage::disk('local')->delete('private/documents/' . $document->doc_kesbang);
         }
-        if ($user->doc_proposal) {
-            Storage::disk('local')->delete('private/documents/' . $user->doc_proposal);
+        if ($document->doc_proposal) {
+            Storage::disk('local')->delete('private/documents/' . $document->doc_proposal);
         }
-        if ($user->status->doc_balasan) {
-            Storage::disk('local')->delete('private/documents/' . $user->status->doc_balasan);
+        if ($document->status->doc_balasan) {
+            Storage::disk('local')->delete('private/documents/' . $document->status->doc_balasan);
         }
-        $user->delete();
+
+        $document->delete();
+        $document->user()->delete();
 
         $getUser = Auth::guard('admin')->user()->nama_lengkap;
-        activity()->causedBy($user)->log($getUser . ' melakukan delete data User');
+        activity()->causedBy($document)->log($getUser . ' melakukan delete data User');
 
         return redirect(route('admin.manageUser'))->with('success', 'Data berhasil dihapus!');
     }

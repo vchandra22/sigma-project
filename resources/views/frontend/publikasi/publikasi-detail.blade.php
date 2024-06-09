@@ -99,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-4 mb-20">
+                <div class="flex flex-col gap-4 mb-20 lg:sticky lg:h-fit lg:top-12 lg:z-10">
                     <h3 class="pt-12 pb-4 text-3xl font-bold text-primary-800 text-start leading-9 dark:text-secondary">
                         Publikasi Lainnya
                     </h3>
@@ -107,9 +107,9 @@
                     @forelse ($publikasiAll as $data)
                         <a href="{{ route('frontend.publikasiDetail', $data->slug) }}"
                             class="flex flex-col items-center bg-transparent border border-abu-500 md:flex-row hover:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-secondary">
-                            <div class="relative w-full h-32 md:w-1/3 md:h-44 lg:h-full">
+                            <div class="relative w-full h-32 md:w-1/3 md:h-44 lg:h-32">
                                 <img src="{{ $data->gambar ? asset('storage/img/' . $data->gambar) : asset('frontend/assets/img/sigma-logo-full.png') }}"
-                                    class="object-cover w-full h-full" width="100" height="100"
+                                    class="object-cover w-full h-full overflow-hidden" width="100" height="100"
                                     alt="{{ $data->judul }}">
                                 <div
                                     class="absolute top-0 left-0 w-full h-full bg-primary-800 bg-opacity-40 transition-transform duration-1000 hover:bg-opacity-40 dark:bg-neutral-950 dark:bg-opacity-60">

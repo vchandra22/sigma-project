@@ -36,7 +36,11 @@ class ManagePublicationController extends Controller
                 return $data->judul;
             })
             ->editColumn('content', function ($data) {
-                return strip_tags($data->content);
+                $excerpt = strip_tags($data->content);
+                if (strlen($excerpt) > 500) {
+                    $excerpt = mb_strimwidth($excerpt, 0, 500, "...");
+                }
+                return $excerpt;
             })
             ->addColumn('opsi', function ($data) {
                 $editRoute = route('admin.editPublication', $data->uuid);
