@@ -52,9 +52,9 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="mt-8">
-                    {{ $publikasiData->links() }}
-                </div>
+            </div>
+            <div class="py-8 px-4">
+                {{ $publikasiData->links() }}
             </div>
         </div>
     </section>

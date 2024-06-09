@@ -65,8 +65,8 @@ class MainIndexController extends Controller
         $data['pageTitle'] = 'Publikasi'; // Setel judul halaman menjadi 'Publikasi'
         $data['homeData'] = Homepage::latest()->firstOrFail(); // Mendapatkan data konten beranda
 
-        // Mendapatkan data publikasi, urutkan berdasarkan yang terbaru, dan paginasi (16 per halaman)
-        $data['publikasiData'] = Publication::latest()->paginate(16);
+        // Mendapatkan data publikasi, urutkan berdasarkan yang terbaru, dan paginasi (9 per halaman)
+        $data['publikasiData'] = Publication::latest()->paginate(9);
 
         return view('frontend.publikasi.publikasi-lists', $data); // Kembalikan view daftar publikasi dengan data
     }
