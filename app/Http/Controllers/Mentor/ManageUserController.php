@@ -114,7 +114,7 @@ class ManageUserController extends Controller
         // Validate the incoming data
         $validatedData = $request->validate([
             // User data
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49', 'regex:/^[^0-9]*$/'],
             'username' => ['required', 'unique:users,username,' . $document->user->id],
             'jenis_kelamin' => ['required'],
             'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp,' . $document->user->id],

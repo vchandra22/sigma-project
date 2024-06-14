@@ -81,7 +81,7 @@ class ManageAdminController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(([
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49', 'regex:/^[^0-9]*$/'],
             'username' => ['required', 'string', 'min:4', 'max:49', 'unique:admins,username,'],
             'jenis_kelamin' => ['required'],
             'password' => ['required', 'min:8'],
@@ -128,7 +128,7 @@ class ManageAdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         $validatedData = $request->validate(([
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49', 'regex:/^[^0-9]*$/'],
             'username' => ['required', 'string', 'min:4', 'max:49', 'unique:admins,username,' . $admin->id],
             'nip' => ['required', 'unique:admins,nip,' . $admin->id],
             'email' => ['required', 'email', 'unique:admins,email,' . $admin->id],

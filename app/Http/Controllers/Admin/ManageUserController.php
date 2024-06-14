@@ -86,7 +86,7 @@ class ManageUserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49', 'regex:/^[^0-9]*$/'],
             'no_identitas' => ['required', 'numeric', 'digits_between:4,20', 'unique:documents,no_identitas'],
             'username' => ['required', 'same:no_identitas', 'unique:users,username'],
             'jenis_kelamin' => ['required'],
@@ -224,7 +224,7 @@ class ManageUserController extends Controller
         // Validate the incoming data
         $validatedData = $request->validate([
             // User data
-            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49'],
+            'nama_lengkap' => ['required', 'string', 'min:4', 'max:49', 'regex:/^[^0-9]*$/'],
             'username' => ['required', 'unique:users,username,' . $document->user->id],
             'jenis_kelamin' => ['required'],
             'no_hp' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,no_hp,' . $document->user->id],

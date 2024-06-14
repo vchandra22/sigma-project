@@ -25,8 +25,7 @@
                         </li>
                         <li>
                             <a href="{{ route('frontend.roleList') }}"
-                                class="block px-3 py-2 text-gray-900 md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-500 dark:text-gray-200 dark:hover:text-secondary md:dark:hover:bg-transparent">Internship
-                                Role</a>
+                                class="block px-3 py-2 text-gray-900 md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-500 dark:text-gray-200 dark:hover:text-secondary md:dark:hover:bg-transparent">Posisi Pekerjaan</a>
                         </li>
                         <li>
                             <a href="{{ route('frontend.publikasiList') }}"
