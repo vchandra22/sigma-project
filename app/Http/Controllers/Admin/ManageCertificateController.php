@@ -24,7 +24,7 @@ class ManageCertificateController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Data Sertifikat Peserta';
+        $data['pageTitle'] = 'Sertifikat Peserta';
 
         return view('admin.certificate.certificate_list', $data);
     }
@@ -41,7 +41,7 @@ class ManageCertificateController extends Controller
                 $queryS->whereNot('status', 'menunggu')
                     ->whereHas('certificate.score');
             })
-            ->orderByDesc('updated_at');
+            ->latest();
 
         return DataTables::of($query)
             ->addIndexColumn()

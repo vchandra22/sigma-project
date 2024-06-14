@@ -107,7 +107,7 @@
                         class="w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-users-gear fa-lg"></i>
                     </div>
-                    <span class="ms-4">Manage User</span>
+                    <span class="ms-4">Data Peserta</span>
                 </a>
             </li>
             <li>
@@ -117,7 +117,7 @@
                         class="w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-file-signature fa-lg"></i>
                     </div>
-                    <span class="ms-4">Logbook User</span>
+                    <span class="ms-4">Logbook Peserta</span>
                 </a>
             </li>
             <li>
@@ -127,7 +127,7 @@
                         class="w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-laptop-file fa-lg"></i>
                     </div>
-                    <span class="ms-4">Assignment</span>
+                    <span class="ms-4">Tugas / Proyek</span>
                 </a>
             </li>
 

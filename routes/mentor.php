@@ -35,7 +35,10 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     //manage logbook
     Route::get('/manage-logbook', [ManageLogbookController::class, 'index'])->name('mentor.manageLogbook');
     Route::get('/table-manage-logbook', [ManageLogbookController::class, 'tableLogbook'])->name('mentor.tableLogbook');
+    Route::get('/edit-logbook/{logbook}', [ManageLogbookController::class, 'edit'])->name('mentor.editLogbook');
+    Route::post('/update-logbook/{logbook}', [ManageLogbookController::class, 'update'])->name('mentor.updateLogbook');
     Route::get('/print-logbook/{id}', [ManageLogbookController::class, 'show'])->name('mentor.showLogbook');
+    Route::delete('/logbook/{id}/delete', [ManageLogbookController::class, 'destroy'])->name('mentor.deleteLogbook');
 
     //manage assignment
     Route::get('/manage-assignment', [ManageAssignmentController::class, 'index'])->name('mentor.manageAssignment');

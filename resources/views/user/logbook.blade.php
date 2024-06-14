@@ -143,7 +143,8 @@
                                                         datepicker-format="dd/mm/yyyy" datepicker-autoselect-today
                                                         type="text"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                        placeholder="Pilih tanggal" autofocus>
+                                                        placeholder="Pilih tanggal" autofocus
+                                                        value="{{ old('tgl_magang') }}">
                                                     @error('tgl_magang')
                                                         <div class="mt-1 text-red-500 text-xs">
                                                             {{ $message }}
@@ -156,7 +157,7 @@
                                                         Mulai <span class="text-red-500">*</span></label>
                                                     <input type="time" name="jam_mulai" id="jam_mulai"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                        required />
+                                                        required value="{{ old('jam_mulai') }}" />
                                                     @error('jam_mulai')
                                                         <div class="mt-1 text-red-500 text-xs">
                                                             {{ $message }}
@@ -169,7 +170,7 @@
                                                         Selesai <span class="text-red-500">*</span></label>
                                                     <input type="time" name="jam_selesai" id="jam_selesai"
                                                         class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                        required />
+                                                        required value="{{ old('jam_selesai') }}" />
                                                     @error('jam_selesai')
                                                         <div class="mt-1 text-red-500 text-xs">
                                                             {{ $message }}
@@ -184,7 +185,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Topik
                                                 Diskusi <span class="text-red-500">*</span></label>
                                             <textarea name="topik_diskusi" id="topik_diskusi" rows="8"
-                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">{{ old('topik_diskusi') }}</textarea>
                                             @error('topik_diskusi')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
@@ -197,7 +198,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arahan
                                                 Pembimbing <span class="text-red-500">*</span></label>
                                             <textarea name="arahan_pembimbing" id="arahan_pembimbing" rows="4"
-                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"></textarea>
+                                                class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">{{ old('arahan_pembimbing') }}</textarea>
                                             @error('arahan_pembimbing')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
@@ -212,7 +213,7 @@
                                             </label>
                                             <input type="text" name="bukti" id="bukti"
                                                 class="bg-white border border-abu-800 text-blue-500 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                required />
+                                                required value="{{ old('bukti') }}" />
                                             @error('bukti')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
@@ -224,7 +225,6 @@
                                             <button type="submit"
                                                 class="w-full px-20 py-3 text-lg font-normal text-center text-gray-100 bg-primary-800 rounded-none hover:bg-primary-500 focus:ring-2 focus:ring-accent sm:w-auto dark:bg-secondary dark:text-neutral-800 dark:hover:bg-white dark:focus:ring-blue-800">Simpan</button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -315,15 +315,35 @@
                                                                 {{ strip_tags($logbook->arahan_pembimbing) }}
                                                             </span>
                                                         </div>
-                                                        <div>
+                                                        <div class="mb-2">
                                                             <h5 class="font-bold text-primary-800 dark:text-secondary">
                                                                 Bukti Dukung
                                                             </h5>
                                                             <a class="text-blue-400 hover:text-blue-500 hover:underline"
                                                                 href="{{ $logbook->bukti }}">{{ $logbook->bukti }}</a>
                                                         </div>
+                                                        <div>
+                                                            <h5 class="font-bold text-primary-800 dark:text-secondary">
+                                                                Status :
+                                                            </h5>
+                                                            <div>
+                                                                @if ($logbook->status === 'disetujui')
+                                                                    <span class="text-green-500">
+                                                                        Disetujui
+                                                                    </span>
+                                                                @elseif ($logbook->status === 'ditolak')
+                                                                    <span class="text-red-500">
+                                                                        Tidak Disetujui
+                                                                    </span>
+                                                                @else
+                                                                    <span class="text-orange-500">
+                                                                        Menunggu persetujuan mentor
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     </td>
-                                                    <td class="px-8 py-4">
+                                                    <td class="px-8 py-6">
                                                         <form id="delete-logbook-{{ $logbook->id }}"
                                                             action="{{ route('delete.logbook', ['id' => $logbook->id]) }}"
                                                             method="POST">

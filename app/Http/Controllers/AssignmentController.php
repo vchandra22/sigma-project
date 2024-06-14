@@ -18,7 +18,7 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Assignment'; // Setel judul halaman menjadi 'Assignment'
+        $data['pageTitle'] = 'Tugas / Proyek'; // Setel judul halaman menjadi 'Assignment'
         $user = Auth::user(); // Mendapatkan user yang sedang login
 
         // Mengambil data assignment dimana status_id sesuai dengan id user yang sedang login,
@@ -39,7 +39,7 @@ class AssignmentController extends Controller
 
     public function statusBelumDikerjakan()
     {
-        $data['pageTitle'] = 'Assignment'; // Setel judul halaman menjadi 'Assignment'
+        $data['pageTitle'] = 'Tugas / Proyek'; // Setel judul halaman menjadi 'Assignment'
         $user = Auth::user(); // Mendapatkan user yang sedang login
 
         // Mengambil data assignment dimana status_id sesuai dengan id user yang sedang login dan status assignment dikirim,
@@ -61,7 +61,7 @@ class AssignmentController extends Controller
 
     public function statusSelesai()
     {
-        $data['pageTitle'] = 'Assignment'; // Setel judul halaman menjadi 'Assignment'
+        $data['pageTitle'] = 'Tugas / Proyek'; // Setel judul halaman menjadi 'Assignment'
         $user = Auth::user(); // Mendapatkan user yang sedang login
 
         // Mengambil data assignment dimana status_id sesuai dengan id user yang sedang login dan status assignment selesai,
@@ -82,7 +82,7 @@ class AssignmentController extends Controller
 
     public function statusTerlambat()
     {
-        $data['pageTitle'] = 'Assignment'; // Setel judul halaman menjadi 'Assignment'
+        $data['pageTitle'] = 'Tugas / Proyek'; // Setel judul halaman menjadi 'Assignment'
         $user = Auth::user(); // Mendapatkan user yang sedang login
 
         // Mengambil data assignment dimana status_id sesuai dengan id user yang sedang login dan status assignment terlambat,

@@ -19,7 +19,7 @@ class ManageLogbookController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Logbook List';
+        $data['pageTitle'] = 'Data Logbook Peserta';
 
         return view('mentor.logbook.logbook_list', $data);
     }
@@ -55,9 +55,9 @@ class ManageLogbookController extends Controller
             })
             ->addColumn('opsi', function ($data) {
                 // Assuming you have a route named 'detail' to show details
-                $detailRoute = route('mentor.showLogbook', ['id' => encrypt($data->status_id)]);
+                $detailRoute = route('mentor.editLogbook', ['logbook' => encrypt($data->status_id)]);
 
-                return '<a href="' . $detailRoute . '" class="py-2 text-md text-blue-500 cursor-pointer hover:underline" onclick="var newWindow = window.open(\'' . $detailRoute . '\', \'newwindow\', \'width=900,height=880\'); newWindow.onload = function() { newWindow.print(); }; return false;" target="_blank">Detail</a>';
+                return '<a href="' . $detailRoute . '" class="py-2 text-md text-blue-500 cursor-pointer hover:underline">Detail</a>';
             })
             ->filterColumn('instansi_asal', function ($query, $keyword) {
                 $query->where('documents.instansi_asal', 'like', "%$keyword%");
@@ -109,6 +109,7 @@ class ManageLogbookController extends Controller
             ->join('statuses', 'documents.id', '=', 'statuses.document_id')
             ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
             ->where('logbooks.status_id', $status_id)
+            ->where('logbooks.status', 'disetujui')
             ->oldest('logbooks.tgl_magang')
             ->get();
 
@@ -118,24 +119,76 @@ class ManageLogbookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Logbook $logbook)
+    public function edit($id)
     {
-        //
+        $data['pageTitle'] = 'Riwayat Kegiatan Peserta';
+        $decryptId = Crypt::decrypt($id);
+
+        $data['userData'] = User::join('documents', 'users.id', '=', 'documents.user_id')
+            ->join('offices', 'documents.office_id', '=', 'offices.id')
+            ->join('positions', 'documents.position_id', '=', 'positions.id')
+            ->join('statuses', 'documents.id', '=', 'statuses.document_id')
+            ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
+            ->where('logbooks.status_id', $decryptId)
+            ->first();
+
+        $data['logbookUser'] = Logbook::with('status')
+            ->where('status_id', $decryptId)
+            ->latest('logbooks.tgl_magang')
+            ->paginate(10);
+
+        return view('mentor.logbook.logbook_edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Logbook $logbook)
+    public function update($encryptedId)
     {
-        //
+        try {
+            // Decrypt the logbook ID
+            $logbookId = Crypt::decrypt($encryptedId);
+
+            // Find the logbook by ID
+            $logbook = Logbook::findOrFail($logbookId);
+
+            // Toggle the status between 'disetujui' and 'menunggu'
+            if ($logbook->status === 'menunggu') {
+                $logbook->status = 'disetujui';
+                $logbook->save();
+
+                $message = 'Logbook approved successfully.';
+            } elseif ($logbook->status === 'disetujui') {
+                $logbook->status = 'menunggu';
+                $logbook->save();
+
+                $message = 'Logbook approval canceled successfully.';
+            }
+
+            // Redirect back with success message
+            return redirect()->back()->with('success', $message);
+        } catch (\Exception $e) {
+            // Handle decryption or other errors
+            return redirect()->back()->with('error', 'Gagal approve logbook');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Logbook $logbook)
+    public function destroy($id)
     {
-        //
+        // Mencari entri logbook berdasarkan id
+        $logbook = Logbook::find($id);
+
+        // Jika entri logbook tidak ditemukan, redirect dengan pesan error
+        if (!$logbook) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+        $logbook->delete(); // Hapus entri logbook
+
+        // Redirect ke halaman logbook dengan pesan sukses
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
     }
 }

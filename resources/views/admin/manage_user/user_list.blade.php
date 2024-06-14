@@ -95,7 +95,7 @@
                                             Nama Lengkap
                                         </th>
                                         <th>
-                                            No. HP
+                                            No. Identitas
                                         </th>
                                         <th>
                                             Gender

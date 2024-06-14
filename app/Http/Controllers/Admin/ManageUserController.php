@@ -24,7 +24,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Manage User';
+        $data['pageTitle'] = 'Data Peserta';
 
         return view('admin.manage_user.user_list', $data);
     }
@@ -43,8 +43,8 @@ class ManageUserController extends Controller
             ->editColumn('user.nama_lengkap', function ($data) {
                 return $data->user->nama_lengkap;
             })
-            ->editColumn('user.no_hp', function ($data) {
-                return $data->user->no_hp;
+            ->editColumn('user.document.no_identitas', function ($data) {
+                return $data->user->document->no_identitas;
             })
             ->editColumn('user.jenis_kelamin', function ($data) {
                 return $data->user->jenis_kelamin;
@@ -287,20 +287,24 @@ class ManageUserController extends Controller
 
         $document->status->update($statusData);
 
+        // Check if the status is changing to "diterima"
         if ($validatedData['status'] === 'diterima') {
-            // Get the document's current status
-            $status = $document->status;
-
             // Create a certificate if the status is changing to "diterima"
-            $status->certificate()->create($validatedData);
+            if (!$document->status->certificate) {
+                $document->status->certificate()->create($validatedData);
+            }
         } elseif ($validatedData['status'] === 'ditolak') {
-            $status = $document->status;
+            // Update document dates to null
             $document->update([
                 'e_tgl_mulai' => null,
                 'e_tgl_selesai' => null
             ]);
 
-            $status->certificate()->delete();
+            // Delete the certificate if it exists
+            if ($document->status->certificate) {
+                Storage::disk('local')->delete('private/certificates/' . $document->status->certificate->doc_sertifikat);
+                $document->status->certificate()->delete();
+            }
         }
 
         return redirect(route('admin.manageUser'))->with('success', 'Data berhasil diupdate!');

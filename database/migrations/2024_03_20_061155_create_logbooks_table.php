@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('jam_selesai')->nullable();
             $table->text('topik_diskusi')->nullable();
             $table->text('arahan_pembimbing')->nullable();
+            $table->enum('status', ['disetujui', 'ditolak', 'menunggu'])->default('menunggu')->nullable();
             $table->text('bukti')->nullable();
             $table->timestamps();
 

@@ -107,7 +107,7 @@
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-users-gear fa-lg"></i>
                     </div>
-                    <span class="ms-4">Manage User</span>
+                    <span class="ms-4">Data Peserta</span>
                 </a>
             </li>
             <li>
@@ -117,7 +117,7 @@
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-user-shield fa-lg"></i>
                     </div>
-                    <span class="ms-4">Manage Admin</span>
+                    <span class="ms-4">Data Admin</span>
                 </a>
             </li>
             <li>
@@ -147,7 +147,7 @@
                         class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                         <i class="fa-solid fa-puzzle-piece fa-lg"></i>
                     </div>
-                    <span class="ms-4">Manage Content</span>
+                    <span class="ms-4">Pengaturan Konten</span>
                 </a>
             </li>
         </ul>

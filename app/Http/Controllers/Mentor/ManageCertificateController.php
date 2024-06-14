@@ -213,9 +213,10 @@ class ManageCertificateController extends Controller
         ]);
 
         $score->update($validatedData);
+
         $certificateId = $score->certificate_id;
         $encryptedCertificateId = Crypt::encryptString($certificateId);
-        return redirect()->route('mentor.detailPenilaian', ['certificate' => $encryptedCertificateId]);
+        return redirect()->route('mentor.detailPenilaian', ['certificate' => $encryptedCertificateId])->with('success', 'Data berhasil diupdate!');
     }
 
     /**

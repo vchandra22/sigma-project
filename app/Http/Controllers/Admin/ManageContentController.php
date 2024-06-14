@@ -15,7 +15,7 @@ class ManageContentController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Manage Content';
+        $data['pageTitle'] = 'Pengaturan Konten';
         $data['homepageUuid'] = Homepage::first();
         $data['termsId'] = Term::first();
 

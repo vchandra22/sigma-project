@@ -42,7 +42,6 @@
                                 <div
                                     class="lg:col-span-2 flex flex-col gap-4 w-full p-4 lg:p-6 border border-abu-500 rounded-none dark:bg-neutral-900 dark:border-neutral-800">
                                     <div class="text-primary-800 dark:text-secondary dark:hover:text-gray-50">
-
                                         <div class="block lg:flex justify-between items-start gap-2">
                                             <div>
                                                 <h3
@@ -56,16 +55,15 @@
                                                     {{ convertDate($data->start_date) . ' - ' . convertDate($data->due_date) }}
                                                 </p>
                                             </div>
-                                            @if ($data->status !== 'selesai')
+                                            @if ($data->status === 'dikirim')
                                                 <a href="{{ route('mentor.editAssignment', $data->slug) }}"
                                                     class="text-sm font-normal text-end text-primary-800 hover:underline rounded-none focus:ring-2 focus:ring-accent sm:w-auto dark:text-secondary dark:focus:ring-blue-800">Edit
                                                 </a>
                                             @endif
                                         </div>
-
                                     </div>
-                                    <div class="text-start text-primary-500 text-md dark:text-gray-200">
-                                        {{ strip_tags($data->pertanyaan) }}
+                                    <div class="w-full text-primary-800 dark:text-secondary">
+                                        {!! $data->pertanyaan !!}
                                     </div>
                                     @if ($data->doc_pertanyaan)
                                         <a href="{{ route('downloadPertanyaan', $data->uuid) }}"
@@ -103,7 +101,6 @@
                                             Download File Jawaban
                                         </a>
                                     @elseif ($data->status === 'dikirim')
-
                                         <div>
                                             <p for="doc_jawaban"
                                                 class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">

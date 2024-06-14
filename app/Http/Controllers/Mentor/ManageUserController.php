@@ -20,7 +20,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Manage User';
+        $data['pageTitle'] = 'Data Peserta';
 
         return view('mentor.manage_user.user_list', $data);
     }
@@ -44,8 +44,8 @@ class ManageUserController extends Controller
             ->editColumn('user.nama_lengkap', function ($data) {
                 return $data->user->nama_lengkap;
             })
-            ->editColumn('user.no_hp', function ($data) {
-                return $data->user->no_hp;
+            ->editColumn('user.document.no_identitas', function ($data) {
+                return $data->user->document->no_identitas;
             })
             ->editColumn('user.jenis_kelamin', function ($data) {
                 return $data->user->jenis_kelamin;
@@ -98,7 +98,7 @@ class ManageUserController extends Controller
      */
     public function edit($uuid)
     {
-        $data['pageTitle'] = 'Edit Data User';
+        $data['pageTitle'] = 'Edit Data Peserta';
         $data['userData'] = Document::with(['user', 'office', 'position', 'status'])->where('documents.uuid', $uuid)->get();
         $data['officeList'] = Office::all();
         $data['positionList'] = Position::all();

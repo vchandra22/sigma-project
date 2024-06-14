@@ -69,7 +69,7 @@
                                     <a href="{{ route('admin.managePosition') }}">
                                         <h5
                                             class="mb-2 text-2xl font-bold tracking-tight text-primary-800 dark:text-secondary">
-                                            Internship Role
+                                            Posisi Pekerjaan
                                         </h5>
                                     </a>
                                 </div>

@@ -81,7 +81,7 @@
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
-                                            No. HP
+                                            No. Identitas
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">

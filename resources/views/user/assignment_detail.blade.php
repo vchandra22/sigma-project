@@ -50,8 +50,8 @@
                                         {{ convertDate($assignmentData->start_date) . ' - ' . convertDate($assignmentData->due_date) }}
                                     </p>
                                 </div>
-                                <div class="text-start text-primary-500 text-md dark:text-gray-200">
-                                    {{ strip_tags($assignmentData->pertanyaan) }}
+                                <div class="w-full text-primary-800 dark:text-secondary">
+                                    {!! $assignmentData->pertanyaan !!}
                                 </div>
                                 @if ($assignmentData->doc_pertanyaan)
                                     <a href="{{ route('downloadPertanyaan', $assignmentData->uuid) }}"

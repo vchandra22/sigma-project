@@ -119,7 +119,7 @@
                             class="w-5 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-primary-800 dark:group-hover:text-secondary">
                             <i class="fa-solid fa-file-pen fa-lg"></i>
                         </div>
-                        <span class="ms-4">Assignments</span>
+                        <span class="ms-4">Tugas / Proyek</span>
                     </a>
                 </li>
                 <li>

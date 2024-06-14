@@ -51,7 +51,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
                                             Lengkap <span class="text-red-500">*</span></label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="Vincent Chandra Trie Novan" required autofocus
                                             value="{{ old('nama_lengkap') }}" />
                                         @error('nama_lengkap')
@@ -66,7 +66,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nomor
                                             Identitas <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_identitas" id="no_identitas"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="350518888888" required value="{{ old('no_identitas') }}" />
                                         @error('no_identitas')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -85,7 +85,7 @@
                                             Kelamin <span class="text-red-500">*</span>
                                         </label>
                                         <select type="text" name="jenis_kelamin" id="jenis_kelamin"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             <option value="Laki - Laki"
                                                 {{ old('jenis_kelamin') == 'Laki - Laki' ? 'selected' : '' }}>
                                                 Laki - Laki
@@ -107,7 +107,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Username<span
                                                 class="text-red-500">*</span></label>
                                         <input type="text" name="username" id="username"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="Otomatis diisi dari No. Identitas" required
                                             value="{{ old('username') }}" />
                                         @error('username')
@@ -122,7 +122,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.Handphone
                                             <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_hp" id="no_hp"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="081555555555" required value="{{ old('no_hp') }}" />
                                         @error('no_hp')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -136,8 +136,8 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Alamat
                                             Email <span class="text-red-500">*</span></label>
                                         <input type="email" name="email" id="email"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
-                                            placeholder="sugengrahayu12@gmail.com" required
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            placeholder="vincentchandra42@gmail.com" required
                                             value="{{ old('users.email') }}" />
                                         @error('email')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -151,7 +151,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Password
                                             <span class="text-red-500">*</span></label>
                                         <input type="password" name="password" id="password" placeholder="••••••••"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             required />
                                         @error('password')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -167,7 +167,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <input type="password" name="password_confirmation" id="password_confirmation"
                                             placeholder="••••••••"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             required />
                                         @error('password_confirmation')
                                             <div class="mt-1 text-red-500 text-xs">
@@ -181,7 +181,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Instansi
                                             Asal <span class="text-red-500">*</span></label>
                                         <input type="text" name="instansi_asal" id="instansi_asal"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="SMKN 1 Blitar" required value="{{ old('instansi_asal') }}" />
 
                                         @error('instansi_asal')
@@ -200,7 +200,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Jurusan
                                             / Konsentrasi Bidang Keahlian <span class="text-red-500">*</span></label>
                                         <input type="text" name="jurusan" id="jurusan"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="Rekayasa Perangkat Lunak" required
                                             value="{{ old('jurusan') }}" />
 
@@ -224,7 +224,7 @@
                                             Tujuan <span class="text-red-500">*</span>
                                         </label>
                                         <select type="text" name="office_id" id="office_id"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @foreach ($officeList as $office)
                                                 <option value="{{ $office->id }}"
                                                     {{ old('office_id') == $office->id ? 'selected' : '' }}>
@@ -248,7 +248,7 @@
                                             / Posisi Pekerjaan <span class="text-red-500">*</span>
                                         </label>
                                         <select type="text" name="position_id" id="position_id"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent">
                                             @foreach ($positionList as $position)
                                                 <option value="{{ $position->id }}"
                                                     {{ old('position_id') == $position->id ? 'selected' : '' }}>
@@ -275,7 +275,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Nama
                                             Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
                                         <input type="text" name="nama_pembimbing" id="nama_pembimbing"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="Hardianto" required value="{{ old('nama_pembimbing') }}" />
 
                                         @error('nama_pembimbing')
@@ -290,7 +290,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">No.HP
                                             Guru / Dosen Pembimbing <span class="text-red-500">*</span></label>
                                         <input type="text" name="no_hp_pembimbing" id="no_hp_pembimbing"
-                                            class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                             placeholder="081255555555" required value="{{ old('no_hp_pembimbing') }}" />
 
                                         @error('no_hp_pembimbing')
@@ -319,7 +319,7 @@
                                                     </svg>
                                                 </div>
                                                 <input name="u_tgl_mulai" type="text"
-                                                    class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                    class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                     placeholder="Tanggal Mulai" required
                                                     value="{{ old('u_tgl_mulai') }}">
                                                 @error('u_tgl_mulai')
@@ -341,7 +341,7 @@
                                                     </svg>
                                                 </div>
                                                 <input name="u_tgl_selesai" type="text"
-                                                    class="bg-gray-100 border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                    class="bg-white border border-abu-800 text-primary-800 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-secondary dark:focus:ring-primary-800 dark:focus:border-accent"
                                                     placeholder="Tanggal Selesai" required
                                                     value="{{ old('u_tgl_selesai') }}">
                                                 @error('u_tgl_selesai')
@@ -358,7 +358,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Surat Pengantar <span class="text-red-500">*</span></label>
                                         <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
                                             id="doc_pengantar" type="file" name="doc_pengantar"
                                             value="{{ old('doc_pengantar') }}">
                                         @error('doc_pengantar')
@@ -375,7 +375,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Surat Rekomendasi BAKESBANGPOL</label>
                                         <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
                                             id="doc_kesbang" type="file" name="doc_kesbang"
                                             value="{{ old('doc_kesbang') }}">
                                         @error('doc_kesbang')
@@ -395,7 +395,7 @@
                                             class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
                                             Dokumen Pendukung</label>
                                         <input
-                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                            class="block w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-white hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
                                             id="doc_proposal" type="file" name="doc_proposal"
                                             value="{{ old('doc_proposal') }}">
                                         @error('doc_proposal')
@@ -414,7 +414,7 @@
                                     <div class="flex items-start">
                                         <div class="flex items-center h-5">
                                             <input id="terms" aria-describedby="terms" type="checkbox"
-                                                class="w-4 h-4 border-abu-800 bg-gray-100 focus:ring-3 focus:ring-primary-800 dark:focus:ring-neutral-600 dark:ring-offset-gray-800 dark:bg-neutral-700 dark:border-neutral-700"
+                                                class="w-4 h-4 border-abu-800 bg-white focus:ring-3 focus:ring-primary-800 dark:focus:ring-neutral-600 dark:ring-offset-gray-800 dark:bg-neutral-700 dark:border-neutral-700"
                                                 required="">
                                         </div>
                                         <div class="ml-3 text-sm">

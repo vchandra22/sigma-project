@@ -20,7 +20,7 @@ class ManageAdminController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Manage Admin';
+        $data['pageTitle'] = 'Data Admin';
 
         return view('admin.manage_admin.admin_list', $data);
     }

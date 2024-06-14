@@ -5,13 +5,12 @@
         @foreach ($userData as $data)
             <div class="p-4 mt-14">
                 <div
-                    class="md:grid md:grid-cols-3 h-full mb-2 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="md:col-span-2 px-6 py-8">
                         <h2 class="text-2xl md:text-4xl font-bold text-primary-800 dark:text-secondary mb-2">Pengumuman</h2>
                         @foreach ($announcementData as $announcement)
-                            <p
-                                class="text-primary-800 font-paragraf text-md md:text-lg dark:text-secondary leading-4 md:leading-5">
-                                {{ strip_tags($announcement->pengumuman) }}
+                            <p class="w-full text-primary-800 dark:text-secondary">
+                                {!! $announcement->pengumuman !!}
                             </p>
                             @if ($announcement->file !== null)
                                 <br>
@@ -30,10 +29,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-2">
+                <div>
                     <div class="w-full h-full">
-                        <div class="md:grid lg:grid-cols-2 gap-2 space-y-2 md:space-y-0">
-                            <div class="h-full w-full grid grid-rows-3 gap-2">
+                        <div class="md:grid lg:grid-cols-2 space-y-2 md:space-y-0">
+                            <div class="h-full w-full grid grid-rows-3">
                                 <div
                                     class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Nama
@@ -75,7 +74,7 @@
                             <div
                                 class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                                 <h2
-                                    class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4 text-center">
+                                    class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4 text-start">
                                     Status Pendaftaran</h2>
                                 @if ($data->status->status == 'menunggu')
                                     <div
@@ -127,10 +126,10 @@
                                     </div>
                                 @else
                                     <h2
-                                        class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary my-4 text-center">
+                                        class="lg:pt-6 text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary my-4 text-start">
                                         Surat Balasan
                                     </h2>
-                                    <p class="text-center text-primary-500">
+                                    <p class="text-start text-primary-500">
                                         Belum ada dokumen balasan
                                     </p>
                                 @endif
@@ -140,9 +139,9 @@
                 </div>
                 <div class="mb-2">
                     <div class="w-full h-full">
-                        <div class="md:grid md:grid-cols-1 lg:grid-cols-3 gap-2 space-y-2 md:space-y-0">
+                        <div class="md:grid md:grid-cols-1 lg:grid-cols-2 space-y-2 md:space-y-0">
                             <div
-                                class="lg:col-span-2 h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700 lg:space-y-24">
+                                class="lg:col-span-1 h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700 lg:space-y-16">
                                 <div>
                                     <h2 class="text-xl md:text-2xl font-bold text-abu-800 dark:text-gray-200 mb-4">Tanggal
                                         Magang yang Diajukan</h2>
@@ -167,7 +166,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="h-full w-full grid grid-rows-2 gap-2">
+                            <div class="h-full w-full grid grid-rows-2">
                                 <div
                                     class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
                                     @if ($data->status->status === 'diterima' || $data->status->status === 'selesai')
@@ -181,9 +180,10 @@
                                                 Kamu sudah mengunggah laporan
                                             </p>
                                             <br>
-                                            <a href="{{ route('user.downloadLaporan', $data->uuid) }}">
+                                            <a class="hover:underline text-blue-500"
+                                                href="{{ route('user.downloadLaporan', $data->uuid) }}">
                                                 <div
-                                                    class="capitalize mx-auto text-start py-2 pointer-events-none text-blue-500 hover:underline hover:text-blue-800">
+                                                    class="capitalize mx-auto text-start py-2 pointer-events-none text-blue-500  hover:text-blue-800">
                                                     Download Laporan
                                                 </div>
                                             </a>

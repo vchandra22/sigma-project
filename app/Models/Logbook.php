@@ -22,6 +22,7 @@ class Logbook extends Model
         'jam_selesai',
         'topik_diskusi',
         'arahan_pembimbing',
+        'status',
         'bukti',
     ];
 

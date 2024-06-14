@@ -19,14 +19,15 @@ class ManageAssignmentController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Assignment List';
+        $data['pageTitle'] = 'Tugas / Proyek';
 
         $user = Auth::user();
 
         $data['assignmentData'] = Assignment::with('status')
             ->where('created_by', $user->id)
             ->whereHas('status', function ($query) {
-                $query->where('status', 'diterima');
+                $query->where('status', 'diterima')
+                    ->orWhere('status', 'selesai');
             })
             ->latest()
             ->paginate(10);
@@ -36,7 +37,7 @@ class ManageAssignmentController extends Controller
 
     public function statusBelumDikerjakan()
     {
-        $data['pageTitle'] = 'Assignment';
+        $data['pageTitle'] = 'Tugas / Proyek';
         $user = Auth::user(); // Retrieve the authenticated user
 
         $data['assignmentData'] = Assignment::where('created_by', $user->id)->where('status', 'dikirim')->latest()->paginate(10);
@@ -47,7 +48,7 @@ class ManageAssignmentController extends Controller
 
     public function statusSelesai()
     {
-        $data['pageTitle'] = 'Assignment';
+        $data['pageTitle'] = 'Tugas / Proyek';
         $user = Auth::user(); // Retrieve the authenticated user
 
         $data['assignmentData'] = Assignment::where('created_by', $user->id)->where('status', 'selesai')->latest()->paginate(10);
@@ -57,7 +58,7 @@ class ManageAssignmentController extends Controller
 
     public function statusTerlambat()
     {
-        $data['pageTitle'] = 'Assignment';
+        $data['pageTitle'] = 'Tugas / Proyek';
         $user = Auth::user(); // Retrieve the authenticated user
 
         $data['assignmentData'] = Assignment::where('created_by', $user->id)->where('status', 'terlambat')->latest()->paginate(10);
@@ -70,7 +71,7 @@ class ManageAssignmentController extends Controller
      */
     public function create()
     {
-        $data['pageTitle'] = 'Create Assignment';
+        $data['pageTitle'] = 'Buat Assignment';
         $user = Auth::user();
         $data['userData'] = Document::with('user', 'status', 'position')
             ->where('office_id', $user->office_id)

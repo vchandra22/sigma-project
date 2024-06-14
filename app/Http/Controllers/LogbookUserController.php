@@ -33,7 +33,10 @@ class LogbookUserController extends Controller
         $data['userDetail'] = Document::with('user', 'status')->where('documents.user_id', $user->id)->get();
 
         // Mendapatkan entri logbook peserta, diurutkan berdasarkan tanggal, dan paginasi (2 per halaman)
-        $data['logbookUser'] = Logbook::with('status')->where('status_id', $user->id)->latest('logbooks.tgl_magang')->paginate(2);
+        $data['logbookUser'] = Logbook::with('status')
+            ->where('status_id', $user->id)
+            ->latest('logbooks.tgl_magang')
+            ->paginate(2);
 
         return view('user.logbook', $data); // Kembalikan view dengan data
     }
@@ -84,6 +87,7 @@ class LogbookUserController extends Controller
             ->join('statuses', 'documents.id', '=', 'statuses.document_id')
             ->join('logbooks', 'statuses.id', '=', 'logbooks.status_id')
             ->where('logbooks.status_id', $status_id)
+            ->where('logbooks.status', 'disetujui')
             ->oldest('logbooks.tgl_magang')
             ->get();
 
