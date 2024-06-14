@@ -50,12 +50,6 @@ $(document).ready(function () {
             },
             {
                 orderable: false,
-                data: 'no_hp',
-                name: 'no_hp',
-                className: 'text-primary-800 dark:text-secondary'
-            },
-            {
-                orderable: false,
                 data: 'roles.name',
                 name: 'roles.name',
                 render: function(data, type, row, meta) {

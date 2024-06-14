@@ -7,7 +7,7 @@
         @foreach ($userData as $user)
             <div class="p-1 md:p-4 mt-14">
                 <div
-                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700">
                     <div class="md:col-span-2 px-6 py-8">
                         <div class="flex justify-between items-center mb-2">
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
@@ -44,9 +44,9 @@
                 <div>
                     <div class="w-full h-full">
                         <div class="md:grid lg:grid-cols-2 space-y-2 md:space-y-0">
-                            <div class="h-full w-full grid grid-rows-3">
+                            <div class="border border-gray-200 h-full w-full grid grid-rows-3 dark:border-neutral-700">
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary dark:bg-neutral-900">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Nama
                                         Lengkap</h2>
                                     <p
@@ -55,7 +55,7 @@
                                     </p>
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary dark:bg-neutral-900">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Role
                                     </h2>
@@ -67,7 +67,7 @@
                                     @endforeach
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary dark:bg-neutral-900">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Instansi / OPD
                                     </h2>
@@ -80,13 +80,13 @@
                                 </div>
                             </div>
                             <div
-                                class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                                class="border border-gray-200  h-full w-full px-6 py-8 bg-secondary dark:bg-neutral-900 dark:border-neutral-700">
                                 <h2
                                     class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4 text-start">
                                     Log Aktivitas
                                 </h2>
                                 <div class="h-80 overflow-auto dark:border-neutral-500">
-                                    <ol class="border-s border-gray-200 dark:border-neutral-800">
+                                    <ol class="border-s border-gray-200 dark:border-neutral-700">
                                         @foreach ($activityLog as $log)
                                             <li class="mb-4 ms-6">
                                                 <div
@@ -107,9 +107,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-2">
+                <div class="mb-2 border border-gray-200 dark:border-neutral-700">
                     <div
-                        class="px-6 py-8 text-primary-800 w-full h-full bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                        class="px-6 py-8 text-primary-800 w-full h-full bg-secondary dark:bg-neutral-900">
                         <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Grafik Pendaftar
                             dan Peserta
                         </h2>

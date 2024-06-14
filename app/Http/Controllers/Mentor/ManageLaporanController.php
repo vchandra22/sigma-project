@@ -45,8 +45,8 @@ class ManageLaporanController extends Controller
             ->editColumn('no_identitas', function ($data) {
                 return $data->no_identitas;
             })
-            ->editColumn('user.no_hp', function ($data) {
-                return $data->user->no_hp;
+            ->editColumn('user.document.no_identitas', function ($data) {
+                return $data->user->document->no_identitas;
             })
             ->editColumn('instansi_asal', function ($data) {
                 return $data->instansi_asal;

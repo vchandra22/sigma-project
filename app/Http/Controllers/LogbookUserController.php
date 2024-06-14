@@ -10,6 +10,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use File;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class LogbookUserController extends Controller
 {
@@ -54,12 +57,26 @@ class LogbookUserController extends Controller
             'jam_selesai' => ['required', 'date_format:H:i'],
             'topik_diskusi' => ['required'],
             'arahan_pembimbing' => ['required'],
-            'bukti' => ['required', 'url'],
+            'bukti' => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ]);
 
         // Ubah format tanggal magang menjadi format yang sesuai dengan database
         $validatedData['tgl_magang'] = Carbon::createFromFormat('d/m/Y', $validatedData['tgl_magang'])->format('Y-m-d');
 
+        if ($request->hasFile('bukti')) {
+            // Handle file upload and storage
+            $file = $request->file('bukti');
+            $directoryPath = '/img/bukti/';
+
+            // Create directory if not exists
+            if (!file_exists($directoryPath)) {
+                Storage::disk('public')->makeDirectory($directoryPath, 0775, true);
+            }
+
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('/img/bukti/' . $filename, File::get($file));
+            $validatedData['bukti'] = $filename;
+        }
         Logbook::create($validatedData); // Buat entri logbook baru dengan data yang divalidasi
 
         // Redirect ke halaman logbook dengan pesan sukses

@@ -146,7 +146,10 @@
                                                                         Bukti Dukung
                                                                     </h5>
                                                                     <a class="text-blue-400 hover:text-blue-500 hover:underline"
-                                                                        href="{{ $logbook->bukti }}">{{ $logbook->bukti }}</a>
+                                                                        href="{{ asset('storage/img/bukti/' . $logbook->bukti) }}"
+                                                                        target="_blank">
+                                                                        {{ asset('storage/img/bukti/' . $logbook->bukti) }}
+                                                                    </a>
                                                                 </div>
                                                             </td>
                                                             <td class="px-8 py-6 flex justify-start items-center gap-4">

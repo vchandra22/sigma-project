@@ -37,15 +37,15 @@ $(document).ready(function () {
             {
                 orderable: false,
                 searchable: true,
-                data: 'user.nama_lengkap',
-                name: 'user.nama_lengkap',
+                data: 'user.document.no_identitas',
+                name: 'user.document.no_identitas',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,
                 searchable: true,
-                data: 'user.document.no_identitas',
-                name: 'user.document.no_identitas',
+                data: 'user.nama_lengkap',
+                name: 'user.nama_lengkap',
                 className: 'text-primary-800 dark:text-secondary'
             },
             {

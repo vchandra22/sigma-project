@@ -80,6 +80,9 @@
     </section>
     <!-- Main Content End-->
 
+    @stack('script')
+
+
 </body>
 
 </html>

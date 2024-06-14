@@ -76,12 +76,12 @@
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             No.
                                         </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Nama Lengkap
-                                        </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">
                                             No. Identitas
+                                        </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Nama Lengkap
                                         </th>
                                         <th scope="col"
                                             class="px-4 text-center py-6 text-primary-800 dark:text-secondary">

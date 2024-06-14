@@ -47,6 +47,9 @@ class ManageLogbookController extends Controller
             ->editColumn('nama_lengkap', function ($data) {
                 return $data->nama_lengkap;
             })
+            ->editColumn('documents.no_identitas', function ($data) {
+                return $data->no_identitas;
+            })
             ->editColumn('instansi_asal', function ($data) {
                 return $data->instansi_asal;
             })

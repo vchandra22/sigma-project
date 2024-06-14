@@ -7,7 +7,7 @@
         @foreach ($userData as $user)
             <div class="p-1 md:p-4 mt-14">
                 <div
-                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-600">
+                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-200 dark:border-neutral-700 dark:bg-neutral-900">
                     <div class="md:col-span-2 px-6 py-8">
                         <div class="flex justify-between items-center mb-2">
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
@@ -20,9 +20,9 @@
                             </div>
                         </div>
                         @foreach ($announcementData as $announcement)
-                            <p class="w-full text-primary-800 dark:text-secondary">
+                            <span class="w-full text-primary-800 dark:text-white">
                                 {!! $announcement->pengumuman !!}
-                            </p>
+                            </span>
                             @if ($announcement->file !== null)
                                 <br>
                                 <a href="{{ route('downloadFileAnnouncement', ['announcement' => $announcement->file]) }}"
@@ -42,10 +42,9 @@
                 </div>
                 <div class="mb-2">
                     <div class="w-full h-full">
-                        <div class="md:grid lg:grid-cols-2 space-y-2 md:space-y-0">
-                            <div class="h-full w-full grid grid-rows-3">
-                                <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                        <div class="md:grid lg:grid-cols-2 space-y-2 md:space-y-0 ">
+                            <div class="h-full w-full grid grid-rows-3 border border-gray-200 dark:border-neutral-700">
+                                <div class="px-6 py-8 bg-secondary dark:bg-neutral-900 ">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Nama
                                         Lengkap</h2>
                                     <p
@@ -53,8 +52,7 @@
                                         {{ $user->nama_lengkap }}
                                     </p>
                                 </div>
-                                <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                <div class="px-6 py-8 bg-secondary dark:bg-neutral-900 ">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Role
                                     </h2>
@@ -65,8 +63,7 @@
                                         </p>
                                     @endforeach
                                 </div>
-                                <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                <div class="px-6 py-8 bg-secondary dark:bg-neutral-900 ">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Instansi / OPD
                                     </h2>
@@ -79,7 +76,7 @@
                                 </div>
                             </div>
                             <div
-                                class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-800">
+                                class="h-full w-full px-6 py-8 bg-secondary dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700">
                                 <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                     Grafik Penyelesaian Tugas
                                 </h2>

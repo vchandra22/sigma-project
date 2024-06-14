@@ -74,7 +74,8 @@
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-8">Form
                                         Dailylog
                                     </h2>
-                                    <form action="{{ route('user.storeLogbook') }}" method="POST" class="space-y-6">
+                                    <form action="{{ route('user.storeLogbook') }}" method="POST" class="space-y-6"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @foreach ($userDetail as $data)
                                             <div>
@@ -208,12 +209,16 @@
 
                                         <div>
                                             <label for="bukti"
-                                                class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">Bukti
-                                                Dukung (link) <span class="text-red-500">*</span>
+                                                class="block mb-2 text-sm font-medium text-primary-800 dark:text-secondary">
+                                                Foto / Gambar Bukti Kegiatan <span class="text-red-500">*</span>
                                             </label>
-                                            <input type="text" name="bukti" id="bukti"
-                                                class="bg-white border border-abu-800 text-blue-500 text-sm focus:ring-primary-800 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-700 dark:placeholder:text-neutral-400 dark:text-blue-500 dark:focus:ring-primary-800 dark:focus:border-accent"
-                                                required value="{{ old('bukti') }}" />
+                                            <div class="upload-img-box h-auto w-full md:max-w-sm">
+                                                <img class="h-auto w-full overflow-y-hidden border-abu-500 rounded-sm border-2"
+                                                    src="">
+                                                <input type="file" name="bukti" id="bukti"
+                                                    class="mt-2 w-full text-sm text-primary-800 border border-abu-800 cursor-pointer bg-gray-100 hover:bg-gray-50 dark:text-secondary focus:ring-primary-800 focus:border-primary-500 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:border-none dark:focus:ring-primary-800 dark:focus:border-accent"
+                                                    value="{{ old('bukti') }}" onchange="previewFile(this)">
+                                            </div>
                                             @error('bukti')
                                                 <div class="mt-1 text-red-500 text-xs">
                                                     {{ $message }}
@@ -320,7 +325,10 @@
                                                                 Bukti Dukung
                                                             </h5>
                                                             <a class="text-blue-400 hover:text-blue-500 hover:underline"
-                                                                href="{{ $logbook->bukti }}">{{ $logbook->bukti }}</a>
+                                                                href="{{ asset('storage/img/bukti/' . $logbook->bukti) }}"
+                                                                target="_blank">
+                                                                {{ asset('storage/img/bukti/' . $logbook->bukti) }}
+                                                            </a>
                                                         </div>
                                                         <div>
                                                             <h5 class="font-bold text-primary-800 dark:text-secondary">
@@ -462,4 +470,8 @@
                 console.error(error);
             });
     </script>
+
+    @push('script')
+        <script src="{{ asset('assets/js/custom/image-preview.js') }}"></script>
+    @endpush
 @endsection

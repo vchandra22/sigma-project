@@ -36,19 +36,17 @@ $(document).ready(function () {
             },
             {
                 orderable: false,
-                render: function(data, type, row) {
-                    return '<div>' + row.user.nama_lengkap + '</div>' +
-                           '<div clas="font-regular">' + row.no_identitas + '</div>';
-                },
-                name: 'user.nama_lengkap',
-                className: 'font-bold text-primary-800 dark:text-secondary',
+                searchable: true,
+                data: 'user.document.no_identitas',
+                name: 'user.document.no_identitas',
+                className: 'text-primary-800 dark:text-secondary'
             },
             {
-                data: 'user.no_hp',
-                name: 'user.no_hp',
-                className: 'text-primary-800 dark:text-secondary',
                 orderable: false,
                 searchable: true,
+                data: 'user.nama_lengkap',
+                name: 'user.nama_lengkap',
+                className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,

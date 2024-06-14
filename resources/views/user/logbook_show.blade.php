@@ -91,9 +91,9 @@
                             {{ strip_tags($row->arahan_pembimbing ?? 'Tidak ada data') }}
                         </p>
                         <p style="font-weight: bold; margin-bottom: -8px;"> Bukti dukung (link) </p>
-                        <a href="{{ $row->bukti ?? 'Tidak ada data' }}">
+                        <a href="{{ asset('storage/img/bukti/' . $row->bukti) ?? 'Tidak ada data' }}">
                             <p>
-                                {{ strip_tags($row->bukti ?? 'Tidak ada data') }}
+                                {{ strip_tags(asset('storage/img/bukti/' . $row->bukti) ?? 'Tidak ada data') }}
                             </p>
                         </a>
                     </td>

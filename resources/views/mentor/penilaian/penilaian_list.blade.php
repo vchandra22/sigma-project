@@ -52,12 +52,12 @@
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             No.
                                         </th>
-                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
-                                            Nama Peserta
-                                        </th>
                                         <th scope="col"
                                             class="px-4 text-start py-6 text-primary-800 dark:text-secondary">
-                                            No. HP Peserta
+                                            No. Identitas
+                                        </th>
+                                        <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            Nama Peserta
                                         </th>
                                         <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
                                             Instansi

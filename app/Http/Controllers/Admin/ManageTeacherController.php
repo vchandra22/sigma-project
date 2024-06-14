@@ -39,6 +39,9 @@ class ManageTeacherController extends Controller
             ->editColumn('documents.nama_pembimbing', function ($data) {
                 return $data->nama_pembimbing;
             })
+            ->editColumn('user.document.no_identitas', function ($data) {
+                return $data->user->document->no_identitas;
+            })
             ->addColumn('opsi', function ($data) {
                 // Construct WhatsApp chat link
                 $phoneNumber = $data->no_hp_pembimbing;

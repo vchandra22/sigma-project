@@ -5,13 +5,13 @@
         @foreach ($userData as $data)
             <div class="p-4 mt-14">
                 <div
-                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                    class="md:grid md:grid-cols-3 h-full bg-secondary border border-gray-200 dark:border-neutral-700 dark:bg-neutral-900">
                     <div class="md:col-span-2 px-6 py-8">
                         <h2 class="text-2xl md:text-4xl font-bold text-primary-800 dark:text-secondary mb-2">Pengumuman</h2>
                         @foreach ($announcementData as $announcement)
-                            <p class="w-full text-primary-800 dark:text-secondary">
+                            <span class="w-full text-primary-800 dark:text-secondary">
                                 {!! $announcement->pengumuman !!}
-                            </p>
+                            </span>
                             @if ($announcement->file !== null)
                                 <br>
                                 <a href="{{ route('downloadFileAnnouncement', ['announcement' => $announcement->file]) }}"
@@ -31,10 +31,10 @@
                 </div>
                 <div>
                     <div class="w-full h-full">
-                        <div class="md:grid lg:grid-cols-2 space-y-2 md:space-y-0">
-                            <div class="h-full w-full grid grid-rows-3">
+                        <div class="md:grid lg:grid-cols-2 md:space-y-0">
+                            <div class="h-full w-full grid grid-rows-3 border border-gray-200 border-b-0 dark:border-neutral-700">
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">Nama
                                         Lengkap</h2>
                                     <p
@@ -42,7 +42,7 @@
                                         {{ Auth::user()->nama_lengkap }}</p>
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Jurusan / Bidang Keahlian</h2>
                                     <p
@@ -50,7 +50,7 @@
                                         {{ $data->jurusan }}</p>
                                 </div>
                                 <div
-                                    class="px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                    class="px-6 py-8 bg-secondary dark:bg-neutral-900 dark:border-neutral-700">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Instansi
                                         Tujuan
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div
-                                class="h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                                class="h-full w-full px-6 py-8 bg-secondary border border-gray-200 border-b-0 dark:border-neutral-700 dark:bg-neutral-900">
                                 <h2
                                     class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-4 text-start">
                                     Status Pendaftaran</h2>
@@ -139,9 +139,9 @@
                 </div>
                 <div class="mb-2">
                     <div class="w-full h-full">
-                        <div class="md:grid md:grid-cols-1 lg:grid-cols-2 space-y-2 md:space-y-0">
+                        <div class="md:grid md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
                             <div
-                                class="lg:col-span-1 h-full w-full px-6 py-8 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700 lg:space-y-16">
+                                class="lg:col-span-1 h-full w-full px-6 py-8 bg-secondary border border-gray-200 border-t-0 dark:border-neutral-700 dark:bg-neutral-900 dark:border lg:space-y-16">
                                 <div>
                                     <h2 class="text-xl md:text-2xl font-bold text-abu-800 dark:text-gray-200 mb-4">Tanggal
                                         Magang yang Diajukan</h2>
@@ -168,7 +168,7 @@
                             </div>
                             <div class="h-full w-full grid grid-rows-2">
                                 <div
-                                    class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
+                                    class="p-4 bg-secondary border border-gray-200 border-t-0 border-b-0 dark:border-neutral-700 dark:bg-neutral-900 dark:border">
                                     @if ($data->status->status === 'diterima' || $data->status->status === 'selesai')
                                         @if ($data->doc_laporan)
                                             <p for="doc_laporan"
@@ -225,7 +225,7 @@
                                     @endif
                                 </div>
                                 <div
-                                    class="p-4 bg-secondary border border-gray-100 dark:bg-neutral-900 dark:border dark:border-neutral-700">
+                                    class="p-4 bg-secondary border border-gray-200 border-t-0 dark:border-neutral-700 dark:bg-neutral-900 dark:border">
                                     <h2 class="text-xl md:text-2xl font-bold text-primary-800 dark:text-secondary mb-2">
                                         Certificate of Internship</h2>
                                     @if ($data->status->certificate)

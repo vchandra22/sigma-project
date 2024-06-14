@@ -50,10 +50,10 @@
                                             No.
                                         </th>
                                         <th>
-                                            Nama Peserta
+                                            No. Identitas
                                         </th>
                                         <th>
-                                            No. HP Peserta
+                                            Nama Peserta
                                         </th>
                                         <th>
                                             Instansi

@@ -92,10 +92,10 @@
                                             No.
                                         </th>
                                         <th>
-                                            Nama Lengkap
+                                            No. Identitas
                                         </th>
                                         <th>
-                                            No. Identitas
+                                            Nama Lengkap
                                         </th>
                                         <th>
                                             Gender

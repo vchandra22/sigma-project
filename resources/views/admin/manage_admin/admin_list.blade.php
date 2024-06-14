@@ -102,10 +102,6 @@
                                         </th>
                                         <th scope="col"
                                             class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
-                                            No. HP
-                                        </th>
-                                        <th scope="col"
-                                            class="px-4 py-6 text-center text-primary-800 dark:text-secondary">
                                             Role
                                         </th>
                                         <th scope="col"

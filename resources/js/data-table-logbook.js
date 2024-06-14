@@ -20,12 +20,15 @@ $(document).ready(function () {
             },
             {
                 orderable: false,
-                render: function(data, type, row) {
-                    return '<div>' + row.nama_lengkap + '</div>' +
-                           '<div clas="font-regular">' + row.no_identitas + '</div>';
-                },
+                data: 'documents.no_identitas',
+                name: 'documents.no_identitas',
+                className: 'text-primary-800 dark:text-secondary'
+            },
+            {
+                orderable: false,
+                data: 'nama_lengkap',
                 name: 'nama_lengkap',
-                className: 'font-bold text-primary-800 dark:text-secondary',
+                className: 'text-primary-800 dark:text-secondary'
             },
             {
                 orderable: false,

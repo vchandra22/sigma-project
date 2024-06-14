@@ -74,20 +74,22 @@
                                     class="w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400 dark:border-neutral-700 z-10">
                                     <thead class="text-xs uppercase bg-gray-200 dark:bg-neutral-800 dark:text-secondary">
                                         <tr>
-                                            <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            <th class="px-4 py-6 text-primary-800 dark:text-secondary">
                                                 No.
                                             </th>
-                                            <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            <th class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                                No. Identitas
+                                            </th>
+                                            <th class="px-4 py-6 text-primary-800 dark:text-secondary">
                                                 Nama Peserta
                                             </th>
-                                            <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            <th class="px-4 py-6 text-primary-800 dark:text-secondary">
                                                 Instansi Asal
                                             </th>
-                                            <th scope="col" class="px-4 py-6 text-primary-800 dark:text-secondary">
+                                            <th class="px-4 py-6 text-primary-800 dark:text-secondary">
                                                 Status
                                             </th>
-                                            <th scope="col"
-                                                class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
+                                            <th class="px-8 text-center py-6 text-primary-800 dark:text-secondary">
                                                 Aksi
                                             </th>
                                         </tr>
