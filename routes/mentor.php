@@ -8,6 +8,7 @@ use App\Http\Controllers\Mentor\ManageAssignmentController;
 use App\Http\Controllers\Mentor\ManageUserController;
 use App\Http\Controllers\Mentor\SettingMentorController;
 use App\Http\Controllers\Admin\SettingAdminController;
+use App\Http\Controllers\ExportDataController;
 use App\Http\Controllers\Mentor\ManageCertificateController;
 use App\Http\Controllers\Mentor\ManageLaporanController;
 use App\Http\Controllers\Mentor\ManageLogbookController;
@@ -31,6 +32,7 @@ Route::middleware(['auth:admin', 'role:mentor'])->group(function () {
     Route::get('/manage-user/edit/{document}', [ManageUserController::class, 'edit'])->name('mentor.editUser');
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('mentor.updatePeserta');
     Route::get('/download-documents-file/{documents}', [ManageUserController::class, 'downloadFile'])->name('mentor.downloadDocuments');
+    Route::get('/exports-peserta/{status?}', [ExportDataController::class, 'exportUsersMentorPDF'])->name('mentor.exportUsersPDF');
 
     //manage logbook
     Route::get('/manage-logbook', [ManageLogbookController::class, 'index'])->name('mentor.manageLogbook');

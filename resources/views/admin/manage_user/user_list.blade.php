@@ -48,7 +48,15 @@
 
 
                         <div class="relative overflow-x-auto mt-6">
-                            <div class="flex justify-end mb-4">
+                            <div class="flex justify-end gap-2">
+                                <button id="exportPDFButton"
+                                    class="text-white bg-red-500 hover:bg-red-600 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-red-500 dark:hover:bg-red-600 dark:hover:border dark:text-neutral-900 dark:hover:text-white gap-2">
+                                    <span>
+                                        <i class="fa-solid fa-file-pdf fa-lg"></i>
+                                    </span>
+                                    Export PDF
+                                </button>
+
                                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                                     class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
                                     type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
@@ -134,13 +142,18 @@
         </div>
     </div>
     @push('script')
-        @once
-            <script>
-                function filterByStatus(status) {
-                    // Use DataTables API to filter data by status
-                    $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
-                }
-            </script>
-        @endonce
+        <script>
+            let selectedStatus = ' ';
+
+            function filterByStatus(status) {
+                selectedStatus = status;
+                // Use DataTables API to filter data by status
+                $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
+            }
+
+            document.getElementById('exportPDFButton').addEventListener('click', function() {
+                window.location.href = "{{ route('admin.exportUsersPDF') }}/" + encodeURIComponent(selectedStatus);
+            });
+        </script>
     @endpush
 @endsection

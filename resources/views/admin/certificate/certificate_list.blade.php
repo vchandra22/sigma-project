@@ -38,6 +38,13 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
+                            <button id="exportPDFButton"
+                                class="text-white bg-red-500 hover:bg-red-600 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-red-500 dark:hover:bg-red-600 dark:hover:border dark:text-neutral-900 dark:hover:text-white gap-2">
+                                <span>
+                                    <i class="fa-solid fa-file-pdf fa-lg"></i>
+                                </span>
+                                Export PDF
+                            </button>
                         </div>
 
                         <div class="relative overflow-x-auto mt-6">
@@ -82,4 +89,11 @@
             </div>
         </div>
     </div>
+    @push('script')
+        <script>
+            document.getElementById('exportPDFButton').addEventListener('click', function() {
+                window.location.href = "{{ route('admin.exportCertificatePDF') }}";
+            });
+        </script>
+    @endpush
 @endsection

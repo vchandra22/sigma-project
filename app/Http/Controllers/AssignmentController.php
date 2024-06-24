@@ -131,7 +131,7 @@ class AssignmentController extends Controller
      */
     public function edit($slug)
     {
-        $data['pageTitle'] = 'Assignment Detail'; // Setel judul halaman menjadi 'Assignment Detail'
+        $data['pageTitle'] = 'Detail Tugas / Proyek'; // Setel judul halaman menjadi 'Assignment Detail'
 
         // Mengambil data assignment berdasarkan slug
         $data['assignmentData'] = Assignment::where('slug', $slug)->firstOrFail();

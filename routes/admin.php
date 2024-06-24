@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\SettingAdminController;
 use App\Http\Controllers\Admin\UpdatePasswordAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuth\AuthAdminController;
-
+use App\Http\Controllers\ExportDataController;
 
 Route::middleware(['guest', 'redirect.auth'])->group(function () {
     // login admin
@@ -61,6 +61,7 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('/manage-user/{document}/update', [ManageUserController::class, 'update'])->name('admin.updatePeserta');
     Route::delete('/manage-user/delete/{id}', [ManageUserController::class, 'destroy'])->name('admin.deleteUser');
     Route::get('/download-documents-file/{documents}', [ManageUserController::class, 'downloadFile'])->name('admin.downloadDocuments');
+    Route::get('/exports-peserta/{status?}', [ExportDataController::class, 'exportUsersPDF'])->name('admin.exportUsersPDF');
 
     // manage content
     Route::get('/manage-content', [ManageContentController::class, 'index'])->name('admin.manageContent');
@@ -153,4 +154,6 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/detail-certificates/{certificate}', [ManageCertificateController::class, 'show'])->name('admin.detailCertificate');
     Route::get('/generate-certificate/{certificate}', [ManageCertificateController::class, 'generateCertificate'])->name('admin.generateCertificate');
     Route::delete('/delete-certificate/{certificate}', [ManageCertificateController::class, 'destroy'])->name('admin.deleteCertificate');
+    Route::get('/exports-certificate', [ExportDataController::class, 'exportCertificatePDF'])->name('admin.exportCertificatePDF');
+
 });

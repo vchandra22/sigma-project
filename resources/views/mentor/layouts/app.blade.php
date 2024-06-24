@@ -64,6 +64,9 @@
     </section>
     <!-- Main Content End-->
 
+    {{-- Scripts --}}
+    @stack('script')
+
 </body>
 
 </html>

@@ -38,7 +38,15 @@
                             <h2 class="text-xl md:text-2xl lg:text-4xl font-bold text-primary-800 dark:text-secondary">
                                 {{ $pageTitle }}
                             </h2>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end gap-2">
+                                <button id="exportPDFButton"
+                                    class="text-white bg-red-500 hover:bg-red-600 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-red-500 dark:hover:bg-red-600 dark:hover:border dark:text-neutral-900 dark:hover:text-white gap-2">
+                                    <span>
+                                        <i class="fa-solid fa-file-pdf fa-lg"></i>
+                                    </span>
+                                    Export PDF
+                                </button>
+
                                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                                     class="text-white bg-primary-500 hover:bg-primary-800 text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-secondary dark:hover:bg-neutral-900 dark:hover:border dark:text-neutral-900 dark:hover:text-white"
                                     type="button">Filter Status<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
@@ -124,10 +132,19 @@
             </div>
         </div>
     </div>
-    <script>
-        function filterByStatus(status) {
-            // Use DataTables API to filter data by status
-            $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
-        }
-    </script>
+    @push('script')
+        <script>
+            let selectedStatus = ' ';
+
+            function filterByStatus(status) {
+                selectedStatus = status;
+                // Use DataTables API to filter data by status
+                $('#tableManageUser').DataTable().column('status.status:name').search(status).draw();
+            }
+
+            document.getElementById('exportPDFButton').addEventListener('click', function() {
+                window.location.href = "{{ route('mentor.exportUsersPDF') }}/" + encodeURIComponent(selectedStatus);
+            });
+        </script>
+    @endpush
 @endsection

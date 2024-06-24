@@ -126,7 +126,7 @@ class ManageAssignmentController extends Controller
      */
     public function show($slug)
     {
-        $data['pageTitle'] = 'Detail Assignment';
+        $data['pageTitle'] = 'Detail Tugas';
         $data['assignmentData'] = Assignment::where('slug', $slug)->get();
 
         $status_id = $data['assignmentData']->pluck('status_id')->unique();
